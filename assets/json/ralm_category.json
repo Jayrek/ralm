@@ -1,0 +1,26 @@
+[
+    {
+        "id": 0,
+        "sort": 1,
+        "category_name": "Know Yourself",
+        "status": true
+    },
+    {
+        "id": 1,
+        "sort": 2,
+        "category_name": "Signs",
+        "status": true
+    },
+    {
+        "id": 2,
+        "sort": 3,
+        "category_name": "Tarot Reading",
+        "status": true
+    },
+    {
+        "id": 3,
+        "sort": 4,
+        "category_name": "Discover",
+        "status": true
+    }
+]
