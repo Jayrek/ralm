@@ -7,8 +7,10 @@ import 'package:ralm/feature/tarot_reading/screen/tarot_screen.dart';
 import 'package:ralm/feature/dashboard/dashboard_screen.dart';
 
 import 'core/constants/string_constant.dart';
-import 'feature/dashboard/dashboard/dashboard_bloc.dart';
+import 'feature/dashboard/bloc/dashboard_bloc.dart';
+import 'feature/know_yourself/bloc/know_yourself_bloc.dart';
 import 'feature/know_yourself/screen/know_yourself_screen.dart';
+import 'feature/signs/bloc/signs_bloc.dart';
 
 void main() {
   runApp(const MyApp());
@@ -20,8 +22,14 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => DashboardBloc()..add(FetchCategory()),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => DashboardBloc()..add(FetchCategory()),
+        ),
+        BlocProvider(create: (context) => KnowYourselfBloc()),
+        BlocProvider(create: (context) => SignsBloc()),
+      ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: StringConstant.appName,

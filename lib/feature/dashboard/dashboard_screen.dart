@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ralm/core/constants/string_constant.dart';
 import 'package:ralm/core/shared/widget/custom_button_rounded_widget.dart';
-import 'package:ralm/feature/dashboard/dashboard/dashboard_bloc.dart';
+import 'package:ralm/feature/dashboard/bloc/dashboard_bloc.dart';
 
 import '../../core/shared/widget/custom_button_icon_widget.dart';
 
@@ -59,7 +59,33 @@ class DashboardScreen extends StatelessWidget {
                             state.categories.map((category) {
                               return CustomButtonRoundedWidget(
                                 label: category.categoryName,
-                                onPressed: () {},
+                                onPressed: () {
+                                  // TODO: e review ni balik
+                                  switch (category.id) {
+                                    case 0:
+                                      Navigator.pushNamed(
+                                        context,
+                                        StringConstant.navKnowYourScreenKey,
+                                      );
+                                    case 1:
+                                      Navigator.pushNamed(
+                                        context,
+                                        StringConstant.navSignsScreenKey,
+                                      );
+                                    case 2:
+                                      Navigator.pushNamed(
+                                        context,
+                                        StringConstant.navTarotScreenKey,
+                                      );
+                                    case 3:
+                                      Navigator.pushNamed(
+                                        context,
+                                        StringConstant.navDiscoverScreenKey,
+                                      );
+                                    default:
+                                      debugPrint('no action');
+                                  }
+                                },
                               );
                             }).toList(),
                       ),

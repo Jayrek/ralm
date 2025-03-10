@@ -11,6 +11,6 @@ class CustomButtonIconWidget extends StatelessWidget {
   final Function()? onPressed;
   @override
   Widget build(BuildContext context) {
-    return IconButton(icon: icon, color: Colors.white, onPressed: () {});
+    return IconButton(icon: icon, color: Colors.white, onPressed: onPressed);
   }
 }
