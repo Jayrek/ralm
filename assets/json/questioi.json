@@ -1,0 +1,25 @@
+[
+    {
+        "id": 0,
+        "category_id": 1,
+        "question": "what is your name",
+        "option": [
+            "mark",
+            "andhy"
+        ],
+        "personality" : "Extrovert",
+        "personalit_code": "E"
+
+    },
+    {
+        "id": 1,
+        "category_id": 1,
+        "question": "what is your name",
+        "option": [
+            "mark",
+            "andhy"
+        ],
+        "personality" : "Intuition",
+        "personalit_code": "I"
+    }
+]

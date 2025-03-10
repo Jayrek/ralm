@@ -1,0 +1,34 @@
+[
+    {
+        "id": 0,
+        "category_id": 2,
+        "sort": 1,
+        "category_name": "Chinese Zodiac",
+        "category_description": "Which animal were you born on? Find out!",
+        "status": true
+    },
+    {
+        "id": 1,
+        "category_id": 2,
+        "sort": 2,
+        "category_name": "Constellation",
+        "category_description": "Know the four elements and stars of which you were born",
+        "status": true
+    },
+    {
+        "id": 2,
+        "category_id": 2,
+        "sort": 3,
+        "category_name": "Dream Sign",
+        "category_description": "Some dreams really do have meanings!",
+        "status": true
+    },
+    {
+        "id": 3,
+        "category_id": 2,
+        "sort": 4,
+        "category_name": "Secret Crush",
+        "category_description": "Find out subtle signs, they might have a crush on you!",
+        "status": true
+    }
+]

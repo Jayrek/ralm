@@ -1,0 +1,50 @@
+[
+    {
+        "id": 0,
+        "category_id": 0,
+        "sort": 1,
+        "category_name": "Myers Briggs",
+        "category_description": "Among 16 Personalities, Which one are you?",
+        "status": true
+    },
+    {
+        "id": 1,
+        "category_id": 1,
+        "sort": 2,
+        "category_name": "Forest Test",
+        "category_description": "Imagine sceneries that shows who you are.",
+        "status": true
+    },
+    {
+        "id": 2,
+        "category_id": 1,
+        "sort": 3,
+        "category_name": "Elemental Soul",
+        "category_description": "Which elemental tyoe is your soul?",
+        "status": true
+    },
+    {
+        "id": 3,
+        "category_id": 1,
+        "sort": 4,
+        "category_name": "Your Color",
+        "category_description": "What color is your aura giving?",
+        "status": true
+    },
+    {
+        "id": 4,
+        "category_id": 1,
+        "sort": 5,
+        "category_name": "Random Test",
+        "category_description": "Simple questions unlocks new understanding of yourserlf.",
+        "status": true
+    },
+    {
+        "id": 5,
+        "category_id": 1,
+        "sort": 6,
+        "category_name": "Ideal Type",
+        "category_description": "What kind of person you wandted to be with?",
+        "status": true
+    }
+]
