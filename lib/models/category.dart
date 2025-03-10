@@ -14,13 +14,13 @@ class Category {
     return Category(
       id: json['id'],
       sort: json['sort'],
-      categoryName: json['categoryName'],
+      categoryName: json['category_name'],
       status: json['status'],
     );
   }
 
   @override
   String toString() {
-    return 'Category(id: $id, sort: $sort, categoryName: $categoryName, status: $status)';
+    return 'Category(id: $id, sort: $sort, category_name: $categoryName, status: $status)';
   }
 }
