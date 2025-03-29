@@ -3,6 +3,9 @@ class StringConstant {
   static const fontTinos = 'Tinos';
   static const fontWhisper = 'Whisper';
 
+  static const appName = 'Ralm';
+  static const discoverYourself = 'Discover Yourself';
+
   // navigation keys
   static const navDashboardScreenKey = '/';
   static const navKnowYourScreenKey = '/know_yourself_screen';
@@ -10,6 +13,24 @@ class StringConstant {
   static const navTarotScreenKey = '/tarot_screen';
   static const navDiscoverScreenKey = '/discover_screen';
 
-  static const appName = 'Ralm';
-  static const discoverYourself = 'Discover Yourself';
+  // navigation keys for SIGNS
+  static const navChineseZodiac = '/chinese_zodiac';
+  static const navConstellationZodiac = '/constellation_zodiac';
+  static const navDreamSign = '/dream_sign';
+  static const navSecretCrush = '/secret_crush';
+
+  static const List<String> monthNames = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
 }

@@ -1,0 +1,12 @@
+part of 'constellation_bloc.dart';
+
+sealed class ConstellationEvent extends Equatable {
+  const ConstellationEvent();
+
+  @override
+  List<Object> get props => [];
+}
+
+class FetchConstellationZodiac extends ConstellationEvent {
+  const FetchConstellationZodiac();
+}

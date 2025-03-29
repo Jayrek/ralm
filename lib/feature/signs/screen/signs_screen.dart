@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ralm/core/constants/string_constant.dart';
 import 'package:ralm/feature/signs/bloc/signs_bloc.dart';
 
 import '../../../core/shared/widget/custom_button_icon_widget.dart';
@@ -38,7 +39,33 @@ class SignsScreen extends StatelessWidget {
                             return CustomSubCategoryWidget(
                               name: sign.categoryName,
                               description: sign.categoryDescription,
-                              onPressed: () {},
+                              onPressed: () {
+                                // TODO: e review ni balik
+                                switch (sign.id) {
+                                  case 0:
+                                    Navigator.pushNamed(
+                                      context,
+                                      StringConstant.navChineseZodiac,
+                                    );
+                                  case 1:
+                                    Navigator.pushNamed(
+                                      context,
+                                      StringConstant.navConstellationZodiac,
+                                    );
+                                  case 2:
+                                    Navigator.pushNamed(
+                                      context,
+                                      StringConstant.navDreamSign,
+                                    );
+                                  case 3:
+                                    Navigator.pushNamed(
+                                      context,
+                                      StringConstant.navSecretCrush,
+                                    );
+                                  default:
+                                    debugPrint('no action');
+                                }
+                              },
                             );
                           }).toList(),
                     ),

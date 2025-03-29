@@ -4,18 +4,20 @@ class CustomButtonRoundedWidget extends StatelessWidget {
   const CustomButtonRoundedWidget({
     required this.label,
     required this.onPressed,
+    this.width = 160,
     super.key,
   });
 
   final String label;
   final Function()? onPressed;
+  final double width;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10),
       child: SizedBox(
-        width: 160,
+        width: width,
         height: 50,
         child: OutlinedButton(
           style: OutlinedButton.styleFrom(
