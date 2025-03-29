@@ -22,7 +22,7 @@ class SignsScreen extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  CustomButtonRoundedWidget(label: 'Signs', onPressed: () {}),
+                  CustomButtonRoundedWidget(label: 'Signs', onPressed: null),
                   CustomButtonIconWidget(
                     icon: Icon(Icons.arrow_circle_left),
                     onPressed: () => Navigator.of(context).pop(),

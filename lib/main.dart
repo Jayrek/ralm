@@ -9,6 +9,7 @@ import 'package:ralm/feature/signs/screen/constellation/constellation_screen.dar
 import 'package:ralm/feature/signs/screen/dream_sign/dream_sign_screen.dart';
 import 'package:ralm/feature/signs/screen/secret_crush/secret_crush_screen.dart';
 import 'package:ralm/feature/signs/screen/signs_screen.dart';
+import 'package:ralm/feature/tarot_reading/screen/tarot_card_screen.dart';
 import 'package:ralm/feature/tarot_reading/screen/tarot_screen.dart';
 import 'package:ralm/feature/dashboard/dashboard_screen.dart';
 
@@ -56,6 +57,8 @@ class MyApp extends StatelessWidget {
               (context) => ConstellationScreen(),
           StringConstant.navDreamSign: (context) => DreamSignScreen(),
           StringConstant.navSecretCrush: (context) => SecretCrushScreen(),
+          // TAROT category
+          StringConstant.navTarotCard: (context) => TarotCardScreen(),
         },
       ),
     );

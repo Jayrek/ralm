@@ -24,7 +24,7 @@ class KnowYourSelfScreen extends StatelessWidget {
                   children: [
                     CustomButtonRoundedWidget(
                       label: 'Know Yourself',
-                      onPressed: () {},
+                      onPressed: null,
                     ),
                     CustomButtonIconWidget(
                       icon: Icon(Icons.arrow_circle_left),

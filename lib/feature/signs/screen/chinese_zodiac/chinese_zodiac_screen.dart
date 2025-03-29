@@ -162,7 +162,7 @@ class _ChineseZodiacScreenState extends State<ChineseZodiacScreen>
                         crossAxisCount: 3,
                         crossAxisSpacing: 40,
                         mainAxisSpacing: 40,
-                        childAspectRatio: 5,
+                        childAspectRatio: 10,
                       ),
                       itemCount: state.zodiacs.length,
                       itemBuilder: (context, index) {

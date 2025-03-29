@@ -19,6 +19,9 @@ class StringConstant {
   static const navDreamSign = '/dream_sign';
   static const navSecretCrush = '/secret_crush';
 
+  // navigation keys for TAROT
+  static const navTarotCard = '/tarot_card';
+
   static const List<String> monthNames = [
     "January",
     "February",
