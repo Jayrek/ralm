@@ -10,3 +10,12 @@ sealed class ConstellationEvent extends Equatable {
 class FetchConstellationZodiac extends ConstellationEvent {
   const FetchConstellationZodiac();
 }
+
+class SelectedConstellationZodiac extends ConstellationEvent {
+  const SelectedConstellationZodiac({required this.dateRange});
+
+  final String dateRange;
+
+  @override
+  List<Object> get props => [dateRange];
+}

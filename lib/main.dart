@@ -6,6 +6,7 @@ import 'package:ralm/feature/signs/screen/chinese_zodiac/bloc/chinese_zodiac_blo
 import 'package:ralm/feature/signs/screen/chinese_zodiac/chinese_zodiac_detail_screen.dart';
 import 'package:ralm/feature/signs/screen/chinese_zodiac/chinese_zodiac_screen.dart';
 import 'package:ralm/feature/signs/screen/constellation/bloc/constellation_bloc.dart';
+import 'package:ralm/feature/signs/screen/constellation/constellation_detail_screen.dart';
 import 'package:ralm/feature/signs/screen/constellation/constellation_screen.dart';
 import 'package:ralm/feature/signs/screen/dream_sign/dream_sign_screen.dart';
 import 'package:ralm/feature/signs/screen/secret_crush/secret_crush_screen.dart';
@@ -58,6 +59,9 @@ class MyApp extends StatelessWidget {
               (context) => ChineseZodiacDetailScreen(),
           StringConstant.navConstellationZodiac:
               (context) => ConstellationScreen(),
+          StringConstant.navConstellationZodiacDetail:
+              (context) => ConstellationDetailScreen(),
+
           StringConstant.navDreamSign: (context) => DreamSignScreen(),
           StringConstant.navSecretCrush: (context) => SecretCrushScreen(),
           // TAROT category

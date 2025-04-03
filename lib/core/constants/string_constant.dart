@@ -17,6 +17,7 @@ class StringConstant {
   static const navChineseZodiac = '/chinese_zodiac';
   static const navChineseZodiacDetail = '/chinese_zodiac_detail';
   static const navConstellationZodiac = '/constellation_zodiac';
+  static const navConstellationZodiacDetail = '/constellation_zodiac_detail';
   static const navDreamSign = '/dream_sign';
   static const navSecretCrush = '/secret_crush';
 

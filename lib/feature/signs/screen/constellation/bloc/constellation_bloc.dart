@@ -21,5 +21,17 @@ class ConstellationBloc extends Bloc<ConstellationEvent, ConstellationState> {
               .toList();
       emit(state.copyWith(zodiacs: constellationList));
     });
+    on<SelectedConstellationZodiac>((event, emit) async {
+      final dateRange = event.dateRange;
+      final zodiacs = state.zodiacs;
+
+      final selectedIndex = zodiacs.indexWhere((zodiac) {
+        return zodiac.dateRange.contains(dateRange);
+      });
+
+      if (selectedIndex != -1) {
+        emit(state.copyWith(selectedZodiacIndex: selectedIndex));
+      }
+    });
   }
 }

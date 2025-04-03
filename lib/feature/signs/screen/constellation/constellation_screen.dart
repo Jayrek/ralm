@@ -186,24 +186,39 @@ class _ConstellationScreenState extends State<ConstellationScreen>
                       itemCount: state.zodiacs.length,
                       itemBuilder: (context, index) {
                         final constellation = state.zodiacs[index];
-                        return Row(
-                          children: [
-                            Icon(Icons.abc_rounded),
-                            Expanded(
-                              child: Container(
-                                height: 60,
-                                decoration: BoxDecoration(
-                                  border: Border.all(
-                                    width: 2,
-                                    color: Colors.white,
+                        return InkWell(
+                          onTap: () {
+                            context.read<ConstellationBloc>().add(
+                              SelectedConstellationZodiac(
+                                dateRange: constellation.dateRange,
+                              ),
+                            );
+                            Navigator.pushNamed(
+                              context,
+                              StringConstant.navConstellationZodiacDetail,
+                            );
+                          },
+                          child: Row(
+                            children: [
+                              Icon(Icons.abc_rounded),
+                              Expanded(
+                                child: Container(
+                                  height: 60,
+                                  decoration: BoxDecoration(
+                                    border: Border.all(
+                                      width: 2,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                  child: Center(
+                                    child: Text(
+                                      constellation.name.toUpperCase(),
+                                    ),
                                   ),
                                 ),
-                                child: Center(
-                                  child: Text(constellation.name.toUpperCase()),
-                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         );
                       },
                     );
