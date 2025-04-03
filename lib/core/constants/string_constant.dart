@@ -15,6 +15,7 @@ class StringConstant {
 
   // navigation keys for SIGNS
   static const navChineseZodiac = '/chinese_zodiac';
+  static const navChineseZodiacDetail = '/chinese_zodiac_detail';
   static const navConstellationZodiac = '/constellation_zodiac';
   static const navDreamSign = '/dream_sign';
   static const navSecretCrush = '/secret_crush';

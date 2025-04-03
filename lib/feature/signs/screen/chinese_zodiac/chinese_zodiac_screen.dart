@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ralm/core/constants/string_constant.dart';
 import 'package:ralm/core/shared/widget/custom_button_icon_widget.dart';
 import 'package:ralm/core/shared/widget/custom_button_rounded_widget.dart';
 import 'package:ralm/feature/signs/screen/chinese_zodiac/bloc/chinese_zodiac_bloc.dart';
@@ -75,7 +76,14 @@ class _ChineseZodiacScreenState extends State<ChineseZodiacScreen>
                           selectedDate = DateTime(year);
                         });
                         debugPrint('selectedDate: ${selectedDate!.year}');
+                        context.read<ChineseZodiacBloc>().add(
+                          SelectedChineseZodiac(year: selectedDate!.year),
+                        );
                         Navigator.pop(context);
+                        Navigator.pushNamed(
+                          context,
+                          StringConstant.navChineseZodiacDetail,
+                        );
                       },
                       child: Container(
                         margin: EdgeInsets.symmetric(
@@ -167,27 +175,38 @@ class _ChineseZodiacScreenState extends State<ChineseZodiacScreen>
                       itemCount: state.zodiacs.length,
                       itemBuilder: (context, index) {
                         final zodiac = state.zodiacs[index];
-                        return Row(
-                          children: [
-                            Icon(Icons.abc_rounded),
-                            Expanded(
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  border: Border.all(
-                                    width: 2,
-                                    color: Colors.white,
+                        return InkWell(
+                          onTap: () {
+                            context.read<ChineseZodiacBloc>().add(
+                              SelectedChineseZodiac(year: index, notYear: true),
+                            );
+                            Navigator.pushNamed(
+                              context,
+                              StringConstant.navChineseZodiacDetail,
+                            );
+                          },
+                          child: Row(
+                            children: [
+                              Icon(Icons.abc_rounded),
+                              Expanded(
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    border: Border.all(
+                                      width: 2,
+                                      color: Colors.white,
+                                    ),
+                                    borderRadius: BorderRadius.only(
+                                      topRight: Radius.circular(50),
+                                      bottomRight: Radius.circular(50),
+                                    ),
                                   ),
-                                  borderRadius: BorderRadius.only(
-                                    topRight: Radius.circular(50),
-                                    bottomRight: Radius.circular(50),
+                                  child: Center(
+                                    child: Text(zodiac.name.toUpperCase()),
                                   ),
-                                ),
-                                child: Center(
-                                  child: Text(zodiac.name.toUpperCase()),
                                 ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         );
                       },
                     );

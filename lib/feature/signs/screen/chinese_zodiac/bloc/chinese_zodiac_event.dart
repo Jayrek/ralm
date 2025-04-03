@@ -10,3 +10,13 @@ sealed class ChineseZodiacEvent extends Equatable {
 class FetchChineseZodiac extends ChineseZodiacEvent {
   const FetchChineseZodiac();
 }
+
+class SelectedChineseZodiac extends ChineseZodiacEvent {
+  const SelectedChineseZodiac({required this.year, this.notYear = false});
+
+  final int year;
+  final bool notYear;
+
+  @override
+  List<Object> get props => [year, notYear];
+}

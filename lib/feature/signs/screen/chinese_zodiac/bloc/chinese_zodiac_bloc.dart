@@ -21,5 +21,21 @@ class ChineseZodiacBloc extends Bloc<ChineseZodiacEvent, ChineseZodiacState> {
               .toList();
       emit(state.copyWith(zodiacs: chineseList));
     });
+    on<SelectedChineseZodiac>((event, emit) async {
+      final year = event.year;
+      if (event.notYear) {
+        emit(state.copyWith(selectedZodiacIndex: year));
+      } else {
+        final zodiacs = state.zodiacs;
+
+        final selectedIndex = zodiacs.indexWhere((zodiac) {
+          return zodiac.years.contains(year);
+        });
+
+        if (selectedIndex != -1) {
+          emit(state.copyWith(selectedZodiacIndex: selectedIndex));
+        }
+      }
+    });
   }
 }

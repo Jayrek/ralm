@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ralm/core/theme/app_theme.dart';
 import 'package:ralm/feature/discover/screen/discover_screen.dart';
 import 'package:ralm/feature/signs/screen/chinese_zodiac/bloc/chinese_zodiac_bloc.dart';
+import 'package:ralm/feature/signs/screen/chinese_zodiac/chinese_zodiac_detail_screen.dart';
 import 'package:ralm/feature/signs/screen/chinese_zodiac/chinese_zodiac_screen.dart';
 import 'package:ralm/feature/signs/screen/constellation/bloc/constellation_bloc.dart';
 import 'package:ralm/feature/signs/screen/constellation/constellation_screen.dart';
@@ -53,6 +54,8 @@ class MyApp extends StatelessWidget {
           StringConstant.navDiscoverScreenKey: (context) => DiscoverScreen(),
           // SIGNS category
           StringConstant.navChineseZodiac: (context) => ChineseZodiacScreen(),
+          StringConstant.navChineseZodiacDetail:
+              (context) => ChineseZodiacDetailScreen(),
           StringConstant.navConstellationZodiac:
               (context) => ConstellationScreen(),
           StringConstant.navDreamSign: (context) => DreamSignScreen(),
