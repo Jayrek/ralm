@@ -29,6 +29,7 @@ flutter:
 
   assets:
     - assets/json/
+    - assets/image/
 
   fonts:
     - family: Tinos

@@ -35,7 +35,12 @@ class TarotScreen extends StatelessWidget {
                 child: Text('START'),
               ),
               SizedBox(height: 30),
-              ElevatedButton(onPressed: () {}, child: Text('View Cards')),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, StringConstant.navTarotViewCard);
+                },
+                child: Text('View Cards'),
+              ),
               SizedBox(height: 60),
               TextButton(
                 onPressed: () {

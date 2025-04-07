@@ -11,9 +11,12 @@ import 'package:ralm/feature/signs/screen/constellation/constellation_screen.dar
 import 'package:ralm/feature/signs/screen/dream_sign/dream_sign_screen.dart';
 import 'package:ralm/feature/signs/screen/secret_crush/secret_crush_screen.dart';
 import 'package:ralm/feature/signs/screen/signs_screen.dart';
+import 'package:ralm/feature/tarot_reading/bloc/tarot_bloc.dart';
 import 'package:ralm/feature/tarot_reading/screen/tarot_card_screen.dart';
 import 'package:ralm/feature/tarot_reading/screen/tarot_screen.dart';
 import 'package:ralm/feature/dashboard/dashboard_screen.dart';
+import 'package:ralm/feature/tarot_reading/screen/view_card_detail_screen.dart';
+import 'package:ralm/feature/tarot_reading/screen/view_card_screen.dart';
 
 import 'core/constants/string_constant.dart';
 import 'feature/dashboard/bloc/dashboard_bloc.dart';
@@ -40,6 +43,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => SignsBloc()),
         BlocProvider(create: (context) => ChineseZodiacBloc()),
         BlocProvider(create: (context) => ConstellationBloc()),
+        BlocProvider(create: (context) => TarotBloc()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -66,6 +70,9 @@ class MyApp extends StatelessWidget {
           StringConstant.navSecretCrush: (context) => SecretCrushScreen(),
           // TAROT category
           StringConstant.navTarotCard: (context) => TarotCardScreen(),
+          StringConstant.navTarotViewCard: (context) => ViewTarotCard(),
+          StringConstant.navTarotViewCardDetail:
+              (context) => ViewCardDetailScreen(),
         },
       ),
     );
