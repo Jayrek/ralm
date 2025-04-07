@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
@@ -22,7 +23,7 @@ class TarotBloc extends Bloc<TarotEvent, TarotState> {
       }
       emit(state.copyWith(tarots: tarotsList));
     });
-    on<SelectedCTarot>((event, emit) {
+    on<SelectedTarot>((event, emit) {
       final index = event.index;
       final tarots = state.tarots;
 
@@ -31,6 +32,29 @@ class TarotBloc extends Bloc<TarotEvent, TarotState> {
       });
 
       emit(state.copyWith(selectedIndex: selectedIndex));
+    });
+    on<PickedTarot>((event, emit) {
+      final selectedTarot = event.tarot;
+
+      emit(state.copyWith(pickingTries: state.pickingTries + 1));
+      debugPrint('pickingTries: ${state.pickingTries}');
+
+      if (state.pickingTries <= 3) {
+        final pickedTarots = List<Tarot>.from(state.pickedTarots);
+        pickedTarots.add(selectedTarot);
+        emit(state.copyWith(pickedTarots: pickedTarots));
+        // TODO: save shared_preference here
+      }
+    });
+    on<ResetPickingTarot>((event, emit) {
+      emit(
+        state.copyWith(
+          tarots: const [],
+          pickedTarots: const [],
+          selectedIndex: 0,
+          pickingTries: 0,
+        ),
+      );
     });
   }
 }

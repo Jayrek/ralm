@@ -75,7 +75,7 @@ class _ViewTarotCardState extends State<ViewTarotCard> {
                                     : 0.0,
                             child: _tarotCard(tarot, () {
                               context.read<TarotBloc>().add(
-                                SelectedCTarot(index: tarot.id),
+                                SelectedTarot(index: tarot.id),
                               );
                               Navigator.pushNamed(
                                 context,

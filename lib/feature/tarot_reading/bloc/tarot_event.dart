@@ -15,11 +15,24 @@ class FetchTarotCards extends TarotEvent {
   List<Object> get props => [isShuffle];
 }
 
-class SelectedCTarot extends TarotEvent {
-  const SelectedCTarot({required this.index});
+class SelectedTarot extends TarotEvent {
+  const SelectedTarot({required this.index});
 
   final int index;
 
   @override
   List<Object> get props => [index];
+}
+
+class PickedTarot extends TarotEvent {
+  const PickedTarot({required this.tarot});
+
+  final Tarot tarot;
+
+  @override
+  List<Object> get props => [tarot];
+}
+
+class ResetPickingTarot extends TarotEvent {
+  const ResetPickingTarot();
 }

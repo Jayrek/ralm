@@ -38,18 +38,48 @@ class _TarotCardScreenState extends State<TarotCardScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.purple.shade300,
+      appBar: AppBar(
+        backgroundColor: Colors.purple.shade300,
+        title: Text('Tarot Reading'),
+        actions: [
+          BlocSelector<TarotBloc, TarotState, List<Tarot>>(
+            selector: (state) => state.pickedTarots,
+            builder: (context, state) {
+              return state.length == 3
+                  ? Center(
+                    child: Row(
+                      children: [
+                        ElevatedButton(
+                          onPressed: () {},
+                          child: Text('View Result'),
+                        ),
+                        BlocBuilder<TarotBloc, TarotState>(
+                          builder: (context, state) {
+                            return TextButton(
+                              onPressed: () {
+                                context.read<TarotBloc>()
+                                  ..add(ResetPickingTarot())
+                                  ..add(FetchTarotCards(isShuffle: true));
+                                _animateCards(state.tarots.length);
+                              },
+                              child: Text('RESET'),
+                            );
+                          },
+                        ),
+                      ],
+                    ),
+                  )
+                  : SizedBox();
+            },
+          ),
+        ],
+      ),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 20),
           child: Column(
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: List.generate(
-                  3,
-                  (index) => AnimatedTarotCardWidget(),
-                ),
-              ),
+              _threeCards(),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 10),
                 child: Divider(indent: 20, endIndent: 20),
@@ -78,15 +108,26 @@ class _TarotCardScreenState extends State<TarotCardScreen> {
                           alignment: WrapAlignment.center,
                           children: List.generate(tarots.length, (index) {
                             final tarot = tarots[index];
+                            final isPicked = state.pickedTarots.any(
+                              (picked) => picked.id == tarot.id,
+                            );
+
                             return AnimatedOpacity(
                               duration: Duration(milliseconds: 500),
                               opacity:
                                   _isVisible.length > index && _isVisible[index]
                                       ? 1.0
                                       : 0.0,
-                              child: _tarotCard(tarot, () {
-                                debugPrint('tarot: $tarot');
-                              }),
+                              child: _tarotCard(
+                                tarot: tarot,
+                                isPicked: isPicked,
+                                onTap: () {
+                                  context.read<TarotBloc>().add(
+                                    PickedTarot(tarot: tarot),
+                                  );
+                                  debugPrint('tarot: $tarot');
+                                },
+                              ),
                             );
                           }),
                         ),
@@ -95,21 +136,6 @@ class _TarotCardScreenState extends State<TarotCardScreen> {
                   ),
                 ),
               ),
-              // Center(
-              //   child: Wrap(
-              //     spacing: 5,
-              //     runSpacing: 5,
-              //     alignment: WrapAlignment.center,
-              //     children: List.generate(22, (index) {
-              //       return AnimatedOpacity(
-              //         duration: Duration(milliseconds: 500),
-              //         opacity: _isVisible[index] ? 1.0 : 0.0,
-              //         child: _tarotCard(tarot, () {}),
-              //         // child: _backCard(),
-              //       );
-              //     }),
-              //   ),
-              // ),
             ],
           ),
         ),
@@ -117,18 +143,35 @@ class _TarotCardScreenState extends State<TarotCardScreen> {
     );
   }
 
-  Widget _card() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 5),
-      child: Container(
-        height: 200,
-        width: 130,
-        decoration: BoxDecoration(
-          color: Colors.white,
-          border: Border.all(width: 2, color: Colors.black87),
-          borderRadius: BorderRadius.circular(10),
-        ),
-      ),
+  // Widget _card() {
+  //   return BlocSelector<TarotBloc, TarotState, List<Tarot>>(
+  //     selector: (state) => state.pickedTarots,
+  //     builder: (context, tarots) {
+  //       return Row(
+  //         mainAxisAlignment: MainAxisAlignment.center,
+  //         children: List.generate(
+  //           tarots.length,
+  //           (index) => AnimatedTarotCardWidget(tarot: tarots[index]),
+  //         ),
+  //       );
+  //     },
+  //   );
+  // }
+
+  Widget _threeCards() {
+    return BlocSelector<TarotBloc, TarotState, List<Tarot>>(
+      selector: (state) => state.pickedTarots,
+      builder: (context, pickedTarots) {
+        return Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: List.generate(3, (index) {
+            // If tarot exists at index, pass it; else pass null
+            final tarot =
+                index < pickedTarots.length ? pickedTarots[index] : null;
+            return AnimatedTarotCardWidget(tarot: tarot);
+          }),
+        );
+      },
     );
   }
 
@@ -147,11 +190,15 @@ class _TarotCardScreenState extends State<TarotCardScreen> {
     );
   }
 
-  Widget _tarotCard(Tarot tarot, Function()? onTap) {
+  Widget _tarotCard({
+    required Tarot tarot,
+    required bool isPicked,
+    required Function()? onTap,
+  }) {
     return Padding(
       padding: const EdgeInsets.all(2),
       child: InkWell(
-        onTap: onTap,
+        onTap: isPicked ? null : onTap,
         child: Container(
           height: 180,
           width: 110,
@@ -159,10 +206,13 @@ class _TarotCardScreenState extends State<TarotCardScreen> {
             color: Colors.grey.shade300,
             border: Border.all(width: 1, color: Colors.black87),
             borderRadius: BorderRadius.circular(10),
-            image: DecorationImage(
-              image: AssetImage(tarot.image),
-              fit: BoxFit.cover,
-            ),
+            image:
+                isPicked
+                    ? DecorationImage(
+                      image: AssetImage(tarot.image),
+                      fit: BoxFit.cover,
+                    )
+                    : null,
           ),
         ),
       ),

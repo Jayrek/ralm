@@ -1,8 +1,11 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:ralm/models/tarot.dart';
 
 class AnimatedTarotCardWidget extends StatefulWidget {
-  const AnimatedTarotCardWidget({super.key});
+  const AnimatedTarotCardWidget({this.tarot, super.key});
+
+  final Tarot? tarot;
 
   @override
   State<AnimatedTarotCardWidget> createState() =>
@@ -30,6 +33,9 @@ class _AnimatedTarotCardWidgetState extends State<AnimatedTarotCardWidget>
 
   @override
   Widget build(BuildContext context) {
+    final tarot = widget.tarot;
+    final hasTarot = tarot != null;
+
     return Padding(
       padding: const EdgeInsets.all(5),
       child: AnimatedBuilder(
@@ -42,10 +48,17 @@ class _AnimatedTarotCardWidgetState extends State<AnimatedTarotCardWidget>
             child: CustomPaint(
               painter: GradientBorderPainter(_controller.value),
               child: Container(
-                margin: EdgeInsets.all(4), // Space for border effect
+                margin: EdgeInsets.all(4),
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(10),
+                  image:
+                      hasTarot
+                          ? DecorationImage(
+                            image: AssetImage(tarot.image),
+                            fit: BoxFit.cover,
+                          )
+                          : null,
                 ),
               ),
             ),
