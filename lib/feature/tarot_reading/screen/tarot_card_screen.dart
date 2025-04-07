@@ -18,7 +18,7 @@ class _TarotCardScreenState extends State<TarotCardScreen> {
   void initState() {
     super.initState();
 
-    context.read<TarotBloc>().add(FetchTarotCards());
+    context.read<TarotBloc>().add(FetchTarotCards(isShuffle: true));
   }
 
   void _animateCards(int count) {

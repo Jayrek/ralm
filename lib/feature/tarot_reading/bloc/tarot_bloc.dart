@@ -17,6 +17,9 @@ class TarotBloc extends Bloc<TarotEvent, TarotState> {
       final tarotsMapList = jsonDecode(jsonString) as List;
       final tarotsList =
           tarotsMapList.map((tarot) => Tarot.fromJson(tarot)).toList();
+      if (event.isShuffle) {
+        tarotsList.shuffle();
+      }
       emit(state.copyWith(tarots: tarotsList));
     });
     on<SelectedCTarot>((event, emit) {
