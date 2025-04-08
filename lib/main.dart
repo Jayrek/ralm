@@ -16,6 +16,7 @@ import 'package:ralm/feature/tarot_reading/screen/tarot_card_screen.dart';
 import 'package:ralm/feature/tarot_reading/screen/tarot_screen.dart';
 import 'package:ralm/feature/dashboard/dashboard_screen.dart';
 import 'package:ralm/feature/tarot_reading/screen/view_card_detail_screen.dart';
+import 'package:ralm/feature/tarot_reading/screen/view_card_picked_screen.dart';
 import 'package:ralm/feature/tarot_reading/screen/view_card_screen.dart';
 
 import 'core/constants/string_constant.dart';
@@ -73,6 +74,8 @@ class MyApp extends StatelessWidget {
           StringConstant.navTarotViewCard: (context) => ViewTarotCard(),
           StringConstant.navTarotViewCardDetail:
               (context) => ViewCardDetailScreen(),
+          StringConstant.navTarotPickedCard:
+              (context) => ViewPickedCardScreen(),
         },
       ),
     );

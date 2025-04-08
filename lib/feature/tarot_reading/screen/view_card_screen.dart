@@ -37,6 +37,7 @@ class _ViewTarotCardState extends State<ViewTarotCard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(backgroundColor: Colors.purple.shade300),
       backgroundColor: Colors.purple.shade300,
       body: BlocListener<TarotBloc, TarotState>(
         listenWhen:

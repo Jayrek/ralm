@@ -19,6 +19,15 @@ class Tarot {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'card_name': cardName,
+      'description': description,
+      'image': image,
+    };
+  }
+
   Tarot copyWith({
     int? id,
     String? cardName,

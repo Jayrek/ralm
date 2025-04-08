@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ralm/core/constants/string_constant.dart';
 import 'package:ralm/core/shared/widget/animated_tarot_cad_widget.dart';
+import 'package:ralm/core/util/shared_pref_util.dart';
 import 'package:ralm/feature/tarot_reading/bloc/tarot_bloc.dart';
 import 'package:ralm/models/tarot.dart';
 
@@ -18,7 +20,9 @@ class _TarotCardScreenState extends State<TarotCardScreen> {
   void initState() {
     super.initState();
 
-    context.read<TarotBloc>().add(FetchTarotCards(isShuffle: true));
+    context.read<TarotBloc>()
+      ..add(ResetPickingTarot())
+      ..add(FetchTarotCards(isShuffle: true));
   }
 
   void _animateCards(int count) {
@@ -50,7 +54,17 @@ class _TarotCardScreenState extends State<TarotCardScreen> {
                     child: Row(
                       children: [
                         ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () async {
+                            // save to shared pref the tarot cards
+                            await savePickedTarotsWithTimeout(state);
+
+                            if (!context.mounted) return;
+                            Navigator.pushNamed(
+                              context,
+                              StringConstant.navTarotPickedCard,
+                              arguments: state,
+                            );
+                          },
                           child: Text('View Result'),
                         ),
                         BlocBuilder<TarotBloc, TarotState>(

@@ -1,8 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:ralm/core/shared/widget/animated_tarot_cad_widget.dart';
+import 'package:ralm/core/util/shared_pref_util.dart';
+import 'package:ralm/models/tarot.dart';
 
-class DiscoverScreen extends StatelessWidget {
+class DiscoverScreen extends StatefulWidget {
   const DiscoverScreen({super.key});
+
+  @override
+  State<DiscoverScreen> createState() => _DiscoverScreenState();
+}
+
+class _DiscoverScreenState extends State<DiscoverScreen> {
+  List<Tarot> pickedCards = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _handlePickedCards();
+  }
+
+  Future<void> _handlePickedCards() async {
+    await resetPickedTarots();
+    List<Tarot> cards = await loadPickedCards();
+    setState(() {
+      pickedCards = cards;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +95,9 @@ class DiscoverScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: List.generate(
                     3,
-                    (index) => AnimatedTarotCardWidget(),
+                    (index) => AnimatedTarotCardWidget(
+                      tarot: pickedCards.isNotEmpty ? pickedCards[index] : null,
+                    ),
                   ),
                 ),
               ],
