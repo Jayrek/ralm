@@ -77,10 +77,10 @@ class _ViewPickedCardScreenState extends State<ViewPickedCardScreen> {
                           alignment: Alignment.centerLeft,
                           child: Text(
                             (index == 0
-                                    ? 'Past'
+                                    ? 'First Card'
                                     : index == 1
-                                    ? 'Present'
-                                    : 'Future')
+                                    ? 'Second Card '
+                                    : 'Third Card')
                                 .toUpperCase(),
                             style: TextStyle(fontSize: 30),
                           ),
