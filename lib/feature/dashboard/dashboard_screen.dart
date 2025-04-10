@@ -120,9 +120,17 @@ class DashboardScreen extends StatelessWidget {
                             width: 3,
                           ),
                         ),
-                        child: CircleAvatar(
-                          backgroundColor: Colors.grey[300],
-                          child: Icon(Icons.person),
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.pushNamed(
+                              context,
+                              StringConstant.navAvatar,
+                            );
+                          },
+                          child: CircleAvatar(
+                            backgroundColor: Colors.grey[300],
+                            child: Icon(Icons.person),
+                          ),
                         ),
                       ),
                     ),

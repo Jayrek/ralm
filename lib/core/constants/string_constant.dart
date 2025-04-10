@@ -27,6 +27,9 @@ class StringConstant {
   static const navTarotViewCardDetail = '/tarot_view_card_detail';
   static const navTarotPickedCard = '/tarot_picked_card';
 
+  // navigation keys for AVATAR
+  static const navAvatar = '/avatar';
+
   static const List<String> monthNames = [
     "January",
     "February",

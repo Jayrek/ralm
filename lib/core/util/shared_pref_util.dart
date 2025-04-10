@@ -1,17 +1,9 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:ralm/models/avatar.dart';
 import 'package:ralm/models/tarot.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-// Future<void> savePickedTarots(List<Tarot> pickedCards) async {
-//   final prefs = await SharedPreferences.getInstance();
-
-//   final List<String> encodedCards =
-//       pickedCards.map((card) => jsonEncode(card.toJson())).toList();
-
-//   await prefs.setStringList('picked_cards', encodedCards);
-// }
 
 Future<void> savePickedTarotsWithTimeout(List<Tarot> pickedCards) async {
   final prefs = await SharedPreferences.getInstance();

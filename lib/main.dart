@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ralm/core/theme/app_theme.dart';
+import 'package:ralm/feature/avatar/avatar_list_screen.dart';
+import 'package:ralm/feature/avatar/bloc/avatar_bloc.dart';
 import 'package:ralm/feature/discover/screen/discover_screen.dart';
 import 'package:ralm/feature/signs/screen/chinese_zodiac/bloc/chinese_zodiac_bloc.dart';
 import 'package:ralm/feature/signs/screen/chinese_zodiac/chinese_zodiac_detail_screen.dart';
@@ -45,6 +47,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => ChineseZodiacBloc()),
         BlocProvider(create: (context) => ConstellationBloc()),
         BlocProvider(create: (context) => TarotBloc()),
+        BlocProvider(create: (context) => AvatarBloc()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -76,6 +79,8 @@ class MyApp extends StatelessWidget {
               (context) => ViewCardDetailScreen(),
           StringConstant.navTarotPickedCard:
               (context) => ViewPickedCardScreen(),
+          // AVATAR
+          StringConstant.navAvatar: (context) => AvatarListScreen(),
         },
       ),
     );
