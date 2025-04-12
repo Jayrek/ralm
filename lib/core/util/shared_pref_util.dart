@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:ralm/models/avatar.dart';
 import 'package:ralm/models/tarot.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -73,4 +72,23 @@ Future<void> resetPickedTarots() async {
     final remaining = 1 - difference.inMinutes;
     debugPrint('Not yet 24 hours. Wait $remaining more hour(s) before reset.');
   }
+}
+
+Future<void> saveElementalProgress(int index, int score) async {
+  final prefs = await SharedPreferences.getInstance();
+  await prefs.setInt('elemental_current_index', index);
+  await prefs.setInt('elemental_total_score', score);
+}
+
+Future<Map<String, int>> loadElementalProgress() async {
+  final prefs = await SharedPreferences.getInstance();
+  final index = prefs.getInt('elemental_current_index') ?? 0;
+  final score = prefs.getInt('elemental_total_score') ?? 0;
+  return {'index': index, 'score': score};
+}
+
+Future<void> resetElementalProgress() async {
+  final prefs = await SharedPreferences.getInstance();
+  await prefs.remove('elemental_current_index');
+  await prefs.remove('elemental_total_score');
 }

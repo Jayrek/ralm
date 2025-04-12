@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ralm/core/constants/string_constant.dart';
 import 'package:ralm/core/shared/widget/custom_button_icon_widget.dart';
 import 'package:ralm/feature/know_yourself/bloc/know_yourself_bloc.dart';
 
@@ -42,7 +43,25 @@ class KnowYourSelfScreen extends StatelessWidget {
                               return CustomSubCategoryWidget(
                                 name: subCategory.categoryName,
                                 description: subCategory.categoryDescription,
-                                onPressed: () {},
+                                onPressed: () {
+                                  switch (subCategory.id) {
+                                    case 0:
+                                      debugPrint('myers briggs');
+                                    case 1:
+                                      debugPrint('forest test');
+                                    case 2:
+                                      Navigator.pushNamed(
+                                        context,
+                                        StringConstant.navElementalSoul,
+                                      );
+                                    case 3:
+                                      debugPrint('your color');
+                                    case 4:
+                                      debugPrint('random test');
+                                    case 5:
+                                      debugPrint('ideal type');
+                                  }
+                                },
                               );
                             }).toList(),
                       ),

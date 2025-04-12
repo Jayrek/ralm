@@ -4,7 +4,10 @@ import 'package:ralm/core/theme/app_theme.dart';
 import 'package:ralm/feature/avatar/avatar_list_screen.dart';
 import 'package:ralm/feature/avatar/bloc/avatar_bloc.dart';
 import 'package:ralm/feature/discover/screen/discover_screen.dart';
+import 'package:ralm/feature/know_yourself/screen/elemental_soul/bloc/elemental_soul_bloc.dart';
+import 'package:ralm/feature/know_yourself/screen/elemental_soul/elemental_soul_result_screen.dart';
 import 'package:ralm/feature/know_yourself/screen/elemental_soul/elemental_soul_screen.dart';
+import 'package:ralm/feature/know_yourself/screen/elemental_soul/elemental_soul_test_screen.dart';
 import 'package:ralm/feature/signs/screen/chinese_zodiac/bloc/chinese_zodiac_bloc.dart';
 import 'package:ralm/feature/signs/screen/chinese_zodiac/chinese_zodiac_detail_screen.dart';
 import 'package:ralm/feature/signs/screen/chinese_zodiac/chinese_zodiac_screen.dart';
@@ -55,6 +58,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => AvatarBloc()),
         BlocProvider(create: (context) => DreamSignBloc()),
         BlocProvider(create: (context) => SecretCrushBloc()),
+        BlocProvider(create: (context) => ElementalSoulBloc()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -69,6 +73,10 @@ class MyApp extends StatelessWidget {
           StringConstant.navKnowYourScreenKey:
               (context) => KnowYourSelfScreen(),
           StringConstant.navElementalSoul: (context) => ElementalSoulScreen(),
+          StringConstant.navElementalSoulTest:
+              (context) => ElementalSoulTestScreen(),
+          StringConstant.navElementalSoulResult:
+              (context) => ElementalSoulResultScreen(),
 
           // SIGNS category
           StringConstant.navSignsScreenKey: (context) => SignsScreen(),

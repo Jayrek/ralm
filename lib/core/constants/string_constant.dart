@@ -15,6 +15,8 @@ class StringConstant {
 
   // navigation keys for KNOW YOURSELF
   static const navElementalSoul = '/elemental_soul';
+  static const navElementalSoulTest = '/elemental_soul_test';
+  static const navElementalSoulResult = '/elemental_soul_result';
 
   // navigation keys for SIGNS
   static const navChineseZodiac = '/chinese_zodiac';
@@ -53,4 +55,12 @@ class StringConstant {
     "November",
     "December",
   ];
+
+  static String getElementalTypeFromScore(int score) {
+    if (score >= 100 && score <= 160) return 'Fire';
+    if (score >= 170 && score <= 240) return 'Air';
+    if (score >= 250 && score <= 320) return 'Water';
+    if (score >= 330 && score <= 400) return 'Earth';
+    return 'Unknown';
+  }
 }
