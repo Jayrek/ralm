@@ -1,0 +1,52 @@
+[
+    {
+        "id": 1,
+        "title": "FOOD",
+        "information": "Food symbolizes energy, knowledge or nourishment and is directly related to our intellect, emotions and spirituality. Food can also be a manifestation of idioms like,\"food for thought,\" and reveal that we may be \"hungry\" for new information and insights."
+    },
+    {
+        "id": 2,
+        "title": "HOUSE",
+        "information": "Houses frequently represent the dreamer's mind. Different levels or rooms may relate to difference aspects of the individual dreamer and different degrees of consciousness. The basement often represents what has been neglected, or what the dreamer is not aware of in his or her waking life, while bedrooms relate to intimate thoughts and feelings -- those closest to the dreamer's core self."
+    },
+    {
+        "id": 3,
+        "title": "VEHICLES",
+        "information": "Whether a car, airplane, train or ship, the vehicles in our dream can reflect what direction we feel our life is taking, and how much control we think we have over the path ahead of us. Vehicles can give us the power to make a transition and envision ourselves getting to our destination -- or highlight the obstacles we think we are facing and need to work through."
+    },
+    {
+        "id": 4,
+        "title": "WATER",
+        "information": "Water frequently represents our emotions or our unconscious minds. The quality of the water (clear vs. cloudy; calm vs. turbulent) often provides insight into how effectively we are managing our emotions."
+    },
+    {
+        "id": 5,
+        "title": "PEOPLE",
+        "information": "Seeing other people in your dream often is a reflection of the different aspects of the self. The people in dreams can relate to characteristics that need to be developed. Specific people directly relate to existing relationships or interpersonal issues we need to work through. Dreaming of a lover, in particular, is frequently symbolic of an aspect of ourselves, from which we feel detached."
+    },
+    {
+        "id": 6,
+        "title": "School or Classroom",
+        "information": "It's a very common situation for people in dreams to find themselves in a school or classroom, often confronted with a test that they aren't prepared to take. This is a great example of a \"dream pun\" -- the mind using a word or concept and giving it a different definition. The \"lesson\" or \"test\" we face inside the school or classroom is frequently one we need to learn from our past -- which is one reason these dreams are often reported by people who have long since finished school."
+    },
+    {
+        "id": 7,
+        "title": "Paralysis",
+        "information": "Unknown to most people, the body is actually encountering a form of paralysis during dreaming, which prevents it from physically performing the actions occurring in their dreams, therefore dreaming about paralysis frequently represents the overlap between the REM stage and waking stage of sleep. Dreaming about paralysis can also indicate that the dreamer feels he or she lacks control in their waking life."
+    },
+    {
+        "id": 8,
+        "title": "Death",
+        "information": "Although death is often perceived as negative, it's often more directly related to dramatic change happening for the dreamer -- the end of one thing, in order to make room for something new."
+    },
+    {
+        "id": 9,
+        "title": "Flying",
+        "information": "Flying in a dream, and how effectively or poorly it's done, relates to how much control we feel we have in our lives, and whether we are confident and able to achieve our goals. High flying is one of the most euphoric dreams imaginable, while flying or \"skimming\" low to the ground or being caught in obstacles like power lines can be immensely frustrating."
+    },
+    {
+        "id": 10,
+        "title": "Nudity",
+        "information": "Emotional or psychological exposure or vulnerability is very often expressed in dreams through nudity. The body part that's exposed can give more insight into the emotion that our dreams are helping us to understand."
+    }
+]
