@@ -18,9 +18,14 @@ class StringConstant {
   static const navChineseZodiacDetail = '/chinese_zodiac_detail';
   static const navConstellationZodiac = '/constellation_zodiac';
   static const navConstellationZodiacDetail = '/constellation_zodiac_detail';
+
+  // navigation keys for DREAM SIGN
   static const navDreamSign = '/dream_sign';
   static const navDreamSignDetail = '/dream_sign_detail';
+
+  // navigation keys for SECRET CRUSH
   static const navSecretCrush = '/secret_crush';
+  static const navSecretCrushDetail = '/secret_crush_detail';
 
   // navigation keys for TAROT
   static const navTarotCard = '/tarot_card';

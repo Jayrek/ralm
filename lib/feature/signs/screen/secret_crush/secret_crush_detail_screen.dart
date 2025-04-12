@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:ralm/feature/signs/screen/dream_sign/bloc/dream_sign_bloc.dart';
+import 'package:ralm/feature/signs/screen/secret_crush/bloc/secret_crush_bloc.dart';
 import 'package:ralm/models/dream_sign.dart';
 
-class DreamSignDetailScreen extends StatefulWidget {
-  const DreamSignDetailScreen({super.key});
+class SecretCrushDetailScreen extends StatefulWidget {
+  const SecretCrushDetailScreen({super.key});
 
   @override
-  State<DreamSignDetailScreen> createState() => _DreamSignDetailScreenState();
+  State<SecretCrushDetailScreen> createState() =>
+      _SecretCrushDetailScreenState();
 }
 
-class _DreamSignDetailScreenState extends State<DreamSignDetailScreen> {
+class _SecretCrushDetailScreenState extends State<SecretCrushDetailScreen> {
   final PageController _pageController = PageController(viewportFraction: 0.6);
   int _currentPage = 0;
 
@@ -36,19 +37,15 @@ class _DreamSignDetailScreenState extends State<DreamSignDetailScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.purple.shade300,
-      body: BlocBuilder<DreamSignBloc, DreamSignState>(
+      body: BlocBuilder<SecretCrushBloc, SecretCrushState>(
         builder: (context, state) {
-          final details = state.dreamSignDetailList;
+          final details = state.secretCrushList;
           return PageView.builder(
             controller: _pageController,
             itemCount: details.length,
-            onPageChanged: (index) {
-              setState(() {
-                _currentPage = index;
-              });
-            },
+            onPageChanged: (index) => setState(() => _currentPage = index),
             itemBuilder: (context, index) {
-              final dream = details[index];
+              final secret = details[index];
 
               double opacity = (_currentPage == index) ? 1.0 : 0.1;
               double scale = (_currentPage == index) ? 1.0 : 0.95;
@@ -65,7 +62,7 @@ class _DreamSignDetailScreenState extends State<DreamSignDetailScreen> {
                     child: SizedBox(
                       width: MediaQuery.of(context).size.width * 0.9,
                       child: SingleChildScrollView(
-                        child: _buildDreamSignInfoWidget(dream, details),
+                        child: _buildSecretInfoWidget(secret, details),
                       ),
                     ),
                   ),
@@ -78,7 +75,7 @@ class _DreamSignDetailScreenState extends State<DreamSignDetailScreen> {
     );
   }
 
-  _buildDreamSignInfoWidget(DreamSign dreamSign, List<DreamSign> list) {
+  _buildSecretInfoWidget(DreamSign dreamSign, List<DreamSign> list) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
