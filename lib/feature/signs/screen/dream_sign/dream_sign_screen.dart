@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ralm/core/constants/string_constant.dart';
+import 'package:ralm/feature/signs/screen/dream_sign/bloc/dream_sign_bloc.dart';
 
 class DreamSignScreen extends StatelessWidget {
   const DreamSignScreen({super.key});
@@ -9,6 +12,7 @@ class DreamSignScreen extends StatelessWidget {
       backgroundColor: Colors.purple.shade300,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
             'Dream Sign',
@@ -16,13 +20,35 @@ class DreamSignScreen extends StatelessWidget {
               context,
             ).textTheme.displayLarge?.copyWith(fontSize: 90),
           ),
-          SizedBox(height: 40),
+          SizedBox(height: 60),
           Row(
             spacing: 20,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              _buildButtonWidget(label: 'Common', onTap: () {}),
-              _buildButtonWidget(label: 'Nightmare', onTap: () {}),
+              _buildButtonWidget(
+                label: 'Common',
+                onTap: () {
+                  context.read<DreamSignBloc>().add(
+                    FetchDreamSignDetail(dreamSignCategory: 'common'),
+                  );
+                  Navigator.pushNamed(
+                    context,
+                    StringConstant.navDreamSignDetail,
+                  );
+                },
+              ),
+              _buildButtonWidget(
+                label: 'Nightmare',
+                onTap: () {
+                  context.read<DreamSignBloc>().add(
+                    FetchDreamSignDetail(dreamSignCategory: 'nightmare'),
+                  );
+                  Navigator.pushNamed(
+                    context,
+                    StringConstant.navDreamSignDetail,
+                  );
+                },
+              ),
             ],
           ),
           SizedBox(height: 40),
@@ -30,8 +56,30 @@ class DreamSignScreen extends StatelessWidget {
             spacing: 20,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              _buildButtonWidget(label: 'Animal', onTap: () {}),
-              _buildButtonWidget(label: 'Symbol', onTap: () {}),
+              _buildButtonWidget(
+                label: 'Animal',
+                onTap: () {
+                  context.read<DreamSignBloc>().add(
+                    FetchDreamSignDetail(dreamSignCategory: 'animal'),
+                  );
+                  Navigator.pushNamed(
+                    context,
+                    StringConstant.navDreamSignDetail,
+                  );
+                },
+              ),
+              _buildButtonWidget(
+                label: 'Symbol',
+                onTap: () {
+                  context.read<DreamSignBloc>().add(
+                    FetchDreamSignDetail(dreamSignCategory: 'symbol'),
+                  );
+                  Navigator.pushNamed(
+                    context,
+                    StringConstant.navDreamSignDetail,
+                  );
+                },
+              ),
             ],
           ),
           SizedBox(height: 40),
