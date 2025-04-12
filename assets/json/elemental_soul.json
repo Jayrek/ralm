@@ -1,0 +1,272 @@
+[
+    {
+        "id": 3,
+        "category_id": 1,
+        "question": "What three words best describe your personality?",
+        "option": [
+            {
+                "text": "Fun, Playful and Friendly",
+                "choice": "A",
+                "score": "20"
+            },
+            {
+                "text": "Creative, Decisive and Clever",
+                "choice": "B",
+                "score": "40"
+            },
+            {
+                "text": "Chill, Easy-Going and Laid-Back",
+                "choice": "C",
+                "score": "30"
+            },
+            {
+                "text": "Passionate, Emotional and Protective",
+                "choice": "D",
+                "score": "10"
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "category_id": 2,
+        "question": "Which of these animals do you like the most?",
+        "option": [
+            {
+                "text": "Dog, Adorable and Loyal",
+                "choice": "A",
+                "score": "40"
+            },
+            {
+                "text": "Horse, Gracious and Beautiful",
+                "choice": "B",
+                "score": "10"
+            },
+            {
+                "text": "Butterfies, Fascinating Creatures",
+                "choice": "C",
+                "score": "20"
+            },
+            {
+                "text": "Dolphins, Smart and Friendly",
+                "choice": "D",
+                "score": "30"
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "category_id": 3,
+        "question": "Which color combo do you like the most?",
+        "option": [
+            {
+                "text": "Black and Brown",
+                "choice": "A",
+                "score": "40"
+            },
+            {
+                "text": "Blue and Green",
+                "choice": "B",
+                "score": "30"
+            },
+            {
+                "text": "Red and Orange",
+                "choice": "C",
+                "score": "10"
+            },
+            {
+                "text": "Green and Purple",
+                "choice": "D",
+                "score": "20"
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "category_id": 4,
+        "question": "What's your favorite movie genre?",
+        "option": [
+            {
+                "text": "Thriller, Mystery and Horror",
+                "choice": "A",
+                "score": "30"
+            },
+            {
+                "text": "Comedies and Action Movies",
+                "choice": "B",
+                "score": "20"
+            },
+            {
+                "text": "Adventure and Romantic Films",
+                "choice": "C",
+                "score": "10"
+            },
+            {
+                "text": "Drama and Education Documentary",
+                "choice": "D",
+                "score": "40"
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "category_id": 5,
+        "question": "How many friends do you have?",
+        "option": [
+            {
+                "text": "Very Few Friends",
+                "choice": "A",
+                "score": "10"
+            },
+            {
+                "text": "5 to 10 Friends",
+                "choice": "B",
+                "score": "30"
+            },
+            {
+                "text": "2 or 3 Friends",
+                "choice": "C",
+                "score": "40"
+            },
+            {
+                "text": "Big Groups of Friends",
+                "choice": "D",
+                "score": "20"
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "category_id": 6,
+        "question": "Which of these music genres do you like more than the others?",
+        "option": [
+            {
+                "text": "Soft Rock",
+                "choice": "A",
+                "score": "20"
+            },
+            {
+                "text": "Heavy Mental",
+                "choice": "B",
+                "score": "10"
+            },
+            {
+                "text": "Classical Music",
+                "choice": "C",
+                "score": "40"
+            },
+            {
+                "text": "Popular Music Today",
+                "choice": "D",
+                "score": "30"
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "category_id": 7,
+        "question": "Which magical charm would you like to have?",
+        "option": [
+            {
+                "text": "Free and Extremely Powerful",
+                "choice": "A",
+                "score": "20"
+            },
+            {
+                "text": "Invincible and Immortalty",
+                "choice": "B",
+                "score": "30"
+            },
+            {
+                "text": "Brings Attention and Love",
+                "choice": "C",
+                "score": "10"
+            },
+            {
+                "text": "Wisdom or Unique Skills",
+                "choice": "D",
+                "score": "40"
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "category_id": 8,
+        "question": "Lets hope this scenario won't ever happen to you, but if someone you love died, How would you handle it?",
+        "option": [
+            {
+                "text": "Grieve and Cry for a long time",
+                "choice": "A",
+                "score": "10"
+            },
+            {
+                "text": "Try to accept that the're gone",
+                "choice": "B",
+                "score": "40"
+            },
+            {
+                "text": "Remember and Focus on positive to minimize the pain",
+                "choice": "C",
+                "score": "20"
+            },
+            {
+                "text": "Let it sink in and Feel all the emotions",
+                "choice": "D",
+                "score": "30"
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "category_id": 9,
+        "question": "If you had 1 Million Dollars what would you do with it?",
+        "option": [
+            {
+                "text": "I donate to a charity",
+                "choice": "A",
+                "score": "20"
+            },
+            {
+                "text": "I'd save it, Of course",
+                "choice": "B",
+                "score": "40"
+            },
+            {
+                "text": "I'd spend it all with pleasure",
+                "choice": "C",
+                "score": "10"
+            },
+            {
+                "text": "Divide half to my family and to charity",
+                "choice": "D",
+                "score": "30"
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "category_id": 10,
+        "question": "How would you describe your life?",
+        "option": [
+            {
+                "text": "Big Spotlight of Attention",
+                "choice": "A",
+                "score": "40"
+            },
+            {
+                "text": "Fun and Positive Vibes",
+                "choice": "B",
+                "score": "30"
+            },
+            {
+                "text": "Emotionally Well-Rounded",
+                "choice": "C",
+                "score": "20"
+            },
+            {
+                "text": "Modest but Filled with Love",
+                "choice": "D",
+                "score": "10"
+            }
+        ]
+    }
+]

@@ -4,6 +4,7 @@ import 'package:ralm/core/theme/app_theme.dart';
 import 'package:ralm/feature/avatar/avatar_list_screen.dart';
 import 'package:ralm/feature/avatar/bloc/avatar_bloc.dart';
 import 'package:ralm/feature/discover/screen/discover_screen.dart';
+import 'package:ralm/feature/know_yourself/screen/elemental_soul/elemental_soul_screen.dart';
 import 'package:ralm/feature/signs/screen/chinese_zodiac/bloc/chinese_zodiac_bloc.dart';
 import 'package:ralm/feature/signs/screen/chinese_zodiac/chinese_zodiac_detail_screen.dart';
 import 'package:ralm/feature/signs/screen/chinese_zodiac/chinese_zodiac_screen.dart';
@@ -62,12 +63,15 @@ class MyApp extends StatelessWidget {
         initialRoute: StringConstant.navDashboardScreenKey,
         routes: {
           StringConstant.navDashboardScreenKey: (context) => DashboardScreen(),
+          StringConstant.navDiscoverScreenKey: (context) => DiscoverScreen(),
+
+          // KNOW YOURSELF category
           StringConstant.navKnowYourScreenKey:
               (context) => KnowYourSelfScreen(),
-          StringConstant.navSignsScreenKey: (context) => SignsScreen(),
-          StringConstant.navTarotScreenKey: (context) => TarotScreen(),
-          StringConstant.navDiscoverScreenKey: (context) => DiscoverScreen(),
+          StringConstant.navElementalSoul: (context) => ElementalSoulScreen(),
+
           // SIGNS category
+          StringConstant.navSignsScreenKey: (context) => SignsScreen(),
           StringConstant.navChineseZodiac: (context) => ChineseZodiacScreen(),
           StringConstant.navChineseZodiacDetail:
               (context) => ChineseZodiacDetailScreen(),
@@ -75,15 +79,15 @@ class MyApp extends StatelessWidget {
               (context) => ConstellationScreen(),
           StringConstant.navConstellationZodiacDetail:
               (context) => ConstellationDetailScreen(),
-
           StringConstant.navDreamSign: (context) => DreamSignScreen(),
           StringConstant.navDreamSignDetail:
               (context) => DreamSignDetailScreen(),
-
           StringConstant.navSecretCrush: (context) => SecretCrushScreen(),
           StringConstant.navSecretCrushDetail:
               (context) => SecretCrushDetailScreen(),
+
           // TAROT category
+          StringConstant.navTarotScreenKey: (context) => TarotScreen(),
           StringConstant.navTarotCard: (context) => TarotCardScreen(),
           StringConstant.navTarotViewCard: (context) => ViewTarotCard(),
           StringConstant.navTarotViewCardDetail:

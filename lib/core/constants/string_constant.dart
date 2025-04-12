@@ -13,6 +13,9 @@ class StringConstant {
   static const navTarotScreenKey = '/tarot_screen';
   static const navDiscoverScreenKey = '/discover_screen';
 
+  // navigation keys for KNOW YOURSELF
+  static const navElementalSoul = '/elemental_soul';
+
   // navigation keys for SIGNS
   static const navChineseZodiac = '/chinese_zodiac';
   static const navChineseZodiacDetail = '/chinese_zodiac_detail';
