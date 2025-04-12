@@ -117,7 +117,7 @@ class _ViewPickedCardScreenState extends State<ViewPickedCardScreen> {
             height: 400,
             width: 150,
             decoration: BoxDecoration(
-              color: Colors.grey.shade300,
+              color: Colors.black87,
               border: Border.all(width: 1, color: Colors.black87),
               borderRadius: BorderRadius.circular(10),
               image: DecorationImage(

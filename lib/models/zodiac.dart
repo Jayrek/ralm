@@ -2,12 +2,14 @@ class Zodiac {
   const Zodiac({
     required this.id,
     required this.name,
+    required this.image,
     required this.dateRange,
     required this.data,
   });
 
   final int id;
   final String name;
+  final String image;
   final String dateRange;
   final ConstellationZodiacData data;
 
@@ -15,6 +17,7 @@ class Zodiac {
     return Zodiac(
       id: json['id'],
       name: json['name'],
+      image: json['image'],
       dateRange: json['date_range'],
       data: ConstellationZodiacData.fromJson(json['data']),
     );
@@ -22,7 +25,7 @@ class Zodiac {
 
   @override
   String toString() {
-    return 'Zodiac(id: $id, name: $name, dateRange: $dateRange, data: $data)';
+    return 'Zodiac(id: $id, name: $name, image: $image, dateRange: $dateRange, data: $data)';
   }
 }
 

@@ -30,7 +30,8 @@ flutter:
 
   assets:
     - assets/json/
-    - assets/image/
+    - assets/image/tarot/
+    - assets/image/constellation/
 
   fonts:
     - family: Tinos

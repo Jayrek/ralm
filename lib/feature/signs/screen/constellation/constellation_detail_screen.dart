@@ -95,13 +95,19 @@ class _ConstellationDetailScreenState extends State<ConstellationDetailScreen> {
                                     borderRadius: BorderRadius.circular(16),
                                   ),
                                   elevation: 4,
-                                  child: SizedBox(
+                                  child: Container(
                                     height: 400,
                                     width: 150,
-                                    child: Center(
-                                      child: Text(
-                                        zodiac.name,
-                                        style: TextStyle(color: Colors.purple),
+                                    decoration: BoxDecoration(
+                                      color: Colors.black87,
+                                      border: Border.all(
+                                        width: 1,
+                                        color: Colors.black87,
+                                      ),
+                                      borderRadius: BorderRadius.circular(10),
+                                      image: DecorationImage(
+                                        image: AssetImage(zodiac.image),
+                                        fit: BoxFit.cover,
                                       ),
                                     ),
                                   ),

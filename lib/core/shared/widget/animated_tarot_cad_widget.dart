@@ -41,24 +41,32 @@ class _AnimatedTarotCardWidgetState extends State<AnimatedTarotCardWidget>
       child: AnimatedBuilder(
         animation: _controller,
         builder: (context, child) {
-          return Container(
-            height: 200,
-            width: 130,
-            decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
-            child: CustomPaint(
-              painter: GradientBorderPainter(_controller.value),
-              child: Container(
-                margin: EdgeInsets.all(4),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(10),
-                  image:
-                      hasTarot
-                          ? DecorationImage(
-                            image: AssetImage(tarot.image),
-                            fit: BoxFit.cover,
-                          )
-                          : null,
+          return Card(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(16),
+            ),
+            elevation: 4,
+            child: Container(
+              height: 200,
+              width: 130,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: CustomPaint(
+                painter: GradientBorderPainter(_controller.value),
+                child: Container(
+                  margin: EdgeInsets.all(4),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10),
+                    image:
+                        hasTarot
+                            ? DecorationImage(
+                              image: AssetImage(tarot.image),
+                              fit: BoxFit.cover,
+                            )
+                            : null,
+                  ),
                 ),
               ),
             ),

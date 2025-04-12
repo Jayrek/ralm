@@ -98,7 +98,7 @@ class _ViewCardDetailScreenState extends State<ViewCardDetailScreen> {
                                     height: 400,
                                     width: 150,
                                     decoration: BoxDecoration(
-                                      color: Colors.grey.shade300,
+                                      color: Colors.black87,
                                       border: Border.all(
                                         width: 1,
                                         color: Colors.black87,

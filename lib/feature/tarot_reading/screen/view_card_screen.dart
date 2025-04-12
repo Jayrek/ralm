@@ -102,16 +102,22 @@ class _ViewTarotCardState extends State<ViewTarotCard> {
       padding: const EdgeInsets.all(2),
       child: InkWell(
         onTap: onTap,
-        child: Container(
-          height: 180,
-          width: 110,
-          decoration: BoxDecoration(
-            color: Colors.grey.shade300,
-            border: Border.all(width: 1, color: Colors.black87),
-            borderRadius: BorderRadius.circular(10),
-            image: DecorationImage(
-              image: AssetImage(tarot.image),
-              fit: BoxFit.cover,
+        child: Card(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16),
+          ),
+          elevation: 4,
+          child: Container(
+            height: 180,
+            width: 110,
+            decoration: BoxDecoration(
+              color: Colors.black87,
+              border: Border.all(width: 1, color: Colors.black87),
+              borderRadius: BorderRadius.circular(10),
+              image: DecorationImage(
+                image: AssetImage(tarot.image),
+                fit: BoxFit.cover,
+              ),
             ),
           ),
         ),

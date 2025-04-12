@@ -189,21 +189,6 @@ class _TarotCardScreenState extends State<TarotCardScreen> {
     );
   }
 
-  Widget _backCard() {
-    return Padding(
-      padding: EdgeInsets.all(2),
-      child: Container(
-        height: 180,
-        width: 110,
-        decoration: BoxDecoration(
-          color: Colors.grey,
-          border: Border.all(width: 1, color: Colors.black87),
-          borderRadius: BorderRadius.circular(10),
-        ),
-      ),
-    );
-  }
-
   Widget _tarotCard({
     required Tarot tarot,
     required bool isPicked,
@@ -213,20 +198,31 @@ class _TarotCardScreenState extends State<TarotCardScreen> {
       padding: const EdgeInsets.all(2),
       child: InkWell(
         onTap: isPicked ? null : onTap,
-        child: Container(
-          height: 180,
-          width: 110,
-          decoration: BoxDecoration(
-            color: Colors.grey.shade300,
-            border: Border.all(width: 1, color: Colors.black87),
-            borderRadius: BorderRadius.circular(10),
-            image:
-                isPicked
-                    ? DecorationImage(
-                      image: AssetImage(tarot.image),
-                      fit: BoxFit.cover,
-                    )
-                    : null,
+        child: Card(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16),
+          ),
+          elevation: 4,
+          child: Container(
+            height: 180,
+            width: 110,
+            decoration: BoxDecoration(
+              color: Colors.black87,
+              border: Border.all(width: 1, color: Colors.black87),
+              borderRadius: BorderRadius.circular(10),
+              image:
+                  isPicked
+                      ? DecorationImage(
+                        image: AssetImage(tarot.image),
+                        fit: BoxFit.cover,
+                      )
+                      : DecorationImage(
+                        image: AssetImage(
+                          'assets/image/tarot/card_backcover.jpg',
+                        ),
+                        fit: BoxFit.cover,
+                      ),
+            ),
           ),
         ),
       ),
