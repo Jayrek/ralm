@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ralm/core/constants/string_constant.dart';
 import 'package:ralm/core/shared/widget/custom_button_rounded_widget.dart';
+import 'package:ralm/feature/avatar/bloc/avatar_bloc.dart';
 import 'package:ralm/feature/dashboard/bloc/dashboard_bloc.dart';
+import 'package:ralm/models/avatar.dart';
 
 import '../../core/shared/widget/custom_button_icon_widget.dart';
 
@@ -129,7 +131,13 @@ class DashboardScreen extends StatelessWidget {
                           },
                           child: CircleAvatar(
                             backgroundColor: Colors.grey[300],
-                            child: Icon(Icons.person),
+                            child:
+                                BlocSelector<AvatarBloc, AvatarState, Avatar>(
+                                  selector: (state) => state.defaultAvatar,
+                                  builder: (context, state) {
+                                    return Text(state.category.substring(0, 2));
+                                  },
+                                ),
                           ),
                         ),
                       ),

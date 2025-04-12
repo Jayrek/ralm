@@ -10,7 +10,7 @@ class AvatarBloc extends Bloc<AvatarEvent, AvatarState> {
   AvatarBloc() : super(AvatarState()) {
     on<FetchAvatars>((event, emit) async {
       final avatars = await AvatarSharedUtil.loadAvatars();
-      emit(state.copyWith(avatarFromJson: avatars));
+      emit(state.copyWith(avatars: avatars));
       // String jsonString = await rootBundle.loadString(
       //   'assets/json/avatar.json',
       // );
@@ -28,12 +28,12 @@ class AvatarBloc extends Bloc<AvatarEvent, AvatarState> {
           }).toList();
 
       await AvatarSharedUtil.saveAvatars(updated);
-      emit(state.copyWith(avatarFromJson: updated));
+      emit(state.copyWith(avatars: updated));
     });
 
     on<SetDefaultAvatar>((event, emit) async {
       final avatars = await AvatarSharedUtil.loadAvatars();
-      final updated =
+      final updatedAvatars =
           avatars.map((a) {
             return a.copyWith(isSelected: a.id == event.id);
           }).toList();
@@ -43,8 +43,12 @@ class AvatarBloc extends Bloc<AvatarEvent, AvatarState> {
       //       return a.id == event.id ? a.copyWith(isSelected: true) : a;
       //     }).toList();
 
-      await AvatarSharedUtil.saveAvatars(updated);
-      emit(state.copyWith(avatarFromJson: updated));
+      await AvatarSharedUtil.saveAvatars(updatedAvatars);
+      final defaultAvatar =
+          updatedAvatars.where((avatar) => avatar.isSelected == true).first;
+      emit(
+        state.copyWith(avatars: updatedAvatars, defaultAvatar: defaultAvatar),
+      );
     });
   }
 }

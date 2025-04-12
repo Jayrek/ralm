@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ralm/core/constants/string_constant.dart';
 import 'package:ralm/core/shared/widget/animated_tarot_cad_widget.dart';
 import 'package:ralm/core/util/shared_pref_util.dart';
+import 'package:ralm/feature/avatar/bloc/avatar_bloc.dart';
+import 'package:ralm/models/avatar.dart';
 import 'package:ralm/models/tarot.dart';
 
 class DiscoverScreen extends StatefulWidget {
@@ -44,9 +48,19 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                     shape: BoxShape.circle,
                     border: Border.all(color: Colors.deepPurple, width: 4),
                   ),
-                  child: CircleAvatar(
-                    backgroundColor: Colors.grey[300],
-                    child: Icon(Icons.person, size: 50),
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.pushNamed(context, StringConstant.navAvatar);
+                    },
+                    child: CircleAvatar(
+                      backgroundColor: Colors.grey[300],
+                      child: BlocSelector<AvatarBloc, AvatarState, Avatar>(
+                        selector: (state) => state.defaultAvatar,
+                        builder: (context, state) {
+                          return Text(state.category.substring(0, 2));
+                        },
+                      ),
+                    ),
                   ),
                 ),
                 SizedBox(height: 20),

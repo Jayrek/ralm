@@ -12,7 +12,7 @@ class AvatarListScreen extends StatelessWidget {
       backgroundColor: Colors.purple.shade300,
       body: BlocBuilder<AvatarBloc, AvatarState>(
         builder: (context, state) {
-          final avatars = state.avatarFromJson;
+          final avatars = state.avatars;
           return Wrap(
             runSpacing: 10,
             crossAxisAlignment: WrapCrossAlignment.center,
@@ -32,6 +32,7 @@ class AvatarListScreen extends StatelessWidget {
                             SetDefaultAvatar(avatar.id),
                           );
                           debugPrint('select new default avatar: $avatar');
+                          Navigator.pop(context);
                         }
                       },
                       child: CircleAvatar(
@@ -41,7 +42,7 @@ class AvatarListScreen extends StatelessWidget {
                         child:
                             avatar.isLocked
                                 ? SizedBox()
-                                : Text(avatar.category.substring(0, 1)),
+                                : Text(avatar.category.substring(0, 2)),
                       ),
                     ),
                   );
