@@ -74,6 +74,7 @@ Future<void> resetPickedTarots() async {
   }
 }
 
+// ELEMENTAL SOUL
 Future<void> saveElementalProgress(int index, int score) async {
   final prefs = await SharedPreferences.getInstance();
   await prefs.setInt('elemental_current_index', index);
@@ -91,4 +92,24 @@ Future<void> resetElementalProgress() async {
   final prefs = await SharedPreferences.getInstance();
   await prefs.remove('elemental_current_index');
   await prefs.remove('elemental_total_score');
+}
+
+// YOUR COLOR
+Future<void> saveYourColorProgress(int index, int score) async {
+  final prefs = await SharedPreferences.getInstance();
+  await prefs.setInt('color_current_index', index);
+  await prefs.setInt('color_total_score', score);
+}
+
+Future<Map<String, int>> loadYourColorProgress() async {
+  final prefs = await SharedPreferences.getInstance();
+  final index = prefs.getInt('color_current_index') ?? 0;
+  final score = prefs.getInt('color_total_score') ?? 0;
+  return {'index': index, 'score': score};
+}
+
+Future<void> resetYourColorProgress() async {
+  final prefs = await SharedPreferences.getInstance();
+  await prefs.remove('color_current_index');
+  await prefs.remove('color_total_score');
 }

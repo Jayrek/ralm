@@ -13,10 +13,15 @@ class StringConstant {
   static const navTarotScreenKey = '/tarot_screen';
   static const navDiscoverScreenKey = '/discover_screen';
 
-  // navigation keys for KNOW YOURSELF
+  // navigation keys for ELEMENTAL SOUL
   static const navElementalSoul = '/elemental_soul';
   static const navElementalSoulTest = '/elemental_soul_test';
   static const navElementalSoulResult = '/elemental_soul_result';
+
+  // navigation keys for YOUR COLOR
+  static const navYourColor = '/your_color';
+  static const navYourColorTest = '/your_color_test';
+  static const navYourColorResult = '/your_color_result';
 
   // navigation keys for SIGNS
   static const navChineseZodiac = '/chinese_zodiac';
@@ -61,6 +66,15 @@ class StringConstant {
     if (score >= 170 && score <= 240) return 'Air';
     if (score >= 250 && score <= 320) return 'Water';
     if (score >= 330 && score <= 400) return 'Earth';
+    return 'Unknown';
+  }
+
+  static String getColorResultFromScore(int score) {
+    if (score >= 150 && score <= 230) return 'Green';
+    if (score >= 240 && score <= 330) return 'Purple';
+    if (score >= 340 && score <= 420) return 'Red';
+    if (score >= 430 && score <= 510) return 'Blue';
+    if (score >= 510 && score <= 600) return 'White';
     return 'Unknown';
   }
 }

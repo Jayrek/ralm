@@ -55,7 +55,10 @@ class KnowYourSelfScreen extends StatelessWidget {
                                         StringConstant.navElementalSoul,
                                       );
                                     case 3:
-                                      debugPrint('your color');
+                                      Navigator.pushNamed(
+                                        context,
+                                        StringConstant.navYourColor,
+                                      );
                                     case 4:
                                       debugPrint('random test');
                                     case 5:

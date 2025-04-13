@@ -1,22 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ralm/core/constants/string_constant.dart';
-import 'package:ralm/feature/know_yourself/screen/elemental_soul/bloc/elemental_soul_bloc.dart';
+import 'package:ralm/feature/know_yourself/screen/your_color/bloc/your_color_bloc.dart';
 import 'package:ralm/models/elemental_soul.dart';
 
-class ElementalSoulTestScreen extends StatefulWidget {
-  const ElementalSoulTestScreen({super.key});
+class YourColorTestScreen extends StatefulWidget {
+  const YourColorTestScreen({super.key});
 
   @override
-  State<ElementalSoulTestScreen> createState() =>
-      _ElementalSoulTestScreenState();
+  State<YourColorTestScreen> createState() => _YourColorTestScreenState();
 }
 
-class _ElementalSoulTestScreenState extends State<ElementalSoulTestScreen> {
+class _YourColorTestScreenState extends State<YourColorTestScreen> {
   void selectOption(Option option) {
-    context.read<ElementalSoulBloc>().add(
-      SelectElementalSoulOption(option: option),
-    );
+    context.read<YourColorBloc>().add(SelectYourColorOption(option: option));
   }
 
   @override
@@ -25,25 +22,25 @@ class _ElementalSoulTestScreenState extends State<ElementalSoulTestScreen> {
       backgroundColor: Colors.purple.shade300,
       body: Padding(
         padding: const EdgeInsets.all(16),
-        child: BlocConsumer<ElementalSoulBloc, ElementalSoulState>(
+        child: BlocConsumer<YourColorBloc, YourColorState>(
           listener: (context, state) {
             final index = state.currentIndex;
-            final questions = state.elementalSoulQuestions;
+            final questions = state.yourColorQuestions;
 
             if (index >= questions.length) {
-              final result = StringConstant.getElementalTypeFromScore(
+              final result = StringConstant.getColorResultFromScore(
                 state.totalScore,
               );
               Navigator.pushNamedAndRemoveUntil(
                 context,
-                StringConstant.navElementalSoulResult,
+                StringConstant.navYourColorResult,
                 (_) => false,
                 arguments: {'score': state.totalScore, 'result': result},
               );
             }
           },
           builder: (context, state) {
-            final questions = state.elementalSoulQuestions;
+            final questions = state.yourColorQuestions;
             final index = state.currentIndex;
 
             if (questions.isEmpty || index >= questions.length) {
@@ -69,8 +66,8 @@ class _ElementalSoulTestScreenState extends State<ElementalSoulTestScreen> {
                       ),
                       child: InkWell(
                         onTap: () {
-                          context.read<ElementalSoulBloc>().add(
-                            SelectElementalSoulOption(option: option),
+                          context.read<YourColorBloc>().add(
+                            SelectYourColorOption(option: option),
                           );
                         },
                         child: Container(

@@ -8,6 +8,10 @@ import 'package:ralm/feature/know_yourself/screen/elemental_soul/bloc/elemental_
 import 'package:ralm/feature/know_yourself/screen/elemental_soul/elemental_soul_result_screen.dart';
 import 'package:ralm/feature/know_yourself/screen/elemental_soul/elemental_soul_screen.dart';
 import 'package:ralm/feature/know_yourself/screen/elemental_soul/elemental_soul_test_screen.dart';
+import 'package:ralm/feature/know_yourself/screen/your_color/bloc/your_color_bloc.dart';
+import 'package:ralm/feature/know_yourself/screen/your_color/your_color_result_screen.dart';
+import 'package:ralm/feature/know_yourself/screen/your_color/your_color_screen.dart';
+import 'package:ralm/feature/know_yourself/screen/your_color/your_color_test_screen.dart';
 import 'package:ralm/feature/signs/screen/chinese_zodiac/bloc/chinese_zodiac_bloc.dart';
 import 'package:ralm/feature/signs/screen/chinese_zodiac/chinese_zodiac_detail_screen.dart';
 import 'package:ralm/feature/signs/screen/chinese_zodiac/chinese_zodiac_screen.dart';
@@ -59,6 +63,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => DreamSignBloc()),
         BlocProvider(create: (context) => SecretCrushBloc()),
         BlocProvider(create: (context) => ElementalSoulBloc()),
+        BlocProvider(create: (context) => YourColorBloc()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -72,11 +77,19 @@ class MyApp extends StatelessWidget {
           // KNOW YOURSELF category
           StringConstant.navKnowYourScreenKey:
               (context) => KnowYourSelfScreen(),
+
+          // Elemental Soul
           StringConstant.navElementalSoul: (context) => ElementalSoulScreen(),
           StringConstant.navElementalSoulTest:
               (context) => ElementalSoulTestScreen(),
           StringConstant.navElementalSoulResult:
               (context) => ElementalSoulResultScreen(),
+
+          // Your Color
+          StringConstant.navYourColor: (context) => YourColorScreen(),
+          StringConstant.navYourColorTest: (context) => YourColorTestScreen(),
+          StringConstant.navYourColorResult:
+              (context) => YourColorResultScreen(),
 
           // SIGNS category
           StringConstant.navSignsScreenKey: (context) => SignsScreen(),
