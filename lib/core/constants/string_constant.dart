@@ -14,6 +14,9 @@ class StringConstant {
   static const navDiscoverScreenKey = '/discover_screen';
 
   // navigation keys for ELEMENTAL SOUL
+  static const navForestTest = '/forest_test';
+
+  // navigation keys for ELEMENTAL SOUL
   static const navElementalSoul = '/elemental_soul';
   static const navElementalSoulTest = '/elemental_soul_test';
   static const navElementalSoulResult = '/elemental_soul_result';

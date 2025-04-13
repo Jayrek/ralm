@@ -1,0 +1,62 @@
+[
+    {
+        "id": 1,
+        "data": {
+            "description": "The person who is walking with you is the most important person in your life."
+        }
+    },
+    {
+        "id": 2,
+        "data": {
+            "description": "The size of the animal you see represents the perception you have about the size of your problems."
+        }
+    },
+    {
+        "id": 3,
+        "data": {
+            "description": "The degree of interaction you have with the animal represents how you handle your problem problems, i.e., If you are passive or active to a problem."
+        }
+    },
+    {
+        "id": 4,
+        "data": {
+            "description": "The size of the house of your dreams represents how ambitious you are solve your problems."
+        }
+    },
+    {
+        "id": 5,
+        "data": {
+            "description": "If you don't see any grating, indicates that you are a very open person. For you, people are welcome at any time and at all times. On the other hand, the presence of a grate in the house indicates a closed personality. In this case, you are one of those people who would prefer not to receive any visit that you've not been waiting."
+        }
+    },
+    {
+        "id": 6,
+        "data": {
+            "description": "If in the table you saw no food, people or flowers, then generally you are an unhappy person."
+        }
+    },
+    {
+        "id": 7,
+        "data": {
+            "description": "The durability of the material of the cup represents the how you present the durability of the relationship that you keep with the person of the number 1 answer. For example, if you saw a cup of dry ice, plastic or paper, then it is a disposable relationship. But if on the other hand, if your cup is metal or ceramic, then you perceive the relationship as very durable. "
+        }
+    },
+    {
+        "id": 8,
+        "data": {
+            "description": "What you have decided to do with the cup represents your attitude towards the person named in the answer number 1."
+        }
+    },
+    {
+        "id": 9,
+        "data": {
+            "description": "The size of the water body you saw represents the size of your sexual desire."
+        }
+    },
+    {
+        "id": 10,
+        "data": {
+            "description": "How much you are wet when crossing the water indicates the relative importance of your sexual life."
+        }
+    }
+]

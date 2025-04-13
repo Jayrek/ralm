@@ -8,6 +8,7 @@ import 'package:ralm/feature/know_yourself/screen/elemental_soul/bloc/elemental_
 import 'package:ralm/feature/know_yourself/screen/elemental_soul/elemental_soul_result_screen.dart';
 import 'package:ralm/feature/know_yourself/screen/elemental_soul/elemental_soul_screen.dart';
 import 'package:ralm/feature/know_yourself/screen/elemental_soul/elemental_soul_test_screen.dart';
+import 'package:ralm/feature/know_yourself/screen/forest_test/forest_test_screen.dart';
 import 'package:ralm/feature/know_yourself/screen/your_color/bloc/your_color_bloc.dart';
 import 'package:ralm/feature/know_yourself/screen/your_color/your_color_result_screen.dart';
 import 'package:ralm/feature/know_yourself/screen/your_color/your_color_screen.dart';
@@ -77,6 +78,9 @@ class MyApp extends StatelessWidget {
           // KNOW YOURSELF category
           StringConstant.navKnowYourScreenKey:
               (context) => KnowYourSelfScreen(),
+
+          // FOREST TEST
+          StringConstant.navForestTest: (context) => ForestTestScreen(),
 
           // Elemental Soul
           StringConstant.navElementalSoul: (context) => ElementalSoulScreen(),

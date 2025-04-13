@@ -48,7 +48,10 @@ class KnowYourSelfScreen extends StatelessWidget {
                                     case 0:
                                       debugPrint('myers briggs');
                                     case 1:
-                                      debugPrint('forest test');
+                                      Navigator.pushNamed(
+                                        context,
+                                        StringConstant.navForestTest,
+                                      );
                                     case 2:
                                       Navigator.pushNamed(
                                         context,
