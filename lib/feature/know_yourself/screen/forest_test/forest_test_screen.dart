@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ralm/core/constants/string_constant.dart';
+import 'package:ralm/feature/know_yourself/screen/forest_test/bloc/forest_test_bloc.dart';
 import 'package:video_player/video_player.dart';
 
 class ForestTestScreen extends StatefulWidget {
@@ -42,10 +45,10 @@ class _ForestTestScreenState extends State<ForestTestScreen> {
   void _navigateAfterVideo() {
     if (_isVideoEnded) {
       debugPrint('next');
-      // Navigator.push(
-      //   context,
-      //   MaterialPageRoute(builder: (context) => NextScreen()),
-      // );
+
+      context.read<ForestTestBloc>().add(FetchForestTestResult());
+
+      Navigator.pushNamed(context, StringConstant.navForestTestResult);
     }
   }
 
@@ -74,7 +77,7 @@ class _ForestTestScreenState extends State<ForestTestScreen> {
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             Text(
-                              "Video finished!",
+                              'Would you like to show the results?',
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 24,
@@ -84,7 +87,7 @@ class _ForestTestScreenState extends State<ForestTestScreen> {
                             SizedBox(height: 16),
                             ElevatedButton(
                               onPressed: _navigateAfterVideo,
-                              child: Text("Continue"),
+                              child: Text('Show Result'),
                             ),
                           ],
                         ),

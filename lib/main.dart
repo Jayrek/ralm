@@ -8,6 +8,8 @@ import 'package:ralm/feature/know_yourself/screen/elemental_soul/bloc/elemental_
 import 'package:ralm/feature/know_yourself/screen/elemental_soul/elemental_soul_result_screen.dart';
 import 'package:ralm/feature/know_yourself/screen/elemental_soul/elemental_soul_screen.dart';
 import 'package:ralm/feature/know_yourself/screen/elemental_soul/elemental_soul_test_screen.dart';
+import 'package:ralm/feature/know_yourself/screen/forest_test/bloc/forest_test_bloc.dart';
+import 'package:ralm/feature/know_yourself/screen/forest_test/forest_test_result_screen.dart';
 import 'package:ralm/feature/know_yourself/screen/forest_test/forest_test_screen.dart';
 import 'package:ralm/feature/know_yourself/screen/your_color/bloc/your_color_bloc.dart';
 import 'package:ralm/feature/know_yourself/screen/your_color/your_color_result_screen.dart';
@@ -65,6 +67,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => SecretCrushBloc()),
         BlocProvider(create: (context) => ElementalSoulBloc()),
         BlocProvider(create: (context) => YourColorBloc()),
+        BlocProvider(create: (context) => ForestTestBloc()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -81,6 +84,8 @@ class MyApp extends StatelessWidget {
 
           // FOREST TEST
           StringConstant.navForestTest: (context) => ForestTestScreen(),
+          StringConstant.navForestTestResult:
+              (context) => ForestTestResultScreen(),
 
           // Elemental Soul
           StringConstant.navElementalSoul: (context) => ElementalSoulScreen(),
