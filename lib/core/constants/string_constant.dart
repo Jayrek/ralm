@@ -13,7 +13,11 @@ class StringConstant {
   static const navTarotScreenKey = '/tarot_screen';
   static const navDiscoverScreenKey = '/discover_screen';
 
-  // navigation keys for ELEMENTAL SOUL
+  // navigation keys for MYERS BRIGGS
+  static const navMyersBriggsIntro = '/myers_briggs_intro';
+  static const navMyersBriggsTest = '/myers_briggs_test';
+
+  // navigation keys for FOREST TEST
   static const navForestTest = '/forest_test';
   static const navForestTestResult = '/forest_test_result';
 

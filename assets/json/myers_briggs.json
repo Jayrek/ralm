@@ -1,0 +1,802 @@
+[
+    {
+        "id": 1,
+        "question": "In a social gathering, do you feel more energized by interacting with a large group of people or by having one-on-one conversations?",
+        "option": [
+            {
+                "text": "One-on-one conversations",
+                "personality": "Introvert",
+                "personality_code": "I"
+            },
+            {
+                "text": "Large group interactions",
+                "personality": "Extrovert",
+                "personality_code": "E"
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "question": "How do you typically recharge after a busy day?",
+        "option": [
+            {
+                "text": "Some alone time to relax and unwind",
+                "personality": "Introvert",
+                "personality_code": "I"
+            },
+            {
+                "text": "Spend time with friends or social activities",
+                "personality": "Extrovert",
+                "personality_code": "E"
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "question": "When facing a challenge, do you prefer brainstorming ideas with others or working through it independently?",
+        "option": [
+            {
+                "text": "Working through it independently",
+                "personality": "Introvert",
+                "personality_code": "I"
+            },
+            {
+                "text": "Brainstorming with others",
+                "personality": "Extrovert",
+                "personality_code": "E"
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "question": "In your free time, do you find yourself seeking out social events and gatherings or enjoying quieter activities at home?",
+        "option": [
+            {
+                "text": "Quieter activities at home",
+                "personality": "Introvert",
+                "personality_code": "I"
+            },
+            {
+                "text": "Social events and gatherings",
+                "personality": "Extrovert",
+                "personality_code": "E"
+            }
+        ]
+    },
+    {
+        "id": 5,
+        "question": "How do you feel about small talk?",
+        "option": [
+            {
+                "text": "Find it somewhat awkward or draining",
+                "personality": "Introvert",
+                "personality_code": "I"
+            },
+            {
+                "text": "Enjoy it and find it easy to engage in",
+                "personality": "Extrovert",
+                "personality_code": "E"
+            }
+        ]
+    },
+    {
+        "id": 6,
+        "question": "When making decisions, do you rely more on your own instincts and feelings or seek input from others?",
+        "option": [
+            {
+                "text": "Rely on own instincts and feelings",
+                "personality": "Introvert",
+                "personality_code": "I"
+            },
+            {
+                "text": "Seek input from others",
+                "personality": "Extrovert",
+                "personality_code": "E"
+            }
+        ]
+    },
+    {
+        "id": 7,
+        "question": "How do you handle new and unfamiliar situations?",
+        "option": [
+            {
+                "text": "Approach them with caution",
+                "personality": "Introvert",
+                "personality_code": "I"
+            },
+            {
+                "text": "Embrace them with enthusiasm",
+                "personality": "Extrovert",
+                "personality_code": "E"
+            }
+        ]
+    },
+    {
+        "id": 8,
+        "question": "In a work or team setting, do you prefer open office spaces and collaboration or individual workspaces?",
+        "option": [
+            {
+                "text": "Individual workspaces",
+                "personality": "Introvert",
+                "personality_code": "I"
+            },
+            {
+                "text": "Open office spaces and collaboration",
+                "personality": "Extrovert",
+                "personality_code": "E"
+            }
+        ]
+    },
+    {
+        "id": 9,
+        "question": "How do you typically respond to being the focal point in a group setting?",
+        "option": [
+            {
+                "text": "Prefers avoidng the center of attention ",
+                "personality": "Introvert",
+                "personality_code": "I"
+            },
+            {
+                "text": "Embrace it and feel at ease",
+                "personality": "Extrovert",
+                "personality_code": "E"
+            }
+        ]
+    },
+    {
+        "id": 10,
+        "question": "When planning a weekend, do you lean towards social plans with friends or quiet time for yourself?",
+        "option": [
+            {
+                "text": "Quiet time for yourself",
+                "personality": "Introvert",
+                "personality_code": "I"
+            },
+            {
+                "text": "Social plans with friends",
+                "personality": "Extrovert",
+                "personality_code": "E"
+            }
+        ]
+    },
+    {
+        "id": 11,
+        "question": "When meeting new people, are you more likely to initiate conversations and introductions or wait for others to approach you?",
+        "option": [
+            {
+                "text": "Wait for others to approach you",
+                "personality": "Introvert",
+                "personality_code": "I"
+            },
+            {
+                "text": "Initiate conversations and introductions",
+                "personality": "Extrovert",
+                "personality_code": "E"
+            }
+        ]
+    },
+    {
+        "id": 12,
+        "question": "When faced with a problem, do you prefer to rely on concrete facts and details or explore possibilities and potential meanings?",
+        "option": [
+            {
+                "text": "Rely on concrete facts and details ",
+                "personality": "Sensing",
+                "personality_code": "S"
+            },
+            {
+                "text": "Explore possibilities and potential meanings",
+                "personality": "Intuition",
+                "personality_code": "N"
+            }
+        ]
+    },
+    {
+        "id": 13,
+        "question": "How do you approach new information or learning?",
+        "option": [
+            {
+                "text": "Prefer practical, hands-on experiences",
+                "personality": "Sensing",
+                "personality_code": "S"
+            },
+            {
+                "text": "Enjoy exploring theories and concepts",
+                "personality": "Intuition",
+                "personality_code": "N"
+            }
+        ]
+    },
+    {
+        "id": 14,
+        "question": "In a conversation, are you more focused on the present and current details or on future possibilities and patterns?",
+        "option": [
+            {
+                "text": "Present and current details",
+                "personality": "Sensing",
+                "personality_code": "S"
+            },
+            {
+                "text": "Future possibilities and patterns",
+                "personality": "Intuition",
+                "personality_code": "N"
+            }
+        ]
+    },
+    {
+        "id": 15,
+        "question": "When planning a trip, do you prefer to have a detailed itinerary and clear schedule or leave room for spontaneous experiences and changes?",
+        "option": [
+            {
+                "text": "Detailed itinerary and clear schedule",
+                "personality": "Sensing",
+                "personality_code": "S"
+            },
+            {
+                "text": "Leave room for spontaneous experiences and changes",
+                "personality": "Intuition",
+                "personality_code": "N"
+            }
+        ]
+    },
+    {
+        "id": 16,
+        "question": "How do you make decisions?",
+        "option": [
+            {
+                "text": "Based on practical considerations and real-world implications",
+                "personality": "Sensing",
+                "personality_code": "S"
+            },
+            {
+                "text": "Consider potential outcomes and future possibilities",
+                "personality": "Intuition",
+                "personality_code": "N"
+            }
+        ]
+    },
+    {
+        "id": 17,
+        "question": "When working on a project, do you tend to focus on the specific tasks at hand or the overall vision and goals?",
+        "option": [
+            {
+                "text": "Specific tasks at hand",
+                "personality": "Sensing",
+                "personality_code": "S"
+            },
+            {
+                "text": "Overall vision and goals",
+                "personality": "Intuition",
+                "personality_code": "N"
+            }
+        ]
+    },
+    {
+        "id": 18,
+        "question": "In a group discussion, do you prefer to stick to the facts and details or contribute ideas and theories?",
+        "option": [
+            {
+                "text": "Stick to facts and details",
+                "personality": "Sensing",
+                "personality_code": "S"
+            },
+            {
+                "text": "Contribute ideas and theories",
+                "personality": "Intuition",
+                "personality_code": "N"
+            }
+        ]
+    },
+    {
+        "id": 19,
+        "question": "How do you handle unexpected changes or disruptions to your plans?",
+        "option": [
+            {
+                "text": "Prefer stability and may find changes challenging",
+                "personality": "Sensing",
+                "personality_code": "S"
+            },
+            {
+                "text": "Adapt well to changes and enjoy the flexibility",
+                "personality": "Intuition",
+                "personality_code": "N"
+            }
+        ]
+    },
+    {
+        "id": 20,
+        "question": "When recalling a past event, do you focus more on the specific details and occurrences or the overall impressions and meanings?",
+        "option": [
+            {
+                "text": "Specific details and occurrences",
+                "personality": "Sensing",
+                "personality_code": "S"
+            },
+            {
+                "text": "Overall impressions and meanings",
+                "personality": "Intuition",
+                "personality_code": "N"
+            }
+        ]
+    },
+    {
+        "id": 21,
+        "question": "When reading a book or watching a movie, do you pay close attention to the plot and events or look for deeper meanings and symbolism?",
+        "option": [
+            {
+                "text": "Plot and events",
+                "personality": "Sensing",
+                "personality_code": "S"
+            },
+            {
+                "text": "Deeper meanings and symbolism",
+                "personality": "Intuition",
+                "personality_code": "N"
+            }
+        ]
+    },
+    {
+        "id": 22,
+        "question": "How do you prefer to receive information?",
+        "option": [
+            {
+                "text": "Clear and straightforward explanations",
+                "personality": "Sensing",
+                "personality_code": "S"
+            },
+            {
+                "text": "Rich with possibilities and potential connections",
+                "personality": "Intuition",
+                "personality_code": "N"
+            }
+        ]
+    },
+    {
+        "id": 23,
+        "question": "When faced with a decision, do you rely more on your past experiences and proven methods or seek out innovative and creative solutions?",
+        "option": [
+            {
+                "text": "Past experiences and proven methods",
+                "personality": "Sensing",
+                "personality_code": "S"
+            },
+            {
+                "text": "Innovative and creative solutions",
+                "personality": "Intuition",
+                "personality_code": "N"
+            }
+        ]
+    },
+    {
+        "id": 24,
+        "question": "In a brainstorming session, do you tend to come up with practical, actionable ideas or imaginative, out-of-the-box concepts?",
+        "option": [
+            {
+                "text": "Practical, actionable ideas",
+                "personality": "Sensing",
+                "personality_code": "S"
+            },
+            {
+                "text": "Imaginative, out-of-the-box concepts",
+                "personality": "Intuition",
+                "personality_code": "N"
+            }
+        ]
+    },
+    {
+        "id": 25,
+        "question": "How do you approach problem-solving?",
+        "option": [
+            {
+                "text": "Step-by-step and methodical approach",
+                "personality": "Sensing",
+                "personality_code": "S"
+            },
+            {
+                "text": "Approaching with creativity and openness",
+                "personality": "Intuition",
+                "personality_code": "N"
+            }
+        ]
+    },
+    {
+        "id": 26,
+        "question": "When making decisions, do you prioritize logical analysis and objective criteria or consider the impact on people and relationships?",
+        "option": [
+            {
+                "text": "Logic and Criteria",
+                "personality": "Thinking",
+                "personality_code": "T"
+            },
+            {
+                "text": "Impact on people and relationships",
+                "personality": "Feeling",
+                "personality_code": "F"
+            }
+        ]
+    },
+    {
+        "id": 27,
+        "question": "How do you handle criticism or feedback?",
+        "option": [
+            {
+                "text": "Focus on the facts and seek constructive solutions",
+                "personality": "Thinking",
+                "personality_code": "T"
+            },
+            {
+                "text": "Consider the emotional aspects and how it affects relationships",
+                "personality": "Feeling",
+                "personality_code": "F"
+            }
+        ]
+    },
+    {
+        "id": 28,
+        "question": "When faced with a problem, do you rely more on your head and reason or your heart and empathy?",
+        "option": [
+            {
+                "text": "Head and reason",
+                "personality": "Thinking",
+                "personality_code": "T"
+            },
+            {
+                "text": "Heart and empathy",
+                "personality": "Feeling",
+                "personality_code": "F"
+            }
+        ]
+    },
+    {
+        "id": 29,
+        "question": "How do you prioritize tasks and responsibilities?",
+        "option": [
+            {
+                "text": "Based on logical importance and efficiency",
+                "personality": "Thinking",
+                "personality_code": "T"
+            },
+            {
+                "text": "Considering the values and impact on people",
+                "personality": "Feeling",
+                "personality_code": "F"
+            }
+        ]
+    },
+    {
+        "id": 30,
+        "question": "In a group decision-making process, do you tend to advocate for the most logical and rational choice or the one that aligns with personal values and harmony?",
+        "option": [
+            {
+                "text": "Logical and rational choice",
+                "personality": "Thinking",
+                "personality_code": "T"
+            },
+            {
+                "text": "Aligns with personal values and harmony",
+                "personality": "Feeling",
+                "personality_code": "F"
+            }
+        ]
+    },
+    {
+        "id": 31,
+        "question": "When giving feedback, do you focus on providing objective analysis or consider the individual's feelings and emotional response?",
+        "option": [
+            {
+                "text": "Objective analysis",
+                "personality": "Thinking",
+                "personality_code": "T"
+            },
+            {
+                "text": "Individual's feelings and emotional response",
+                "personality": "Feeling",
+                "personality_code": "F"
+            }
+        ]
+    },
+    {
+        "id": 32,
+        "question": "How do you express your opinions in a debate or discussion?",
+        "option": [
+            {
+                "text": "Emphasize facts, evidence, and logical reasoning",
+                "personality": "Thinking",
+                "personality_code": "T"
+            },
+            {
+                "text": "Consider personal values, emotions, and the impact on people",
+                "personality": "Feeling",
+                "personality_code": "F"
+            }
+        ]
+    },
+    {
+        "id": 33,
+        "question": "When solving a problem, do you prioritize efficiency and effectiveness, even if it means being blunt, or do you consider the feelings of those involved?",
+        "option": [
+            {
+                "text": "Prioritize efficiency and effectiveness",
+                "personality": "Thinking",
+                "personality_code": "T"
+            },
+            {
+                "text": "Consider the feelings of those involved",
+                "personality": "Feeling",
+                "personality_code": "F"
+            }
+        ]
+    },
+    {
+        "id": 34,
+        "question": "In a work environment, do you value objective performance metrics and results or prioritize a positive and supportive team culture?",
+        "option": [
+            {
+                "text": "Objective performance metrics and results",
+                "personality": "Thinking",
+                "personality_code": "T"
+            },
+            {
+                "text": "Positive and supportive team culture",
+                "personality": "Feeling",
+                "personality_code": "F"
+            }
+        ]
+    },
+    {
+        "id": 35,
+        "question": "How do you approach conflict resolution?",
+        "option": [
+            {
+                "text": "Focus on finding logical solutions and compromises",
+                "personality": "Thinking",
+                "personality_code": "T"
+            },
+            {
+                "text": "Consider the emotional needs and harmony of individuals involved",
+                "personality": "Feeling",
+                "personality_code": "F"
+            }
+        ]
+    },
+    {
+        "id": 36,
+        "question": "When planning an event or project, do you prioritize the logical steps and timeline or consider the emotional atmosphere and team dynamics?",
+        "option": [
+            {
+                "text": "Logical steps and timeline",
+                "personality": "Thinking",
+                "personality_code": "T"
+            },
+            {
+                "text": "Emotional atmosphere and team dynamics",
+                "personality": "Feeling",
+                "personality_code": "F"
+            }
+        ]
+    },
+    {
+        "id": 37,
+        "question": "How do you cope with stress or pressure?",
+        "option": [
+            {
+                "text": "Analyze the situation logically and strategize a plan",
+                "personality": "Thinking",
+                "personality_code": "T"
+            },
+            {
+                "text": "Seek emotional support and consider the impact on relationships",
+                "personality": "Feeling",
+                "personality_code": "F"
+            }
+        ]
+    },
+    {
+        "id": 38,
+        "question": "When making decisions, what holds more weight for you?",
+        "option": [
+            {
+                "text": "Objective data and analysis",
+                "personality": "Thinking",
+                "personality_code": "T"
+            },
+            {
+                "text": "Personal values and the impact on people",
+                "personality": "Feeling",
+                "personality_code": "F"
+            }
+        ]
+    },
+    {
+        "id": 39,
+        "question": "When providing feedback, do you prioritize offering constructive criticism and improvement suggestions or highlighting positive aspects and encouraging the individual?",
+        "option": [
+            {
+                "text": "Constructive criticism and improvement suggestions",
+                "personality": "Thinking",
+                "personality_code": "T"
+            },
+            {
+                "text": "Highlighting positive aspects and encouraging the individual",
+                "personality": "Feeling",
+                "personality_code": "F"
+            }
+        ]
+    },
+    {
+        "id": 40,
+        "question": "How do you feel about making plans and sticking to a schedule?",
+        "option": [
+            {
+                "text": "Enjoy making plans and prefer a structured schedule",
+                "personality": "Judging",
+                "personality_code": "J"
+            },
+            {
+                "text": "Prefer flexibility and spontaneity, dislike strict schedules",
+                "personality": "Perceiving",
+                "personality_code": "P"
+            }
+        ]
+    },
+    {
+        "id": 41,
+        "question": "When starting a project, do you prefer to have a detailed plan in place or do you like to explore possibilities and figure it out as you go?",
+        "option": [
+            {
+                "text": "Prefer to have a detailed plan",
+                "personality": "Judging",
+                "personality_code": "J"
+            },
+            {
+                "text": "Explore possibilities and figure it out",
+                "personality": "Perceiving",
+                "personality_code": "P"
+            }
+        ]
+    },
+    {
+        "id": 42,
+        "question": "How do you approach deadlines?",
+        "option": [
+            {
+                "text": "Work diligently to meet deadlines well in advance",
+                "personality": "Judging",
+                "personality_code": "J"
+            },
+            {
+                "text": "Tend to work better under pressure and close to the deadline",
+                "personality": "Perceiving",
+                "personality_code": "P"
+            }
+        ]
+    },
+    {
+        "id": 43,
+        "question": "In a work setting, do you prefer a clear and organized workspace or are you comfortable with a more flexible and adaptable environment?",
+        "option": [
+            {
+                "text": "Clear and Organized Workspace",
+                "personality": "Judging",
+                "personality_code": "J"
+            },
+            {
+                "text": "Flexible and Adaptable Environment ",
+                "personality": "Perceiving",
+                "personality_code": "P"
+            }
+        ]
+    },
+    {
+        "id": 44,
+        "question": "When packing for a trip, do you plan and make a checklist in advance or pack on the fly, throwing in what feels right at the moment?",
+        "option": [
+            {
+                "text": "Plan and make a checklist in advance",
+                "personality": "Judging",
+                "personality_code": "J"
+            },
+            {
+                "text": "Pack on the fly, throwing in what feels right",
+                "personality": "Perceiving",
+                "personality_code": "P"
+            }
+        ]
+    },
+    {
+        "id": 45,
+        "question": "What do you do when your plans suddenly change?",
+        "option": [
+            {
+                "text": "Dislike unexpected changes and prefer to stick to the original plan",
+                "personality": "Judging",
+                "personality_code": "J"
+            },
+            {
+                "text": "Adapt well to unexpected changes and enjoy the flexibility",
+                "personality": "Perceiving",
+                "personality_code": "P"
+            }
+        ]
+    },
+    {
+        "id": 46,
+        "question": "When faced with a new opportunity, do you prefer to consider the advantages and disadvantages prior to making a decision or go with the flow and see where it takes you ?",
+        "option": [
+            {
+                "text": "Consider the advantages and disadvantages",
+                "personality": "Judging",
+                "personality_code": "J"
+            },
+            {
+                "text": "Go with the flow and see where it takes you",
+                "personality": "Perceiving",
+                "personality_code": "P"
+            }
+        ]
+    },
+    {
+        "id": 47,
+        "question": "How do you approach work tasks?",
+        "option": [
+            {
+                "text": "Like to have a set plan and follow it step by step",
+                "personality": "Judging",
+                "personality_code": "J"
+            },
+            {
+                "text": "Enjoy being flexible and adapting as the situation evolves",
+                "personality": "Perceiving",
+                "personality_code": "P"
+            }
+        ]
+    },
+    {
+        "id": 48,
+        "question": "When organizing your day, do you prefer to have a to-do list with specific tasks and deadlines or keep it open-ended and see where the day takes you?",
+        "option": [
+            {
+                "text": "Tasks and Deadlines ",
+                "personality": "Judging",
+                "personality_code": "J"
+            },
+            {
+                "text": "Open-ended and where the day takes you",
+                "personality": "Perceiving",
+                "personality_code": "P"
+            }
+        ]
+    },
+    {
+        "id": 49,
+        "question": "How do you feel about routine and predictability?",
+        "option": [
+            {
+                "text": "Prefer routine and predictability",
+                "personality": "Judging",
+                "personality_code": "J"
+            },
+            {
+                "text": "Dislike routine and enjoy spontaneity",
+                "personality": "Perceiving",
+                "personality_code": "P"
+            }
+        ]
+    },
+    {
+        "id": 50,
+        "question": "In a decision-making process, do you like to reach a conclusion and move on or prefer to keep options open and gather more information?",
+        "option": [
+            {
+                "text": "Reach a conclusion and move on",
+                "personality": "Judging",
+                "personality_code": "J"
+            },
+            {
+                "text": "Open and gather more information",
+                "personality": "Perceiving",
+                "personality_code": "P"
+            }
+        ]
+    }
+]

@@ -48,7 +48,10 @@ class KnowYourSelfScreen extends StatelessWidget {
                                 onPressed: () {
                                   switch (subCategory.id) {
                                     case 0:
-                                      debugPrint('myers briggs');
+                                      Navigator.pushNamed(
+                                        context,
+                                        StringConstant.navMyersBriggsIntro,
+                                      );
                                     case 1:
                                       Navigator.pushNamed(
                                         context,

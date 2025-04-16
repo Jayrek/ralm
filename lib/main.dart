@@ -11,6 +11,9 @@ import 'package:ralm/feature/know_yourself/screen/elemental_soul/elemental_soul_
 import 'package:ralm/feature/know_yourself/screen/forest_test/bloc/forest_test_bloc.dart';
 import 'package:ralm/feature/know_yourself/screen/forest_test/forest_test_result_screen.dart';
 import 'package:ralm/feature/know_yourself/screen/forest_test/forest_test_screen.dart';
+import 'package:ralm/feature/know_yourself/screen/myers_briggs/bloc/myers_briggs_bloc.dart';
+import 'package:ralm/feature/know_yourself/screen/myers_briggs/myers_briggs_intro_screen.dart';
+import 'package:ralm/feature/know_yourself/screen/myers_briggs/myers_briggs_test_screen.dart';
 import 'package:ralm/feature/know_yourself/screen/your_color/bloc/your_color_bloc.dart';
 import 'package:ralm/feature/know_yourself/screen/your_color/your_color_result_screen.dart';
 import 'package:ralm/feature/know_yourself/screen/your_color/your_color_screen.dart';
@@ -68,6 +71,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => ElementalSoulBloc()),
         BlocProvider(create: (context) => YourColorBloc()),
         BlocProvider(create: (context) => ForestTestBloc()),
+        BlocProvider(create: (context) => MyersBriggsBloc()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -81,6 +85,12 @@ class MyApp extends StatelessWidget {
           // KNOW YOURSELF category
           StringConstant.navKnowYourScreenKey:
               (context) => KnowYourSelfScreen(),
+
+          // MYERS BRIGGS
+          StringConstant.navMyersBriggsIntro:
+              (context) => MyersBriggsIntroScreen(),
+          StringConstant.navMyersBriggsTest:
+              (context) => MyersBriggsTestScreen(),
 
           // FOREST TEST
           StringConstant.navForestTest: (context) => ForestTestScreen(),
