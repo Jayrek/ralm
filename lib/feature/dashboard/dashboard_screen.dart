@@ -15,135 +15,128 @@ class DashboardScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<DashboardBloc, DashboardState>(
       builder: (context, state) {
-        return SafeArea(
-          child: Scaffold(
-            backgroundColor: Colors.purple.shade300,
-            body: SingleChildScrollView(
-              child: Stack(
-                children: [
-                  Column(
-                    children: [
-                      SizedBox(height: 40),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            'R',
-                            style: Theme.of(
-                              context,
-                            ).textTheme.displayLarge?.copyWith(fontSize: 120),
-                          ),
-                          Text(
-                            ' ALM',
-                            style: Theme.of(
-                              context,
-                            ).textTheme.titleMedium?.copyWith(
-                              fontSize: 50,
-                              fontWeight: FontWeight.w100,
-                            ),
-                          ),
-                        ],
-                      ),
-                      Text(
-                        StringConstant.discoverYourself.toUpperCase(),
-                        style: Theme.of(
-                          context,
-                        ).textTheme.displayLarge?.copyWith(
-                          fontFamily: StringConstant.fontTinos,
-                          fontSize: 20,
-                          fontWeight: FontWeight.w100,
-                          letterSpacing: 10,
+        return Scaffold(
+          backgroundColor: Colors.purple.shade300,
+          body: SingleChildScrollView(
+            child: Stack(
+              children: [
+                Column(
+                  children: [
+                    SizedBox(height: 40),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'R',
+                          style: Theme.of(
+                            context,
+                          ).textTheme.displayLarge?.copyWith(fontSize: 120),
                         ),
-                      ),
-                      SizedBox(height: 20),
-                      Column(
-                        children:
-                            state.categories.map((category) {
-                              return CustomButtonRoundedWidget(
-                                label: category.categoryName,
-                                onPressed: () {
-                                  // TODO: e review ni balik
-                                  switch (category.id) {
-                                    case 0:
-                                      Navigator.pushNamed(
-                                        context,
-                                        StringConstant.navKnowYourScreenKey,
-                                      );
-                                    case 1:
-                                      Navigator.pushNamed(
-                                        context,
-                                        StringConstant.navSignsScreenKey,
-                                      );
-                                    case 2:
-                                      Navigator.pushNamed(
-                                        context,
-                                        StringConstant.navTarotScreenKey,
-                                      );
-                                    case 3:
-                                      Navigator.pushNamed(
-                                        context,
-                                        StringConstant.navDiscoverScreenKey,
-                                      );
-                                    default:
-                                      debugPrint('no action');
-                                  }
-                                },
-                              );
-                            }).toList(),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          CustomButtonIconWidget(
-                            icon: Icon(Icons.music_note),
-                            onPressed: () {},
-                          ),
-                          CustomButtonIconWidget(
-                            icon: Icon(Icons.logout),
-                            onPressed: () {},
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                  // this is the avatar
-                  Positioned(
-                    top: 0,
-                    right: 0,
-                    child: Padding(
-                      padding: EdgeInsets.all(10),
-                      child: Container(
-                        width: 50,
-                        height: 50,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          border: Border.all(
-                            color: Colors.deepPurple,
-                            width: 3,
+                        Text(
+                          ' ALM',
+                          style: Theme.of(
+                            context,
+                          ).textTheme.titleMedium?.copyWith(
+                            fontSize: 50,
+                            fontWeight: FontWeight.w100,
                           ),
                         ),
-                        child: InkWell(
-                          onTap: () {
-                            Navigator.pushNamed(
-                              context,
-                              StringConstant.navAvatar,
+                      ],
+                    ),
+                    Text(
+                      StringConstant.discoverYourself.toUpperCase(),
+                      style: Theme.of(context).textTheme.displayLarge?.copyWith(
+                        fontFamily: StringConstant.fontTinos,
+                        fontSize: 20,
+                        fontWeight: FontWeight.w100,
+                        letterSpacing: 10,
+                      ),
+                    ),
+                    SizedBox(height: 20),
+                    Column(
+                      children:
+                          state.categories.map((category) {
+                            return CustomButtonRoundedWidget(
+                              label: category.categoryName,
+                              onPressed: () {
+                                // TODO: e review ni balik
+                                switch (category.id) {
+                                  case 0:
+                                    Navigator.pushNamed(
+                                      context,
+                                      StringConstant.navKnowYourScreenKey,
+                                    );
+                                  case 1:
+                                    Navigator.pushNamed(
+                                      context,
+                                      StringConstant.navSignsScreenKey,
+                                    );
+                                  case 2:
+                                    Navigator.pushNamed(
+                                      context,
+                                      StringConstant.navTarotScreenKey,
+                                    );
+                                  case 3:
+                                    Navigator.pushNamed(
+                                      context,
+                                      StringConstant.navDiscoverScreenKey,
+                                    );
+                                  default:
+                                    debugPrint('no action');
+                                }
+                              },
+                            );
+                          }).toList(),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        CustomButtonIconWidget(
+                          icon: Icon(Icons.music_note),
+                          onPressed: () {},
+                        ),
+                        CustomButtonIconWidget(
+                          icon: Icon(Icons.logout),
+                          onPressed: () {},
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                // this is the avatar
+                Positioned(
+                  top: 20,
+                  right: 10,
+                  child: Padding(
+                    padding: EdgeInsets.all(10),
+                    child: Container(
+                      width: 50,
+                      height: 50,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        border: Border.all(color: Colors.deepPurple, width: 3),
+                      ),
+                      child: InkWell(
+                        onTap: () {
+                          Navigator.pushNamed(
+                            context,
+                            StringConstant.navAvatar,
+                          );
+                        },
+                        child: BlocSelector<AvatarBloc, AvatarState, Avatar>(
+                          selector: (state) => state.defaultAvatar,
+                          builder: (context, avatar) {
+                            return CircleAvatar(
+                              radius: 60,
+                              backgroundImage: AssetImage(avatar.image),
                             );
                           },
-                          child: BlocSelector<AvatarBloc, AvatarState, Avatar>(
-                            selector: (state) => state.defaultAvatar,
-                            builder: (context, avatar) {
-                              return CircleAvatar(
-                                radius: 60,
-                                backgroundImage: AssetImage(avatar.image),
-                              );
-                            },
-                          ),
                         ),
                       ),
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         );

@@ -51,7 +51,7 @@ class _MyersBriggsTestScreenState extends State<MyersBriggsTestScreen> {
         controller: _scrollController,
         physics: AlwaysScrollableScrollPhysics(),
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 50),
+          padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
           child: Column(
             children: [
               Align(

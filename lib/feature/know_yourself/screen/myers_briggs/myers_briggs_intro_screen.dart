@@ -72,7 +72,7 @@ class MyersBriggsIntroScreen extends StatelessWidget {
                             onPressed: () {},
                           ),
                           CustomButtonRoundedWidget(
-                            label: '1History',
+                            label: 'History',
                             onPressed: () {},
                           ),
                         ],

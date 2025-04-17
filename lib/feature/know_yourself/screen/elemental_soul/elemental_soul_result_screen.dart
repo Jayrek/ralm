@@ -11,7 +11,7 @@ class ElementalSoulResultScreen extends StatelessWidget {
     final Map<String, dynamic> args =
         ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
 
-    final int score = args['score'];
+    // final int score = args['score'];
     final String result = args['result'];
 
     String elementalInfo = '';
@@ -39,46 +39,47 @@ class ElementalSoulResultScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.purple.shade300,
         actions: [
-          TextButton(
-            onPressed: () {
-              context.read<ElementalSoulBloc>().add(
-                ResetElementalSoulQuestion(),
-              );
-              Navigator.pushNamedAndRemoveUntil(
-                context,
-                StringConstant.navDashboardScreenKey,
-                (_) => false,
-              );
-            },
-            child: Text('Exit'),
+          Padding(
+            padding: const EdgeInsets.only(right: 10),
+            child: TextButton(
+              onPressed: () {
+                context.read<ElementalSoulBloc>().add(
+                  ResetElementalSoulQuestion(),
+                );
+                Navigator.pushNamedAndRemoveUntil(
+                  context,
+                  StringConstant.navDashboardScreenKey,
+                  (_) => false,
+                );
+              },
+              child: Text('Exit', style: TextStyle(color: Colors.white)),
+            ),
           ),
         ],
       ),
       backgroundColor: Colors.purple.shade300,
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Row(
-              spacing: 20,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text('YOUR ELEMENTAL SOUL IS'),
-                Text(
-                  result,
-                  // state.elementalSoulResult,
-                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    fontSize: 50,
-                    fontWeight: FontWeight.w100,
-                  ),
+      body: Column(
+        // mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Row(
+            spacing: 20,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text('YOUR ELEMENTAL SOUL IS'),
+              Text(
+                result,
+                // state.elementalSoulResult,
+                style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                  fontSize: 50,
+                  fontWeight: FontWeight.w100,
                 ),
-              ],
-            ),
-            SizedBox(height: 20),
-            Text(elementalInfo, textAlign: TextAlign.center),
-          ],
-        ),
+              ),
+            ],
+          ),
+          SizedBox(height: 20),
+          Text(elementalInfo, textAlign: TextAlign.center),
+        ],
       ),
     );
   }
