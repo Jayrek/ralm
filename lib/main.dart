@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ralm/core/theme/app_theme.dart';
 import 'package:ralm/feature/avatar/avatar_list_screen.dart';
@@ -38,6 +39,7 @@ import 'package:ralm/feature/dashboard/dashboard_screen.dart';
 import 'package:ralm/feature/tarot_reading/screen/view_card_detail_screen.dart';
 import 'package:ralm/feature/tarot_reading/screen/view_card_picked_screen.dart';
 import 'package:ralm/feature/tarot_reading/screen/view_card_screen.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 
 import 'core/constants/string_constant.dart';
 import 'feature/dashboard/bloc/dashboard_bloc.dart';
@@ -45,7 +47,14 @@ import 'feature/know_yourself/bloc/know_yourself_bloc.dart';
 import 'feature/know_yourself/screen/know_yourself_screen.dart';
 import 'feature/signs/bloc/signs_bloc.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // Lock to landscape only
+  await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.landscapeLeft,
+    DeviceOrientation.landscapeRight,
+  ]);
   runApp(const MyApp());
 }
 
@@ -65,7 +74,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => ChineseZodiacBloc()),
         BlocProvider(create: (context) => ConstellationBloc()),
         BlocProvider(create: (context) => TarotBloc()),
-        BlocProvider(create: (context) => AvatarBloc()),
+        BlocProvider(create: (context) => AvatarBloc()..add(FetchAvatars())),
         BlocProvider(create: (context) => DreamSignBloc()),
         BlocProvider(create: (context) => SecretCrushBloc()),
         BlocProvider(create: (context) => ElementalSoulBloc()),
@@ -74,7 +83,14 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => MyersBriggsBloc()),
       ],
       child: MaterialApp(
-        debugShowCheckedModeBanner: false,
+        builder:
+            (context, child) => ResponsiveBreakpoints.builder(
+              child: child ?? SizedBox.shrink(),
+              breakpoints: [
+                const Breakpoint(start: 0, end: 450, name: MOBILE),
+                const Breakpoint(start: 451, end: 800, name: TABLET),
+              ],
+            ),
         title: StringConstant.appName,
         theme: AppTheme.lightTheme,
         initialRoute: StringConstant.navDashboardScreenKey,
