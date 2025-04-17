@@ -5,8 +5,8 @@ class AvatarState extends Equatable {
     this.avatars = const [],
     this.defaultAvatar = const Avatar(
       id: 1,
-      category: 'one_avatar',
-      image: '',
+      category: 'default_1',
+      image: 'assets/image/avatar/Default_1.png',
       isSelected: true,
       isLocked: false,
     ),

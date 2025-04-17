@@ -35,14 +35,27 @@ class AvatarListScreen extends StatelessWidget {
                           Navigator.pop(context);
                         }
                       },
-                      child: CircleAvatar(
-                        radius: 60,
-                        backgroundColor:
-                            avatar.isLocked ? Colors.grey : Colors.transparent,
-                        child:
-                            avatar.isLocked
-                                ? SizedBox()
-                                : Text(avatar.category.substring(0, 2)),
+                      child: Container(
+                        padding: EdgeInsets.all(3),
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          border: Border.all(
+                            color:
+                                avatar.isSelected
+                                    ? Colors.blue
+                                    : Colors.transparent,
+                            width: 3,
+                          ),
+                        ),
+                        child: CircleAvatar(
+                          radius: 60,
+                          backgroundColor:
+                              avatar.isLocked
+                                  ? Colors.grey
+                                  : Colors.transparent,
+                          backgroundImage:
+                              avatar.isLocked ? null : AssetImage(avatar.image),
+                        ),
                       ),
                     ),
                   );

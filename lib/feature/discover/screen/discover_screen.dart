@@ -52,14 +52,14 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                     onTap: () {
                       Navigator.pushNamed(context, StringConstant.navAvatar);
                     },
-                    child: CircleAvatar(
-                      backgroundColor: Colors.grey[300],
-                      child: BlocSelector<AvatarBloc, AvatarState, Avatar>(
-                        selector: (state) => state.defaultAvatar,
-                        builder: (context, state) {
-                          return Text(state.category.substring(0, 2));
-                        },
-                      ),
+                    child: BlocSelector<AvatarBloc, AvatarState, Avatar>(
+                      selector: (state) => state.defaultAvatar,
+                      builder: (context, avatar) {
+                        return CircleAvatar(
+                          radius: 60,
+                          backgroundImage: AssetImage(avatar.image),
+                        );
+                      },
                     ),
                   ),
                 ),

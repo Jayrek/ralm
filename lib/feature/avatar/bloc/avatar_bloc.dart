@@ -10,7 +10,8 @@ class AvatarBloc extends Bloc<AvatarEvent, AvatarState> {
   AvatarBloc() : super(AvatarState()) {
     on<FetchAvatars>((event, emit) async {
       final avatars = await AvatarSharedUtil.loadAvatars();
-      emit(state.copyWith(avatars: avatars));
+      final selectedAvatar = avatars.firstWhere((avatar) => avatar.isSelected);
+      emit(state.copyWith(avatars: avatars, defaultAvatar: selectedAvatar));
       // String jsonString = await rootBundle.loadString(
       //   'assets/json/avatar.json',
       // );
