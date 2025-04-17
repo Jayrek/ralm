@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ralm/core/constants/string_constant.dart';
+import 'package:ralm/core/shared/widget/custom_button_icon_widget.dart';
+import 'package:ralm/core/shared/widget/custom_button_rounded_widget.dart';
 import 'package:ralm/feature/know_yourself/screen/your_color/bloc/your_color_bloc.dart';
 
 class YourColorScreen extends StatelessWidget {
@@ -9,48 +11,50 @@ class YourColorScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.purple.shade300,
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: Text('Exit'),
-          ),
-        ],
-      ),
       backgroundColor: Colors.purple.shade300,
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              'Your Color',
-              style: Theme.of(context).textTheme.displayLarge?.copyWith(
-                fontSize: 60,
-                color: Colors.white,
-              ),
-            ),
-            SizedBox(height: 30),
-            Text(
-              'With only 15 questions try this fun test on telling what Color of aura your giving!',
-            ),
-            SizedBox(height: 30),
-            InkWell(
-              onTap: () {
-                context.read<YourColorBloc>().add(FetchYourColorQuestion());
-                Navigator.pushNamed(context, StringConstant.navYourColorTest);
-              },
-              child: Container(
-                width: 150,
-                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
-                decoration: BoxDecoration(
-                  border: Border.all(width: 2, color: Colors.white),
-                  borderRadius: BorderRadius.all(Radius.circular(50)),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+          child: Column(
+            children: [
+              Align(
+                alignment: Alignment.topLeft,
+                child: CustomButtonIconWidget(
+                  icon: Icon(Icons.arrow_circle_left),
+                  onPressed: () => Navigator.of(context).pop(),
                 ),
-                child: Center(child: Text('START')),
               ),
-            ),
-          ],
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'Your Color',
+                    style: Theme.of(context).textTheme.displayLarge?.copyWith(
+                      fontSize: 60,
+                      color: Colors.white,
+                    ),
+                  ),
+                  SizedBox(height: 30),
+                  Text(
+                    'With only 15 questions try this fun test on telling what Color of aura your giving!',
+                  ),
+                  SizedBox(height: 30),
+                  CustomButtonRoundedWidget(
+                    label: 'START',
+                    onPressed: () {
+                      context.read<YourColorBloc>().add(
+                        FetchYourColorQuestion(),
+                      );
+                      Navigator.pushNamed(
+                        context,
+                        StringConstant.navYourColorTest,
+                      );
+                    },
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
