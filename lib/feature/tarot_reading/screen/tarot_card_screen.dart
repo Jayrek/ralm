@@ -43,57 +43,11 @@ class _TarotCardScreenState extends State<TarotCardScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.purple.shade300,
-      // appBar: AppBar(
-      //   backgroundColor: Colors.purple.shade300,
-      //   title: Text('Tarot Reading'),
-      //   actions: [
-      //     BlocSelector<TarotBloc, TarotState, List<Tarot>>(
-      //       selector: (state) => state.pickedTarots,
-      //       builder: (context, state) {
-      //         return state.length == 3
-      //             ? Center(
-      //               child: Row(
-      //                 children: [
-      //                   ElevatedButton(
-      //                     onPressed: () async {
-      //                       // save to shared pref the tarot cards
-      //                       await savePickedTarotsWithTimeout(state);
-
-      //                       if (!context.mounted) return;
-      //                       Navigator.pushNamed(
-      //                         context,
-      //                         StringConstant.navTarotPickedCard,
-      //                         arguments: state,
-      //                       );
-      //                     },
-      //                     child: Text('View Result'),
-      //                   ),
-      //                   BlocBuilder<TarotBloc, TarotState>(
-      //                     builder: (context, state) {
-      //                       return TextButton(
-      //                         onPressed: () {
-      //                           context.read<TarotBloc>()
-      //                             ..add(ResetPickingTarot())
-      //                             ..add(FetchTarotCards(isShuffle: true));
-      //                           _animateCards(state.tarots.length);
-      //                         },
-      //                         child: Text('RESET'),
-      //                       );
-      //                     },
-      //                   ),
-      //                 ],
-      //               ),
-      //             )
-      //             : SizedBox();
-      //       },
-      //     ),
-      //   ],
-      // ),
       body: Stack(
         children: [
           SingleChildScrollView(
             child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 20),
+              padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
               child: Column(
                 children: [
                   Align(

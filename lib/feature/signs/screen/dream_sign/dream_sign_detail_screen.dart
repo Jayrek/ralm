@@ -58,7 +58,7 @@ class _DreamSignDetailScreenState extends State<DreamSignDetailScreen> {
                   duration: Duration(milliseconds: 300),
                   curve: Curves.easeInOut,
                   transform: Matrix4.identity()..scale(scale),
-                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 40),
+                  // padding: EdgeInsets.symmetric(horizontal: 20, vertical: 40),
                   child: AnimatedOpacity(
                     duration: Duration(milliseconds: 300),
                     opacity: opacity,
