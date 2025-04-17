@@ -41,23 +41,30 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
           child: Center(
             child: Column(
               children: [
-                Container(
-                  width: 200,
-                  height: 200,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    border: Border.all(color: Colors.deepPurple, width: 4),
-                  ),
+                SizedBox(height: 10),
+                Material(
+                  elevation: 4,
+                  shape: CircleBorder(),
+                  color: Colors.transparent,
+                  clipBehavior: Clip.antiAlias,
                   child: InkWell(
+                    customBorder: CircleBorder(),
                     onTap: () {
                       Navigator.pushNamed(context, StringConstant.navAvatar);
                     },
                     child: BlocSelector<AvatarBloc, AvatarState, Avatar>(
                       selector: (state) => state.defaultAvatar,
                       builder: (context, avatar) {
-                        return CircleAvatar(
-                          radius: 60,
-                          backgroundImage: AssetImage(avatar.image),
+                        return Container(
+                          padding: EdgeInsets.all(3),
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            border: Border.all(color: Colors.blue, width: 3),
+                          ),
+                          child: CircleAvatar(
+                            radius: 70,
+                            backgroundImage: AssetImage(avatar.image),
+                          ),
                         );
                       },
                     ),

@@ -84,25 +84,6 @@ class _YourColorTestScreenState extends State<YourColorTestScreen> {
                                 );
                               },
                             ),
-                            // child: InkWell(
-                            //   onTap: () {
-                            //     context.read<YourColorBloc>().add(
-                            //       SelectYourColorOption(option: option),
-                            //     );
-                            //   },
-                            //   child: Container(
-                            //     width: 480,
-                            //     padding: const EdgeInsets.symmetric(
-                            //       horizontal: 20,
-                            //       vertical: 8,
-                            //     ),
-                            //     decoration: BoxDecoration(
-                            //       border: Border.all(width: 2, color: Colors.white),
-                            //       borderRadius: BorderRadius.all(Radius.circular(50)),
-                            //     ),
-                            //     child: Center(child: Text(option.text)),
-                            //   ),
-                            // ),
                           );
                         }),
                       ],

@@ -109,14 +109,13 @@ class DashboardScreen extends StatelessWidget {
                   right: 10,
                   child: Padding(
                     padding: EdgeInsets.all(10),
-                    child: Container(
-                      width: 50,
-                      height: 50,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        border: Border.all(color: Colors.deepPurple, width: 3),
-                      ),
+                    child: Material(
+                      elevation: 5,
+                      shape: CircleBorder(),
+                      clipBehavior: Clip.antiAlias,
+                      color: Colors.transparent,
                       child: InkWell(
+                        customBorder: CircleBorder(),
                         onTap: () {
                           Navigator.pushNamed(
                             context,
@@ -126,9 +125,19 @@ class DashboardScreen extends StatelessWidget {
                         child: BlocSelector<AvatarBloc, AvatarState, Avatar>(
                           selector: (state) => state.defaultAvatar,
                           builder: (context, avatar) {
-                            return CircleAvatar(
-                              radius: 60,
-                              backgroundImage: AssetImage(avatar.image),
+                            return Container(
+                              padding: EdgeInsets.all(3),
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                border: Border.all(
+                                  color: Colors.blue,
+                                  width: 3,
+                                ),
+                              ),
+                              child: CircleAvatar(
+                                radius: 30,
+                                backgroundImage: AssetImage(avatar.image),
+                              ),
                             );
                           },
                         ),

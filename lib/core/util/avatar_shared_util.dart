@@ -50,7 +50,7 @@ class AvatarSharedUtil {
     Avatar(
       id: 7,
       category: 'constellation',
-      image: 'assets/image/avatar/Constellation_Sign_Avatar.png"',
+      image: 'assets/image/avatar/Constellation_Sign_Avatar.png',
       isSelected: false,
       isLocked: true,
     ),
