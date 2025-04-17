@@ -91,6 +91,7 @@ class MyApp extends StatelessWidget {
                 const Breakpoint(start: 451, end: 800, name: TABLET),
               ],
             ),
+        debugShowCheckedModeBanner: false,
         title: StringConstant.appName,
         theme: AppTheme.lightTheme,
         initialRoute: StringConstant.navDashboardScreenKey,
