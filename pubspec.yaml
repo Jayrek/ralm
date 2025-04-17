@@ -18,6 +18,7 @@ dependencies:
   day_month_picker: ^1.0.1
   shared_preferences: ^2.5.3
   video_player: ^2.9.5
+  responsive_framework: ^1.5.1
 
 dev_dependencies:
   flutter_test:
@@ -33,6 +34,7 @@ flutter:
     - assets/json/
     - assets/image/tarot/
     - assets/image/constellation/
+    - assets/image/avatar/
     - assets/video/
 
   fonts:

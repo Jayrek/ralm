@@ -1,106 +1,106 @@
 [
     {
         "id": 1,
-        "category": "one_avatar",
-        "image": "",
+        "category": "default_one",
+        "image": "assets/image/avatar/Default_1.png",
         "is_selected": true,
         "is_locked": false
     },
     {
         "id": 2,
-        "category": "two_avatar",
-        "image": "",
+        "category": "default_two",
+        "image": "assets/image/avatar/Default_2.png",
         "is_selected": false,
         "is_locked": false
     },
     {
         "id": 3,
-        "category": "three_avatar",
-        "image": "",
+        "category": "default_three",
+        "image": "assets/image/avatar/Default_3.png",
         "is_selected": false,
         "is_locked": false
     },
     {
         "id": 4,
-        "category": "four_avatar",
-        "image": "",
+        "category": "default_four",
+        "image": "assets/image/avatar/Default_4.png",
         "is_selected": false,
         "is_locked": false
     },
     {
         "id": 5,
         "category": "tarot",
-        "image": "",
+        "image": "assets/image/avatar/Tarot_Card_Avatar.png",
         "is_selected": false,
         "is_locked": true
     },
     {
         "id": 6,
         "category": "chinese_zodiac",
-        "image": "",
+        "image": "assets/image/avatar/Chinese_Zodiac_Avatar.png",
         "is_selected": false,
         "is_locked": true
     },
     {
         "id": 7,
         "category": "constellation",
-        "image": "",
+        "image": "assets/image/avatar/Constellation_Sign_Avatar.png",
         "is_selected": false,
         "is_locked": true
     },
     {
         "id": 8,
         "category": "dream_sign",
-        "image": "",
+        "image": "assets/image/avatar/Dream_Sign_Avatar.png",
         "is_selected": false,
         "is_locked": true
     },
     {
         "id": 9,
         "category": "secret_crush",
-        "image": "",
+        "image": "assets/image/avatar/Secret_Crush_Avatar.png",
         "is_selected": false,
         "is_locked": true
     },
     {
         "id": 10,
         "category": "myers_briggs",
-        "image": "",
+        "image": "assets/image/avatar/Myers_Briggs_Avatar.png",
         "is_selected": false,
         "is_locked": true
     },
     {
         "id": 11,
         "category": "forest_test",
-        "image": "",
+        "image": "assets/image/avatar/Forest_Test_Avatar.png",
         "is_selected": false,
         "is_locked": true
     },
     {
         "id": 12,
         "category": "elemental_soul",
-        "image": "",
+        "image": "assets/image/avatar/Elemental_Soul_Avatar.png",
         "is_selected": false,
         "is_locked": true
     },
     {
         "id": 13,
         "category": "your_color",
-        "image": "",
+        "image": "assets/image/avatar/Your_Color_Avatar.png",
         "is_selected": false,
         "is_locked": true
     },
     {
         "id": 14,
         "category": "random_test",
-        "image": "",
+        "image": "assets/image/avatar/Random_Test_Avatar.png",
         "is_selected": false,
         "is_locked": true
     },
     {
         "id": 15,
         "category": "ideal_type",
-        "image": "",
+        "image": "assets/image/avatar/Ideal_Type_Avatar.png",
         "is_selected": false,
         "is_locked": true
     }
