@@ -64,7 +64,7 @@ class _ViewPickedCardScreenState extends State<ViewPickedCardScreen> {
               duration: Duration(milliseconds: 300),
               curve: Curves.easeInOut,
               transform: Matrix4.identity()..scale(scale),
-              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 40),
+              // padding: EdgeInsets.symmetric(horizontal: 20, vertical: 40),
               child: AnimatedOpacity(
                 duration: Duration(milliseconds: 300),
                 opacity: opacity,
@@ -82,7 +82,7 @@ class _ViewPickedCardScreenState extends State<ViewPickedCardScreen> {
                                     ? 'Second Card '
                                     : 'Third Card')
                                 .toUpperCase(),
-                            style: TextStyle(fontSize: 30),
+                            style: TextStyle(fontSize: 20),
                           ),
                         ),
                         Row(
@@ -114,8 +114,8 @@ class _ViewPickedCardScreenState extends State<ViewPickedCardScreen> {
           ),
           elevation: 4,
           child: Container(
-            height: 400,
-            width: 150,
+            height: 300,
+            width: 180,
             decoration: BoxDecoration(
               color: Colors.black87,
               border: Border.all(width: 1, color: Colors.black87),

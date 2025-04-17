@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ralm/core/shared/widget/custom_button_icon_widget.dart';
 import 'package:ralm/feature/tarot_reading/bloc/tarot_bloc.dart';
 
 class ViewCardDetailScreen extends StatefulWidget {
@@ -76,7 +77,6 @@ class _ViewCardDetailScreenState extends State<ViewCardDetailScreen> {
                   duration: Duration(milliseconds: 300),
                   curve: Curves.easeInOut,
                   transform: Matrix4.identity()..scale(scale),
-                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 40),
                   child: AnimatedOpacity(
                     duration: Duration(milliseconds: 300),
                     opacity: opacity,
@@ -95,8 +95,8 @@ class _ViewCardDetailScreenState extends State<ViewCardDetailScreen> {
                                   ),
                                   elevation: 4,
                                   child: Container(
-                                    height: 400,
-                                    width: 150,
+                                    height: 300,
+                                    width: 180,
                                     decoration: BoxDecoration(
                                       color: Colors.black87,
                                       border: Border.all(
