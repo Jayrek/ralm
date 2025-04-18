@@ -13,7 +13,8 @@
                 "personality": "Extrovert",
                 "personality_code": "E"
             }
-        ]
+        ],
+        "selected_option": null
     },
     {
         "id": 2,
@@ -29,7 +30,8 @@
                 "personality": "Extrovert",
                 "personality_code": "E"
             }
-        ]
+        ],
+        "selected_option": null
     },
     {
         "id": 3,
@@ -45,7 +47,8 @@
                 "personality": "Extrovert",
                 "personality_code": "E"
             }
-        ]
+        ],
+        "selected_option": null
     },
     {
         "id": 4,
@@ -61,7 +64,8 @@
                 "personality": "Extrovert",
                 "personality_code": "E"
             }
-        ]
+        ],
+        "selected_option": null
     },
     {
         "id": 5,
@@ -77,7 +81,8 @@
                 "personality": "Extrovert",
                 "personality_code": "E"
             }
-        ]
+        ],
+        "selected_option": null
     },
     {
         "id": 6,
@@ -93,7 +98,8 @@
                 "personality": "Extrovert",
                 "personality_code": "E"
             }
-        ]
+        ],
+        "selected_option": null
     },
     {
         "id": 7,
@@ -109,7 +115,8 @@
                 "personality": "Extrovert",
                 "personality_code": "E"
             }
-        ]
+        ],
+        "selected_option": null
     },
     {
         "id": 8,
@@ -125,7 +132,8 @@
                 "personality": "Extrovert",
                 "personality_code": "E"
             }
-        ]
+        ],
+        "selected_option": null
     },
     {
         "id": 9,
@@ -141,7 +149,8 @@
                 "personality": "Extrovert",
                 "personality_code": "E"
             }
-        ]
+        ],
+        "selected_option": null
     },
     {
         "id": 10,
@@ -157,7 +166,8 @@
                 "personality": "Extrovert",
                 "personality_code": "E"
             }
-        ]
+        ],
+        "selected_option": null
     },
     {
         "id": 11,
@@ -173,7 +183,8 @@
                 "personality": "Extrovert",
                 "personality_code": "E"
             }
-        ]
+        ],
+        "selected_option": null
     },
     {
         "id": 12,
@@ -189,7 +200,8 @@
                 "personality": "Intuition",
                 "personality_code": "N"
             }
-        ]
+        ],
+        "selected_option": null
     },
     {
         "id": 13,
@@ -205,7 +217,8 @@
                 "personality": "Intuition",
                 "personality_code": "N"
             }
-        ]
+        ],
+        "selected_option": null
     },
     {
         "id": 14,
@@ -221,7 +234,8 @@
                 "personality": "Intuition",
                 "personality_code": "N"
             }
-        ]
+        ],
+        "selected_option": null
     },
     {
         "id": 15,
@@ -237,7 +251,8 @@
                 "personality": "Intuition",
                 "personality_code": "N"
             }
-        ]
+        ],
+        "selected_option": null
     },
     {
         "id": 16,
@@ -253,7 +268,8 @@
                 "personality": "Intuition",
                 "personality_code": "N"
             }
-        ]
+        ],
+        "selected_option": null
     },
     {
         "id": 17,
@@ -269,7 +285,8 @@
                 "personality": "Intuition",
                 "personality_code": "N"
             }
-        ]
+        ],
+        "selected_option": null
     },
     {
         "id": 18,
@@ -285,7 +302,8 @@
                 "personality": "Intuition",
                 "personality_code": "N"
             }
-        ]
+        ],
+        "selected_option": null
     },
     {
         "id": 19,
@@ -301,7 +319,8 @@
                 "personality": "Intuition",
                 "personality_code": "N"
             }
-        ]
+        ],
+        "selected_option": null
     },
     {
         "id": 20,
@@ -317,7 +336,8 @@
                 "personality": "Intuition",
                 "personality_code": "N"
             }
-        ]
+        ],
+        "selected_option": null
     },
     {
         "id": 21,
@@ -333,7 +353,8 @@
                 "personality": "Intuition",
                 "personality_code": "N"
             }
-        ]
+        ],
+        "selected_option": null
     },
     {
         "id": 22,
@@ -349,7 +370,8 @@
                 "personality": "Intuition",
                 "personality_code": "N"
             }
-        ]
+        ],
+        "selected_option": null
     },
     {
         "id": 23,
@@ -365,7 +387,8 @@
                 "personality": "Intuition",
                 "personality_code": "N"
             }
-        ]
+        ],
+        "selected_option": null
     },
     {
         "id": 24,
@@ -381,7 +404,8 @@
                 "personality": "Intuition",
                 "personality_code": "N"
             }
-        ]
+        ],
+        "selected_option": null
     },
     {
         "id": 25,
@@ -397,7 +421,8 @@
                 "personality": "Intuition",
                 "personality_code": "N"
             }
-        ]
+        ],
+        "selected_option": null
     },
     {
         "id": 26,
@@ -413,7 +438,8 @@
                 "personality": "Feeling",
                 "personality_code": "F"
             }
-        ]
+        ],
+        "selected_option": null
     },
     {
         "id": 27,
@@ -429,7 +455,8 @@
                 "personality": "Feeling",
                 "personality_code": "F"
             }
-        ]
+        ],
+        "selected_option": null
     },
     {
         "id": 28,
@@ -445,7 +472,8 @@
                 "personality": "Feeling",
                 "personality_code": "F"
             }
-        ]
+        ],
+        "selected_option": null
     },
     {
         "id": 29,
@@ -461,7 +489,8 @@
                 "personality": "Feeling",
                 "personality_code": "F"
             }
-        ]
+        ],
+        "selected_option": null
     },
     {
         "id": 30,
@@ -477,7 +506,8 @@
                 "personality": "Feeling",
                 "personality_code": "F"
             }
-        ]
+        ],
+        "selected_option": null
     },
     {
         "id": 31,
@@ -493,7 +523,8 @@
                 "personality": "Feeling",
                 "personality_code": "F"
             }
-        ]
+        ],
+        "selected_option": null
     },
     {
         "id": 32,
@@ -509,7 +540,8 @@
                 "personality": "Feeling",
                 "personality_code": "F"
             }
-        ]
+        ],
+        "selected_option": null
     },
     {
         "id": 33,
@@ -525,7 +557,8 @@
                 "personality": "Feeling",
                 "personality_code": "F"
             }
-        ]
+        ],
+        "selected_option": null
     },
     {
         "id": 34,
@@ -541,7 +574,8 @@
                 "personality": "Feeling",
                 "personality_code": "F"
             }
-        ]
+        ],
+        "selected_option": null
     },
     {
         "id": 35,
@@ -557,7 +591,8 @@
                 "personality": "Feeling",
                 "personality_code": "F"
             }
-        ]
+        ],
+        "selected_option": null
     },
     {
         "id": 36,
@@ -573,7 +608,8 @@
                 "personality": "Feeling",
                 "personality_code": "F"
             }
-        ]
+        ],
+        "selected_option": null
     },
     {
         "id": 37,
@@ -589,7 +625,8 @@
                 "personality": "Feeling",
                 "personality_code": "F"
             }
-        ]
+        ],
+        "selected_option": null
     },
     {
         "id": 38,
@@ -605,7 +642,8 @@
                 "personality": "Feeling",
                 "personality_code": "F"
             }
-        ]
+        ],
+        "selected_option": null
     },
     {
         "id": 39,
@@ -621,7 +659,8 @@
                 "personality": "Feeling",
                 "personality_code": "F"
             }
-        ]
+        ],
+        "selected_option": null
     },
     {
         "id": 40,
@@ -637,7 +676,8 @@
                 "personality": "Perceiving",
                 "personality_code": "P"
             }
-        ]
+        ],
+        "selected_option": null
     },
     {
         "id": 41,
@@ -653,7 +693,8 @@
                 "personality": "Perceiving",
                 "personality_code": "P"
             }
-        ]
+        ],
+        "selected_option": null
     },
     {
         "id": 42,
@@ -669,7 +710,8 @@
                 "personality": "Perceiving",
                 "personality_code": "P"
             }
-        ]
+        ],
+        "selected_option": null
     },
     {
         "id": 43,
@@ -685,7 +727,8 @@
                 "personality": "Perceiving",
                 "personality_code": "P"
             }
-        ]
+        ],
+        "selected_option": null
     },
     {
         "id": 44,
@@ -701,7 +744,8 @@
                 "personality": "Perceiving",
                 "personality_code": "P"
             }
-        ]
+        ],
+        "selected_option": null
     },
     {
         "id": 45,
@@ -717,7 +761,8 @@
                 "personality": "Perceiving",
                 "personality_code": "P"
             }
-        ]
+        ],
+        "selected_option": null
     },
     {
         "id": 46,
@@ -733,7 +778,8 @@
                 "personality": "Perceiving",
                 "personality_code": "P"
             }
-        ]
+        ],
+        "selected_option": null
     },
     {
         "id": 47,
@@ -749,7 +795,8 @@
                 "personality": "Perceiving",
                 "personality_code": "P"
             }
-        ]
+        ],
+        "selected_option": null
     },
     {
         "id": 48,
@@ -765,7 +812,8 @@
                 "personality": "Perceiving",
                 "personality_code": "P"
             }
-        ]
+        ],
+        "selected_option": null
     },
     {
         "id": 49,
@@ -781,7 +829,8 @@
                 "personality": "Perceiving",
                 "personality_code": "P"
             }
-        ]
+        ],
+        "selected_option": null
     },
     {
         "id": 50,
@@ -797,6 +846,7 @@
                 "personality": "Perceiving",
                 "personality_code": "P"
             }
-        ]
+        ],
+        "selected_option": null
     }
 ]

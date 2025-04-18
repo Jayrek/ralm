@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ralm/core/shared/widget/custom_button_icon_widget.dart';
 import 'package:ralm/feature/know_yourself/screen/myers_briggs/bloc/myers_briggs_bloc.dart';
+import 'package:ralm/models/myers_briggs.dart';
 
 class MyersBriggsTestScreen extends StatefulWidget {
   const MyersBriggsTestScreen({super.key});
@@ -15,7 +16,41 @@ class _MyersBriggsTestScreenState extends State<MyersBriggsTestScreen> {
   int _currentPage = 0;
   final int _itemsPerPage = 10;
 
-  void _nextPage(int maxPages) {
+  @override
+  void initState() {
+    // Wait until the state is built
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final bloc = context.read<MyersBriggsBloc>();
+      final state = bloc.state;
+
+      final lastAnsweredIndex = state.myersBriggsList.lastIndexWhere(
+        (q) => q.selectedOption != null,
+      );
+
+      if (lastAnsweredIndex != -1) {
+        // Go to the page that contains the last answered question
+        final page = lastAnsweredIndex ~/ _itemsPerPage;
+        setState(() => _currentPage = page);
+      }
+    });
+    super.initState();
+  }
+
+  void _nextPage(int maxPages, List<MyersBriggs> visibleQuestions) {
+    final allAnswered = visibleQuestions.every((q) => q.selectedOption != null);
+
+    if (!allAnswered) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            'Please answer all questions on this page before continuing.',
+          ),
+          behavior: SnackBarBehavior.floating,
+          backgroundColor: Colors.redAccent,
+        ),
+      );
+      return;
+    }
     if (_currentPage < maxPages - 1) {
       setState(() => _currentPage++);
       _scrollToTop();
@@ -106,39 +141,22 @@ class _MyersBriggsTestScreenState extends State<MyersBriggsTestScreen> {
                                   spacing: 20,
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children:
-                                      isEven
-                                          ? [
-                                            _optionBox(
-                                              label:
-                                                  question
-                                                      .myersBriggsOption[0]
-                                                      .text,
-                                              onTap: () {},
-                                            ),
-                                            _optionBox(
-                                              label:
-                                                  question
-                                                      .myersBriggsOption[1]
-                                                      .text,
-                                              onTap: () {},
-                                            ),
-                                          ]
-                                          : [
-                                            _optionBox(
-                                              label:
-                                                  question
-                                                      .myersBriggsOption[0]
-                                                      .text,
-                                              onTap: () {},
-                                            ),
-                                            _optionBox(
-                                              label:
-                                                  question
-                                                      .myersBriggsOption[1]
-                                                      .text,
-                                              onTap: () {},
-                                            ),
-                                          ],
+                                      question.myersBriggsOption.map((option) {
+                                        return _optionBox(
+                                          label: option.text,
+                                          isSelected:
+                                              question.selectedOption?.text ==
+                                              option.text,
+                                          onTap: () {
+                                            context.read<MyersBriggsBloc>().add(
+                                              SelectMyersBriggsOption(
+                                                questionId: question.id,
+                                                selectedOption: option,
+                                              ),
+                                            );
+                                          },
+                                        );
+                                      }).toList(),
                                 ),
                               ),
                               const SizedBox(height: 30),
@@ -157,7 +175,8 @@ class _MyersBriggsTestScreenState extends State<MyersBriggsTestScreen> {
                           Text('Page ${_currentPage + 1} of $totalPages'),
                           if (_currentPage < totalPages - 1)
                             ElevatedButton(
-                              onPressed: () => _nextPage(totalPages),
+                              onPressed:
+                                  () => _nextPage(totalPages, visibleQuestions),
                               child: const Text('Next'),
                             ),
                         ],
@@ -173,7 +192,11 @@ class _MyersBriggsTestScreenState extends State<MyersBriggsTestScreen> {
     );
   }
 
-  Widget _optionBox({required String label, required Function()? onTap}) {
+  Widget _optionBox({
+    required bool isSelected,
+    required String label,
+    required Function()? onTap,
+  }) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10),
       child: SizedBox(
@@ -182,7 +205,8 @@ class _MyersBriggsTestScreenState extends State<MyersBriggsTestScreen> {
         child: OutlinedButton(
           style: OutlinedButton.styleFrom(
             foregroundColor: Colors.white,
-            backgroundColor: Colors.purple.shade300,
+            backgroundColor:
+                isSelected ? Colors.deepPurple : Colors.purple.shade300,
             side: BorderSide(color: Colors.deepPurple, width: 2),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(50),

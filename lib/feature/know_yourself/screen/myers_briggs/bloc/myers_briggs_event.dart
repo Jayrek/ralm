@@ -10,3 +10,19 @@ sealed class MyersBriggsEvent extends Equatable {
 class FetchMyersBriggsQuestions extends MyersBriggsEvent {
   const FetchMyersBriggsQuestions();
 }
+
+class SelectMyersBriggsOption extends MyersBriggsEvent {
+  const SelectMyersBriggsOption({
+    required this.questionId,
+    required this.selectedOption,
+  });
+  final int questionId;
+  final MyersBriggsOption selectedOption;
+
+  @override
+  List<Object> get props => [questionId, selectedOption];
+}
+
+class ClearMyersBriggsProgress extends MyersBriggsEvent {
+  const ClearMyersBriggsProgress();
+}
