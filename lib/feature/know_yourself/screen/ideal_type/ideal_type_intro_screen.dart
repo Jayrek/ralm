@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ralm/core/constants/string_constant.dart';
 import 'package:ralm/core/shared/widget/custom_button_icon_widget.dart';
 
 class IdealTypeIntroScreen extends StatelessWidget {
@@ -43,7 +44,13 @@ class IdealTypeIntroScreen extends StatelessWidget {
                           color: Colors.transparent,
                           child: InkWell(
                             borderRadius: BorderRadius.circular(30),
-                            onTap: () {},
+                            onTap: () {
+                              Navigator.pushNamed(
+                                context,
+                                StringConstant.navIdealTYpeTest,
+                                arguments: {'gender': 'female'},
+                              );
+                            },
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Icon(
@@ -59,7 +66,13 @@ class IdealTypeIntroScreen extends StatelessWidget {
                           color: Colors.transparent,
                           child: InkWell(
                             borderRadius: BorderRadius.circular(30),
-                            onTap: () {},
+                            onTap: () {
+                              Navigator.pushNamed(
+                                context,
+                                StringConstant.navIdealTYpeTest,
+                                arguments: {'gender': 'male'},
+                              );
+                            },
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Icon(

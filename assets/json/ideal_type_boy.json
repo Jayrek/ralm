@@ -1,0 +1,362 @@
+[
+    {
+        "id": 1,
+        "question": "Choose your ideal fashion's type",
+        "choices": [
+            {
+                "points": 1,
+                "image": "assets/image/ideal_type/boy/fashion_type_1.png"
+            },
+            {
+                "points": 2,
+                "image": "assets/image/ideal_type/boy/fashion_type_2.png"
+            },
+            {
+                "points": 3,
+                "image": "assets/image/ideal_type/boy/fashion_type_3.png"
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "question": "Pick your preference for a date setting",
+        "choices": [
+            {
+                "points": 1,
+                "image": "assets/image/ideal_type/boy/date_setting_1.png"
+            },
+            {
+                "points": 2,
+                "image": "assets/image/ideal_type/boy/date_setting_2.png"
+            },
+            {
+                "points": 3,
+                "image": "assets/image/ideal_type/boy/date_setting_3.png"
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "question": "Your ideal boy's overall fashion sense",
+        "choices": [
+            {
+                "points": 1,
+                "image": "assets/image/ideal_type/boy/fashion_sense_1.png"
+            },
+            {
+                "points": 2,
+                "image": "assets/image/ideal_type/boy/fashion_sense_2.png"
+            },
+            {
+                "points": 3,
+                "image": "assets/image/ideal_type/boy/fashion_sense_3.png"
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "question": "Select your ideal boy's hobby",
+        "choices": [
+            {
+                "points": 1,
+                "image": "assets/image/ideal_type/boy/boys_hobby_1.png"
+            },
+            {
+                "points": 2,
+                "image": "assets/image/ideal_type/boy/boys_hobby_2.png"
+            },
+            {
+                "points": 3,
+                "image": "assets/image/ideal_type/boy/boys_hobby_3.png"
+            }
+        ]
+    },
+    {
+        "id": 5,
+        "question": "Pick the personality you find most attractive",
+        "choices": [
+            {
+                "points": 1,
+                "image": "assets/image/ideal_type/boy/boys_hobby_1.png"
+            },
+            {
+                "points": 2,
+                "image": "assets/image/ideal_type/boy/boys_hobby_2.png"
+            },
+            {
+                "points": 3,
+                "image": "assets/image/ideal_type/boy/boys_hobby_3.png"
+            }
+        ]
+    },
+    {
+        "id": 6,
+        "question": "Choose your ideal boy's approach to planning activities",
+        "choices": [
+            {
+                "points": 1,
+                "image": "assets/image/ideal_type/boy/activities_1.png"
+            },
+            {
+                "points": 2,
+                "image": "assets/image/ideal_type/boy/activities_2.png"
+            },
+            {
+                "points": 3,
+                "image": "assets/image/ideal_type/boy/activities_3.png"
+            }
+        ]
+    },
+    {
+        "id": 7,
+        "question": "Your ideal boy's taste in food",
+        "choices": [
+            {
+                "points": 1,
+                "image": "assets/image/ideal_type/boy/food_1.png"
+            },
+            {
+                "points": 2,
+                "image": "assets/image/ideal_type/boy/food_2.png"
+            },
+            {
+                "points": 3,
+                "image": "assets/image/ideal_type/boy/food_3.png"
+            }
+        ]
+    },
+    {
+        "id": 8,
+        "question": "Pick your ideal boy's socializing preferences",
+        "choices": [
+            {
+                "points": 1,
+                "image": "assets/image/ideal_type/boy/preferences_1.png"
+            },
+            {
+                "points": 2,
+                "image": "assets/image/ideal_type/boy/preferences_2.png"
+            },
+            {
+                "points": 3,
+                "image": "assets/image/ideal_type/boy/preferences_3.png"
+            }
+        ]
+    },
+    {
+        "id": 9,
+        "question": "Your ideal boy's travel preferences",
+        "choices": [
+            {
+                "points": 1,
+                "image": "assets/image/ideal_type/boy/travel_1.png"
+            },
+            {
+                "points": 2,
+                "image": "assets/image/ideal_type/boy/travel_2.png"
+            },
+            {
+                "points": 3,
+                "image": "assets/image/ideal_type/boy/travel_3.png"
+            }
+        ]
+    },
+    {
+        "id": 10,
+        "question": "Your ideal boy's career aspirations",
+        "choices": [
+            {
+                "points": 1,
+                "image": "assets/image/ideal_type/boy/aspirations_1.png"
+            },
+            {
+                "points": 2,
+                "image": "assets/image/ideal_type/boy/aspirations_2.png"
+            },
+            {
+                "points": 3,
+                "image": "assets/image/ideal_type/boy/aspirations_3.png"
+            }
+        ]
+    },
+    {
+        "id": 11,
+        "question": "Your ideal boy's sense of humor",
+        "choices": [
+            {
+                "points": 1,
+                "image": "assets/image/ideal_type/boy/humor_1.png"
+            },
+            {
+                "points": 2,
+                "image": "assets/image/ideal_type/boy/humor_2.png"
+            },
+            {
+                "points": 3,
+                "image": "assets/image/ideal_type/boy/humor_3.png"
+            }
+        ]
+    },
+    {
+        "id": 12,
+        "question": "Your ideal boy's communication and style",
+        "choices": [
+            {
+                "points": 1,
+                "image": "assets/image/ideal_type/boy/style_1.png"
+            },
+            {
+                "points": 2,
+                "image": "assets/image/ideal_type/boy/style_2.png"
+            },
+            {
+                "points": 3,
+                "image": "assets/image/ideal_type/boy/style_3.png"
+            }
+        ]
+    },
+    {
+        "id": 13,
+        "question": "Your ideal boy's attitude towards fitness",
+        "choices": [
+            {
+                "points": 1,
+                "image": "assets/image/ideal_type/boy/fitness_1.png"
+            },
+            {
+                "points": 2,
+                "image": "assets/image/ideal_type/boy/fitness_2.png"
+            },
+            {
+                "points": 3,
+                "image": "assets/image/ideal_type/boy/fitness_3.png"
+            }
+        ]
+    },
+    {
+        "id": 14,
+        "question": "Your ideal boy's preferred weekend activity",
+        "choices": [
+            {
+                "points": 1,
+                "image": "assets/image/ideal_type/boy/weekend_1.png"
+            },
+            {
+                "points": 2,
+                "image": "assets/image/ideal_type/boy/weekend_2.png"
+            },
+            {
+                "points": 3,
+                "image": "assets/image/ideal_type/boy/weekend_3.png"
+            }
+        ]
+    },
+    {
+        "id": 15,
+        "question": "Your ideal boy's type in music",
+        "choices": [
+            {
+                "points": 1,
+                "image": "assets/image/ideal_type/boy/music_1.png"
+            },
+            {
+                "points": 2,
+                "image": "assets/image/ideal_type/boy/music_2.png"
+            },
+            {
+                "points": 3,
+                "image": "assets/image/ideal_type/boy/music_3.png"
+            }
+        ]
+    },
+    {
+        "id": 16,
+        "question": "Your ideal boy's approach to technology",
+        "choices": [
+            {
+                "points": 1,
+                "image": "assets/image/ideal_type/boy/technology_1.png"
+            },
+            {
+                "points": 2,
+                "image": "assets/image/ideal_type/boy/technology_3.png"
+            },
+            {
+                "points": 3,
+                "image": "assets/image/ideal_type/boy/technology_3.png"
+            }
+        ]
+    },
+    {
+        "id": 17,
+        "question": "Your ideal boy's reaction to challenges",
+        "choices": [
+            {
+                "points": 1,
+                "image": "assets/image/ideal_type/boy/challenge_1.png"
+            },
+            {
+                "points": 2,
+                "image": "assets/image/ideal_type/boy/challenge_2.png"
+            },
+            {
+                "points": 3,
+                "image": "assets/image/ideal_type/boy/challenge_3.png"
+            }
+        ]
+    },
+    {
+        "id": 18,
+        "question": "Your ideal boy's relationship with family",
+        "choices": [
+            {
+                "points": 1,
+                "image": "assets/image/ideal_type/boy/family_1.png"
+            },
+            {
+                "points": 2,
+                "image": "assets/image/ideal_type/boy/family_2.png"
+            },
+            {
+                "points": 3,
+                "image": "assets/image/ideal_type/boy/family_3.png"
+            }
+        ]
+    },
+    {
+        "id": 19,
+        "question": "Your ideal boy's sense of adventure",
+        "choices": [
+            {
+                "points": 1,
+                "image": "assets/image/ideal_type/boy/adventure_1.png"
+            },
+            {
+                "points": 2,
+                "image": "assets/image/ideal_type/boy/adventure_2.png"
+            },
+            {
+                "points": 3,
+                "image": "assets/image/ideal_type/boy/adventure_3.png"
+            }
+        ]
+    },
+    {
+        "id": 20,
+        "question": "Your ideal boy's reaction to surprises",
+        "choices": [
+            {
+                "points": 1,
+                "image": "assets/image/ideal_type/boy/surprise_1.png"
+            },
+            {
+                "points": 2,
+                "image": "assets/image/ideal_type/boy/surprise_2.png"
+            },
+            {
+                "points": 3,
+                "image": "assets/image/ideal_type/boy/surprise_3.png"
+            }
+        ]
+    }
+]

@@ -36,6 +36,7 @@ class StringConstant {
 
   // navigation keys for IDEAL TYPE
   static const navIdealTYpeIntro = '/ideal-type-intro';
+  static const navIdealTYpeTest = '/ideal-type-test';
 
   // navigation keys for SIGNS
   static const navChineseZodiac = '/chinese_zodiac';

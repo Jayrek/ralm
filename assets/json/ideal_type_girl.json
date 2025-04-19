@@ -1,0 +1,182 @@
+[
+    {
+        "id": 1,
+        "question": "Pick a Sunflower",
+        "choices": [
+            {
+                "points": 1,
+                "image": "assets/image/ideal_type/girl/sunflower_1.png"
+            },
+            {
+                "points": 2,
+                "image": "assets/image/ideal_type/girl/sunflower_2.png"
+            },
+            {
+                "points": 3,
+                "image": "assets/image/ideal_type/girl/sunflower_3.png"
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "question": "Pick a Wedding Dress",
+        "choices": [
+            {
+                "points": 1,
+                "image": "assets/image/ideal_type/girl/wedding_1.png"
+            },
+            {
+                "points": 2,
+                "image": "assets/image/ideal_type/girl/wedding_2.png"
+            },
+            {
+                "points": 3,
+                "image": "assets/image/ideal_type/girl/wedding_3.png"
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "question": "Pick a Harry Potter Character",
+        "choices": [
+            {
+                "points": 1,
+                "image": "assets/image/ideal_type/girl/harry_1.png"
+            },
+            {
+                "points": 2,
+                "image": "assets/image/ideal_type/girl/harry_2.png"
+            },
+            {
+                "points": 3,
+                "image": "assets/image/ideal_type/girl/harry_3.png"
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "question": "Pick a Dragon",
+        "choices": [
+            {
+                "points": 1,
+                "image": "assets/image/ideal_type/girl/dragon_1.png"
+            },
+            {
+                "points": 2,
+                "image": "assets/image/ideal_type/girl/dragon_2.png"
+            },
+            {
+                "points": 3,
+                "image": "assets/image/ideal_type/girl/dragon_3.png"
+            }
+        ]
+    },
+    {
+        "id": 5,
+        "question": "Pick a Girl",
+        "choices": [
+            {
+                "points": 1,
+                "image": "assets/image/ideal_type/girl/girl_1.png"
+            },
+            {
+                "points": 2,
+                "image": "assets/image/ideal_type/girl/girl_2.png"
+            },
+            {
+                "points": 3,
+                "image": "assets/image/ideal_type/girl/girl_3.png"
+            }
+        ]
+    },
+    {
+        "id": 6,
+        "question": "Pick a Sky",
+        "choices": [
+            {
+                "points": 1,
+                "image": "assets/image/ideal_type/girl/sky_1.png"
+            },
+            {
+                "points": 2,
+                "image": "assets/image/ideal_type/girl/sky_2.png"
+            },
+            {
+                "points": 3,
+                "image": "assets/image/ideal_type/girl/sky_3.png"
+            }
+        ]
+    },
+    {
+        "id": 7,
+        "question": "Pick a Couple",
+        "choices": [
+            {
+                "points": 1,
+                "image": "assets/image/ideal_type/girl/couple_1.png"
+            },
+            {
+                "points": 2,
+                "image": "assets/image/ideal_type/girl/couple_2.png"
+            },
+            {
+                "points": 3,
+                "image": "assets/image/ideal_type/girl/couple_3.png"
+            }
+        ]
+    },
+    {
+        "id": 8,
+        "question": "Pick a Boy",
+        "choices": [
+            {
+                "points": 1,
+                "image": "assets/image/ideal_type/girl/boy_1.png"
+            },
+            {
+                "points": 2,
+                "image": "assets/image/ideal_type/girl/boy_2.png"
+            },
+            {
+                "points": 3,
+                "image": "assets/image/ideal_type/girl/boy_3.png"
+            }
+        ]
+    },
+    {
+        "id": 9,
+        "question": "Pick a Nail",
+        "choices": [
+            {
+                "points": 1,
+                "image": "assets/image/ideal_type/girl/nail_1.png"
+            },
+            {
+                "points": 2,
+                "image": "assets/image/ideal_type/girl/nail_2.png"
+            },
+            {
+                "points": 3,
+                "image": "assets/image/ideal_type/girl/nail_3.png"
+            }
+        ]
+    },
+    {
+        "id": 10,
+        "question": "Pick a Cake",
+        "choices": [
+            {
+                "points": 1,
+                "image": "assets/image/ideal_type/girl/cake_1.png"
+            },
+            {
+                "points": 2,
+                "image": "assets/image/ideal_type/girl/cake_2.png"
+            },
+            {
+                "points": 3,
+                "image": "assets/image/ideal_type/girl/cake_3.png"
+            }
+        ]
+    }
+]

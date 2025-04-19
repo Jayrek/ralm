@@ -12,7 +12,9 @@ import 'package:ralm/feature/know_yourself/screen/elemental_soul/elemental_soul_
 import 'package:ralm/feature/know_yourself/screen/forest_test/bloc/forest_test_bloc.dart';
 import 'package:ralm/feature/know_yourself/screen/forest_test/forest_test_result_screen.dart';
 import 'package:ralm/feature/know_yourself/screen/forest_test/forest_test_screen.dart';
+import 'package:ralm/feature/know_yourself/screen/ideal_type/bloc/ideal_type_bloc.dart';
 import 'package:ralm/feature/know_yourself/screen/ideal_type/ideal_type_intro_screen.dart';
+import 'package:ralm/feature/know_yourself/screen/ideal_type/ideal_type_test_screen.dart';
 import 'package:ralm/feature/know_yourself/screen/myers_briggs/bloc/myers_briggs_bloc.dart';
 import 'package:ralm/feature/know_yourself/screen/myers_briggs/myers_briggs_intro_screen.dart';
 import 'package:ralm/feature/know_yourself/screen/myers_briggs/myers_briggs_test_screen.dart';
@@ -83,6 +85,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => YourColorBloc()),
         BlocProvider(create: (context) => ForestTestBloc()),
         BlocProvider(create: (context) => MyersBriggsBloc()),
+        BlocProvider(create: (context) => IdealTypeBloc()),
       ],
       child: MaterialApp(
         builder:
@@ -133,6 +136,7 @@ class MyApp extends StatelessWidget {
               (context) => YourColorResultScreen(),
 
           StringConstant.navIdealTYpeIntro: (context) => IdealTypeIntroScreen(),
+          StringConstant.navIdealTYpeTest: (context) => IdealTypeTestScreen(),
 
           // SIGNS category
           StringConstant.navSignsScreenKey: (context) => SignsScreen(),
