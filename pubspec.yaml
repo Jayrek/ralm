@@ -35,7 +35,8 @@ flutter:
     - assets/image/tarot/
     - assets/image/constellation/
     - assets/image/avatar/
-    - assets/image/random_test/
+    - assets/image/ideal_type/boy/
+    - assets/image/ideal_type/girl/
     - assets/video/
 
   fonts:

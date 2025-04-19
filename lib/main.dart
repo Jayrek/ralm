@@ -12,6 +12,7 @@ import 'package:ralm/feature/know_yourself/screen/elemental_soul/elemental_soul_
 import 'package:ralm/feature/know_yourself/screen/forest_test/bloc/forest_test_bloc.dart';
 import 'package:ralm/feature/know_yourself/screen/forest_test/forest_test_result_screen.dart';
 import 'package:ralm/feature/know_yourself/screen/forest_test/forest_test_screen.dart';
+import 'package:ralm/feature/know_yourself/screen/ideal_type/ideal_type_intro_screen.dart';
 import 'package:ralm/feature/know_yourself/screen/myers_briggs/bloc/myers_briggs_bloc.dart';
 import 'package:ralm/feature/know_yourself/screen/myers_briggs/myers_briggs_intro_screen.dart';
 import 'package:ralm/feature/know_yourself/screen/myers_briggs/myers_briggs_test_screen.dart';
@@ -130,6 +131,8 @@ class MyApp extends StatelessWidget {
           StringConstant.navYourColorTest: (context) => YourColorTestScreen(),
           StringConstant.navYourColorResult:
               (context) => YourColorResultScreen(),
+
+          StringConstant.navIdealTYpeIntro: (context) => IdealTypeIntroScreen(),
 
           // SIGNS category
           StringConstant.navSignsScreenKey: (context) => SignsScreen(),

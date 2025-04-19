@@ -34,6 +34,9 @@ class StringConstant {
   static const navYourColorTest = '/your_color_test';
   static const navYourColorResult = '/your_color_result';
 
+  // navigation keys for IDEAL TYPE
+  static const navIdealTYpeIntro = '/ideal-type-intro';
+
   // navigation keys for SIGNS
   static const navChineseZodiac = '/chinese_zodiac';
   static const navChineseZodiacDetail = '/chinese_zodiac_detail';

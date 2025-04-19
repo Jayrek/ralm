@@ -69,8 +69,12 @@ class KnowYourSelfScreen extends StatelessWidget {
                                       context,
                                       StringConstant.navRandomTest,
                                     );
+
                                   case 5:
-                                    debugPrint('ideal type');
+                                    Navigator.pushNamed(
+                                      context,
+                                      StringConstant.navIdealTYpeIntro,
+                                    );
                                 }
                               },
                             );
