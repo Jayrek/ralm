@@ -37,6 +37,7 @@ class StringConstant {
   // navigation keys for IDEAL TYPE
   static const navIdealTYpeIntro = '/ideal-type-intro';
   static const navIdealTYpeTest = '/ideal-type-test';
+  static const navIdealTYpeResult = '/ideal-type-result';
 
   // navigation keys for SIGNS
   static const navChineseZodiac = '/chinese_zodiac';
@@ -91,5 +92,21 @@ class StringConstant {
     if (score >= 430 && score <= 510) return 'Blue';
     if (score >= 510 && score <= 600) return 'White';
     return 'Unknown';
+  }
+
+  static int getIdealTypeGirlResult(int totalPoints) {
+    if (totalPoints >= 10 && totalPoints <= 14) return 1;
+    if (totalPoints >= 15 && totalPoints <= 18) return 2;
+    if (totalPoints >= 19 && totalPoints <= 22) return 3;
+    if (totalPoints >= 23 && totalPoints <= 26) return 4;
+    if (totalPoints >= 27 && totalPoints <= 30) return 5;
+    return 0;
+  }
+
+  static int getIdealTypeBoyResult(int totalPoints) {
+    if (totalPoints >= 20 && totalPoints <= 30) return 1;
+    if (totalPoints >= 31 && totalPoints <= 45) return 2;
+    if (totalPoints >= 46 && totalPoints <= 60) return 3;
+    return 0;
   }
 }

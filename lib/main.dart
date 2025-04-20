@@ -14,6 +14,7 @@ import 'package:ralm/feature/know_yourself/screen/forest_test/forest_test_result
 import 'package:ralm/feature/know_yourself/screen/forest_test/forest_test_screen.dart';
 import 'package:ralm/feature/know_yourself/screen/ideal_type/bloc/ideal_type_bloc.dart';
 import 'package:ralm/feature/know_yourself/screen/ideal_type/ideal_type_intro_screen.dart';
+import 'package:ralm/feature/know_yourself/screen/ideal_type/ideal_type_result_screen.dart';
 import 'package:ralm/feature/know_yourself/screen/ideal_type/ideal_type_test_screen.dart';
 import 'package:ralm/feature/know_yourself/screen/myers_briggs/bloc/myers_briggs_bloc.dart';
 import 'package:ralm/feature/know_yourself/screen/myers_briggs/myers_briggs_intro_screen.dart';
@@ -137,6 +138,8 @@ class MyApp extends StatelessWidget {
 
           StringConstant.navIdealTYpeIntro: (context) => IdealTypeIntroScreen(),
           StringConstant.navIdealTYpeTest: (context) => IdealTypeTestScreen(),
+          StringConstant.navIdealTYpeResult:
+              (context) => IdealTypeResultScreen(),
 
           // SIGNS category
           StringConstant.navSignsScreenKey: (context) => SignsScreen(),
