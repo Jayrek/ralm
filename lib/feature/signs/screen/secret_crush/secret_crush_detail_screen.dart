@@ -37,40 +37,49 @@ class _SecretCrushDetailScreenState extends State<SecretCrushDetailScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.purple.shade300,
-      body: BlocBuilder<SecretCrushBloc, SecretCrushState>(
-        builder: (context, state) {
-          final details = state.secretCrushList;
-          return PageView.builder(
-            controller: _pageController,
-            itemCount: details.length,
-            onPageChanged: (index) => setState(() => _currentPage = index),
-            itemBuilder: (context, index) {
-              final secret = details[index];
+      body: Stack(
+        fit: StackFit.expand,
+        children: [
+          Image.asset(
+            'assets/bg/secret_crush_bg/sc_detail_bg.jpg',
+            fit: BoxFit.cover,
+          ),
+          BlocBuilder<SecretCrushBloc, SecretCrushState>(
+            builder: (context, state) {
+              final details = state.secretCrushList;
+              return PageView.builder(
+                controller: _pageController,
+                itemCount: details.length,
+                onPageChanged: (index) => setState(() => _currentPage = index),
+                itemBuilder: (context, index) {
+                  final secret = details[index];
 
-              double opacity = (_currentPage == index) ? 1.0 : 0.1;
-              double scale = (_currentPage == index) ? 1.0 : 0.95;
+                  double opacity = (_currentPage == index) ? 1.0 : 0.1;
+                  double scale = (_currentPage == index) ? 1.0 : 0.95;
 
-              return Center(
-                child: AnimatedContainer(
-                  duration: Duration(milliseconds: 300),
-                  curve: Curves.easeInOut,
-                  transform: Matrix4.identity()..scale(scale),
-                  // padding: EdgeInsets.symmetric(horizontal: 20, vertical: 40),
-                  child: AnimatedOpacity(
-                    duration: Duration(milliseconds: 300),
-                    opacity: opacity,
-                    child: SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.9,
-                      child: SingleChildScrollView(
-                        child: _buildSecretInfoWidget(secret, details),
+                  return Center(
+                    child: AnimatedContainer(
+                      duration: Duration(milliseconds: 300),
+                      curve: Curves.easeInOut,
+                      transform: Matrix4.identity()..scale(scale),
+                      // padding: EdgeInsets.symmetric(horizontal: 20, vertical: 40),
+                      child: AnimatedOpacity(
+                        duration: Duration(milliseconds: 300),
+                        opacity: opacity,
+                        child: SizedBox(
+                          width: MediaQuery.of(context).size.width * 0.9,
+                          child: SingleChildScrollView(
+                            child: _buildSecretInfoWidget(secret, details),
+                          ),
+                        ),
                       ),
                     ),
-                  ),
-                ),
+                  );
+                },
               );
             },
-          );
-        },
+          ),
+        ],
       ),
     );
   }

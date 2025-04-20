@@ -34,46 +34,68 @@ class _DreamSignDetailScreenState extends State<DreamSignDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final args =
+        ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>;
+    final String type = args['type'];
+    String dreamSignBg = '';
+
+    switch (type) {
+      case 'common':
+        dreamSignBg = 'assets/bg/dream_sign_bg/ds_common_bg.jpg';
+      case 'nightmare':
+        dreamSignBg = 'assets/bg/dream_sign_bg/ds_nightmare_bg.jpg';
+      case 'animal':
+        dreamSignBg = 'assets/bg/dream_sign_bg/ds_animal_bg.jpg';
+      case 'symbol':
+        dreamSignBg = 'assets/bg/dream_sign_bg/ds_symbol_bg.jpg';
+    }
+
     return Scaffold(
       backgroundColor: Colors.purple.shade300,
-      body: BlocBuilder<DreamSignBloc, DreamSignState>(
-        builder: (context, state) {
-          final details = state.dreamSignDetailList;
-          return PageView.builder(
-            controller: _pageController,
-            itemCount: details.length,
-            onPageChanged: (index) {
-              setState(() {
-                _currentPage = index;
-              });
-            },
-            itemBuilder: (context, index) {
-              final dream = details[index];
+      body: Stack(
+        fit: StackFit.expand,
+        children: [
+          Image.asset(dreamSignBg, fit: BoxFit.cover),
+          BlocBuilder<DreamSignBloc, DreamSignState>(
+            builder: (context, state) {
+              final details = state.dreamSignDetailList;
+              return PageView.builder(
+                controller: _pageController,
+                itemCount: details.length,
+                onPageChanged: (index) {
+                  setState(() {
+                    _currentPage = index;
+                  });
+                },
+                itemBuilder: (context, index) {
+                  final dream = details[index];
 
-              double opacity = (_currentPage == index) ? 1.0 : 0.1;
-              double scale = (_currentPage == index) ? 1.0 : 0.95;
+                  double opacity = (_currentPage == index) ? 1.0 : 0.1;
+                  double scale = (_currentPage == index) ? 1.0 : 0.95;
 
-              return Center(
-                child: AnimatedContainer(
-                  duration: Duration(milliseconds: 300),
-                  curve: Curves.easeInOut,
-                  transform: Matrix4.identity()..scale(scale),
-                  // padding: EdgeInsets.symmetric(horizontal: 20, vertical: 40),
-                  child: AnimatedOpacity(
-                    duration: Duration(milliseconds: 300),
-                    opacity: opacity,
-                    child: SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.9,
-                      child: SingleChildScrollView(
-                        child: _buildDreamSignInfoWidget(dream, details),
+                  return Center(
+                    child: AnimatedContainer(
+                      duration: Duration(milliseconds: 300),
+                      curve: Curves.easeInOut,
+                      transform: Matrix4.identity()..scale(scale),
+                      // padding: EdgeInsets.symmetric(horizontal: 20, vertical: 40),
+                      child: AnimatedOpacity(
+                        duration: Duration(milliseconds: 300),
+                        opacity: opacity,
+                        child: SizedBox(
+                          width: MediaQuery.of(context).size.width * 0.9,
+                          child: SingleChildScrollView(
+                            child: _buildDreamSignInfoWidget(dream, details),
+                          ),
+                        ),
                       ),
                     ),
-                  ),
-                ),
+                  );
+                },
               );
             },
-          );
-        },
+          ),
+        ],
       ),
     );
   }

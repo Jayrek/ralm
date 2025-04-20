@@ -12,52 +12,86 @@ class SecretCrushScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.purple.shade300,
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
-          child: Column(
-            children: [
-              Align(
-                alignment: Alignment.topLeft,
-                child: CustomButtonIconWidget(
-                  icon: Icon(Icons.arrow_circle_left),
-                  onPressed: () => Navigator.of(context).pop(),
-                ),
-              ),
-              Center(
-                child: Padding(
-                  padding: const EdgeInsets.all(20),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        '28 Sign someone might have a secret crush on you'
-                            .toUpperCase(),
-                        style: Theme.of(context).textTheme.displayMedium
-                            ?.copyWith(fontSize: 60, color: Colors.white),
-                        textAlign: TextAlign.center,
-                      ),
-                      SizedBox(height: 20),
-
-                      CustomButtonRoundedWidget(
-                        label: 'READ',
-                        onPressed: () {
-                          context.read<SecretCrushBloc>().add(
-                            FetchSecretCrush(),
-                          );
-                          Navigator.pushNamed(
-                            context,
-                            StringConstant.navSecretCrushDetail,
-                          );
-                        },
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ],
+      body: Stack(
+        fit: StackFit.expand,
+        children: [
+          Image.asset(
+            'assets/bg/secret_crush_bg/sc_home_bg.jpg',
+            fit: BoxFit.cover,
           ),
-        ),
+          SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+              child: Column(
+                children: [
+                  Align(
+                    alignment: Alignment.topLeft,
+                    child: CustomButtonIconWidget(
+                      icon: Icon(Icons.arrow_circle_left),
+                      onPressed: () => Navigator.of(context).pop(),
+                    ),
+                  ),
+                  Center(
+                    child: Padding(
+                      padding: const EdgeInsets.all(20),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 20),
+                            child: Column(
+                              children: [
+                                Text(
+                                  '28 Sign someone might have a secret crush on you'
+                                      .toUpperCase(),
+                                  style: Theme.of(
+                                    context,
+                                  ).textTheme.displayMedium?.copyWith(
+                                    fontSize: 60,
+                                    color: Colors.pink.shade300,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                  textAlign: TextAlign.center,
+                                ),
+                                SizedBox(height: 20),
+                                Text(
+                                  '- Preetl Seral(founder of PankyLove Website)',
+                                  style: Theme.of(
+                                    context,
+                                  ).textTheme.displayMedium?.copyWith(
+                                    fontSize: 20,
+                                    color: Colors.pink.shade300,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ],
+                            ),
+                          ),
+
+                          SizedBox(height: 20),
+
+                          CustomButtonRoundedWidget(
+                            label: 'READ',
+                            onPressed: () {
+                              context.read<SecretCrushBloc>().add(
+                                FetchSecretCrush(),
+                              );
+                              Navigator.pushNamed(
+                                context,
+                                StringConstant.navSecretCrushDetail,
+                              );
+                            },
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
