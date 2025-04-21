@@ -3,6 +3,8 @@ class Personalities {
     required this.id,
     required this.name,
     required this.description,
+    required this.imageP,
+    required this.imageC,
     required this.type,
     required this.aka,
     required this.akaDescription,
@@ -15,6 +17,8 @@ class Personalities {
   final int id;
   final String name;
   final String description;
+  final String imageP;
+  final String imageC;
   final List<String> type;
   final String aka;
   final String akaDescription;
@@ -28,6 +32,8 @@ class Personalities {
       id: json['id'],
       name: json['name'],
       description: json['description'],
+      imageP: json['image_p'],
+      imageC: json['image_c'],
       type: List<String>.from(json['type']),
       aka: json['aka'],
       akaDescription: json['aka_description'],
@@ -42,6 +48,8 @@ class Personalities {
     int? id,
     String? name,
     String? description,
+    String? imageP,
+    String? imageC,
     List<String>? type,
     String? aka,
     String? akaDescription,
@@ -54,6 +62,8 @@ class Personalities {
       id: id ?? this.id,
       name: name ?? this.name,
       description: description ?? this.description,
+      imageP: imageP ?? this.imageP,
+      imageC: imageC ?? this.imageC,
       type: type ?? this.type,
       aka: aka ?? this.aka,
       akaDescription: akaDescription ?? this.akaDescription,
@@ -66,6 +76,6 @@ class Personalities {
 
   @override
   String toString() {
-    return 'Personalities(id: $id, name: $name, description: $description, type: $type, aka: $aka, akaDescription: $akaDescription, information: $information, strength: $strength, weakness: $weakness, career: $career)';
+    return 'Personalities(id: $id, name: $name, description: $description, imageP: $imageP, imageC: $imageC, type: $type, aka: $aka, akaDescription: $akaDescription, information: $information, strength: $strength, weakness: $weakness, career: $career)';
   }
 }

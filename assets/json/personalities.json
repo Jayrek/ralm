@@ -3,6 +3,8 @@
         "id": 1,
         "name": "INTJ",
         "description": "INTJ the ARCHITECT",
+        "image_p": "assets/bg/myers_briggs_bg/personalities_img/intj-p.png",
+        "image_c": "assets/bg/myers_briggs_bg/personalities_img/intj-c.png",
         "type": [
             "Introverted",
             "Intuitive",
@@ -37,6 +39,8 @@
         "id": 2,
         "name": "INTP",
         "description": "INTP the LOGICIAN",
+        "image_p": "assets/bg/myers_briggs_bg/personalities_img/intp-p.png",
+        "image_c": "assets/bg/myers_briggs_bg/personalities_img/intp-c.png",
         "type": [
             "Introverted",
             "Intuitive",
@@ -70,6 +74,8 @@
         "id": 3,
         "name": "ENTJ",
         "description": "ENTJ the COMMANDER",
+        "image_p": "assets/bg/myers_briggs_bg/personalities_img/entj-p.png",
+        "image_c": "assets/bg/myers_briggs_bg/personalities_img/entj-c.png",
         "type": [
             "Extrovert",
             "Thinking",
@@ -105,6 +111,8 @@
         "id": 4,
         "name": "ENTP",
         "description": "ENTP the DEBATER",
+        "image_p": "assets/bg/myers_briggs_bg/personalities_img/entp-p.png",
+        "image_c": "assets/bg/myers_briggs_bg/personalities_img/entp-c.png",
         "type": [
             "Extrovert",
             "Intuitive",
@@ -139,6 +147,8 @@
         "id": 5,
         "name": "INFJ",
         "description": "INFJ the ADVOCATE",
+        "image_p": "assets/bg/myers_briggs_bg/personalities_img/infj-p.png",
+        "image_c": "assets/bg/myers_briggs_bg/personalities_img/infj-c.png",
         "type": [
             "Introverted",
             "Intuitive",
@@ -173,6 +183,8 @@
         "id": 6,
         "name": "INFP",
         "description": "INFP the MEDIATOR",
+        "image_p": "assets/bg/myers_briggs_bg/personalities_img/infp-p.png",
+        "image_c": "assets/bg/myers_briggs_bg/personalities_img/infp-c.png",
         "type": [
             "Introverted",
             "Intuitive",
@@ -208,6 +220,8 @@
         "id": 7,
         "name": "ENFJ",
         "description": "ENFJ the PROTAGONIST",
+        "image_p": "assets/bg/myers_briggs_bg/personalities_img/enfj-p.png",
+        "image_c": "assets/bg/myers_briggs_bg/personalities_img/enfj-c.png",
         "type": [
             "Extrovite",
             "Intuitive",
@@ -244,6 +258,8 @@
         "id": 8,
         "name": "ENFP",
         "description": "ENFP the CAMPAIGNER",
+        "image_p": "assets/bg/myers_briggs_bg/personalities_img/enfp-p.png",
+        "image_c": "assets/bg/myers_briggs_bg/personalities_img/enfp-c.png",
         "type": [
             "Extrovert",
             "Intuitive",
@@ -281,6 +297,8 @@
         "id": 9,
         "name": "ISTJ",
         "description": "ISTJ the LOGISTICIAN",
+        "image_p": "assets/bg/myers_briggs_bg/personalities_img/istj-p.png",
+        "image_c": "assets/bg/myers_briggs_bg/personalities_img/istj-c.png",
         "type": [
             "Introverted",
             "Sensing",
@@ -318,6 +336,8 @@
         "id": 10,
         "name": "ISFJ",
         "description": "ISFJ the DEFENDER",
+        "image_p": "assets/bg/myers_briggs_bg/personalities_img/isfj-p.png",
+        "image_c": "assets/bg/myers_briggs_bg/personalities_img/isfj-c.png",
         "type": [
             "Introvert",
             "Sensing",
@@ -355,6 +375,8 @@
         "id": 11,
         "name": "ESTJ",
         "description": "ESTJ the EXECUTIVE",
+        "image_p": "assets/bg/myers_briggs_bg/personalities_img/estj-p.png",
+        "image_c": "assets/bg/myers_briggs_bg/personalities_img/estj-c.png",
         "type": [
             "Extrovert",
             "Sensing",
@@ -390,6 +412,8 @@
         "id": 12,
         "name": "ESFJ",
         "description": "ESFJ the CONSUL",
+        "image_p": "assets/bg/myers_briggs_bg/personalities_img/esfj-p.png",
+        "image_c": "assets/bg/myers_briggs_bg/personalities_img/esfj-c.png",
         "type": [
             "Extrovert",
             "Sensing",
@@ -423,6 +447,8 @@
         "id": 13,
         "name": "ISTP",
         "description": "ISTP the VIRTUOSO",
+        "image_p": "assets/bg/myers_briggs_bg/personalities_img/istp-p.png",
+        "image_c": "assets/bg/myers_briggs_bg/personalities_img/istp-c.png",
         "type": [
             "Introvert",
             "Sensing",
@@ -459,6 +485,8 @@
         "id": 14,
         "name": "ISFP",
         "description": "ISFP the ADVENTURER",
+        "image_p": "assets/bg/myers_briggs_bg/personalities_img/isfp-p.png",
+        "image_c": "assets/bg/myers_briggs_bg/personalities_img/isfp-c.png",
         "type": [
             "Introvert",
             "Sensing",
@@ -492,6 +520,8 @@
         "id": 15,
         "name": "ESTP",
         "description": "ESTP the ENTREPRENEUR",
+        "image_p": "assets/bg/myers_briggs_bg/personalities_img/estp-p.png",
+        "image_c": "assets/bg/myers_briggs_bg/personalities_img/estp-c.png",
         "type": [
             "Extrovert",
             "Sensing",
@@ -528,6 +558,8 @@
         "id": 16,
         "name": "ESFP",
         "description": "ESFP the ENTERTAINER",
+        "image_p": "assets/bg/myers_briggs_bg/personalities_img/esfp-p.png",
+        "image_c": "assets/bg/myers_briggs_bg/personalities_img/esfp-c.png",
         "type": [
             "Extrovert",
             "Sensing",

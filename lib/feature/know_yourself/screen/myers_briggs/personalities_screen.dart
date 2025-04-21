@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ralm/core/constants/string_constant.dart';
 import 'package:ralm/core/shared/widget/custom_button_icon_widget.dart';
-import 'package:ralm/core/shared/widget/custom_button_rounded_widget.dart';
 import 'package:ralm/feature/know_yourself/screen/myers_briggs/bloc/myers_briggs_bloc.dart';
 
 class PersonalitiesScreen extends StatefulWidget {

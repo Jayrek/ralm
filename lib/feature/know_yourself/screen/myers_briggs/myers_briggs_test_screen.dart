@@ -82,112 +82,169 @@ class _MyersBriggsTestScreenState extends State<MyersBriggsTestScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.purple.shade300,
-      body: SingleChildScrollView(
-        controller: _scrollController,
-        physics: AlwaysScrollableScrollPhysics(),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
-          child: Column(
-            children: [
-              Align(
-                alignment: Alignment.topLeft,
-                child: CustomButtonIconWidget(
-                  icon: Icon(Icons.arrow_circle_left),
-                  onPressed: () => Navigator.of(context).pop(),
-                ),
-              ),
-              BlocBuilder<MyersBriggsBloc, MyersBriggsState>(
-                builder: (context, state) {
-                  final questions = state.myersBriggsList;
-                  final totalPages = (questions.length / _itemsPerPage).ceil();
-
-                  final start = _currentPage * _itemsPerPage;
-                  final end = (_currentPage + 1) * _itemsPerPage;
-                  final visibleQuestions = questions.sublist(
-                    start,
-                    end > questions.length ? questions.length : end,
-                  );
-
-                  return Column(
-                    children: [
-                      ListView.builder(
-                        physics: NeverScrollableScrollPhysics(),
-                        shrinkWrap: true,
-                        itemCount: visibleQuestions.length,
-                        itemBuilder: (context, index) {
-                          final question = visibleQuestions[index];
-                          final globalIndex = start + index;
-                          final isEven = globalIndex % 2 == 0;
-
-                          return Column(
-                            crossAxisAlignment:
-                                isEven
-                                    ? CrossAxisAlignment.start
-                                    : CrossAxisAlignment.end,
-                            children: [
-                              LabeledBorderBox(
-                                label:
-                                    'Question ${globalIndex + 1}'.toUpperCase(),
-                                width: 650,
-                                child: Text(
-                                  question.question,
-                                  textAlign: TextAlign.center,
-                                ),
-                              ),
-                              const SizedBox(height: 10),
-                              SizedBox(
-                                width: 650,
-                                child: Row(
-                                  spacing: 20,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children:
-                                      question.myersBriggsOption.map((option) {
-                                        return _optionBox(
-                                          label: option.text,
-                                          isSelected:
-                                              question.selectedOption?.text ==
-                                              option.text,
-                                          onTap: () {
-                                            context.read<MyersBriggsBloc>().add(
-                                              SelectMyersBriggsOption(
-                                                questionId: question.id,
-                                                selectedOption: option,
-                                              ),
-                                            );
-                                          },
-                                        );
-                                      }).toList(),
-                                ),
-                              ),
-                              const SizedBox(height: 30),
-                            ],
-                          );
-                        },
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          if (_currentPage > 0)
-                            ElevatedButton(
-                              onPressed: _previousPage,
-                              child: const Text('Previous'),
-                            ),
-                          Text('Page ${_currentPage + 1} of $totalPages'),
-                          if (_currentPage < totalPages - 1)
-                            ElevatedButton(
-                              onPressed:
-                                  () => _nextPage(totalPages, visibleQuestions),
-                              child: const Text('Next'),
-                            ),
-                        ],
-                      ),
-                    ],
-                  );
-                },
-              ),
-            ],
+      body: Stack(
+        fit: StackFit.expand,
+        children: [
+          Image.asset(
+            'assets/bg/myers_briggs_bg/mb_test_bg.jpg',
+            fit: BoxFit.cover,
           ),
-        ),
+          SingleChildScrollView(
+            controller: _scrollController,
+            physics: AlwaysScrollableScrollPhysics(),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+              child: Column(
+                children: [
+                  // Row(
+                  //   children: [
+                  //     CustomButtonIconWidget(
+                  //       icon: Icon(Icons.arrow_circle_left),
+                  //       onPressed: () => Navigator.of(context).pop(),
+                  //     ),
+                  //     const Spacer(),
+                  //     Align(
+                  //       alignment: Alignment.center,
+                  //       child:
+                  //     ),
+                  //     const Spacer(),
+                  //   ],
+                  // ),
+                  // Image.asset(
+                  //   'assets/bg/myers_briggs_bg/mb_test_icon.png',
+                  //   height: 150,
+                  // ),
+                  SizedBox(
+                    height: 150, // same as the image height
+                    child: Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        // Centered image
+                        Center(
+                          child: Image.asset(
+                            'assets/bg/myers_briggs_bg/mb_test_icon.png',
+                            height: 150,
+                          ),
+                        ),
+                        // Top-left back button
+                        Positioned(
+                          top: 0,
+                          left: 0,
+                          child: CustomButtonIconWidget(
+                            icon: const Icon(Icons.arrow_circle_left),
+                            onPressed: () => Navigator.of(context).pop(),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: 30),
+                  BlocBuilder<MyersBriggsBloc, MyersBriggsState>(
+                    builder: (context, state) {
+                      final questions = state.myersBriggsList;
+                      final totalPages =
+                          (questions.length / _itemsPerPage).ceil();
+
+                      final start = _currentPage * _itemsPerPage;
+                      final end = (_currentPage + 1) * _itemsPerPage;
+                      final visibleQuestions = questions.sublist(
+                        start,
+                        end > questions.length ? questions.length : end,
+                      );
+
+                      return Column(
+                        children: [
+                          ListView.builder(
+                            physics: NeverScrollableScrollPhysics(),
+                            shrinkWrap: true,
+                            itemCount: visibleQuestions.length,
+                            itemBuilder: (context, index) {
+                              final question = visibleQuestions[index];
+                              final globalIndex = start + index;
+                              final isEven = globalIndex % 2 == 0;
+
+                              return Column(
+                                crossAxisAlignment:
+                                    isEven
+                                        ? CrossAxisAlignment.start
+                                        : CrossAxisAlignment.end,
+                                children: [
+                                  LabeledBorderBox(
+                                    label:
+                                        'Question ${globalIndex + 1}'
+                                            .toUpperCase(),
+                                    width: 650,
+                                    child: Text(
+                                      question.question,
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 10),
+                                  SizedBox(
+                                    width: 650,
+                                    child: Row(
+                                      spacing: 20,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children:
+                                          question.myersBriggsOption.map((
+                                            option,
+                                          ) {
+                                            return _optionBox(
+                                              label: option.text,
+                                              isSelected:
+                                                  question
+                                                      .selectedOption
+                                                      ?.text ==
+                                                  option.text,
+                                              onTap: () {
+                                                context
+                                                    .read<MyersBriggsBloc>()
+                                                    .add(
+                                                      SelectMyersBriggsOption(
+                                                        questionId: question.id,
+                                                        selectedOption: option,
+                                                      ),
+                                                    );
+                                              },
+                                            );
+                                          }).toList(),
+                                    ),
+                                  ),
+                                  const SizedBox(height: 30),
+                                ],
+                              );
+                            },
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              if (_currentPage > 0)
+                                ElevatedButton(
+                                  onPressed: _previousPage,
+                                  child: const Text('Previous'),
+                                ),
+                              Text('Page ${_currentPage + 1} of $totalPages'),
+                              if (_currentPage < totalPages - 1)
+                                ElevatedButton(
+                                  onPressed:
+                                      () => _nextPage(
+                                        totalPages,
+                                        visibleQuestions,
+                                      ),
+                                  child: const Text('Next'),
+                                ),
+                            ],
+                          ),
+                        ],
+                      );
+                    },
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
