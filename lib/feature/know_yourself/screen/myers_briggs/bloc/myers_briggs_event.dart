@@ -26,3 +26,15 @@ class SelectMyersBriggsOption extends MyersBriggsEvent {
 class ClearMyersBriggsProgress extends MyersBriggsEvent {
   const ClearMyersBriggsProgress();
 }
+
+class FetchPersonalities extends MyersBriggsEvent {
+  const FetchPersonalities();
+}
+
+class FetchPersonalitiesById extends MyersBriggsEvent {
+  const FetchPersonalitiesById({required this.id});
+
+  final int id; // result
+  @override
+  List<Object> get props => [id];
+}

@@ -16,6 +16,9 @@ class StringConstant {
   // navigation keys for MYERS BRIGGS
   static const navMyersBriggsIntro = '/myers_briggs_intro';
   static const navMyersBriggsTest = '/myers_briggs_test';
+  static const navMyersBriggsPersonalities = '/myers_briggs_pesonalities';
+  static const navMyersBriggsPersonalitiesDetail =
+      '/myers_briggs_pesonalities_detail';
 
   // navigation keys for FOREST TEST
   static const navForestTest = '/forest_test';

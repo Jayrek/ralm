@@ -40,6 +40,7 @@ flutter:
     - assets/video/
     - assets/bg/dream_sign_bg/
     - assets/bg/secret_crush_bg/
+    - assets/bg/myers_briggs_bg/
 
   fonts:
     - family: Tinos

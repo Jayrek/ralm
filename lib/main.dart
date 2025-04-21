@@ -19,6 +19,8 @@ import 'package:ralm/feature/know_yourself/screen/ideal_type/ideal_type_test_scr
 import 'package:ralm/feature/know_yourself/screen/myers_briggs/bloc/myers_briggs_bloc.dart';
 import 'package:ralm/feature/know_yourself/screen/myers_briggs/myers_briggs_intro_screen.dart';
 import 'package:ralm/feature/know_yourself/screen/myers_briggs/myers_briggs_test_screen.dart';
+import 'package:ralm/feature/know_yourself/screen/myers_briggs/personalities_detail_screen.dart';
+import 'package:ralm/feature/know_yourself/screen/myers_briggs/personalities_screen.dart';
 import 'package:ralm/feature/know_yourself/screen/random_test/random_test_screen.dart';
 import 'package:ralm/feature/know_yourself/screen/your_color/bloc/your_color_bloc.dart';
 import 'package:ralm/feature/know_yourself/screen/your_color/your_color_result_screen.dart';
@@ -114,6 +116,10 @@ class MyApp extends StatelessWidget {
               (context) => MyersBriggsIntroScreen(),
           StringConstant.navMyersBriggsTest:
               (context) => MyersBriggsTestScreen(),
+          StringConstant.navMyersBriggsPersonalities:
+              (context) => PersonalitiesScreen(),
+          StringConstant.navMyersBriggsPersonalitiesDetail:
+              (context) => PersonalitiesDetailScreen(),
 
           // FOREST TEST
           StringConstant.navForestTest: (context) => ForestTestScreen(),

@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:ralm/core/util/myers_briggs_shared_pref_util.dart';
 import 'package:ralm/models/myers_briggs.dart';
+import 'package:ralm/models/personalities.dart';
 
 part 'myers_briggs_event.dart';
 part 'myers_briggs_state.dart';
@@ -54,6 +55,28 @@ class MyersBriggsBloc extends Bloc<MyersBriggsEvent, MyersBriggsState> {
     });
     on<ClearMyersBriggsProgress>((event, emit) async {
       await MyersBriggsSharedPrefUtil.clearMyersBriggsProgress();
+    });
+
+    on<FetchPersonalities>((event, emit) async {
+      String jsonString = await rootBundle.loadString(
+        'assets/json/personalities.json',
+      );
+      final personalitiesMapList = jsonDecode(jsonString) as List;
+      final personalitiesList =
+          personalitiesMapList
+              .map((category) => Personalities.fromJson(category))
+              .toList();
+
+      emit(state.copyWith(personalities: personalitiesList));
+    });
+    on<FetchPersonalitiesById>((event, emit) {
+      final personalities = state.personalities;
+      final personality = personalities.firstWhere(
+        (p) => p.id == event.id,
+        orElse: () => throw Exception('no personality found!'),
+      );
+      emit(state.copyWith(personality: personality));
+      // final personality = personalities.map((p) => p.id == event.id);
     });
   }
 }

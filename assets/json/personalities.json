@@ -1,0 +1,561 @@
+[
+    {
+        "id": 1,
+        "name": "INTJ",
+        "description": "INTJ the ARCHITECT",
+        "type": [
+            "Introverted",
+            "Intuitive",
+            "Thinking",
+            "Judging"
+        ],
+        "aka": "The Mastermind or The Strategist",
+        "aka_description": "Thought constitutes the greatness of man. Man is a reed, the feeblest thing in nature, but he is a thinking reed.",
+        "information": "Architects are imaginative and strategic thinkers, with a plan for everything. These thoughtful tacticians love perfecting the details of life, applying creativity and rationality to everything they do. Their inner world is often a private, complex one.",
+        "strength": [
+            "Rational",
+            "Informed",
+            "Independent",
+            "Determined",
+            "Curious",
+            "Original"
+        ],
+        "weakness": [
+            "Arrogant",
+            "Dismissive of Emotions",
+            "Overly Critical",
+            "Combative",
+            "Socially Clueless"
+        ],
+        "career": [
+            "Auditors",
+            "Cybersecurity specialists",
+            "Business analysts"
+        ]
+    },
+    {
+        "id": 2,
+        "name": "INTP",
+        "description": "INTP the LOGICIAN",
+        "type": [
+            "Introverted",
+            "Intuitive",
+            "Thinking",
+            "Prospecting"
+        ],
+        "aka": "The Thinker",
+        "aka_description": "The important thing is not to stop questioning. Curiosity has its own reason for existence.",
+        "information": "Logicians are innovative inventors with an unquenchable thirst for knowledge. These flexible thinkers enjoy taking an unconventional approach to many aspects of life. They often seek out unlikely paths, mixing willingness to experiment with personal creativity.",
+        "strength": [
+            "Analytical",
+            "Original",
+            "Open Minded",
+            "Curious",
+            "Honest"
+        ],
+        "weakness": [
+            "Disconnected",
+            "Insensitive",
+            "Dissatisfied",
+            "Overthinkers",
+            "Impatient"
+        ],
+        "career": [
+            "Self,employed Route",
+            "Services as Consultants",
+            "Freelancers"
+        ]
+    },
+    {
+        "id": 3,
+        "name": "ENTJ",
+        "description": "ENTJ the COMMANDER",
+        "type": [
+            "Extrovert",
+            "Thinking",
+            "Intuitive",
+            "Judging"
+        ],
+        "aka": "The Commander or the Leader",
+        "aka_description": "Your time is limited, so don’t waste it living someone else’s life.",
+        "information": "Commanders are bold, imaginative, and strong,willed, always finding a way – or making one. They are decisive people who love momentum and accomplishment. They gather information to construct their creative visions but rarely hesitate for long before acting on them.",
+        "strength": [
+            "Efficient",
+            "Energetic",
+            "Self Confident",
+            "Strong Willed",
+            "Strategic Thinkers",
+            "Charismatic and Inspiring"
+        ],
+        "weakness": [
+            "Stubborn and Dominant",
+            "Intolerant",
+            "Impatient",
+            "Arrogant",
+            "Poor Handling of Emotions",
+            "Cold and Ruthless"
+        ],
+        "career": [
+            "Corporate Strategists",
+            "Lawyers",
+            "Judges"
+        ]
+    },
+    {
+        "id": 4,
+        "name": "ENTP",
+        "description": "ENTP the DEBATER",
+        "type": [
+            "Extrovert",
+            "Intuitive",
+            "Thinking",
+            "Prospecting"
+        ],
+        "aka": "The Debater or the Visionary",
+        "aka_description": "Follow the path of the unsafe, independent thinker. Expose your ideas to the dangers of controversy.",
+        "information": "Debaters are curious and flexible thinkers who cannot resist an intellectual challenge. They tend to be bold and creative, deconstructing and rebuilding ideas with great mental agility. They pursue their goals vigorously despite any resistance they might encounter.",
+        "strength": [
+            "Knowledgeable",
+            "Quick Thinkers",
+            "Original",
+            "Excellent Brainstormers",
+            "Charismatic",
+            "Energetic"
+        ],
+        "weakness": [
+            "Very Argumentative",
+            "Insensitive",
+            "Intolerant",
+            "Can Find It Difficult to Focus",
+            "Dislike Practical Matters"
+        ],
+        "career": [
+            "Freelance",
+            "Consultants",
+            "Software Engineers"
+        ]
+    },
+    {
+        "id": 5,
+        "name": "INFJ",
+        "description": "INFJ the ADVOCATE",
+        "type": [
+            "Introverted",
+            "Intuitive",
+            "Feeling",
+            "Judging"
+        ],
+        "aka": "The Advocate or the Idealist",
+        "aka_description": "Treat people as if they were what they ought to be and you help them to become what they are capable of being.",
+        "information": "Advocates are quiet visionaries, often serving as inspiring and tireless idealists. They tend to approach life with deep thoughtfulness and imagination. Their inner vision, personal values, and a quiet, principled version of humanism guide them in all things.",
+        "strength": [
+            "Insightful",
+            "Principled",
+            "Passionate",
+            "Altruistic",
+            "Creative"
+        ],
+        "weakness": [
+            "Sensitive to Criticism",
+            "Reluctant to Open Up",
+            "Perfectionist",
+            "Avoiding the Ordinary",
+            "Prone to Burnout"
+        ],
+        "career": [
+            "Photography",
+            "Designer",
+            "Illustrator",
+            "Fine Art"
+        ]
+    },
+    {
+        "id": 6,
+        "name": "INFP",
+        "description": "INFP the MEDIATOR",
+        "type": [
+            "Introverted",
+            "Intuitive",
+            "Feeling",
+            "Prospecting"
+        ],
+        "aka": "The Mediator, the Idealist or the Healer",
+        "aka_description": "All that is gold does not glitter; not all those who wander are lost; the old that is strong does not wither; deep roots are not reached by the frost.",
+        "information": "Mediators are poetic, kind, and altruistic people, always eager to help a good cause. These rare personality types tend to be quiet, open,minded, and imaginative, and they apply a caring and creative approach to everything they do.",
+        "strength": [
+            "Empathetic",
+            "Generous",
+            "Open Minded",
+            "Creative",
+            "Passionate",
+            "Idealistic"
+        ],
+        "weakness": [
+            "Unrealistic",
+            "Self Isolating",
+            "Unfocused",
+            "Emotionally Vulnerable",
+            "Too Eager to Please",
+            "Self Critical"
+        ],
+        "career": [
+            "Playwrights",
+            "Composers",
+            "Choreographers"
+        ]
+    },
+    {
+        "id": 7,
+        "name": "ENFJ",
+        "description": "ENFJ the PROTAGONIST",
+        "type": [
+            "Extrovite",
+            "Intuitive",
+            "Feeling",
+            "Judging"
+        ],
+        "aka": "The Protagonist, the Giver or the Teacher",
+        "aka_description": "When the whole world is silent, even one voice becomes powerful.",
+        "information": "Protagonists are inspiring optimists, readily taking action to do what they feel is right. These warm, forthright types love helping others, and they tend to have strong ideas and values. They back their perspective with the creative energy to achieve their goals.",
+        "strength": [
+            "Receptive",
+            "Reliable",
+            "Passionate",
+            "Altruistic",
+            "Charismatic"
+        ],
+        "weakness": [
+            "Unrealistic",
+            "Overly Idealistic",
+            "Condescending",
+            "Intense",
+            "Overly Empathetic"
+        ],
+        "career": [
+            "Social worker",
+            "Teacher",
+            "Counseler",
+            "Coaching",
+            "Health Care",
+            "Public Interest Law"
+        ]
+    },
+    {
+        "id": 8,
+        "name": "ENFP",
+        "description": "ENFP the CAMPAIGNER",
+        "type": [
+            "Extrovert",
+            "Intuitive",
+            "Feeling",
+            "Prospecting"
+        ],
+        "aka": "The Advocate, the Champion, or the Inspirer",
+        "aka_description": "It doesn’t interest me what you do for a living. I want to know what you ache for – and if you dare to dream of meeting your heart’s longing.",
+        "information": "Campaigners are enthusiastic, creative, and sociable free spirits, who can always find a reason to smile. These people tend to embrace big ideas and actions that reflect their sense of hope and goodwill toward others. Their vibrant energy can flow in many directions.",
+        "strength": [
+            "Curious",
+            "Perceptive",
+            "Enthusiastic",
+            "Excellent Communicators",
+            "Easygoing",
+            "Good Nature and Positive"
+        ],
+        "weakness": [
+            "People Pleasing",
+            "Unfocused",
+            "Disorganized",
+            "Overly Accommodating",
+            "Overly Optimistic",
+            "Restless"
+        ],
+        "career": [
+            "Public Service",
+            "Counseling",
+            "Education",
+            "Customer or Public Relations",
+            "Media and Entertainment"
+        ]
+    },
+    {
+        "id": 9,
+        "name": "ISTJ",
+        "description": "ISTJ the LOGISTICIAN",
+        "type": [
+            "Introverted",
+            "Sensing",
+            "Thinking",
+            "Judging"
+        ],
+        "aka": "The Logistician or the Inspector",
+        "aka_description": "I’d be more frightened by not using whatever abilities I’d been given. I’d be more frightened by procrastination and laziness.",
+        "information": "Logisticians are practical and fact,minded individuals, whose reliability cannot be doubted. These people tend to be reserved yet willful, with a rational outlook on life. They compose their actions carefully and carry them out with methodical purpose.",
+        "strength": [
+            "Honest and Direct",
+            "Disciplined",
+            "Very Responsible",
+            "Calm and Practical",
+            "Organized and Effective",
+            "Research Oriented"
+        ],
+        "weakness": [
+            "Stubborn",
+            "Insensitive",
+            "Always by the Book",
+            "Judgemental",
+            "Prone to Burnout"
+        ],
+        "career": [
+            "Accountants",
+            "Auditors",
+            "Data Analysts",
+            "Financial Managers",
+            "Business Administrators",
+            "Doctors"
+        ]
+    },
+    {
+        "id": 10,
+        "name": "ISFJ",
+        "description": "ISFJ the DEFENDER",
+        "type": [
+            "Introvert",
+            "Sensing",
+            "Feeling",
+            "Judging"
+        ],
+        "aka": "The Protector or the Guardian",
+        "aka_description": "Love only grows by sharing. You can only have more for yourself by giving it away to others.",
+        "information": "Defenders are very dedicated and warm protectors, always ready to defend their loved ones. These people tend to be warm and unassuming in their own steady way. They’re efficient and responsible, giving careful attention to practical details in their daily lives.",
+        "strength": [
+            "Supportive",
+            "Reliable",
+            "Observant",
+            "Enthusiastic",
+            "Hardworking",
+            "Good Practical Skills"
+        ],
+        "weakness": [
+            "Overly Humble",
+            "Taking Things Personally",
+            "Repressing Their Feelings",
+            "Reluctant to Change",
+            "Too Altruistic"
+        ],
+        "career": [
+            "Human Resources",
+            "IT support",
+            "Hospitality",
+            "Retail",
+            "Office Administration",
+            "Library Sciences"
+        ]
+    },
+    {
+        "id": 11,
+        "name": "ESTJ",
+        "description": "ESTJ the EXECUTIVE",
+        "type": [
+            "Extrovert",
+            "Sensing",
+            "Thinking",
+            "Judging"
+        ],
+        "aka": "The Executive or the Supervisor",
+        "aka_description": "Good order is the foundation of all things.",
+        "information": "Executives are excellent organizers, unsurpassed at managing things – or people. They possess great fortitude, emphatically following their own sensible judgment. They often serve as a stabilizing force among others, able to offer solid direction amid adversity.",
+        "strength": [
+            "Dedicated",
+            "Strong Willed",
+            "Direct and Honest",
+            "Loyal, Patient and Reliable",
+            "Enjoy Creating Order",
+            "Excellent Organizers"
+        ],
+        "weakness": [
+            "Inflexible and Stubborn",
+            "Uncomfortable with Change",
+            "Judgemental",
+            "Too Focused on Social Status",
+            "Difficulty Relaxing",
+            "Difficulty Expressing Emotion"
+        ],
+        "career": [
+            "Auditors",
+            "Financial Officers",
+            "Business Administrators"
+        ]
+    },
+    {
+        "id": 12,
+        "name": "ESFJ",
+        "description": "ESFJ the CONSUL",
+        "type": [
+            "Extrovert",
+            "Sensing",
+            "Feeling",
+            "Judging"
+        ],
+        "aka": "The Caregiver or the Provider",
+        "aka_description": "Encourage, lift, and strengthen one another. For the positive energy spread to one will be felt by us all.",
+        "information": "Consuls are very caring, social, community,minded people who are always eager to help. They are attentive and people,focused, and they enjoy taking part in their social community. Their achievements are guided by decisive values, and they willingly offer guidance to others.",
+        "strength": [
+            "Strong Practical Skills",
+            "Strong Sense of Duty",
+            "Very Loyal",
+            "Sensitive and Warm",
+            "Good at Connecting with Others"
+        ],
+        "weakness": [
+            "Worried about Their Social Status",
+            "Inflexible",
+            "Vulnerable to Criticism",
+            "Often Too Needy",
+            "Too Selfless"
+        ],
+        "career": [
+            "Medical Care",
+            "Social Work",
+            "Teacher"
+        ]
+    },
+    {
+        "id": 13,
+        "name": "ISTP",
+        "description": "ISTP the VIRTUOSO",
+        "type": [
+            "Introvert",
+            "Sensing",
+            "Thinking",
+            "Prospecting"
+        ],
+        "aka": "The Crafter or the Tinkerer ",
+        "aka_description": "I wanted to live the life, a different life. I didn’t want to go to the same place every day and see the same people and do the same job. I wanted interesting challenges.",
+        "information": "Virtuosos are innovative and practical experimenters, masters of all kinds of tools. They tend to have an individualistic mindset, pursuing goals without needing much external connection. They engage in life with inquisitiveness and personal skill, varying their approach as needed.",
+        "strength": [
+            "Diligent and Observant",
+            "Handy and Resourceful",
+            "Spontaneous",
+            "Direct and Authentic",
+            "Independent",
+            "Grounded"
+        ],
+        "weakness": [
+            "Unapologetic",
+            "Insensitive",
+            "Private and Reserved",
+            "Easily Bored",
+            "Independent",
+            "Overly Skeptical"
+        ],
+        "career": [
+            "Firefighters",
+            "Paramedics",
+            "Detectives",
+            "Pilots"
+        ]
+    },
+    {
+        "id": 14,
+        "name": "ISFP",
+        "description": "ISFP the ADVENTURER",
+        "type": [
+            "Introvert",
+            "Sensing",
+            "Feeling",
+            "Prospecting"
+        ],
+        "aka": "The Artist or the Composer",
+        "aka_description": "I change during the course of a day. I wake and I’m one person, and when I go to sleep I know for certain I’m somebody else.",
+        "information": "Adventurers are flexible and charming, always ready to explore and experience something new. They tend to have open minds, approaching life, new experiences, and people with grounded warmth. Their ability to stay in the moment helps them uncover exciting potentials.",
+        "strength": [
+            "Charming",
+            "Sensitive to Others",
+            "Kind and Encouraging",
+            "Imaginative",
+            "Passionate"
+        ],
+        "weakness": [
+            "Difficulty with Structure",
+            "Unpredictable",
+            "Easily Stressed",
+            "Difficulty with Technical Problem Solving",
+            "Fluctuating Self Esteem"
+        ],
+        "career": [
+            "Coaching",
+            "Counseling",
+            "Teacher"
+        ]
+    },
+    {
+        "id": 15,
+        "name": "ESTP",
+        "description": "ESTP the ENTREPRENEUR",
+        "type": [
+            "Extrovert",
+            "Sensing",
+            "Thinking",
+            "Prospecting"
+        ],
+        "aka": "The Entrepreneur or the Dynamo",
+        "aka_description": "Life is either a daring adventure or nothing at all.",
+        "information": "Entrepreneurs are savvy, energetic, and very perceptive people who truly enjoy living on the edge. They tend to be energetic and action,oriented, deftly navigating whatever is in front of them. They love uncovering life’s opportunities, whether socializing with others or in more personal pursuits.",
+        "strength": [
+            "Bold",
+            "Rational and Practical",
+            "Original",
+            "Perceptive",
+            "Direct",
+            "Sociable"
+        ],
+        "weakness": [
+            "Insensitive",
+            "Impatient",
+            "Impulsive",
+            "Unstructured",
+            "May miss the Bigger Pictures",
+            "Defiant"
+        ],
+        "career": [
+            "Paramedics",
+            "Police officers",
+            "Soldiers",
+            "Logistics of Public Safety Resource"
+        ]
+    },
+    {
+        "id": 16,
+        "name": "ESFP",
+        "description": "ESFP the ENTERTAINER",
+        "type": [
+            "Extrovert",
+            "Sensing",
+            "Feeling",
+            "Prospecting"
+        ],
+        "aka": "The Performer or the Entertainer",
+        "aka_description": "Live for each second without hesitation.",
+        "information": "Entertainers are spontaneous, energetic, and enthusiastic people – life is never boring around them. These people love vibrant experiences, engaging in life eagerly and taking pleasure in discovering the unknown. They can be very social, often encouraging others into shared activities.",
+        "strength": [
+            "Bold",
+            "Positive and Enthusiastic",
+            "Original",
+            "Hands on and Observant",
+            "Excellent People Skills"
+        ],
+        "weakness": [
+            "Sensitive",
+            "Conflict Averse",
+            "Easily Bored",
+            "Poor Long Term Planners",
+            "Unfocused"
+        ],
+        "career": [
+            "Careers in Music",
+            "Fashion",
+            "Photography",
+            "Interior design"
+        ]
+    }
+]

@@ -69,7 +69,11 @@ class MyersBriggsIntroScreen extends StatelessWidget {
                           ),
                           CustomButtonRoundedWidget(
                             label: '16 Personalities',
-                            onPressed: () {},
+                            onPressed:
+                                () => Navigator.pushNamed(
+                                  context,
+                                  StringConstant.navMyersBriggsPersonalities,
+                                ),
                           ),
                           CustomButtonRoundedWidget(
                             label: 'History',
