@@ -47,45 +47,61 @@ class _IdealTypeTestScreenState extends State<IdealTypeTestScreen> {
 
     return Scaffold(
       backgroundColor: Colors.purple.shade300,
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
-        child: BlocBuilder<IdealTypeBloc, IdealTypeState>(
-          builder: (context, state) {
-            if (state.idealTypeList.isEmpty) return CircularProgressIndicator();
+      body: Stack(
+        fit: StackFit.expand,
+        children: [
+          Image.asset(
+            'assets/bg/ideal_type_bg/it_test_bg.jpg',
+            fit: BoxFit.cover,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+            child: BlocBuilder<IdealTypeBloc, IdealTypeState>(
+              builder: (context, state) {
+                if (state.idealTypeList.isEmpty)
+                  return CircularProgressIndicator();
 
-            final idealType = state.idealTypeList[_currentIndex];
+                final idealType = state.idealTypeList[_currentIndex];
 
-            return Column(
-              children: [
-                Align(
-                  alignment: Alignment.topLeft,
-                  child: CustomButtonIconWidget(
-                    icon: const Icon(Icons.arrow_circle_left),
-                    onPressed: () => Navigator.of(context).pop(),
-                  ),
-                ),
-                const SizedBox(height: 20),
-                _buildImagesPanel(idealType, () => state.idealTypeList.length),
-                const SizedBox(height: 20),
-                isShowResultButton
-                    ? CustomButtonRoundedWidget(
-                      label: 'SHOW RESULT',
-                      onPressed: () {
-                        // context.read<ElementalSoulBloc>().add(
-                        //   FetchElementalSoulQuestion(),
-                        // );
-                        Navigator.pushNamed(
-                          context,
-                          StringConstant.navIdealTYpeResult,
-                          arguments: {'gender': gender, 'points': _totalPoints},
-                        );
-                      },
-                    )
-                    : SizedBox(),
-              ],
-            );
-          },
-        ),
+                return Column(
+                  children: [
+                    Align(
+                      alignment: Alignment.topLeft,
+                      child: CustomButtonIconWidget(
+                        icon: const Icon(Icons.arrow_circle_left),
+                        onPressed: () => Navigator.of(context).pop(),
+                      ),
+                    ),
+                    const SizedBox(height: 20),
+                    _buildImagesPanel(
+                      idealType,
+                      () => state.idealTypeList.length,
+                    ),
+                    const SizedBox(height: 20),
+                    isShowResultButton
+                        ? CustomButtonRoundedWidget(
+                          label: 'SHOW RESULT',
+                          onPressed: () {
+                            // context.read<ElementalSoulBloc>().add(
+                            //   FetchElementalSoulQuestion(),
+                            // );
+                            Navigator.pushNamed(
+                              context,
+                              StringConstant.navIdealTYpeResult,
+                              arguments: {
+                                'gender': gender,
+                                'points': _totalPoints,
+                              },
+                            );
+                          },
+                        )
+                        : SizedBox(),
+                  ],
+                );
+              },
+            ),
+          ),
+        ],
       ),
     );
   }

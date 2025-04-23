@@ -14,6 +14,26 @@ class YourColorResultScreen extends StatelessWidget {
     // final int score = args['score'];
     final String result = args['result'];
 
+    String imageResult = '';
+    final blueImage = 'assets/bg/your_color/yc_blue_green.jpg';
+    final greenImage = 'assets/bg/your_color/yc_green_bg.jpg';
+    final purpleImage = 'assets/bg/your_color/yc_purple_bg.jpg';
+    final redImage = 'assets/bg/your_color/yc_red_bg.jpg';
+    final whiteImage = 'assets/bg/your_color/yc_white_bg.jpg';
+
+    switch (result.toLowerCase()) {
+      case 'green':
+        imageResult = greenImage;
+      case 'purple':
+        imageResult = purpleImage;
+      case 'red':
+        imageResult = redImage;
+      case 'blue':
+        imageResult = blueImage;
+      case 'white':
+        imageResult = whiteImage;
+    }
+
     String colorInfo = '';
     final green =
         "You're supportive and loyal with exceptional people skills you can read the emotions of others and spread your positive healing energy you always find the most original solution to any problem you feel equally good among people and alone.";
@@ -60,25 +80,31 @@ class YourColorResultScreen extends StatelessWidget {
         ],
       ),
       backgroundColor: Colors.purple.shade300,
-      body: Column(
-        // mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
+      body: Stack(
+        fit: StackFit.expand,
         children: [
-          Row(
-            spacing: 20,
-            mainAxisAlignment: MainAxisAlignment.center,
+          Image.asset(imageResult, fit: BoxFit.cover),
+          Column(
+            // mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text(
-                result.toUpperCase(),
-                style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  fontSize: 50,
-                  fontWeight: FontWeight.w100,
-                ),
+              Row(
+                spacing: 20,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    result.toUpperCase(),
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                      fontSize: 50,
+                      fontWeight: FontWeight.w100,
+                    ),
+                  ),
+                ],
               ),
+              SizedBox(height: 20),
+              Text(colorInfo, textAlign: TextAlign.center),
             ],
           ),
-          SizedBox(height: 20),
-          Text(colorInfo, textAlign: TextAlign.center),
         ],
       ),
     );

@@ -14,32 +14,41 @@ class IdealTypeResultScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: Colors.purple.shade300,
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
-          child: Column(
-            children: [
-              Align(
-                alignment: Alignment.topLeft,
-                child: CustomButtonIconWidget(
-                  icon: const Icon(Icons.arrow_circle_left),
-                  onPressed: () => Navigator.of(context).pop(),
-                ),
-              ),
-              const SizedBox(height: 20),
-              gender == 'female'
-                  ? Text(getGirlResult(points), textAlign: TextAlign.center)
-                  : Text(getBoyResult(points), textAlign: TextAlign.center),
-              Visibility(
-                visible: gender == 'male',
-                child: Text(
-                  'No matter your result , remember your result, remember , it’s all in good fun. \n\n The perfect guy is out there. And who knows? You might have just gotten a sneak today!',
-                  textAlign: TextAlign.center,
-                ),
-              ),
-            ],
+      body: Stack(
+        fit: StackFit.expand,
+        children: [
+          Image.asset(
+            'assets/bg/ideal_type_bg/it_test_bg.jpg',
+            fit: BoxFit.cover,
           ),
-        ),
+          SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+              child: Column(
+                children: [
+                  Align(
+                    alignment: Alignment.topLeft,
+                    child: CustomButtonIconWidget(
+                      icon: const Icon(Icons.arrow_circle_left),
+                      onPressed: () => Navigator.of(context).pop(),
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  gender == 'female'
+                      ? Text(getGirlResult(points), textAlign: TextAlign.center)
+                      : Text(getBoyResult(points), textAlign: TextAlign.center),
+                  Visibility(
+                    visible: gender == 'male',
+                    child: Text(
+                      'No matter your result , remember your result, remember , it’s all in good fun. \n\n The perfect guy is out there. And who knows? You might have just gotten a sneak today!',
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

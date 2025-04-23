@@ -12,50 +12,54 @@ class YourColorScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.purple.shade300,
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
-          child: Column(
-            children: [
-              Align(
-                alignment: Alignment.topLeft,
-                child: CustomButtonIconWidget(
-                  icon: Icon(Icons.arrow_circle_left),
-                  onPressed: () => Navigator.of(context).pop(),
-                ),
-              ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+      body: Stack(
+        fit: StackFit.expand,
+        children: [
+          Image.asset('assets/bg/your_color/yc_home_bg.jpg', fit: BoxFit.cover),
+          SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+              child: Column(
                 children: [
-                  Text(
-                    'Your Color',
-                    style: Theme.of(context).textTheme.displayLarge?.copyWith(
-                      fontSize: 60,
-                      color: Colors.white,
+                  Align(
+                    alignment: Alignment.topLeft,
+                    child: CustomButtonIconWidget(
+                      icon: Icon(Icons.arrow_circle_left),
+                      onPressed: () => Navigator.of(context).pop(),
                     ),
                   ),
-                  SizedBox(height: 30),
-                  Text(
-                    'With only 15 questions try this fun test on telling what Color of aura your giving!',
-                  ),
-                  SizedBox(height: 30),
-                  CustomButtonRoundedWidget(
-                    label: 'START',
-                    onPressed: () {
-                      context.read<YourColorBloc>().add(
-                        FetchYourColorQuestion(),
-                      );
-                      Navigator.pushNamed(
-                        context,
-                        StringConstant.navYourColorTest,
-                      );
-                    },
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Your Color',
+                        style: Theme.of(context).textTheme.displayLarge
+                            ?.copyWith(fontSize: 60, color: Colors.white),
+                      ),
+                      SizedBox(height: 30),
+                      Text(
+                        'With only 15 questions try this fun test on telling what Color of aura your giving!',
+                      ),
+                      SizedBox(height: 30),
+                      CustomButtonRoundedWidget(
+                        label: 'START',
+                        onPressed: () {
+                          context.read<YourColorBloc>().add(
+                            FetchYourColorQuestion(),
+                          );
+                          Navigator.pushNamed(
+                            context,
+                            StringConstant.navYourColorTest,
+                          );
+                        },
+                      ),
+                    ],
                   ),
                 ],
               ),
-            ],
+            ),
           ),
-        ),
+        ],
       ),
     );
   }

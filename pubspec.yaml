@@ -37,6 +37,7 @@ flutter:
     - assets/image/avatar/
     - assets/image/ideal_type/boy/
     - assets/image/ideal_type/girl/
+    - assets/image/random_test/
     - assets/video/
     - assets/bg/dream_sign_bg/
     - assets/bg/secret_crush_bg/
@@ -44,6 +45,10 @@ flutter:
     - assets/bg/myers_briggs_bg/personalities_img/
     - assets/bg/discover/
     - assets/bg/elemental_soul/
+    - assets/bg/your_color/
+    - assets/bg/random_test_bg/
+    - assets/bg/ideal_type_bg/
+    - assets/bg/dashboard_bg/
 
   fonts:
     - family: Tinos

@@ -14,6 +14,23 @@ class ElementalSoulResultScreen extends StatelessWidget {
     // final int score = args['score'];
     final String result = args['result'];
 
+    String imageResult = '';
+    final fireImage = 'assets/bg/elemental_soul/es_fire_bg.jpg';
+    final airImage = 'assets/bg/elemental_soul/es_air_bg.jpg';
+    final earthImage = 'assets/bg/elemental_soul/es_earth_bg.jpg';
+    final waterImage = 'assets/bg/elemental_soul/es_water_bg.jpg';
+
+    switch (result.toLowerCase()) {
+      case 'fire':
+        imageResult = fireImage;
+      case 'earth':
+        imageResult = earthImage;
+      case 'air':
+        imageResult = airImage;
+      case 'water':
+        imageResult = waterImage;
+    }
+
     String elementalInfo = '';
     final fire =
         "YOU'RE AN EXCEPTIONALLY BRIGHT AND CHARISMATIC PERSON YOU EASILY CHARM PEOPLE WITH YOUR CHARACTER AND ATTITUDE \nYOU ARE ALSO REALLY ROMANTIC PASSIONATE AND SENSITIVE SAME TIME YOU'RE SUPER FOCUSED DETERMINED AND DECEIVE YOU \nEXACTLY WHAT YOU WANT OUT OF LIFE SOMETIMES YOUR EMOTION CAN TAKE CONTROL OF YOUR ESPECIALLY JEALOUSY AND ANGER \nTRY NOT TO LET UT GET THE BEST OF YOU.";
@@ -58,27 +75,33 @@ class ElementalSoulResultScreen extends StatelessWidget {
         ],
       ),
       backgroundColor: Colors.purple.shade300,
-      body: Column(
-        // mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
+      body: Stack(
+        fit: StackFit.expand,
         children: [
-          Row(
-            spacing: 20,
-            mainAxisAlignment: MainAxisAlignment.center,
+          Image.asset(imageResult, fit: BoxFit.cover),
+          Column(
+            // mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text('YOUR ELEMENTAL SOUL IS'),
-              Text(
-                result,
-                // state.elementalSoulResult,
-                style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  fontSize: 50,
-                  fontWeight: FontWeight.w100,
-                ),
+              Row(
+                spacing: 20,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text('YOUR ELEMENTAL SOUL IS'),
+                  Text(
+                    result,
+                    // state.elementalSoulResult,
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                      fontSize: 50,
+                      fontWeight: FontWeight.w100,
+                    ),
+                  ),
+                ],
               ),
+              SizedBox(height: 20),
+              Text(elementalInfo, textAlign: TextAlign.center),
             ],
           ),
-          SizedBox(height: 20),
-          Text(elementalInfo, textAlign: TextAlign.center),
         ],
       ),
     );

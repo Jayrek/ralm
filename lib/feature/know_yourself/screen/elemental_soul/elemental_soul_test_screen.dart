@@ -24,76 +24,90 @@ class _ElementalSoulTestScreenState extends State<ElementalSoulTestScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.purple.shade300,
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
-          child: Column(
-            children: [
-              Align(
-                alignment: Alignment.topLeft,
-                child: CustomButtonIconWidget(
-                  icon: Icon(Icons.arrow_circle_left),
-                  onPressed: () => Navigator.of(context).pop(),
-                ),
-              ),
-              BlocConsumer<ElementalSoulBloc, ElementalSoulState>(
-                listener: (context, state) {
-                  final index = state.currentIndex;
-                  final questions = state.elementalSoulQuestions;
-
-                  if (index >= questions.length) {
-                    final result = StringConstant.getElementalTypeFromScore(
-                      state.totalScore,
-                    );
-                    Navigator.pushNamedAndRemoveUntil(
-                      context,
-                      StringConstant.navElementalSoulResult,
-                      (_) => false,
-                      arguments: {'score': state.totalScore, 'result': result},
-                    );
-                  }
-                },
-                builder: (context, state) {
-                  final questions = state.elementalSoulQuestions;
-                  final index = state.currentIndex;
-
-                  if (questions.isEmpty || index >= questions.length) {
-                    return const Center(child: CircularProgressIndicator());
-                  }
-
-                  final question = questions[index];
-
-                  return Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          question.question.toUpperCase(),
-                          style: const TextStyle(fontSize: 20),
-                          textAlign: TextAlign.center,
-                        ),
-                        const SizedBox(height: 20),
-                        ...question.option.map((option) {
-                          return Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 8),
-                            child: _optionBox(
-                              label: option.text,
-                              onTap: () {
-                                context.read<ElementalSoulBloc>().add(
-                                  SelectElementalSoulOption(option: option),
-                                );
-                              },
-                            ),
-                          );
-                        }),
-                      ],
-                    ),
-                  );
-                },
-              ),
-            ],
+      body: Stack(
+        fit: StackFit.expand,
+        children: [
+          Image.asset(
+            'assets/bg/elemental_soul/es_test_bg.jpg',
+            fit: BoxFit.cover,
           ),
-        ),
+          SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+              child: Column(
+                children: [
+                  Align(
+                    alignment: Alignment.topLeft,
+                    child: CustomButtonIconWidget(
+                      icon: Icon(Icons.arrow_circle_left),
+                      onPressed: () => Navigator.of(context).pop(),
+                    ),
+                  ),
+                  BlocConsumer<ElementalSoulBloc, ElementalSoulState>(
+                    listener: (context, state) {
+                      final index = state.currentIndex;
+                      final questions = state.elementalSoulQuestions;
+
+                      if (index >= questions.length) {
+                        final result = StringConstant.getElementalTypeFromScore(
+                          state.totalScore,
+                        );
+                        Navigator.pushNamedAndRemoveUntil(
+                          context,
+                          StringConstant.navElementalSoulResult,
+                          (_) => false,
+                          arguments: {
+                            'score': state.totalScore,
+                            'result': result,
+                          },
+                        );
+                      }
+                    },
+                    builder: (context, state) {
+                      final questions = state.elementalSoulQuestions;
+                      final index = state.currentIndex;
+
+                      if (questions.isEmpty || index >= questions.length) {
+                        return const Center(child: CircularProgressIndicator());
+                      }
+
+                      final question = questions[index];
+
+                      return Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              question.question.toUpperCase(),
+                              style: const TextStyle(fontSize: 20),
+                              textAlign: TextAlign.center,
+                            ),
+                            const SizedBox(height: 20),
+                            ...question.option.map((option) {
+                              return Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: 8,
+                                ),
+                                child: _optionBox(
+                                  label: option.text,
+                                  onTap: () {
+                                    context.read<ElementalSoulBloc>().add(
+                                      SelectElementalSoulOption(option: option),
+                                    );
+                                  },
+                                ),
+                              );
+                            }),
+                          ],
+                        ),
+                      );
+                    },
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

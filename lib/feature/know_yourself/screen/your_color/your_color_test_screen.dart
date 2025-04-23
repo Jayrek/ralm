@@ -21,79 +21,88 @@ class _YourColorTestScreenState extends State<YourColorTestScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.purple.shade300,
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
-          child: Column(
-            children: [
-              Align(
-                alignment: Alignment.topLeft,
-                child: CustomButtonIconWidget(
-                  icon: Icon(Icons.arrow_circle_left),
-                  onPressed: () => Navigator.of(context).pop(),
-                ),
-              ),
-              BlocConsumer<YourColorBloc, YourColorState>(
-                listener: (context, state) {
-                  final index = state.currentIndex;
-                  final questions = state.yourColorQuestions;
-
-                  if (index >= questions.length) {
-                    final result = StringConstant.getColorResultFromScore(
-                      state.totalScore,
-                    );
-                    Navigator.pushNamedAndRemoveUntil(
-                      context,
-                      StringConstant.navYourColorResult,
-                      (_) => false,
-                      arguments: {'score': state.totalScore, 'result': result},
-                    );
-                  }
-                },
-                builder: (context, state) {
-                  final questions = state.yourColorQuestions;
-                  final index = state.currentIndex;
-
-                  if (questions.isEmpty || index >= questions.length) {
-                    return const Center(child: CircularProgressIndicator());
-                  }
-
-                  final question = questions[index];
-
-                  return Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          question.question.toUpperCase(),
-                          style: const TextStyle(fontSize: 20),
-                          textAlign: TextAlign.center,
-                        ),
-                        const SizedBox(height: 20),
-                        ...question.option.map((option) {
-                          return Padding(
-                            padding: const EdgeInsets.symmetric(
-                              vertical: 8,
-                              horizontal: 40,
-                            ),
-                            child: _optionBox(
-                              label: option.text,
-                              onTap: () {
-                                context.read<YourColorBloc>().add(
-                                  SelectYourColorOption(option: option),
-                                );
-                              },
-                            ),
-                          );
-                        }),
-                      ],
+      body: Stack(
+        fit: StackFit.expand,
+        children: [
+          Image.asset('assets/bg/your_color/yc_test_bg.jpg', fit: BoxFit.cover),
+          SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+              child: Column(
+                children: [
+                  Align(
+                    alignment: Alignment.topLeft,
+                    child: CustomButtonIconWidget(
+                      icon: Icon(Icons.arrow_circle_left),
+                      onPressed: () => Navigator.of(context).pop(),
                     ),
-                  );
-                },
+                  ),
+                  BlocConsumer<YourColorBloc, YourColorState>(
+                    listener: (context, state) {
+                      final index = state.currentIndex;
+                      final questions = state.yourColorQuestions;
+
+                      if (index >= questions.length) {
+                        final result = StringConstant.getColorResultFromScore(
+                          state.totalScore,
+                        );
+                        Navigator.pushNamedAndRemoveUntil(
+                          context,
+                          StringConstant.navYourColorResult,
+                          (_) => false,
+                          arguments: {
+                            'score': state.totalScore,
+                            'result': result,
+                          },
+                        );
+                      }
+                    },
+                    builder: (context, state) {
+                      final questions = state.yourColorQuestions;
+                      final index = state.currentIndex;
+
+                      if (questions.isEmpty || index >= questions.length) {
+                        return const Center(child: CircularProgressIndicator());
+                      }
+
+                      final question = questions[index];
+
+                      return Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              question.question.toUpperCase(),
+                              style: const TextStyle(fontSize: 20),
+                              textAlign: TextAlign.center,
+                            ),
+                            const SizedBox(height: 20),
+                            ...question.option.map((option) {
+                              return Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: 8,
+                                  horizontal: 40,
+                                ),
+                                child: _optionBox(
+                                  label: option.text,
+                                  onTap: () {
+                                    context.read<YourColorBloc>().add(
+                                      SelectYourColorOption(option: option),
+                                    );
+                                  },
+                                ),
+                              );
+                            }),
+                          ],
+                        ),
+                      );
+                    },
+                  ),
+                ],
               ),
-            ],
+            ),
           ),
-        ),
+        ],
       ),
     );
   }

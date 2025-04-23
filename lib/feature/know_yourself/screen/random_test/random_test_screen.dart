@@ -62,35 +62,44 @@ class _RandomTestScreenState extends State<RandomTestScreen> {
         child:
             _questions.isEmpty
                 ? Center(child: CircularProgressIndicator())
-                : SingleChildScrollView(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 30,
-                      vertical: 20,
+                : Stack(
+                  fit: StackFit.expand,
+                  children: [
+                    Image.asset(
+                      'assets/bg/random_test_bg/rpt_test_bg.jpg',
+                      fit: BoxFit.cover,
                     ),
-                    child: Column(
-                      children: [
-                        Align(
-                          alignment: Alignment.topLeft,
-                          child: CustomButtonIconWidget(
-                            icon: const Icon(Icons.arrow_circle_left),
-                            onPressed: () => Navigator.of(context).pop(),
-                          ),
+                    SingleChildScrollView(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 30,
+                          vertical: 20,
                         ),
-                        const SizedBox(height: 20),
-                        QuestionCard(
-                          question:
-                              '${_questions[_currentIndex].id}. ${_questions[_currentIndex].question}',
-                          imagePath: _questions[_currentIndex].image,
-                          result: _questions[_currentIndex].results,
-                          showResult: _showResult,
-                          onShowResult: _onShowResultPressed,
-                          onNext: _onNextPressed,
-                          isLast: _currentIndex == _questions.length - 1,
+                        child: Column(
+                          children: [
+                            Align(
+                              alignment: Alignment.topLeft,
+                              child: CustomButtonIconWidget(
+                                icon: const Icon(Icons.arrow_circle_left),
+                                onPressed: () => Navigator.of(context).pop(),
+                              ),
+                            ),
+                            const SizedBox(height: 20),
+                            QuestionCard(
+                              question:
+                                  '${_questions[_currentIndex].id}. ${_questions[_currentIndex].question}',
+                              imagePath: _questions[_currentIndex].image,
+                              result: _questions[_currentIndex].results,
+                              showResult: _showResult,
+                              onShowResult: _onShowResultPressed,
+                              onNext: _onNextPressed,
+                              isLast: _currentIndex == _questions.length - 1,
+                            ),
+                          ],
                         ),
-                      ],
+                      ),
                     ),
-                  ),
+                  ],
                 ),
       ),
     );
