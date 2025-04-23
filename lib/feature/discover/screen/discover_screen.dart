@@ -35,96 +35,111 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.purple.shade300,
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
-          child: Center(
-            child: Column(
-              children: [
-                SizedBox(height: 10),
-                Material(
-                  elevation: 4,
-                  shape: CircleBorder(),
-                  color: Colors.transparent,
-                  clipBehavior: Clip.antiAlias,
-                  child: InkWell(
-                    customBorder: CircleBorder(),
-                    onTap: () {
-                      Navigator.pushNamed(context, StringConstant.navAvatar);
-                    },
-                    child: BlocSelector<AvatarBloc, AvatarState, Avatar>(
-                      selector: (state) => state.defaultAvatar,
-                      builder: (context, avatar) {
-                        return Container(
-                          padding: EdgeInsets.all(3),
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            border: Border.all(color: Colors.blue, width: 3),
-                          ),
-                          child: CircleAvatar(
-                            radius: 70,
-                            backgroundImage: AssetImage(avatar.image),
-                          ),
-                        );
-                      },
-                    ),
-                  ),
-                ),
-                SizedBox(height: 20),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
+      body: Stack(
+        fit: StackFit.expand,
+        children: [
+          Image.asset('assets/bg/discover/discover_bg.jpg', fit: BoxFit.cover),
+          SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+              child: Center(
+                child: Column(
                   children: [
-                    Column(
+                    SizedBox(height: 10),
+                    Material(
+                      elevation: 4,
+                      shape: CircleBorder(),
+                      color: Colors.transparent,
+                      clipBehavior: Clip.antiAlias,
+                      child: InkWell(
+                        customBorder: CircleBorder(),
+                        onTap: () {
+                          Navigator.pushNamed(
+                            context,
+                            StringConstant.navAvatar,
+                          );
+                        },
+                        child: BlocSelector<AvatarBloc, AvatarState, Avatar>(
+                          selector: (state) => state.defaultAvatar,
+                          builder: (context, avatar) {
+                            return Container(
+                              padding: EdgeInsets.all(3),
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                border: Border.all(
+                                  color: Colors.blue,
+                                  width: 3,
+                                ),
+                              ),
+                              child: CircleAvatar(
+                                radius: 70,
+                                backgroundImage: AssetImage(avatar.image),
+                              ),
+                            );
+                          },
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 20),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Text('Birthday: March 26, 1997'),
-                        Text('Horoscope: Aries'),
-                        Text('Chinese Zodiac: Ox'),
+                        Column(
+                          children: [
+                            Text('Birthday: March 26, 1997'),
+                            Text('Horoscope: Aries'),
+                            Text('Chinese Zodiac: Ox'),
+                          ],
+                        ),
+                        SizedBox(width: 20),
+                        Column(
+                          children: [
+                            Row(
+                              children: [
+                                Text('Elemental Soul: Air'),
+                                Icon(Icons.edit, size: 15, color: Colors.white),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Text('Aura Color: Blue'),
+                                Icon(Icons.edit, size: 15, color: Colors.white),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Text('MBTI: ESTP'),
+                                Icon(Icons.edit, size: 15, color: Colors.white),
+                              ],
+                            ),
+                          ],
+                        ),
                       ],
                     ),
-                    SizedBox(width: 20),
-                    Column(
-                      children: [
-                        Row(
-                          children: [
-                            Text('Elemental Soul: Air'),
-                            Icon(Icons.edit, size: 15, color: Colors.white),
-                          ],
+
+                    Padding(
+                      padding: const EdgeInsets.only(top: 40, bottom: 20),
+                      child: Text('DAILY TAROT CARD'),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: List.generate(
+                        3,
+                        (index) => AnimatedTarotCardWidget(
+                          tarot:
+                              pickedCards.isNotEmpty
+                                  ? pickedCards[index]
+                                  : null,
                         ),
-                        Row(
-                          children: [
-                            Text('Aura Color: Blue'),
-                            Icon(Icons.edit, size: 15, color: Colors.white),
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            Text('MBTI: ESTP'),
-                            Icon(Icons.edit, size: 15, color: Colors.white),
-                          ],
-                        ),
-                      ],
+                      ),
                     ),
                   ],
                 ),
-
-                Padding(
-                  padding: const EdgeInsets.only(top: 40, bottom: 20),
-                  child: Text('DAILY TAROT CARD'),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: List.generate(
-                    3,
-                    (index) => AnimatedTarotCardWidget(
-                      tarot: pickedCards.isNotEmpty ? pickedCards[index] : null,
-                    ),
-                  ),
-                ),
-              ],
+              ),
             ),
           ),
-        ),
+        ],
       ),
     );
   }

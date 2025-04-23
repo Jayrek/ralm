@@ -11,93 +11,106 @@ class AvatarListScreen extends StatelessWidget {
     context.read<AvatarBloc>().add(FetchAvatars());
     return Scaffold(
       backgroundColor: Colors.purple.shade300,
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
-          child: Column(
-            children: [
-              Align(
-                alignment: Alignment.topLeft,
-                child: CustomButtonIconWidget(
-                  icon: Icon(Icons.arrow_circle_left),
-                  onPressed: () => Navigator.of(context).pop(),
-                ),
-              ),
-              BlocBuilder<AvatarBloc, AvatarState>(
-                builder: (context, state) {
-                  final avatars = state.avatars;
-                  return Wrap(
-                    runSpacing: 10,
-                    crossAxisAlignment: WrapCrossAlignment.center,
-                    children:
-                        avatars.map((avatar) {
-                          return Padding(
-                            padding: const EdgeInsets.all(10),
-                            child: Material(
-                              elevation: 5,
-                              shape: CircleBorder(),
-                              clipBehavior: Clip.antiAlias,
-                              color: Colors.transparent,
-                              child: InkWell(
-                                customBorder: CircleBorder(),
-                                onTap: () {
-                                  if (avatar.isLocked) {
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      SnackBar(
-                                        content: Text('Avatar is locked!'),
+      body: Stack(
+        fit: StackFit.expand,
+        children: [
+          Image.asset(
+            'assets/bg/discover/discover_avatar-bg.jpg',
+            fit: BoxFit.cover,
+          ),
+          SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+              child: Column(
+                children: [
+                  Align(
+                    alignment: Alignment.topLeft,
+                    child: CustomButtonIconWidget(
+                      icon: Icon(Icons.arrow_circle_left),
+                      onPressed: () => Navigator.of(context).pop(),
+                    ),
+                  ),
+                  BlocBuilder<AvatarBloc, AvatarState>(
+                    builder: (context, state) {
+                      final avatars = state.avatars;
+                      return Wrap(
+                        runSpacing: 10,
+                        crossAxisAlignment: WrapCrossAlignment.center,
+                        children:
+                            avatars.map((avatar) {
+                              return Padding(
+                                padding: const EdgeInsets.all(10),
+                                child: Material(
+                                  elevation: 5,
+                                  shape: CircleBorder(),
+                                  clipBehavior: Clip.antiAlias,
+                                  color: Colors.transparent,
+                                  child: InkWell(
+                                    customBorder: CircleBorder(),
+                                    onTap: () {
+                                      if (avatar.isLocked) {
+                                        ScaffoldMessenger.of(
+                                          context,
+                                        ).showSnackBar(
+                                          SnackBar(
+                                            content: Text('Avatar is locked!'),
+                                          ),
+                                        );
+                                        debugPrint(
+                                          'unlocked this avatar first',
+                                        );
+                                        // context.read<AvatarBloc>().add(
+                                        //   UnlockAvatar(avatar.id),
+                                        // );
+                                      } else {
+                                        context.read<AvatarBloc>().add(
+                                          SetDefaultAvatar(avatar.id),
+                                        );
+                                        debugPrint(
+                                          'select new default avatar: $avatar',
+                                        );
+                                        // Navigator.pop(context);
+                                      }
+                                    },
+                                    child: Container(
+                                      padding: EdgeInsets.all(3),
+                                      decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        border: Border.all(
+                                          color:
+                                              avatar.isSelected
+                                                  ? Colors.blue
+                                                  : Colors.transparent,
+                                          width: 3,
+                                        ),
                                       ),
-                                    );
-                                    debugPrint('unlocked this avatar first');
-                                    // context.read<AvatarBloc>().add(
-                                    //   UnlockAvatar(avatar.id),
-                                    // );
-                                  } else {
-                                    context.read<AvatarBloc>().add(
-                                      SetDefaultAvatar(avatar.id),
-                                    );
-                                    debugPrint(
-                                      'select new default avatar: $avatar',
-                                    );
-                                    // Navigator.pop(context);
-                                  }
-                                },
-                                child: Container(
-                                  padding: EdgeInsets.all(3),
-                                  decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    border: Border.all(
-                                      color:
-                                          avatar.isSelected
-                                              ? Colors.blue
-                                              : Colors.transparent,
-                                      width: 3,
+                                      child: CircleAvatar(
+                                        radius: 40,
+                                        backgroundColor:
+                                            avatar.isLocked
+                                                ? Colors.black12
+                                                : Colors.transparent,
+                                        // backgroundImage: AssetImage(
+                                        //   avatar.image,
+                                        // ),
+                                        backgroundImage:
+                                            avatar.isLocked
+                                                ? null
+                                                : AssetImage(avatar.image),
+                                      ),
                                     ),
                                   ),
-                                  child: CircleAvatar(
-                                    radius: 40,
-                                    backgroundColor:
-                                        avatar.isLocked
-                                            ? Colors.black12
-                                            : Colors.transparent,
-                                    // backgroundImage: AssetImage(
-                                    //   avatar.image,
-                                    // ),
-                                    backgroundImage:
-                                        avatar.isLocked
-                                            ? null
-                                            : AssetImage(avatar.image),
-                                  ),
                                 ),
-                              ),
-                            ),
-                          );
-                        }).toList(),
-                  );
-                },
+                              );
+                            }).toList(),
+                      );
+                    },
+                  ),
+                ],
               ),
-            ],
+            ),
           ),
-        ),
+        ],
       ),
     );
   }

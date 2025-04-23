@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ralm/core/constants/string_constant.dart';
 import 'package:ralm/core/shared/widget/custom_button_icon_widget.dart';
+import 'package:ralm/feature/avatar/bloc/avatar_bloc.dart';
 import 'package:ralm/feature/know_yourself/bloc/know_yourself_bloc.dart';
+import 'package:ralm/models/avatar.dart';
 
 import '../../../core/shared/widget/custom_button_rounded_widget.dart';
 import '../../../core/shared/widget/custom_sub_category_widget.dart';
@@ -18,70 +20,110 @@ class KnowYourSelfScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
-          child: Column(
+          child: Stack(
             children: [
-              Row(
+              Column(
                 children: [
-                  CustomButtonRoundedWidget(
-                    label: 'Know Yourself',
-                    onPressed: null,
+                  Row(
+                    children: [
+                      CustomButtonRoundedWidget(
+                        label: 'Know Yourself',
+                        onPressed: null,
+                      ),
+                      CustomButtonIconWidget(
+                        icon: Icon(Icons.arrow_circle_left),
+                        onPressed: () => Navigator.of(context).pop(),
+                      ),
+                    ],
                   ),
-                  CustomButtonIconWidget(
-                    icon: Icon(Icons.arrow_circle_left),
-                    onPressed: () => Navigator.of(context).pop(),
+                  SizedBox(height: 20),
+                  BlocBuilder<KnowYourselfBloc, KnowYourselfState>(
+                    builder: (context, state) {
+                      return Padding(
+                        padding: const EdgeInsets.only(left: 30),
+                        child: Column(
+                          children:
+                              state.subCategories.map((subCategory) {
+                                return CustomSubCategoryWidget(
+                                  name: subCategory.categoryName,
+                                  description: subCategory.categoryDescription,
+                                  onPressed: () {
+                                    switch (subCategory.id) {
+                                      case 0:
+                                        Navigator.pushNamed(
+                                          context,
+                                          StringConstant.navMyersBriggsIntro,
+                                        );
+                                      case 1:
+                                        Navigator.pushNamed(
+                                          context,
+                                          StringConstant.navForestTest,
+                                        );
+                                      case 2:
+                                        Navigator.pushNamed(
+                                          context,
+                                          StringConstant.navElementalSoul,
+                                        );
+                                      case 3:
+                                        Navigator.pushNamed(
+                                          context,
+                                          StringConstant.navYourColor,
+                                        );
+                                      case 4:
+                                        Navigator.pushNamed(
+                                          context,
+                                          StringConstant.navRandomTest,
+                                        );
+
+                                      case 5:
+                                        Navigator.pushNamed(
+                                          context,
+                                          StringConstant.navIdealTYpeIntro,
+                                        );
+                                    }
+                                  },
+                                );
+                              }).toList(),
+                        ),
+                      );
+                    },
                   ),
                 ],
               ),
-              BlocBuilder<KnowYourselfBloc, KnowYourselfState>(
-                builder: (context, state) {
-                  return Padding(
-                    padding: const EdgeInsets.only(left: 30),
-                    child: Column(
-                      children:
-                          state.subCategories.map((subCategory) {
-                            return CustomSubCategoryWidget(
-                              name: subCategory.categoryName,
-                              description: subCategory.categoryDescription,
-                              onPressed: () {
-                                switch (subCategory.id) {
-                                  case 0:
-                                    Navigator.pushNamed(
-                                      context,
-                                      StringConstant.navMyersBriggsIntro,
-                                    );
-                                  case 1:
-                                    Navigator.pushNamed(
-                                      context,
-                                      StringConstant.navForestTest,
-                                    );
-                                  case 2:
-                                    Navigator.pushNamed(
-                                      context,
-                                      StringConstant.navElementalSoul,
-                                    );
-                                  case 3:
-                                    Navigator.pushNamed(
-                                      context,
-                                      StringConstant.navYourColor,
-                                    );
-                                  case 4:
-                                    Navigator.pushNamed(
-                                      context,
-                                      StringConstant.navRandomTest,
-                                    );
-
-                                  case 5:
-                                    Navigator.pushNamed(
-                                      context,
-                                      StringConstant.navIdealTYpeIntro,
-                                    );
-                                }
-                              },
-                            );
-                          }).toList(),
+              Positioned(
+                top: 0,
+                right: 0,
+                child: Padding(
+                  padding: EdgeInsets.all(10),
+                  child: Material(
+                    elevation: 5,
+                    shape: CircleBorder(),
+                    clipBehavior: Clip.antiAlias,
+                    color: Colors.transparent,
+                    child: InkWell(
+                      customBorder: CircleBorder(),
+                      onTap: () {
+                        Navigator.pushNamed(context, StringConstant.navAvatar);
+                      },
+                      child: BlocSelector<AvatarBloc, AvatarState, Avatar>(
+                        selector: (state) => state.defaultAvatar,
+                        builder: (context, avatar) {
+                          return Container(
+                            padding: EdgeInsets.all(3),
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              border: Border.all(color: Colors.blue, width: 3),
+                            ),
+                            child: CircleAvatar(
+                              radius: 30,
+                              backgroundImage: AssetImage(avatar.image),
+                            ),
+                          );
+                        },
+                      ),
                     ),
-                  );
-                },
+                  ),
+                ),
               ),
             ],
           ),
