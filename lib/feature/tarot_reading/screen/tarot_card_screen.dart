@@ -44,7 +44,12 @@ class _TarotCardScreenState extends State<TarotCardScreen> {
     return Scaffold(
       backgroundColor: Colors.purple.shade300,
       body: Stack(
+        fit: StackFit.expand,
         children: [
+          Image.asset(
+            'assets/bg/tarot_bg/tc_card_picking_bg.jpg',
+            fit: BoxFit.cover,
+          ),
           SingleChildScrollView(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),

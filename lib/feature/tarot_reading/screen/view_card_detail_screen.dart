@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:ralm/core/shared/widget/custom_button_icon_widget.dart';
 import 'package:ralm/feature/tarot_reading/bloc/tarot_bloc.dart';
 
 class ViewCardDetailScreen extends StatefulWidget {

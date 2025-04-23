@@ -2,8 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:ralm/core/constants/string_constant.dart';
 import 'package:ralm/core/shared/widget/custom_button_icon_widget.dart';
 
-class IdealTypeResultScreen extends StatelessWidget {
+class IdealTypeResultScreen extends StatefulWidget {
   const IdealTypeResultScreen({super.key});
+
+  @override
+  State<IdealTypeResultScreen> createState() => _IdealTypeResultScreenState();
+}
+
+class _IdealTypeResultScreenState extends State<IdealTypeResultScreen> {
+  String imageBg = '';
 
   @override
   Widget build(BuildContext context) {
@@ -11,6 +18,11 @@ class IdealTypeResultScreen extends StatelessWidget {
         ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>;
     final String gender = args['gender'];
     final int points = args['points'];
+
+    imageBg =
+        gender == 'female'
+            ? getGirlImageResult(points)
+            : getBoyImageResult(points);
 
     return Scaffold(
       backgroundColor: Colors.purple.shade300,
@@ -35,20 +47,78 @@ class IdealTypeResultScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 20),
                   gender == 'female'
-                      ? Text(getGirlResult(points), textAlign: TextAlign.center)
-                      : Text(getBoyResult(points), textAlign: TextAlign.center),
-                  Visibility(
-                    visible: gender == 'male',
-                    child: Text(
-                      'No matter your result , remember your result, remember , it’s all in good fun. \n\n The perfect guy is out there. And who knows? You might have just gotten a sneak today!',
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
+                      ? Row(
+                        children: [
+                          Expanded(
+                            flex: 1,
+                            child: _buildImageContainerWidget(imageBg),
+                          ),
+                          Expanded(
+                            flex: 2,
+                            child: Text(
+                              getGirlResult(points),
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                        ],
+                      )
+                      : Row(
+                        children: [
+                          Expanded(
+                            flex: 1,
+                            child: _buildImageContainerWidget(imageBg),
+                          ),
+                          Expanded(
+                            flex: 2,
+                            child: Column(
+                              children: [
+                                Text(
+                                  getBoyResult(points),
+                                  textAlign: TextAlign.center,
+                                ),
+                                Text(
+                                  'No matter your result , remember your result, remember , it’s all in good fun. \n\n The perfect guy is out there. And who knows? You might have just gotten a sneak today!',
+                                  textAlign: TextAlign.center,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
                 ],
               ),
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  _buildImageContainerWidget(String image) {
+    return Expanded(
+      flex: 1,
+      child: Padding(
+        padding: EdgeInsets.all(10),
+        child: Card(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16),
+          ),
+          elevation: 4,
+          child: Container(
+            height: 350,
+            width: 180,
+            child: Image.asset(image, fit: BoxFit.fill),
+            // decoration: BoxDecoration(
+            //   color: Colors.black45,
+            //   border: Border.all(width: 1, color: Colors.black87),
+            //   borderRadius: BorderRadius.circular(10),
+            //   image: DecorationImage(
+            //     image: AssetImage(image),
+            //     fit: BoxFit.fill,
+            //   ),
+            // ),
+          ),
+        ),
       ),
     );
   }
@@ -87,14 +157,35 @@ class IdealTypeResultScreen extends StatelessWidget {
     }
   }
 
-  //   If your score is 20 or 30, Your ideal ‘boy type’ is the ‘Adventurous Explorer’ - the guy
-  // who’s always up for a thrill!
-  // Score from 31 to 45?
-  // You’ve got the ‘ Caring Companion’. Your perfect match is the thoughtful and caring guy
-  // who’s there for you!.
-  // And If your total score hits 46 to 60, you’re into the ‘Charming Intellectual’
-  // Smart and charismatic- that’s your guy!
+  String getBoyImageResult(int totalPoints) {
+    final bucket = StringConstant.getIdealTypeBoyResult(totalPoints);
+    switch (bucket) {
+      case 1:
+        return "assets/bg/ideal_type_bg/boy_adventurous_explorer.png";
+      case 2:
+        return "assets/bg/ideal_type_bg/boy_throughtful_caring.png";
+      case 3:
+        return "assets/bg/ideal_type_bg/boy_charming_intellectual.png";
+      default:
+        return 'No result found for the score: $totalPoints\n\n';
+    }
+  }
 
-  // No matter your result , remember your result, remember , it’s all in good fun.
-  // The perfect guy is out there. And who knows? You might have just gotten a sneak today!
+  String getGirlImageResult(int totalPoints) {
+    final bucket = StringConstant.getIdealTypeGirlResult(totalPoints);
+    switch (bucket) {
+      case 1:
+        return "assets/bg/ideal_type_bg/girl_free_spirit.png";
+      case 2:
+        return "assets/bg/ideal_type_bg/girl_intellectual.png";
+      case 3:
+        return "assets/bg/ideal_type_bg/girl_creative_soul.png";
+      case 4:
+        return "assets/bg/ideal_type_bg/girl_nurturer.png";
+      case 5:
+        return "assets/bg/ideal_type_bg/girl_go_getter.png";
+      default:
+        return 'No result found for the score: $totalPoints';
+    }
+  }
 }

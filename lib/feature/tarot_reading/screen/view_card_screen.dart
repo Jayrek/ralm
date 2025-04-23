@@ -39,76 +39,87 @@ class _ViewTarotCardState extends State<ViewTarotCard> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.purple.shade300,
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
-          child: BlocListener<TarotBloc, TarotState>(
-            listenWhen:
-                (previous, current) =>
-                    previous.tarots != current.tarots &&
-                    current.tarots.isNotEmpty,
-            listener: (context, state) {
-              _animateCards(state.tarots.length);
-            },
-            child: Column(
-              children: [
-                Align(
-                  alignment: Alignment.topLeft,
-                  child: CustomButtonIconWidget(
-                    icon: Icon(Icons.arrow_circle_left),
-                    onPressed: () => Navigator.of(context).pop(),
-                  ),
-                ),
-                Center(
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(20),
-                        child: Text(
-                          'The Major Arcana cards are the most recognizable and impactful cards in a Tarot deck. These 22 cards represent situations we all face in the grand scheme of life, with each carrying specific messages of perspective and guidance to help you in times of need. While the Minor Arcana cards focus on the everyday actions and decisions you must face, these Major Arcana cards reveal messages about the bigger picture of your life and its long-term direction. Though each of the Major Arcana cards stands alone with its own deep meanings and influences, these 22 Tarot cards also tell a united story. The first card, The Fool, is the main character of this story, and his experiences as he learns, grows, and makes his way through life are represented by the 21 cards that follow. This storyline is a great description of the accomplishments, setbacks, and lessons we all learn as we go through the trials and tribulations of our lifetime, growing into whole, complete beings by the end of our journey.',
-                          style: TextStyle(color: Colors.white),
-                          textAlign: TextAlign.center,
-                        ),
+      body: Stack(
+        fit: StackFit.expand,
+        children: [
+          Image.asset(
+            'assets/bg/tarot_bg/tc_card_detail_bg.jpg',
+            fit: BoxFit.cover,
+          ),
+          SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+              child: BlocListener<TarotBloc, TarotState>(
+                listenWhen:
+                    (previous, current) =>
+                        previous.tarots != current.tarots &&
+                        current.tarots.isNotEmpty,
+                listener: (context, state) {
+                  _animateCards(state.tarots.length);
+                },
+                child: Column(
+                  children: [
+                    Align(
+                      alignment: Alignment.topLeft,
+                      child: CustomButtonIconWidget(
+                        icon: Icon(Icons.arrow_circle_left),
+                        onPressed: () => Navigator.of(context).pop(),
                       ),
-                      BlocBuilder<TarotBloc, TarotState>(
-                        builder: (context, state) {
-                          final tarots = state.tarots;
-                          return Center(
-                            child: Wrap(
-                              spacing: 5,
-                              runSpacing: 5,
-                              alignment: WrapAlignment.center,
-                              children: List.generate(tarots.length, (index) {
-                                final tarot = tarots[index];
-                                return AnimatedOpacity(
-                                  duration: Duration(milliseconds: 500),
-                                  opacity:
-                                      _isVisible.length > index &&
-                                              _isVisible[index]
-                                          ? 1.0
-                                          : 0.0,
-                                  child: _tarotCard(tarot, () {
-                                    context.read<TarotBloc>().add(
-                                      SelectedTarot(index: tarot.id),
-                                    );
-                                    Navigator.pushNamed(
-                                      context,
-                                      StringConstant.navTarotViewCardDetail,
+                    ),
+                    Center(
+                      child: Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(20),
+                            child: Text(
+                              'The Major Arcana cards are the most recognizable and impactful cards in a Tarot deck. These 22 cards represent situations we all face in the grand scheme of life, with each carrying specific messages of perspective and guidance to help you in times of need. While the Minor Arcana cards focus on the everyday actions and decisions you must face, these Major Arcana cards reveal messages about the bigger picture of your life and its long-term direction. Though each of the Major Arcana cards stands alone with its own deep meanings and influences, these 22 Tarot cards also tell a united story. The first card, The Fool, is the main character of this story, and his experiences as he learns, grows, and makes his way through life are represented by the 21 cards that follow. This storyline is a great description of the accomplishments, setbacks, and lessons we all learn as we go through the trials and tribulations of our lifetime, growing into whole, complete beings by the end of our journey.',
+                              style: TextStyle(color: Colors.white),
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                          BlocBuilder<TarotBloc, TarotState>(
+                            builder: (context, state) {
+                              final tarots = state.tarots;
+                              return Center(
+                                child: Wrap(
+                                  spacing: 5,
+                                  runSpacing: 5,
+                                  alignment: WrapAlignment.center,
+                                  children: List.generate(tarots.length, (
+                                    index,
+                                  ) {
+                                    final tarot = tarots[index];
+                                    return AnimatedOpacity(
+                                      duration: Duration(milliseconds: 500),
+                                      opacity:
+                                          _isVisible.length > index &&
+                                                  _isVisible[index]
+                                              ? 1.0
+                                              : 0.0,
+                                      child: _tarotCard(tarot, () {
+                                        context.read<TarotBloc>().add(
+                                          SelectedTarot(index: tarot.id),
+                                        );
+                                        Navigator.pushNamed(
+                                          context,
+                                          StringConstant.navTarotViewCardDetail,
+                                        );
+                                      }),
                                     );
                                   }),
-                                );
-                              }),
-                            ),
-                          );
-                        },
+                                ),
+                              );
+                            },
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
-              ],
+              ),
             ),
           ),
-        ),
+        ],
       ),
     );
   }

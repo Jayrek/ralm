@@ -45,60 +45,70 @@ class _ViewPickedCardScreenState extends State<ViewPickedCardScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.purple.shade300,
-      body: PageView.builder(
-        controller: _pageController,
-        itemCount: pickedCards.length,
-        onPageChanged: (index) {
-          setState(() {
-            _currentPage = index;
-          });
-        },
-        itemBuilder: (context, index) {
-          final tarot = pickedCards[index];
+      body: Stack(
+        fit: StackFit.expand,
+        children: [
+          Image.asset(
+            'assets/bg/tarot_bg/tc_card_result_bg.jpg',
+            fit: BoxFit.cover,
+          ),
+          PageView.builder(
+            controller: _pageController,
+            itemCount: pickedCards.length,
+            onPageChanged: (index) {
+              setState(() {
+                _currentPage = index;
+              });
+            },
+            itemBuilder: (context, index) {
+              final tarot = pickedCards[index];
 
-          double opacity = (_currentPage == index) ? 1.0 : 0.1;
-          double scale = (_currentPage == index) ? 1.0 : 0.95;
+              double opacity = (_currentPage == index) ? 1.0 : 0.1;
+              double scale = (_currentPage == index) ? 1.0 : 0.95;
 
-          return Center(
-            child: AnimatedContainer(
-              duration: Duration(milliseconds: 300),
-              curve: Curves.easeInOut,
-              transform: Matrix4.identity()..scale(scale),
-              // padding: EdgeInsets.symmetric(horizontal: 20, vertical: 40),
-              child: AnimatedOpacity(
-                duration: Duration(milliseconds: 300),
-                opacity: opacity,
-                child: SizedBox(
-                  width: MediaQuery.of(context).size.width * 0.9,
-                  child: SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        Align(
-                          alignment: Alignment.centerLeft,
-                          child: Text(
-                            (index == 0
-                                    ? 'First Card'
-                                    : index == 1
-                                    ? 'Second Card '
-                                    : 'Third Card')
-                                .toUpperCase(),
-                            style: TextStyle(fontSize: 20),
-                          ),
-                        ),
-                        Row(
+              return Center(
+                child: AnimatedContainer(
+                  duration: Duration(milliseconds: 300),
+                  curve: Curves.easeInOut,
+                  transform: Matrix4.identity()..scale(scale),
+                  // padding: EdgeInsets.symmetric(horizontal: 20, vertical: 40),
+                  child: AnimatedOpacity(
+                    duration: Duration(milliseconds: 300),
+                    opacity: opacity,
+                    child: SizedBox(
+                      height: 500,
+                      // width: MediaQuery.of(context).size.width * 0.9,
+                      child: SingleChildScrollView(
+                        child: Column(
                           children: [
-                            _buildImageContainerWidget(tarot.image),
-                            _buildTarotCardInfoWidget(tarot),
+                            Align(
+                              alignment: Alignment.centerLeft,
+                              child: Text(
+                                (index == 0
+                                        ? 'First Card'
+                                        : index == 1
+                                        ? 'Second Card '
+                                        : 'Third Card')
+                                    .toUpperCase(),
+                                style: TextStyle(fontSize: 20),
+                              ),
+                            ),
+                            Row(
+                              children: [
+                                _buildImageContainerWidget(tarot.image),
+                                _buildTarotCardInfoWidget(tarot),
+                              ],
+                            ),
                           ],
                         ),
-                      ],
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ),
-          );
-        },
+              );
+            },
+          ),
+        ],
       ),
     );
   }
@@ -114,15 +124,15 @@ class _ViewPickedCardScreenState extends State<ViewPickedCardScreen> {
           ),
           elevation: 4,
           child: Container(
-            height: 300,
+            height: 350,
             width: 180,
             decoration: BoxDecoration(
-              color: Colors.black87,
+              color: Colors.black45,
               border: Border.all(width: 1, color: Colors.black87),
               borderRadius: BorderRadius.circular(10),
               image: DecorationImage(
                 image: AssetImage(image),
-                fit: BoxFit.cover,
+                fit: BoxFit.fill,
               ),
             ),
           ),

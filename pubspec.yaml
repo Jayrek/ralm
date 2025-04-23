@@ -49,6 +49,7 @@ flutter:
     - assets/bg/random_test_bg/
     - assets/bg/ideal_type_bg/
     - assets/bg/dashboard_bg/
+    - assets/bg/tarot_bg/
 
   fonts:
     - family: Tinos
