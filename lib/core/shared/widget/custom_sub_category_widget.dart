@@ -24,7 +24,15 @@ class CustomSubCategoryWidget extends StatelessWidget {
             height: 50,
             width: double.infinity,
             decoration: BoxDecoration(
-              color: Colors.purple.shade800,
+              // color: Colors.purple.withOpacity(0.3),
+              gradient: LinearGradient(
+                begin: Alignment.centerLeft,
+                end: Alignment.centerRight,
+                colors: [
+                  Colors.purple.withOpacity(0.1), // Light purple
+                  Colors.purple.withOpacity(0.4), // Dark purple
+                ],
+              ),
               borderRadius: BorderRadius.all(Radius.circular(40)),
             ),
             child: Row(
@@ -34,7 +42,7 @@ class CustomSubCategoryWidget extends StatelessWidget {
                 Text(
                   description.toUpperCase(),
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    fontSize: 12,
+                    fontSize: 15,
                     fontWeight: FontWeight.bold,
                   ),
                 ),

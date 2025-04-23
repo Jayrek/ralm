@@ -32,9 +32,9 @@ class FetchPersonalities extends MyersBriggsEvent {
 }
 
 class FetchPersonalitiesById extends MyersBriggsEvent {
-  const FetchPersonalitiesById({required this.id});
+  const FetchPersonalitiesById({required this.name});
 
-  final int id; // result
+  final String name;
   @override
-  List<Object> get props => [id];
+  List<Object> get props => [name];
 }

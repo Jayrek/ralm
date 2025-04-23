@@ -72,7 +72,7 @@ class MyersBriggsBloc extends Bloc<MyersBriggsEvent, MyersBriggsState> {
     on<FetchPersonalitiesById>((event, emit) {
       final personalities = state.personalities;
       final personality = personalities.firstWhere(
-        (p) => p.id == event.id,
+        (p) => p.name == event.name,
         orElse: () => throw Exception('no personality found!'),
       );
       emit(state.copyWith(personality: personality));

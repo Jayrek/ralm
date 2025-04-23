@@ -90,14 +90,33 @@ class AvatarListScreen extends StatelessWidget {
                                             avatar.isLocked
                                                 ? Colors.black12
                                                 : Colors.transparent,
-                                        // backgroundImage: AssetImage(
-                                        //   avatar.image,
-                                        // ),
-                                        backgroundImage:
+                                        child: ClipOval(
+                                          child: Image.asset(
                                             avatar.isLocked
-                                                ? null
-                                                : AssetImage(avatar.image),
+                                                ? 'assets/bg/discover/discover_avatar_lock_icon.png'
+                                                : avatar.image,
+                                            height: 50,
+                                            width: 60,
+                                            fit: BoxFit.cover,
+                                          ),
+                                        ),
                                       ),
+                                      // child: CircleAvatar(
+                                      //   radius: 40,
+                                      //   backgroundColor:
+                                      //       avatar.isLocked
+                                      //           ? Colors.black12
+                                      //           : Colors.transparent,
+                                      //   // backgroundImage: AssetImage(
+                                      //   //   avatar.image,
+                                      //   // ),
+                                      //   backgroundImage:
+                                      //       avatar.isLocked
+                                      //           ? AssetImage(
+                                      //             'assets/bg/discover/discover_avatar_lock_icon.png',
+                                      //           )
+                                      //           : AssetImage(avatar.image),
+                                      // ),
                                     ),
                                   ),
                                 ),

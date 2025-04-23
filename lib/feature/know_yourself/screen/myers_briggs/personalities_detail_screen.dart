@@ -10,10 +10,10 @@ class PersonalitiesDetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final args =
         ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>;
-    final int id = args['id'];
-    context.read<MyersBriggsBloc>().add(FetchPersonalitiesById(id: id));
+    final String name = args['name'];
+    context.read<MyersBriggsBloc>().add(FetchPersonalitiesById(name: name));
     return Scaffold(
-      backgroundColor: Colors.purple.shade300,
+      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
@@ -22,12 +22,18 @@ class PersonalitiesDetailScreen extends StatelessWidget {
               Align(
                 alignment: Alignment.topLeft,
                 child: CustomButtonIconWidget(
-                  icon: const Icon(Icons.arrow_circle_left),
+                  icon: const Icon(
+                    Icons.arrow_circle_left,
+                    color: Colors.green,
+                  ),
                   onPressed: () => Navigator.of(context).pop(),
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(30),
+                padding: const EdgeInsets.symmetric(
+                  vertical: 30,
+                  horizontal: 50,
+                ),
                 child: BlocBuilder<MyersBriggsBloc, MyersBriggsState>(
                   builder: (context, state) {
                     final type = state.personality;
@@ -48,21 +54,36 @@ class PersonalitiesDetailScreen extends StatelessWidget {
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
-                                  Text('Your score results shows you are'),
+                                  Text(
+                                    'Your score results shows you are',
+                                    style: TextStyle(color: Colors.green),
+                                  ),
                                   SizedBox(height: 20),
                                   Text(
                                     type?.description ?? '',
-                                    style: TextStyle(fontSize: 30),
+                                    style: TextStyle(
+                                      fontSize: 30,
+                                      color: Colors.green,
+                                    ),
                                   ),
                                   SizedBox(height: 30),
-                                  Text('aka ${type?.description}'),
+                                  Text(
+                                    'aka ${type?.description}',
+                                    style: TextStyle(color: Colors.green),
+                                  ),
                                   SizedBox(height: 30),
                                   Text(
                                     "\"${type?.akaDescription}\"".toUpperCase(),
-                                    style: TextStyle(fontSize: 20),
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                      color: Colors.green,
+                                    ),
                                   ),
                                   SizedBox(height: 20),
-                                  Text("\"${type?.information}\""),
+                                  Text(
+                                    "\"${type?.information}\"",
+                                    style: TextStyle(color: Colors.green),
+                                  ),
                                 ],
                               ),
                             ),
@@ -74,127 +95,168 @@ class PersonalitiesDetailScreen extends StatelessWidget {
                           width: double.infinity,
                           child: Center(child: Text('Scroll down for more')),
                         ),
-                        Row(
-                          children: [
-                            Spacer(),
-                            Image.asset(type?.imageC ?? '', height: 400),
-                          ],
-                        ),
-
                         Container(
-                          color: Colors.green.shade700,
-                          padding: EdgeInsets.all(20),
-                          child: Row(
-                            spacing: 40,
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          color: Colors.greenAccent.shade100,
+                          child: Stack(
                             children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Text(
-                                    'Strength'.toUpperCase(),
-                                    style: TextStyle(color: Colors.white),
-                                  ),
-                                  const SizedBox(height: 8),
-                                  Container(
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                      color: Colors.white,
-                                      border: Border.all(
-                                        color: Colors.white,
-                                        width: 2,
-                                      ),
-                                    ),
-                                    padding: const EdgeInsets.all(12),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children:
-                                          (type?.strength ?? [])
-                                              .map(
-                                                (s) => Text(
-                                                  '- $s',
-                                                  style: TextStyle(
-                                                    color: Colors.green,
-                                                  ),
-                                                ),
-                                              )
-                                              .toList(),
-                                    ),
-                                  ),
+                                  Spacer(),
+                                  Image.asset(type?.imageC ?? '', height: 300),
                                 ],
                               ),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'Weaknesses'.toUpperCase(),
-                                    style: TextStyle(color: Colors.white),
-                                  ),
-                                  const SizedBox(height: 8),
-                                  Container(
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                      color: Colors.white,
-                                      border: Border.all(
-                                        color: Colors.black,
-                                        width: 2,
+                              Center(
+                                child: Container(
+                                  padding: EdgeInsets.all(20),
+                                  child: Row(
+                                    spacing: 10,
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                            'Strength'.toUpperCase(),
+                                            style: TextStyle(
+                                              color:
+                                                  Colors.greenAccent.shade200,
+                                            ),
+                                          ),
+                                          const SizedBox(height: 8),
+                                          Container(
+                                            height: 200,
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                              color: Colors.green.shade50,
+                                              border: Border.all(
+                                                color: Colors.white,
+                                                width: 2,
+                                              ),
+                                            ),
+                                            padding: const EdgeInsets.symmetric(
+                                              vertical: 12,
+                                              horizontal: 20,
+                                            ),
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children:
+                                                  (type?.strength ?? [])
+                                                      .map(
+                                                        (s) => Text(
+                                                          '- $s',
+                                                          style: TextStyle(
+                                                            color: Colors.green,
+                                                          ),
+                                                        ),
+                                                      )
+                                                      .toList(),
+                                            ),
+                                          ),
+                                        ],
                                       ),
-                                    ),
-                                    padding: const EdgeInsets.all(12),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children:
-                                          (type?.weakness ?? [])
-                                              .map(
-                                                (s) => Text(
-                                                  '- $s',
-                                                  style: TextStyle(
-                                                    color: Colors.black,
-                                                  ),
-                                                ),
-                                              )
-                                              .toList(),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'Career'.toUpperCase(),
-                                    style: TextStyle(color: Colors.white),
-                                  ),
-                                  const SizedBox(height: 8),
-                                  Container(
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                      color: Colors.white,
-                                      border: Border.all(
-                                        color: Colors.black,
-                                        width: 2,
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                            'Weaknesses'.toUpperCase(),
+                                            style: TextStyle(
+                                              color:
+                                                  Colors.greenAccent.shade200,
+                                            ),
+                                          ),
+                                          const SizedBox(height: 8),
+                                          Container(
+                                            height: 200,
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                              color:
+                                                  Colors.greenAccent.shade100,
+                                              border: Border.all(
+                                                color: Colors.white,
+                                                width: 2,
+                                              ),
+                                            ),
+                                            padding: const EdgeInsets.symmetric(
+                                              vertical: 12,
+                                              horizontal: 20,
+                                            ),
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children:
+                                                  (type?.weakness ?? [])
+                                                      .map(
+                                                        (s) => Text(
+                                                          '- $s',
+                                                          style: TextStyle(
+                                                            color:
+                                                                Colors
+                                                                    .green
+                                                                    .shade900,
+                                                          ),
+                                                        ),
+                                                      )
+                                                      .toList(),
+                                            ),
+                                          ),
+                                        ],
                                       ),
-                                    ),
-                                    padding: const EdgeInsets.all(12),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children:
-                                          (type?.weakness ?? [])
-                                              .map(
-                                                (s) => Text(
-                                                  '- $s',
-                                                  style: TextStyle(
-                                                    color: Colors.black,
-                                                  ),
-                                                ),
-                                              )
-                                              .toList(),
-                                    ),
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                            'Career'.toUpperCase(),
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                          const SizedBox(height: 8),
+                                          Container(
+                                            height: 200,
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+
+                                              color:
+                                                  Colors.greenAccent.shade200,
+                                              border: Border.all(
+                                                color: Colors.white,
+                                                width: 2,
+                                              ),
+                                            ),
+                                            padding: const EdgeInsets.symmetric(
+                                              vertical: 12,
+                                              horizontal: 20,
+                                            ),
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children:
+                                                  (type?.career ?? [])
+                                                      .map(
+                                                        (s) => Text(
+                                                          '- $s',
+                                                          style: TextStyle(
+                                                            color: Colors.white,
+                                                          ),
+                                                        ),
+                                                      )
+                                                      .toList(),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
                                   ),
-                                ],
+                                ),
                               ),
                             ],
                           ),

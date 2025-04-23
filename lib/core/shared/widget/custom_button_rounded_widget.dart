@@ -22,7 +22,7 @@ class CustomButtonRoundedWidget extends StatelessWidget {
         child: OutlinedButton(
           style: OutlinedButton.styleFrom(
             foregroundColor: Colors.blue,
-            backgroundColor: Colors.purple.shade300,
+            // backgroundColor: Colors.purple.shade300,
             side: BorderSide(color: Colors.white, width: 2),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(50),

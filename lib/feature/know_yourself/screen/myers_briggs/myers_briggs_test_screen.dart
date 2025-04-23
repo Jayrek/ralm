@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ralm/core/constants/string_constant.dart';
 import 'package:ralm/core/shared/widget/custom_button_icon_widget.dart';
 import 'package:ralm/feature/know_yourself/screen/myers_briggs/bloc/myers_briggs_bloc.dart';
 import 'package:ralm/models/myers_briggs.dart';
@@ -15,11 +16,13 @@ class _MyersBriggsTestScreenState extends State<MyersBriggsTestScreen> {
   final ScrollController _scrollController = ScrollController();
   int _currentPage = 0;
   final int _itemsPerPage = 10;
+  String myersBriggsResult = '';
 
   @override
   void initState() {
     // Wait until the state is built
     WidgetsBinding.instance.addPostFrameCallback((_) {
+      context.read<MyersBriggsBloc>().add(const FetchPersonalities());
       final bloc = context.read<MyersBriggsBloc>();
       final state = bloc.state;
 
@@ -38,6 +41,7 @@ class _MyersBriggsTestScreenState extends State<MyersBriggsTestScreen> {
 
   void _nextPage(int maxPages, List<MyersBriggs> visibleQuestions) {
     final allAnswered = visibleQuestions.every((q) => q.selectedOption != null);
+    final myersData = context.read<MyersBriggsBloc>().state.myersBriggsList;
 
     if (!allAnswered) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -55,6 +59,12 @@ class _MyersBriggsTestScreenState extends State<MyersBriggsTestScreen> {
       setState(() => _currentPage++);
       _scrollToTop();
     }
+    // if (allAnswered) {
+    //   setState(() {
+    //     myersBriggsResult = calculateMBTIFromAnswers(myersData);
+    //     debugPrint('myersBriggsResult: $myersBriggsResult');
+    //   });
+    // }
   }
 
   void _previousPage() {
@@ -62,6 +72,35 @@ class _MyersBriggsTestScreenState extends State<MyersBriggsTestScreen> {
       setState(() => _currentPage--);
       _scrollToTop();
     }
+  }
+
+  String calculateMBTIFromAnswers(List<MyersBriggs> answers) {
+    final Map<String, int> counts = {
+      'E': 0,
+      'I': 0,
+      'S': 0,
+      'N': 0,
+      'T': 0,
+      'F': 0,
+      'J': 0,
+      'P': 0,
+    };
+
+    for (final question in answers) {
+      final selected = question.selectedOption;
+      if (selected != null && counts.containsKey(selected.personalityCode)) {
+        counts[selected.personalityCode] =
+            counts[selected.personalityCode]! + 1;
+      }
+    }
+
+    String result = '';
+    result += (counts['E']! >= counts['I']!) ? 'E' : 'I';
+    result += (counts['S']! >= counts['N']!) ? 'S' : 'N';
+    result += (counts['T']! >= counts['F']!) ? 'T' : 'F';
+    result += (counts['J']! >= counts['P']!) ? 'J' : 'P';
+
+    return result;
   }
 
   @override
@@ -96,37 +135,17 @@ class _MyersBriggsTestScreenState extends State<MyersBriggsTestScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
               child: Column(
                 children: [
-                  // Row(
-                  //   children: [
-                  //     CustomButtonIconWidget(
-                  //       icon: Icon(Icons.arrow_circle_left),
-                  //       onPressed: () => Navigator.of(context).pop(),
-                  //     ),
-                  //     const Spacer(),
-                  //     Align(
-                  //       alignment: Alignment.center,
-                  //       child:
-                  //     ),
-                  //     const Spacer(),
-                  //   ],
-                  // ),
-                  // Image.asset(
-                  //   'assets/bg/myers_briggs_bg/mb_test_icon.png',
-                  //   height: 150,
-                  // ),
                   SizedBox(
-                    height: 150, // same as the image height
+                    height: 150,
                     child: Stack(
                       alignment: Alignment.center,
                       children: [
-                        // Centered image
                         Center(
                           child: Image.asset(
                             'assets/bg/myers_briggs_bg/mb_test_icon.png',
                             height: 150,
                           ),
                         ),
-                        // Top-left back button
                         Positioned(
                           top: 0,
                           left: 0,
@@ -225,6 +244,15 @@ class _MyersBriggsTestScreenState extends State<MyersBriggsTestScreen> {
                                   child: const Text('Previous'),
                                 ),
                               Text('Page ${_currentPage + 1} of $totalPages'),
+                              // if (_currentPage < totalPages - 1)
+                              //   ElevatedButton(
+                              //     onPressed:
+                              //         () => _nextPage(
+                              //           totalPages,
+                              //           visibleQuestions,
+                              //         ),
+                              //     child: const Text('Next'),
+                              //   ),
                               if (_currentPage < totalPages - 1)
                                 ElevatedButton(
                                   onPressed:
@@ -233,6 +261,60 @@ class _MyersBriggsTestScreenState extends State<MyersBriggsTestScreen> {
                                         visibleQuestions,
                                       ),
                                   child: const Text('Next'),
+                                )
+                              else
+                                ElevatedButton(
+                                  onPressed: () async {
+                                    final myersData =
+                                        context
+                                            .read<MyersBriggsBloc>()
+                                            .state
+                                            .myersBriggsList;
+
+                                    final allAnswered = myersData.every(
+                                      (q) => q.selectedOption != null,
+                                    );
+
+                                    if (!allAnswered) {
+                                      ScaffoldMessenger.of(
+                                        context,
+                                      ).showSnackBar(
+                                        SnackBar(
+                                          content: Text(
+                                            'Please answer all questions before submitting.',
+                                          ),
+                                          backgroundColor: Colors.redAccent,
+                                        ),
+                                      );
+                                      return;
+                                    }
+
+                                    final result = calculateMBTIFromAnswers(
+                                      myersData,
+                                    );
+
+                                    setState(() {
+                                      myersBriggsResult = result;
+                                    });
+
+                                    context.read<MyersBriggsBloc>().add(
+                                      const ClearMyersBriggsProgress(),
+                                    );
+
+                                    await Future.delayed(
+                                      Duration(seconds: 1),
+                                      () {},
+                                    );
+
+                                    debugPrint('MBTI Result: $result');
+                                    Navigator.pushNamed(
+                                      context,
+                                      StringConstant
+                                          .navMyersBriggsPersonalitiesDetail,
+                                      arguments: {'name': result},
+                                    );
+                                  },
+                                  child: const Text('Submit'),
                                 ),
                             ],
                           ),
@@ -262,8 +344,7 @@ class _MyersBriggsTestScreenState extends State<MyersBriggsTestScreen> {
         child: OutlinedButton(
           style: OutlinedButton.styleFrom(
             foregroundColor: Colors.white,
-            backgroundColor:
-                isSelected ? Colors.deepPurple : Colors.purple.shade300,
+            backgroundColor: isSelected ? Colors.deepPurple : null,
             side: BorderSide(color: Colors.deepPurple, width: 2),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(50),

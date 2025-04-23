@@ -100,7 +100,7 @@ class _PersonalitiesScreenState extends State<PersonalitiesScreen> {
                                     context,
                                     StringConstant
                                         .navMyersBriggsPersonalitiesDetail,
-                                    arguments: {'id': personality.id},
+                                    arguments: {'name': personality.name},
                                   );
                                 },
                                 child: Text(
