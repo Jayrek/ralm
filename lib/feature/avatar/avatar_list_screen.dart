@@ -31,84 +31,65 @@ class AvatarListScreen extends StatelessWidget {
                     crossAxisAlignment: WrapCrossAlignment.center,
                     children:
                         avatars.map((avatar) {
-                          return Column(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.all(10),
-                                child: Material(
-                                  elevation: 5,
-                                  shape: CircleBorder(),
-                                  clipBehavior: Clip.antiAlias,
-                                  color: Colors.transparent,
-                                  child: InkWell(
-                                    customBorder: CircleBorder(),
-                                    onTap: () {
-                                      if (avatar.isLocked) {
-                                        ScaffoldMessenger.of(
-                                          context,
-                                        ).showSnackBar(
-                                          SnackBar(
-                                            content: Text('Avatar is locked!'),
-                                          ),
-                                        );
-                                        debugPrint(
-                                          'unlocked this avatar first',
-                                        );
-                                        // context.read<AvatarBloc>().add(
-                                        //   UnlockAvatar(avatar.id),
-                                        // );
-                                      } else {
-                                        context.read<AvatarBloc>().add(
-                                          SetDefaultAvatar(avatar.id),
-                                        );
-                                        debugPrint(
-                                          'select new default avatar: $avatar',
-                                        );
-                                        // Navigator.pop(context);
-                                      }
-                                    },
-                                    child: Container(
-                                      padding: EdgeInsets.all(3),
-                                      decoration: BoxDecoration(
-                                        shape: BoxShape.circle,
-                                        border: Border.all(
-                                          color:
-                                              avatar.isSelected
-                                                  ? Colors.blue
-                                                  : Colors.transparent,
-                                          width: 3,
-                                        ),
+                          return Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: Material(
+                              elevation: 5,
+                              shape: CircleBorder(),
+                              clipBehavior: Clip.antiAlias,
+                              color: Colors.transparent,
+                              child: InkWell(
+                                customBorder: CircleBorder(),
+                                onTap: () {
+                                  if (avatar.isLocked) {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(
+                                        content: Text('Avatar is locked!'),
                                       ),
-                                      child: CircleAvatar(
-                                        radius: 40,
-                                        backgroundColor:
-                                            avatar.isLocked
-                                                ? Colors.black12
-                                                : Colors.transparent,
-                                        // backgroundImage: AssetImage(
-                                        //   avatar.image,
-                                        // ),
-                                        backgroundImage:
-                                            avatar.isLocked
-                                                ? null
-                                                : AssetImage(avatar.image),
-                                      ),
+                                    );
+                                    debugPrint('unlocked this avatar first');
+                                    // context.read<AvatarBloc>().add(
+                                    //   UnlockAvatar(avatar.id),
+                                    // );
+                                  } else {
+                                    context.read<AvatarBloc>().add(
+                                      SetDefaultAvatar(avatar.id),
+                                    );
+                                    debugPrint(
+                                      'select new default avatar: $avatar',
+                                    );
+                                    // Navigator.pop(context);
+                                  }
+                                },
+                                child: Container(
+                                  padding: EdgeInsets.all(3),
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    border: Border.all(
+                                      color:
+                                          avatar.isSelected
+                                              ? Colors.blue
+                                              : Colors.transparent,
+                                      width: 3,
                                     ),
+                                  ),
+                                  child: CircleAvatar(
+                                    radius: 40,
+                                    backgroundColor:
+                                        avatar.isLocked
+                                            ? Colors.black12
+                                            : Colors.transparent,
+                                    // backgroundImage: AssetImage(
+                                    //   avatar.image,
+                                    // ),
+                                    backgroundImage:
+                                        avatar.isLocked
+                                            ? null
+                                            : AssetImage(avatar.image),
                                   ),
                                 ),
                               ),
-                              Text(
-                                avatar.category,
-                                style: TextStyle(
-                                  color:
-                                      avatar.isLocked
-                                          ? Colors.black26
-                                          : avatar.isSelected
-                                          ? Colors.deepPurple
-                                          : Colors.white,
-                                ),
-                              ),
-                            ],
+                            ),
                           );
                         }).toList(),
                   );
