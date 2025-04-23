@@ -2,12 +2,14 @@ class ChineseZodiac {
   const ChineseZodiac({
     required this.id,
     required this.name,
+    required this.bg,
     required this.years,
     required this.chineseZodiacData,
   });
 
   final int id;
   final String name;
+  final String bg;
   final List<int> years;
   final ChineseZodiacData chineseZodiacData;
 
@@ -15,6 +17,7 @@ class ChineseZodiac {
     return ChineseZodiac(
       id: json['id'],
       name: json['name'],
+      bg: json['bg'],
       years: List<int>.from(json['years']),
       chineseZodiacData: ChineseZodiacData.fromJson(json['data']),
     );
@@ -23,6 +26,7 @@ class ChineseZodiac {
   static final defaultValue = const ChineseZodiac(
     id: 0,
     name: '',
+    bg: '',
     years: [],
     chineseZodiacData: ChineseZodiacData(
       description: '',

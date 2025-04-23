@@ -50,6 +50,8 @@ flutter:
     - assets/bg/ideal_type_bg/
     - assets/bg/dashboard_bg/
     - assets/bg/tarot_bg/
+    - assets/bg/constellation_zodiac_bg/
+    - assets/bg/zodiac_bg/
 
   fonts:
     - family: Tinos

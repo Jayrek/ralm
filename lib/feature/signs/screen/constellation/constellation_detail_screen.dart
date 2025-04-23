@@ -11,7 +11,8 @@ class ConstellationDetailScreen extends StatefulWidget {
 }
 
 class _ConstellationDetailScreenState extends State<ConstellationDetailScreen> {
-  final PageController _pageController = PageController(viewportFraction: 0.6);
+  // final PageController _pageController = PageController(viewportFraction: 0.6);
+  final PageController _pageController = PageController();
   int _currentPage = 0;
 
   @override
@@ -72,161 +73,177 @@ class _ConstellationDetailScreenState extends State<ConstellationDetailScreen> {
               double opacity = (_currentPage == index) ? 1.0 : 0;
               double scale = (_currentPage == index) ? 1.0 : 0.95;
 
-              return Center(
-                child: AnimatedContainer(
-                  duration: Duration(milliseconds: 300),
-                  curve: Curves.easeInOut,
-                  transform: Matrix4.identity()..scale(scale),
-                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 40),
-                  child: AnimatedOpacity(
-                    duration: Duration(milliseconds: 300),
-                    opacity: opacity,
-                    child: SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.9,
-                      child: SingleChildScrollView(
-                        child: Row(
-                          children: [
-                            Expanded(
-                              flex: 1,
-                              child: Padding(
-                                padding: EdgeInsets.all(10),
-                                child: Card(
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(16),
-                                  ),
-                                  elevation: 4,
-                                  child: Container(
-                                    height: 400,
-                                    width: 150,
-                                    decoration: BoxDecoration(
-                                      color: Colors.black87,
-                                      border: Border.all(
-                                        width: 1,
-                                        color: Colors.black87,
+              return Stack(
+                fit: StackFit.expand,
+                children: [
+                  Image.asset(zodiac.bg, fit: BoxFit.cover),
+                  Center(
+                    child: AnimatedContainer(
+                      duration: Duration(milliseconds: 300),
+                      curve: Curves.easeInOut,
+                      transform: Matrix4.identity()..scale(scale),
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 20,
+                        vertical: 40,
+                      ),
+                      child: AnimatedOpacity(
+                        duration: Duration(milliseconds: 300),
+                        opacity: opacity,
+                        child: SizedBox(
+                          width: MediaQuery.of(context).size.width * 0.9,
+                          child: SingleChildScrollView(
+                            child: Row(
+                              children: [
+                                Expanded(
+                                  flex: 1,
+                                  child: Padding(
+                                    padding: EdgeInsets.all(10),
+                                    child: Card(
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(16),
                                       ),
-                                      borderRadius: BorderRadius.circular(10),
-                                      image: DecorationImage(
-                                        image: AssetImage(zodiac.image),
-                                        fit: BoxFit.cover,
+                                      elevation: 4,
+                                      child: Container(
+                                        height: 400,
+                                        width: 150,
+                                        decoration: BoxDecoration(
+                                          color: Colors.black87,
+                                          border: Border.all(
+                                            width: 1,
+                                            color: Colors.black87,
+                                          ),
+                                          borderRadius: BorderRadius.circular(
+                                            10,
+                                          ),
+                                          image: DecorationImage(
+                                            image: AssetImage(zodiac.image),
+                                            fit: BoxFit.cover,
+                                          ),
+                                        ),
                                       ),
                                     ),
                                   ),
                                 ),
-                              ),
-                            ),
-                            Expanded(
-                              flex: 2,
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    zodiac.name.toUpperCase(),
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      fontSize: 36,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  SizedBox(height: 10),
-                                  Text(
-                                    zodiac.dateRange,
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      fontSize: 18,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                  SizedBox(height: 20),
-                                  Text(
-                                    zodiac.data.description,
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      fontSize: 18,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                  SizedBox(height: 20),
-                                  Visibility(
-                                    visible: zodiac.data.bestTraits.isNotEmpty,
-                                    child: Text(
-                                      'Best Traits: ${zodiac.data.bestTraits}',
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        color: Colors.white,
+                                Expanded(
+                                  flex: 2,
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        zodiac.name.toUpperCase(),
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                          fontSize: 36,
+                                          fontWeight: FontWeight.bold,
+                                        ),
                                       ),
-                                    ),
-                                  ),
-                                  SizedBox(height: 20),
-                                  Visibility(
-                                    visible: zodiac.data.symbolized.isNotEmpty,
-                                    child: Text(
-                                      'Symbolized: ${zodiac.data.symbolized}',
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        color: Colors.white,
+                                      SizedBox(height: 10),
+                                      Text(
+                                        zodiac.dateRange,
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                          fontSize: 18,
+                                          color: Colors.white,
+                                        ),
                                       ),
-                                    ),
-                                  ),
+                                      SizedBox(height: 20),
+                                      Text(
+                                        zodiac.data.description,
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                          fontSize: 18,
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                      SizedBox(height: 20),
+                                      Visibility(
+                                        visible:
+                                            zodiac.data.bestTraits.isNotEmpty,
+                                        child: Text(
+                                          'Best Traits: ${zodiac.data.bestTraits}',
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                      ),
+                                      SizedBox(height: 20),
+                                      Visibility(
+                                        visible:
+                                            zodiac.data.symbolized.isNotEmpty,
+                                        child: Text(
+                                          'Symbolized: ${zodiac.data.symbolized}',
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                      ),
 
-                                  // Left & Right Navigation Buttons
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                      top: 50,
-                                      bottom: 10,
-                                    ),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Visibility(
-                                          visible: _currentPage != 0,
-                                          child: IconButton(
-                                            icon: Icon(
-                                              Icons.arrow_circle_left_outlined,
-                                              size: 40,
-                                              color: Colors.white,
-                                            ),
-                                            onPressed:
-                                                _currentPage > 0
-                                                    ? _goToPrevious
-                                                    : null,
-                                          ),
+                                      // Left & Right Navigation Buttons
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                          top: 50,
+                                          bottom: 10,
                                         ),
-                                        SizedBox(width: 200),
-                                        Visibility(
-                                          visible:
-                                              _currentPage !=
-                                              zodiacs.length - 1,
-                                          child: IconButton(
-                                            icon: Icon(
-                                              Icons.arrow_circle_right_outlined,
-                                              size: 40,
-                                              color: Colors.white,
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Visibility(
+                                              visible: _currentPage != 0,
+                                              child: IconButton(
+                                                icon: Icon(
+                                                  Icons
+                                                      .arrow_circle_left_outlined,
+                                                  size: 40,
+                                                  color: Colors.white,
+                                                ),
+                                                onPressed:
+                                                    _currentPage > 0
+                                                        ? _goToPrevious
+                                                        : null,
+                                              ),
                                             ),
-                                            onPressed:
-                                                _currentPage <
-                                                        zodiacs.length - 1
-                                                    ? () => _goToNext(
-                                                      zodiacs.length,
-                                                    )
-                                                    : null,
-                                          ),
+                                            SizedBox(width: 200),
+                                            Visibility(
+                                              visible:
+                                                  _currentPage !=
+                                                  zodiacs.length - 1,
+                                              child: IconButton(
+                                                icon: Icon(
+                                                  Icons
+                                                      .arrow_circle_right_outlined,
+                                                  size: 40,
+                                                  color: Colors.white,
+                                                ),
+                                                onPressed:
+                                                    _currentPage <
+                                                            zodiacs.length - 1
+                                                        ? () => _goToNext(
+                                                          zodiacs.length,
+                                                        )
+                                                        : null,
+                                              ),
+                                            ),
+                                          ],
                                         ),
-                                      ],
-                                    ),
+                                      ),
+                                    ],
                                   ),
-                                ],
-                              ),
+                                ),
+                              ],
                             ),
-                          ],
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
+                ],
               );
             },
           );

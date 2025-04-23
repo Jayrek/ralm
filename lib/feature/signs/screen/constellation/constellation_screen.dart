@@ -1,4 +1,3 @@
-import 'package:day_month_picker/day_month_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ralm/core/constants/string_constant.dart';
@@ -126,107 +125,174 @@ class _ConstellationScreenState extends State<ConstellationScreen>
       backgroundColor: Colors.purple.shade300,
       body: SlideTransition(
         position: _animation,
-        child: Padding(
-          padding: const EdgeInsets.all(20),
-          child: Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        child: Stack(
+          fit: StackFit.expand,
+          children: [
+            Image.asset(
+              'assets/bg/constellation_zodiac_bg/cz_home_bg.jpg',
+              fit: BoxFit.cover,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(20),
+              child: Column(
                 children: [
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
+                      Row(
+                        children: [
+                          CustomButtonRoundedWidget(
+                            label: 'Constellation Zodiac',
+                            width: 200,
+                            onPressed: null,
+                          ),
+                          CustomButtonIconWidget(
+                            icon: Icon(Icons.arrow_circle_left),
+                            onPressed: () => Navigator.of(context).pop(),
+                          ),
+                        ],
+                      ),
                       CustomButtonRoundedWidget(
-                        label: 'Constellation Zodiac',
-                        width: 200,
-                        onPressed: null,
+                        label:
+                            selectedDate == null
+                                ? 'Select your birth year'
+                                : selectedDate!.year.toString(),
+                        width: 250,
+                        // onPressed: () => _showMonthDayPicker(context),
+                        onPressed: () {
+                          showDialog(
+                            context: context,
+                            builder: (context) {
+                              return _dayMonthPicker();
+                            },
+                          );
+                        },
                       ),
-                      CustomButtonIconWidget(
-                        icon: Icon(Icons.arrow_circle_left),
-                        onPressed: () => Navigator.of(context).pop(),
-                      ),
+                      // DayMonthPicker(
+                      //   onChange: (dayMonth) {
+                      //     // Do something with the selected day and month
+                      //     print(
+                      //       'Selected Day: ${dayMonth.day}, Month: ${dayMonth.month}',
+                      //     );
+                      //   },
+                      // ),
                     ],
                   ),
-                  CustomButtonRoundedWidget(
-                    label:
-                        selectedDate == null
-                            ? 'Select your birth year'
-                            : selectedDate!.year.toString(),
-                    width: 250,
-                    // onPressed: () => _showMonthDayPicker(context),
-                    onPressed: () {
-                      showDialog(
-                        context: context,
-                        builder: (context) {
-                          return _dayMonthPicker();
-                        },
-                      );
-                    },
-                  ),
-                  // DayMonthPicker(
-                  //   onChange: (dayMonth) {
-                  //     // Do something with the selected day and month
-                  //     print(
-                  //       'Selected Day: ${dayMonth.day}, Month: ${dayMonth.month}',
-                  //     );
-                  //   },
-                  // ),
-                ],
-              ),
-              SizedBox(height: 40),
-              Expanded(
-                child: BlocBuilder<ConstellationBloc, ConstellationState>(
-                  builder: (context, state) {
-                    return GridView.builder(
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 4, // Number of columns
-                        crossAxisSpacing: 40,
-                        mainAxisSpacing: 40,
-                        childAspectRatio: 3,
-                      ),
-                      itemCount: state.zodiacs.length,
-                      itemBuilder: (context, index) {
-                        final constellation = state.zodiacs[index];
-                        return InkWell(
-                          onTap: () {
-                            context.read<ConstellationBloc>().add(
-                              SelectedConstellationZodiac(
-                                dateRange: constellation.dateRange,
+                  SizedBox(height: 40),
+                  Expanded(
+                    child: BlocBuilder<ConstellationBloc, ConstellationState>(
+                      builder: (context, state) {
+                        return GridView.builder(
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 4,
+                                mainAxisSpacing: 4,
+                                crossAxisSpacing: 4,
+                                childAspectRatio: 2.5,
                               ),
-                            );
-                            Navigator.pushNamed(
-                              context,
-                              StringConstant.navConstellationZodiacDetail,
-                            );
-                          },
-                          child: Row(
-                            children: [
-                              Icon(Icons.abc_rounded),
-                              Expanded(
-                                child: Container(
-                                  height: 60,
-                                  decoration: BoxDecoration(
-                                    border: Border.all(
-                                      width: 2,
-                                      color: Colors.white,
+                          itemCount: state.zodiacs.length,
+                          itemBuilder: (context, index) {
+                            final constellation = state.zodiacs[index];
+                            final columnIndex = index % 4;
+
+                            final List<Color> columnColors = [
+                              Colors.purple.shade200,
+                              Colors.teal.shade400,
+                              Colors.blue.shade200,
+                              Colors.orange.shade300,
+                            ];
+
+                            final buttonColor = columnColors[columnIndex];
+                            return Center(
+                              child: Material(
+                                elevation: 4,
+                                color:
+                                    Colors
+                                        .transparent, // keep background color from button
+                                child: OutlinedButton(
+                                  style: OutlinedButton.styleFrom(
+                                    // backgroundColor: Colors.white,
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 50,
+                                      vertical: 20,
+                                    ),
+                                    minimumSize: Size.zero,
+                                    tapTargetSize:
+                                        MaterialTapTargetSize.shrinkWrap,
+                                    side: BorderSide(
+                                      color: buttonColor,
+                                      width: 3,
+                                    ),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.zero,
                                     ),
                                   ),
-                                  child: Center(
-                                    child: Text(
-                                      constellation.name.toUpperCase(),
+                                  onPressed: () {
+                                    context.read<ConstellationBloc>().add(
+                                      SelectedConstellationZodiac(
+                                        dateRange: constellation.dateRange,
+                                      ),
+                                    );
+                                    Navigator.pushNamed(
+                                      context,
+                                      StringConstant
+                                          .navConstellationZodiacDetail,
+                                    );
+                                  },
+                                  child: Text(
+                                    constellation.name.toUpperCase(),
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 20,
                                     ),
                                   ),
                                 ),
                               ),
-                            ],
-                          ),
+                            );
+
+                            // return InkWell(
+                            //   onTap: () {
+                            //     context.read<ConstellationBloc>().add(
+                            //       SelectedConstellationZodiac(
+                            //         dateRange: constellation.dateRange,
+                            //       ),
+                            //     );
+                            //     Navigator.pushNamed(
+                            //       context,
+                            //       StringConstant.navConstellationZodiacDetail,
+                            //     );
+                            //   },
+                            //   child: Expanded(
+                            //     child: Container(
+                            //       height: 60,
+                            //       decoration: BoxDecoration(
+                            //         border: Border.all(
+                            //           width: 3,
+                            //           color: buttonColor,
+                            //         ),
+                            //       ),
+                            //       child: Center(
+                            //         child: Text(
+                            //           constellation.name.toUpperCase(),
+                            //           style: TextStyle(
+                            //             fontWeight: FontWeight.bold,
+                            //           ),
+                            //         ),
+                            //       ),
+                            //     ),
+                            //   ),
+                            // );
+                          },
                         );
                       },
-                    );
-                  },
-                ),
+                    ),
+                  ),
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

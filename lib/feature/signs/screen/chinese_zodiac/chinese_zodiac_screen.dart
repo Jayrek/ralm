@@ -129,93 +129,173 @@ class _ChineseZodiacScreenState extends State<ChineseZodiacScreen>
     context.read<ChineseZodiacBloc>().add(FetchChineseZodiac());
     return Scaffold(
       backgroundColor: Colors.purple.shade300,
-      body: SlideTransition(
-        position: _animation,
-        child: Padding(
-          padding: const EdgeInsets.all(20),
-          child: Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      body: Stack(
+        fit: StackFit.expand,
+        children: [
+          Image.asset(
+            'assets/bg/zodiac_bg/zodiac_home_bg.jpg',
+            fit: BoxFit.cover,
+          ),
+          SlideTransition(
+            position: _animation,
+            child: Padding(
+              padding: const EdgeInsets.all(20),
+              child: Column(
                 children: [
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      CustomButtonRoundedWidget(
-                        label: 'Chinese Zodiac',
-                        width: 200,
-                        onPressed: null,
+                      Row(
+                        children: [
+                          CustomButtonRoundedWidget(
+                            label: 'Chinese Zodiac',
+                            width: 200,
+                            onPressed: null,
+                          ),
+                          CustomButtonIconWidget(
+                            icon: Icon(Icons.arrow_circle_left),
+                            onPressed: () => Navigator.of(context).pop(),
+                          ),
+                        ],
                       ),
-                      CustomButtonIconWidget(
-                        icon: Icon(Icons.arrow_circle_left),
-                        onPressed: () => Navigator.of(context).pop(),
+                      CustomButtonRoundedWidget(
+                        label:
+                            selectedDate == null
+                                ? 'Select your birth year'
+                                : selectedDate!.year.toString(),
+                        width: 250,
+                        onPressed: () => _selectYear(context),
                       ),
                     ],
                   ),
-                  CustomButtonRoundedWidget(
-                    label:
-                        selectedDate == null
-                            ? 'Select your birth year'
-                            : selectedDate!.year.toString(),
-                    width: 250,
-                    onPressed: () => _selectYear(context),
+                  SizedBox(height: 40),
+                  Expanded(
+                    child: BlocBuilder<ChineseZodiacBloc, ChineseZodiacState>(
+                      builder: (context, state) {
+                        return GridView.builder(
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                                // crossAxisCount: 3,
+                                // crossAxisSpacing: 40,
+                                // mainAxisSpacing: 40,
+                                // childAspectRatio: 10,
+                                crossAxisCount: 4,
+                                mainAxisSpacing: 4,
+                                crossAxisSpacing: 4,
+                                childAspectRatio: 2.5,
+                              ),
+                          itemCount: state.zodiacs.length,
+                          itemBuilder: (context, index) {
+                            final zodiac = state.zodiacs[index];
+                            return Center(
+                              child: Row(
+                                children: [
+                                  Image.asset(
+                                    'assets/bg/zodiac_bg/zodiac_lantern.png',
+                                    height: 100,
+                                  ),
+                                  Material(
+                                    elevation: 4,
+                                    color:
+                                        Colors
+                                            .transparent, // keep background color from button
+                                    child: OutlinedButton(
+                                      style: OutlinedButton.styleFrom(
+                                        // backgroundColor: Colors.white,
+                                        padding: const EdgeInsets.symmetric(
+                                          horizontal: 50,
+                                          vertical: 20,
+                                        ),
+                                        minimumSize: Size.zero,
+                                        tapTargetSize:
+                                            MaterialTapTargetSize.shrinkWrap,
+                                        side: BorderSide(
+                                          color: Colors.yellow.shade700,
+                                          width: 3,
+                                        ),
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.only(
+                                            topRight: Radius.circular(30),
+                                            bottomRight: Radius.circular(30),
+                                          ),
+                                        ),
+                                      ),
+                                      onPressed: () {
+                                        context.read<ChineseZodiacBloc>().add(
+                                          SelectedChineseZodiac(
+                                            year: index,
+                                            notYear: true,
+                                          ),
+                                        );
+                                        Navigator.pushNamed(
+                                          context,
+                                          StringConstant.navChineseZodiacDetail,
+                                        );
+                                      },
+                                      child: Text(
+                                        zodiac.name.toUpperCase(),
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 20,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            );
+
+                            // return InkWell(
+                            //   onTap: () {
+                            //     context.read<ChineseZodiacBloc>().add(
+                            //       SelectedChineseZodiac(
+                            //         year: index,
+                            //         notYear: true,
+                            //       ),
+                            //     );
+                            //     Navigator.pushNamed(
+                            //       context,
+                            //       StringConstant.navChineseZodiacDetail,
+                            //     );
+                            //   },
+                            //   child: Row(
+                            //     children: [
+                            //       Image.asset(
+                            //         'assets/bg/zodiac_bg/zodiac_lantern.png',
+                            //         height: 100,
+                            //       ),
+                            //       Expanded(
+                            //         child: Container(
+                            //           decoration: BoxDecoration(
+                            //             border: Border.all(
+                            //               width: 2,
+                            //               color: Colors.white,
+                            //             ),
+                            //             borderRadius: BorderRadius.only(
+                            //               topRight: Radius.circular(50),
+                            //               bottomRight: Radius.circular(50),
+                            //             ),
+                            //           ),
+                            //           child: Center(
+                            //             child: Text(zodiac.name.toUpperCase()),
+                            //           ),
+                            //         ),
+                            //       ),
+                            //     ],
+                            //   ),
+                            // );
+                          },
+                        );
+                      },
+                    ),
                   ),
                 ],
               ),
-              SizedBox(height: 40),
-              Expanded(
-                child: BlocBuilder<ChineseZodiacBloc, ChineseZodiacState>(
-                  builder: (context, state) {
-                    return GridView.builder(
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 3,
-                        crossAxisSpacing: 40,
-                        mainAxisSpacing: 40,
-                        childAspectRatio: 10,
-                      ),
-                      itemCount: state.zodiacs.length,
-                      itemBuilder: (context, index) {
-                        final zodiac = state.zodiacs[index];
-                        return InkWell(
-                          onTap: () {
-                            context.read<ChineseZodiacBloc>().add(
-                              SelectedChineseZodiac(year: index, notYear: true),
-                            );
-                            Navigator.pushNamed(
-                              context,
-                              StringConstant.navChineseZodiacDetail,
-                            );
-                          },
-                          child: Row(
-                            children: [
-                              Icon(Icons.abc_rounded),
-                              Expanded(
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    border: Border.all(
-                                      width: 2,
-                                      color: Colors.white,
-                                    ),
-                                    borderRadius: BorderRadius.only(
-                                      topRight: Radius.circular(50),
-                                      bottomRight: Radius.circular(50),
-                                    ),
-                                  ),
-                                  child: Center(
-                                    child: Text(zodiac.name.toUpperCase()),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        );
-                      },
-                    );
-                  },
-                ),
-              ),
-            ],
+            ),
           ),
-        ),
+        ],
       ),
     );
   }

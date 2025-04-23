@@ -2,6 +2,7 @@
     {
         "id": 1,
         "name": "Rat",
+        "bg": "assets/bg/zodiac_bg/rat_bg.jpg",
         "years": [
             1960,
             1972,
@@ -24,6 +25,7 @@
     {
         "id": 2,
         "name": "Ox",
+        "bg": "assets/bg/zodiac_bg/ox_bg.jpg",
         "years": [
             1961,
             1973,
@@ -46,6 +48,7 @@
     {
         "id": 3,
         "name": "Tiger",
+        "bg": "assets/bg/zodiac_bg/tiger_bg.jpg",
         "years": [
             1950,
             1962,
@@ -69,6 +72,7 @@
     {
         "id": 4,
         "name": "Rabbit",
+        "bg": "assets/bg/zodiac_bg/rabbit_bg.jpg",
         "years": [
             1951,
             1963,
@@ -92,6 +96,7 @@
     {
         "id": 5,
         "name": "Dragon",
+        "bg": "assets/bg/zodiac_bg/dragon_bg.jpg",
         "years": [
             1952,
             1964,
@@ -115,6 +120,7 @@
     {
         "id": 6,
         "name": "Snake",
+        "bg": "assets/bg/zodiac_bg/snake_bg.jpg",
         "years": [
             1953,
             1965,
@@ -138,6 +144,7 @@
     {
         "id": 7,
         "name": "Horse",
+        "bg": "assets/bg/zodiac_bg/horse_bg.jpg",
         "years": [
             1954,
             1966,
@@ -161,6 +168,7 @@
     {
         "id": 8,
         "name": "Goat",
+        "bg": "assets/bg/zodiac_bg/goat_bg.jpg",
         "years": [
             1955,
             1967,
@@ -184,6 +192,7 @@
     {
         "id": 9,
         "name": "Monkey",
+        "bg": "assets/bg/zodiac_bg/monkey_bg.jpg",
         "years": [
             1956,
             1968,
@@ -207,6 +216,7 @@
     {
         "id": 10,
         "name": "Rooster",
+        "bg": "assets/bg/zodiac_bg/rooster_bg.jpg",
         "years": [
             1957,
             1969,
@@ -230,6 +240,7 @@
     {
         "id": 11,
         "name": "Dog",
+        "bg": "assets/bg/zodiac_bg/dog_bg.jpg",
         "years": [
             1958,
             1970,
@@ -253,6 +264,7 @@
     {
         "id": 12,
         "name": "Pig",
+        "bg": "assets/bg/zodiac_bg/pig_bg.jpg",
         "years": [
             1959,
             1971,

@@ -85,7 +85,11 @@ class _DreamSignDetailScreenState extends State<DreamSignDetailScreen> {
                         child: SizedBox(
                           width: MediaQuery.of(context).size.width * 0.9,
                           child: SingleChildScrollView(
-                            child: _buildDreamSignInfoWidget(dream, details),
+                            child: _buildDreamSignInfoWidget(
+                              dream,
+                              details,
+                              type,
+                            ),
                           ),
                         ),
                       ),
@@ -100,7 +104,11 @@ class _DreamSignDetailScreenState extends State<DreamSignDetailScreen> {
     );
   }
 
-  _buildDreamSignInfoWidget(DreamSign dreamSign, List<DreamSign> list) {
+  _buildDreamSignInfoWidget(
+    DreamSign dreamSign,
+    List<DreamSign> list,
+    String type,
+  ) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -108,13 +116,20 @@ class _DreamSignDetailScreenState extends State<DreamSignDetailScreen> {
         Text(
           dreamSign.title.toUpperCase(),
           textAlign: TextAlign.center,
-          style: TextStyle(fontSize: 36, fontWeight: FontWeight.bold),
+          style: TextStyle(
+            fontSize: 36,
+            fontWeight: FontWeight.bold,
+            color: type == 'nightmare' ? Colors.white : Colors.black,
+          ),
         ),
         SizedBox(height: 10),
         Text(
           dreamSign.information,
           textAlign: TextAlign.center,
-          style: TextStyle(fontSize: 18, color: Colors.white),
+          style: TextStyle(
+            fontSize: 18,
+            color: type == 'nightmare' ? Colors.white : Colors.black,
+          ),
         ),
 
         // Left & Right Navigation Buttons

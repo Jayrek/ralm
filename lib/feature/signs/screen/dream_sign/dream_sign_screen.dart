@@ -13,8 +13,11 @@ class DreamSignScreen extends StatelessWidget {
       body: Stack(
         fit: StackFit.expand,
         children: [
-          Image.asset('assets/bg/dream_sign_bg/ds_bg.jpg', fit: BoxFit.cover),
-          SingleChildScrollView(
+          Image.asset(
+            'assets/bg/dream_sign_bg/ds_home_bg.jpg',
+            fit: BoxFit.cover,
+          ),
+          Center(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
               child: Column(
@@ -100,7 +103,7 @@ class DreamSignScreen extends StatelessWidget {
                     onPressed: () {
                       Navigator.pop(context);
                     },
-                    child: Text('Exit'),
+                    child: Text('Exit', style: TextStyle(color: Colors.white)),
                   ),
                 ],
               ),
