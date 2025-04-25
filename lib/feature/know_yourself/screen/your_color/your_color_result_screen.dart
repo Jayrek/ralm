@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ralm/core/constants/string_constant.dart';
+import 'package:ralm/feature/know_yourself/screen/elemental_soul/bloc/elemental_soul_bloc.dart';
 import 'package:ralm/feature/know_yourself/screen/your_color/bloc/your_color_bloc.dart';
 
 class YourColorResultScreen extends StatelessWidget {
@@ -60,52 +61,91 @@ class YourColorResultScreen extends StatelessWidget {
     }
 
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.purple.shade300,
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 10),
-            child: TextButton(
-              onPressed: () {
-                context.read<YourColorBloc>().add(ResetYourColorQuestion());
-                Navigator.pushNamedAndRemoveUntil(
-                  context,
-                  StringConstant.navDashboardScreenKey,
-                  (_) => false,
-                );
-              },
-              child: Text('Exit', style: TextStyle(color: Colors.white)),
+      // appBar: AppBar(
+      //   backgroundColor: Colors.purple.shade300,
+      //   actions: [
+      //     Padding(
+      //       padding: const EdgeInsets.only(right: 10),
+      //       child: TextButton(
+      //         onPressed: () {
+      //           context.read<YourColorBloc>().add(ResetYourColorQuestion());
+      //           Navigator.pushNamedAndRemoveUntil(
+      //             context,
+      //             StringConstant.navDashboardScreenKey,
+      //             (_) => false,
+      //           );
+      //         },
+      //         child: Text('Exit', style: TextStyle(color: Colors.white)),
+      //       ),
+      //     ),
+      //   ],
+      // ),
+      backgroundColor: Colors.black,
+      body: SizedBox.expand(
+        child: Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage(imageResult),
+              fit: BoxFit.cover,
             ),
           ),
-        ],
-      ),
-      backgroundColor: Colors.purple.shade300,
-      body: Stack(
-        fit: StackFit.expand,
-        children: [
-          Image.asset(imageResult, fit: BoxFit.cover),
-          Column(
-            // mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Row(
-                spacing: 20,
-                mainAxisAlignment: MainAxisAlignment.center,
+          child: Container(
+            color: Colors.black.withOpacity(0.4),
+            child: SafeArea(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
+                  Align(
+                    alignment: Alignment.topRight,
+                    child: Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: TextButton(
+                        onPressed: () {
+                          context.read<YourColorBloc>().add(
+                            ResetYourColorQuestion(),
+                          );
+
+                          Navigator.pushNamedAndRemoveUntil(
+                            context,
+                            StringConstant.navKnowYourScreenKey,
+                            ModalRoute.withName(
+                              StringConstant.navKnowYourScreenKey,
+                            ),
+                          );
+                        },
+                        child: Text(
+                          'Exit',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontFamily: 'Poppins',
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 60),
                   Text(
                     result.toUpperCase(),
                     style: Theme.of(context).textTheme.titleMedium?.copyWith(
                       fontSize: 50,
-                      fontWeight: FontWeight.w100,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'Poppins',
+                    ),
+                  ),
+                  SizedBox(height: 20),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 60),
+                    child: Text(
+                      colorInfo,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontFamily: 'Poppons'),
                     ),
                   ),
                 ],
               ),
-              SizedBox(height: 20),
-              Text(colorInfo, textAlign: TextAlign.center),
-            ],
+            ),
           ),
-        ],
+        ),
       ),
     );
   }

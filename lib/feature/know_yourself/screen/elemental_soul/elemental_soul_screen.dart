@@ -47,7 +47,6 @@ class ElementalSoulScreen extends StatelessWidget {
                                 onPressed: () => Navigator.of(context).pop(),
                               ),
                             ),
-                            const SizedBox(height: 30),
                             Expanded(
                               child: Center(
                                 child: Column(

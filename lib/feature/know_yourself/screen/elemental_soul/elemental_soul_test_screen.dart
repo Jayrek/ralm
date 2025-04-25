@@ -57,7 +57,6 @@ class _ElementalSoulTestScreenState extends State<ElementalSoulTestScreen> {
                                   onPressed: () => Navigator.of(context).pop(),
                                 ),
                               ),
-                              const SizedBox(height: 20),
                               Expanded(
                                 child: Center(
                                   child: BlocConsumer<
