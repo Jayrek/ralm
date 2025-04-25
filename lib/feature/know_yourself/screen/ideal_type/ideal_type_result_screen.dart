@@ -25,71 +25,90 @@ class _IdealTypeResultScreenState extends State<IdealTypeResultScreen> {
             : getBoyImageResult(points);
 
     return Scaffold(
-      backgroundColor: Colors.purple.shade300,
-      body: Stack(
-        fit: StackFit.expand,
-        children: [
-          Image.asset(
-            'assets/bg/ideal_type_bg/it_test_bg.jpg',
-            fit: BoxFit.cover,
+      backgroundColor: Colors.black,
+      body: SizedBox.expand(
+        child: Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/bg/ideal_type_bg/it_test_bg.jpg'),
+              fit: BoxFit.cover,
+            ),
           ),
-          SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
-              child: Column(
-                children: [
-                  Align(
-                    alignment: Alignment.topLeft,
-                    child: CustomButtonIconWidget(
-                      icon: const Icon(Icons.arrow_circle_left),
-                      onPressed: () => Navigator.of(context).pop(),
-                    ),
+          child: Container(
+            color: Colors.black.withOpacity(0.4),
+            child: SafeArea(
+              child: SingleChildScrollView(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 30,
+                    vertical: 20,
                   ),
-                  const SizedBox(height: 20),
-                  gender == 'female'
-                      ? Row(
-                        children: [
-                          Expanded(
-                            flex: 1,
-                            child: _buildImageContainerWidget(imageBg),
-                          ),
-                          Expanded(
-                            flex: 2,
-                            child: Text(
-                              getGirlResult(points),
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-                        ],
-                      )
-                      : Row(
-                        children: [
-                          Expanded(
-                            flex: 1,
-                            child: _buildImageContainerWidget(imageBg),
-                          ),
-                          Expanded(
-                            flex: 2,
-                            child: Column(
-                              children: [
-                                Text(
-                                  getBoyResult(points),
-                                  textAlign: TextAlign.center,
+                  child: Column(
+                    children: [
+                      Align(
+                        alignment: Alignment.topLeft,
+                        child: CustomButtonIconWidget(
+                          icon: const Icon(Icons.arrow_circle_left),
+                          onPressed:
+                              () => Navigator.pushNamedAndRemoveUntil(
+                                context,
+                                StringConstant.navKnowYourScreenKey,
+                                ModalRoute.withName(
+                                  StringConstant.navKnowYourScreenKey,
                                 ),
-                                Text(
-                                  'No matter your result , remember your result, remember , it’s all in good fun. \n\n The perfect guy is out there. And who knows? You might have just gotten a sneak today!',
-                                  textAlign: TextAlign.center,
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
+                              ),
+                        ),
                       ),
-                ],
+                      const SizedBox(height: 20),
+                      gender == 'female'
+                          ? Row(
+                            children: [
+                              Expanded(
+                                flex: 1,
+                                child: _buildImageContainerWidget(imageBg),
+                              ),
+                              Expanded(
+                                flex: 2,
+                                child: Text(
+                                  getGirlResult(points),
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(fontFamily: 'Poppins'),
+                                ),
+                              ),
+                            ],
+                          )
+                          : Row(
+                            children: [
+                              Expanded(
+                                flex: 1,
+                                child: _buildImageContainerWidget(imageBg),
+                              ),
+                              Expanded(
+                                flex: 2,
+                                child: Column(
+                                  children: [
+                                    Text(
+                                      getBoyResult(points),
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(fontFamily: 'Poppins'),
+                                    ),
+                                    Text(
+                                      'No matter your result , remember your result, remember , it’s all in good fun. \n\n The perfect guy is out there. And who knows? You might have just gotten a sneak today!',
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(fontFamily: 'Poppins'),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                    ],
+                  ),
+                ),
               ),
             ),
           ),
-        ],
+        ),
       ),
     );
   }

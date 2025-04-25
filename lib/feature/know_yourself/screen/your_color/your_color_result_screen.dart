@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ralm/core/constants/string_constant.dart';
-import 'package:ralm/feature/know_yourself/screen/elemental_soul/bloc/elemental_soul_bloc.dart';
 import 'package:ralm/feature/know_yourself/screen/your_color/bloc/your_color_bloc.dart';
 
 class YourColorResultScreen extends StatelessWidget {
@@ -61,25 +60,6 @@ class YourColorResultScreen extends StatelessWidget {
     }
 
     return Scaffold(
-      // appBar: AppBar(
-      //   backgroundColor: Colors.purple.shade300,
-      //   actions: [
-      //     Padding(
-      //       padding: const EdgeInsets.only(right: 10),
-      //       child: TextButton(
-      //         onPressed: () {
-      //           context.read<YourColorBloc>().add(ResetYourColorQuestion());
-      //           Navigator.pushNamedAndRemoveUntil(
-      //             context,
-      //             StringConstant.navDashboardScreenKey,
-      //             (_) => false,
-      //           );
-      //         },
-      //         child: Text('Exit', style: TextStyle(color: Colors.white)),
-      //       ),
-      //     ),
-      //   ],
-      // ),
       backgroundColor: Colors.black,
       body: SizedBox.expand(
         child: Container(

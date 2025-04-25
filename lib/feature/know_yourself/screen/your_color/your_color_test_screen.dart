@@ -20,7 +20,7 @@ class _YourColorTestScreenState extends State<YourColorTestScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.purple.shade300,
+      backgroundColor: Colors.black,
       body: SizedBox.expand(
         child: Container(
           decoration: BoxDecoration(
