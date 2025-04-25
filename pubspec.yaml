@@ -19,6 +19,10 @@ dependencies:
   shared_preferences: ^2.5.3
   video_player: ^2.9.5
   responsive_framework: ^1.5.1
+  just_audio: ^0.9.36
+  audio_session: ^0.1.15
+  audioplayers: ^5.2.1
+  just_audio_web: ^0.4.15
 
 dev_dependencies:
   flutter_test:
@@ -53,6 +57,7 @@ flutter:
     - assets/bg/constellation_zodiac_bg/
     - assets/bg/zodiac_bg/
     - assets/bg/forest_test_bg/
+    - assets/audio/audio_stream.mp3
 
   fonts:
     - family: Tinos

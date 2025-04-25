@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ralm/core/constants/string_constant.dart';
+import 'package:ralm/core/service/background_music_service.dart';
 import 'package:ralm/core/shared/widget/custom_button_rounded_widget.dart';
 import 'package:ralm/feature/avatar/bloc/avatar_bloc.dart';
 import 'package:ralm/feature/dashboard/bloc/dashboard_bloc.dart';
@@ -19,6 +20,7 @@ class DashboardScreen extends StatefulWidget {
 
 class _DashboardScreenState extends State<DashboardScreen> {
   late VideoPlayerController _videoController;
+  bool isPlaying = BackgroundMusicService().isPlaying;
 
   @override
   void initState() {
@@ -136,8 +138,19 @@ class _DashboardScreenState extends State<DashboardScreen> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             CustomButtonIconWidget(
-                              icon: Icon(Icons.music_note),
-                              onPressed: () {},
+                              icon: Icon(
+                                isPlaying ? Icons.music_off : Icons.music_note,
+                              ),
+                              onPressed: () async {
+                                if (isPlaying) {
+                                  await BackgroundMusicService().stop();
+                                } else {
+                                  await BackgroundMusicService().play();
+                                }
+                                setState(() {
+                                  isPlaying = !isPlaying;
+                                });
+                              },
                             ),
                             CustomButtonIconWidget(
                               icon: Icon(Icons.logout),

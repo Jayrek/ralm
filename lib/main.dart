@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ralm/core/service/background_music_service.dart';
 import 'package:ralm/core/theme/app_theme.dart';
 import 'package:ralm/feature/avatar/avatar_list_screen.dart';
 import 'package:ralm/feature/avatar/bloc/avatar_bloc.dart';
@@ -65,6 +66,7 @@ void main() async {
     DeviceOrientation.landscapeLeft,
     DeviceOrientation.landscapeRight,
   ]);
+  // await BackgroundMusicService().init();
   runApp(const MyApp());
 }
 
