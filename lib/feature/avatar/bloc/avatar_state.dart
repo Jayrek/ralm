@@ -10,21 +10,25 @@ class AvatarState extends Equatable {
       isSelected: true,
       isLocked: false,
     ),
+    this.isAvatarUnlocked = false,
   });
 
   final List<Avatar> avatars;
   final Avatar defaultAvatar;
+  final bool isAvatarUnlocked;
 
   @override
-  List<Object> get props => [avatars, defaultAvatar];
+  List<Object> get props => [avatars, defaultAvatar, isAvatarUnlocked];
 
   AvatarState copyWith({
     final List<Avatar>? avatars,
     final Avatar? defaultAvatar,
+    final bool? isAvatarUnlocked,
   }) {
     return AvatarState(
       avatars: avatars ?? this.avatars,
       defaultAvatar: defaultAvatar ?? this.defaultAvatar,
+      isAvatarUnlocked: isAvatarUnlocked ?? this.isAvatarUnlocked,
     );
   }
 }

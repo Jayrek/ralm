@@ -95,7 +95,7 @@ class AvatarListScreen extends StatelessWidget {
                                             avatar.isLocked
                                                 ? 'assets/bg/discover/discover_avatar_lock_icon.png'
                                                 : avatar.image,
-                                            height: 50,
+                                            height: 60,
                                             width: 60,
                                             fit: BoxFit.cover,
                                           ),

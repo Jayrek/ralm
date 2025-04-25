@@ -120,6 +120,7 @@ class _PersonalitiesScreenState extends State<PersonalitiesScreen> {
                                       color: Colors.purple.shade900,
                                       fontWeight: FontWeight.bold,
                                       fontSize: 15,
+                                      fontFamily: 'Poppins',
                                     ),
                                   ),
                                 ),

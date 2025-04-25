@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ralm/core/constants/string_constant.dart';
 import 'package:ralm/core/shared/widget/custom_button_icon_widget.dart';
+import 'package:ralm/feature/avatar/bloc/avatar_bloc.dart';
 import 'package:ralm/feature/know_yourself/screen/myers_briggs/bloc/myers_briggs_bloc.dart';
 import 'package:ralm/models/myers_briggs.dart';
 
@@ -35,8 +36,6 @@ class _MyersBriggsTestScreenState extends State<MyersBriggsTestScreen> {
         final page = lastAnsweredIndex ~/ _itemsPerPage;
         setState(() => _currentPage = page);
       }
-
-      // _showAddToDiscoverDialog();
     });
     super.initState();
   }
@@ -444,23 +443,27 @@ class _MyersBriggsTestScreenState extends State<MyersBriggsTestScreen> {
                                           return;
                                         }
 
+                                        context.read<AvatarBloc>().add(
+                                          UnlockAvatar(10),
+                                        );
+
                                         final result = calculateMBTIFromAnswers(
                                           myersData,
                                         );
 
-                                        setState(() {
-                                          myersBriggsResult = result;
-                                        });
+                                        // setState(() {
+                                        //   myersBriggsResult = result;
+                                        // });
 
-                                        context.read<MyersBriggsBloc>().add(
-                                          const ClearMyersBriggsProgress(),
-                                        );
-
-                                        context.read<MyersBriggsBloc>().add(
-                                          SaveMyersBriggesResult(
-                                            result: result,
-                                          ),
-                                        );
+                                        context.read<MyersBriggsBloc>()
+                                          ..add(
+                                            const ClearMyersBriggsProgress(),
+                                          )
+                                          ..add(
+                                            SaveMyersBriggesResult(
+                                              result: result,
+                                            ),
+                                          );
 
                                         await Future.delayed(
                                           Duration(seconds: 1),
@@ -468,6 +471,7 @@ class _MyersBriggsTestScreenState extends State<MyersBriggsTestScreen> {
                                         );
 
                                         debugPrint('MBTI Result: $result');
+                                        if (!context.mounted) return;
                                         Navigator.pushNamed(
                                           context,
                                           StringConstant

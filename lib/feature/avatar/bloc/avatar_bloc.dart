@@ -12,13 +12,6 @@ class AvatarBloc extends Bloc<AvatarEvent, AvatarState> {
       final avatars = await AvatarSharedUtil.loadAvatars();
       final selectedAvatar = avatars.firstWhere((avatar) => avatar.isSelected);
       emit(state.copyWith(avatars: avatars, defaultAvatar: selectedAvatar));
-      // String jsonString = await rootBundle.loadString(
-      //   'assets/json/avatar.json',
-      // );
-      // final avatarMapList = jsonDecode(jsonString) as List;
-      // final avatarList =
-      //     avatarMapList.map((category) => Avatar.fromJson(category)).toList();
-      // emit(state.copyWith(avatarFromJson: avatarList));
     });
 
     on<UnlockAvatar>((event, emit) async {
@@ -39,17 +32,24 @@ class AvatarBloc extends Bloc<AvatarEvent, AvatarState> {
             return a.copyWith(isSelected: a.id == event.id);
           }).toList();
 
-      // final updated =
-      //     avatars.map((a) {
-      //       return a.id == event.id ? a.copyWith(isSelected: true) : a;
-      //     }).toList();
-
       await AvatarSharedUtil.saveAvatars(updatedAvatars);
       final defaultAvatar =
           updatedAvatars.where((avatar) => avatar.isSelected == true).first;
       emit(
         state.copyWith(avatars: updatedAvatars, defaultAvatar: defaultAvatar),
       );
+    });
+    on<CheckAvatarUnlocked>((event, emit) async {
+      final avatars = await AvatarSharedUtil.loadAvatars();
+      final avatar = avatars.firstWhere((avatar) => avatar.id == event.id);
+
+      if (!avatar.isLocked) {
+        // Avatar is unlocked
+        emit(state.copyWith(isAvatarUnlocked: true));
+      } else {
+        // Avatar is locked or not found
+        emit(state.copyWith(isAvatarUnlocked: false));
+      }
     });
   }
 }
