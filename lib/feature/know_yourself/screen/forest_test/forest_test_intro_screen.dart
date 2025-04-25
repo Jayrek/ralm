@@ -107,6 +107,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ralm/core/constants/string_constant.dart';
 import 'package:ralm/core/shared/widget/custom_button_icon_widget.dart';
+import 'package:ralm/feature/avatar/bloc/avatar_bloc.dart';
 import 'package:ralm/feature/know_yourself/screen/forest_test/bloc/forest_test_bloc.dart';
 import 'package:video_player/video_player.dart';
 
@@ -168,6 +169,9 @@ class _ForestTestIntroScreenState extends State<ForestTestIntroScreen> {
                 onPressed: () {
                   _controller.pause(); // stop the video
                   context.read<ForestTestBloc>().add(FetchForestTestResult());
+                  context.read<ForestTestBloc>().add(SaveAvatarForestTest());
+                  context.read<AvatarBloc>().add(UnlockAvatar(11));
+
                   Navigator.pushNamed(
                     context,
                     StringConstant.navForestTestResult,

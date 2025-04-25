@@ -68,7 +68,7 @@ class _MyersBriggsTestScreenState extends State<MyersBriggsTestScreen> {
 
   void _nextPage(int maxPages, List<MyersBriggs> visibleQuestions) {
     final allAnswered = visibleQuestions.every((q) => q.selectedOption != null);
-    final myersData = context.read<MyersBriggsBloc>().state.myersBriggsList;
+    // final myersData = context.read<MyersBriggsBloc>().state.myersBriggsList;
 
     if (!allAnswered) {
       ScaffoldMessenger.of(context).showSnackBar(

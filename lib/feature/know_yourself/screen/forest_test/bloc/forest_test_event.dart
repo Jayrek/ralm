@@ -10,3 +10,11 @@ sealed class ForestTestEvent extends Equatable {
 class FetchForestTestResult extends ForestTestEvent {
   const FetchForestTestResult();
 }
+
+class SaveAvatarForestTest extends ForestTestEvent {
+  const SaveAvatarForestTest();
+}
+
+class RemoveAvatarForestTest extends ForestTestEvent {}
+
+class GetAvatarForestTest extends ForestTestEvent {}
