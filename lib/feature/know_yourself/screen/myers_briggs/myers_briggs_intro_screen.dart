@@ -78,7 +78,14 @@ class MyersBriggsIntroScreen extends StatelessWidget {
                                 StringConstant.navMyersBriggsPersonalities,
                               ),
                         ),
-                        _optionBox(label: 'History', onTap: () {}),
+                        _optionBox(
+                          label: 'History',
+                          onTap:
+                              () => Navigator.pushNamed(
+                                context,
+                                StringConstant.navMyersBriggsHistory,
+                              ),
+                        ),
                       ],
                     ),
                   ),

@@ -1,10 +1,14 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ralm/core/constants/string_constant.dart';
 import 'package:ralm/core/shared/widget/custom_button_icon_widget.dart';
+import 'package:ralm/core/util/history_storage.dart';
 import 'package:ralm/feature/avatar/bloc/avatar_bloc.dart';
 import 'package:ralm/feature/know_yourself/screen/myers_briggs/bloc/myers_briggs_bloc.dart';
 import 'package:ralm/models/myers_briggs.dart';
+import 'package:ralm/models/test_history.dart';
 
 class MyersBriggsTestScreen extends StatefulWidget {
   const MyersBriggsTestScreen({super.key});
@@ -18,6 +22,20 @@ class _MyersBriggsTestScreenState extends State<MyersBriggsTestScreen> {
   int _currentPage = 0;
   final int _itemsPerPage = 10;
   String myersBriggsResult = '';
+
+  // timer
+  late Timer _timer;
+  int _elapsedSeconds = 0;
+
+  void _startTimer() {
+    _timer = Timer.periodic(const Duration(seconds: 1), (_) {
+      if (!mounted) return; // prevent setState on disposed widget
+      setState(() {
+        _elapsedSeconds++;
+      });
+      debugPrint('_elapsedSeconds: $_elapsedSeconds');
+    });
+  }
 
   @override
   void initState() {
@@ -37,6 +55,7 @@ class _MyersBriggsTestScreenState extends State<MyersBriggsTestScreen> {
         setState(() => _currentPage = page);
       }
     });
+    _startTimer();
     super.initState();
   }
 
@@ -451,6 +470,24 @@ class _MyersBriggsTestScreenState extends State<MyersBriggsTestScreen> {
                                           myersData,
                                         );
 
+                                        final duration = Duration(
+                                          seconds: _elapsedSeconds,
+                                        );
+                                        final formattedTime =
+                                            '${duration.inMinutes.toString().padLeft(2, '0')}:${(duration.inSeconds % 60).toString().padLeft(2, '0')}';
+
+                                        final historyItem = TestHistory(
+                                          time: formattedTime,
+                                          result: result, // e.g., "Fire"
+                                          date:
+                                              DateTime.now().toString().split(
+                                                ' ',
+                                              )[0], // e.g., "2025-04-24"
+                                        );
+
+                                        await HistoryStorage.saveHistoryItem(
+                                          historyItem,
+                                        );
                                         // setState(() {
                                         //   myersBriggsResult = result;
                                         // });
