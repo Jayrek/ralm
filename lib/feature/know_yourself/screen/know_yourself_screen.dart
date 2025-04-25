@@ -44,7 +44,7 @@ class _KnowYourSelfScreenState extends State<KnowYourSelfScreen> {
   Widget build(BuildContext context) {
     context.read<KnowYourselfBloc>().add(FetchKnowYourselfCategory());
     return Scaffold(
-      backgroundColor: Colors.purple.shade300,
+      backgroundColor: Colors.black,
       body: Stack(
         children: [
           if (_videoController.value.isInitialized)

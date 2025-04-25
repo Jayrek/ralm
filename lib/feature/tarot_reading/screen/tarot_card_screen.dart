@@ -42,7 +42,7 @@ class _TarotCardScreenState extends State<TarotCardScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.purple.shade300,
+      backgroundColor: Colors.black,
       body: Stack(
         fit: StackFit.expand,
         children: [

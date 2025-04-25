@@ -52,7 +52,7 @@ class _ViewCardDetailScreenState extends State<ViewCardDetailScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.purple.shade300,
+      backgroundColor: Colors.black,
       body: BlocBuilder<TarotBloc, TarotState>(
         builder: (context, state) {
           final tarotCards = state.tarots;

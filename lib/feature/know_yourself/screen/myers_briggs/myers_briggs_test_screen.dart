@@ -35,8 +35,97 @@ class _MyersBriggsTestScreenState extends State<MyersBriggsTestScreen> {
         final page = lastAnsweredIndex ~/ _itemsPerPage;
         setState(() => _currentPage = page);
       }
+
+      // _showAddToDiscoverDialog();
     });
     super.initState();
+  }
+
+  void _showAddToDiscoverDialog() {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (context) {
+        return Dialog(
+          backgroundColor: Colors.transparent,
+          child: Container(
+            padding: const EdgeInsets.symmetric(vertical: 30),
+            decoration: BoxDecoration(
+              color: Colors.deepPurple.shade500,
+              borderRadius: BorderRadius.circular(10),
+              border: Border.all(color: Colors.pinkAccent, width: 3),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.2),
+                  blurRadius: 10,
+                  offset: Offset(0, 5),
+                ),
+              ],
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  'WOULD YOU LIKE TO ADD THE RESULT TO YOUR DISCOVER PAGE?',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontFamily: 'Poppins',
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                ),
+                const SizedBox(height: 30),
+                Row(
+                  spacing: 20,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    _dialogOptionButton(
+                      label: 'NO',
+                      onTap: () {
+                        Navigator.of(context).pop();
+                      },
+                    ),
+                    _dialogOptionButton(
+                      label: 'YES',
+                      onTap: () {
+                        Navigator.of(context).pop();
+                      },
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  Widget _dialogOptionButton({
+    required String label,
+    required Function()? onTap,
+  }) {
+    return SizedBox(
+      width: 100,
+      height: 50,
+      child: OutlinedButton(
+        style: OutlinedButton.styleFrom(
+          foregroundColor: Colors.white,
+          backgroundColor: Colors.deepPurple.shade500,
+          side: BorderSide(color: Colors.lightGreen, width: 2),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(50),
+          ),
+        ),
+        onPressed: onTap,
+        child: Text(
+          label,
+          textAlign: TextAlign.center,
+          style: TextStyle(fontFamily: 'Poppins'),
+        ),
+      ),
+    );
   }
 
   void _nextPage(int maxPages, List<MyersBriggs> visibleQuestions) {
@@ -120,7 +209,7 @@ class _MyersBriggsTestScreenState extends State<MyersBriggsTestScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.purple.shade300,
+      backgroundColor: Colors.black,
       body: Stack(
         fit: StackFit.expand,
         children: [
@@ -196,6 +285,7 @@ class _MyersBriggsTestScreenState extends State<MyersBriggsTestScreen> {
                                     child: Text(
                                       question.question,
                                       textAlign: TextAlign.center,
+                                      style: TextStyle(fontFamily: 'Poppins'),
                                     ),
                                   ),
                                   const SizedBox(height: 10),
@@ -241,9 +331,15 @@ class _MyersBriggsTestScreenState extends State<MyersBriggsTestScreen> {
                               if (_currentPage > 0)
                                 ElevatedButton(
                                   onPressed: _previousPage,
-                                  child: const Text('Previous'),
+                                  child: const Text(
+                                    'Previous',
+                                    style: TextStyle(fontFamily: 'Poppins'),
+                                  ),
                                 ),
-                              Text('Page ${_currentPage + 1} of $totalPages'),
+                              Text(
+                                'Page ${_currentPage + 1} of $totalPages',
+                                style: TextStyle(fontFamily: 'Poppins'),
+                              ),
                               // if (_currentPage < totalPages - 1)
                               //   ElevatedButton(
                               //     onPressed:
@@ -260,7 +356,10 @@ class _MyersBriggsTestScreenState extends State<MyersBriggsTestScreen> {
                                         totalPages,
                                         visibleQuestions,
                                       ),
-                                  child: const Text('Next'),
+                                  child: const Text(
+                                    'Next',
+                                    style: TextStyle(fontFamily: 'Poppins'),
+                                  ),
                                 )
                               else
                                 ElevatedButton(
@@ -282,6 +381,9 @@ class _MyersBriggsTestScreenState extends State<MyersBriggsTestScreen> {
                                         SnackBar(
                                           content: Text(
                                             'Please answer all questions before submitting.',
+                                            style: TextStyle(
+                                              fontFamily: 'Poppins',
+                                            ),
                                           ),
                                           backgroundColor: Colors.redAccent,
                                         ),
@@ -314,7 +416,10 @@ class _MyersBriggsTestScreenState extends State<MyersBriggsTestScreen> {
                                       arguments: {'name': result},
                                     );
                                   },
-                                  child: const Text('Submit'),
+                                  child: const Text(
+                                    'Submit',
+                                    style: TextStyle(fontFamily: 'Poppins'),
+                                  ),
                                 ),
                             ],
                           ),
@@ -351,7 +456,11 @@ class _MyersBriggsTestScreenState extends State<MyersBriggsTestScreen> {
             ),
           ),
           onPressed: onTap,
-          child: Text(label, textAlign: TextAlign.center),
+          child: Text(
+            label,
+            textAlign: TextAlign.center,
+            style: TextStyle(fontFamily: 'Poppins'),
+          ),
         ),
       ),
     );
@@ -387,21 +496,20 @@ class LabeledBorderBox extends StatelessWidget {
           padding: const EdgeInsets.fromLTRB(10, 20, 10, 10),
           child: child,
         ),
-        Container(
-          color: Colors.purple.shade300,
-          child: Padding(
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          child: Container(
+            decoration: BoxDecoration(
+              border: Border.all(width: 2, color: Colors.yellow),
+              borderRadius: BorderRadius.circular(50),
+              color: Colors.purple.shade300,
+            ),
             padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: Container(
-              decoration: BoxDecoration(
-                border: Border.all(width: 2, color: Colors.yellow),
-                borderRadius: BorderRadius.circular(50),
-                color: Colors.purple.shade300,
-              ),
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: Text(
-                label,
-                style: labelStyle ?? const TextStyle(color: Colors.white),
-              ),
+            child: Text(
+              label,
+              style:
+                  labelStyle ??
+                  const TextStyle(color: Colors.white, fontFamily: 'Poppins'),
             ),
           ),
         ),

@@ -23,91 +23,126 @@ class _ElementalSoulTestScreenState extends State<ElementalSoulTestScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.purple.shade300,
-      body: Stack(
-        fit: StackFit.expand,
-        children: [
-          Image.asset(
-            'assets/bg/elemental_soul/es_test_bg.jpg',
-            fit: BoxFit.cover,
+      backgroundColor: Colors.black,
+      body: SizedBox.expand(
+        child: Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/bg/elemental_soul/es_test_bg.jpg'),
+              fit: BoxFit.cover,
+            ),
           ),
-          SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
-              child: Column(
-                children: [
-                  Align(
-                    alignment: Alignment.topLeft,
-                    child: CustomButtonIconWidget(
-                      icon: Icon(Icons.arrow_circle_left),
-                      onPressed: () => Navigator.of(context).pop(),
-                    ),
-                  ),
-                  BlocConsumer<ElementalSoulBloc, ElementalSoulState>(
-                    listener: (context, state) {
-                      final index = state.currentIndex;
-                      final questions = state.elementalSoulQuestions;
-
-                      if (index >= questions.length) {
-                        final result = StringConstant.getElementalTypeFromScore(
-                          state.totalScore,
-                        );
-                        Navigator.pushNamedAndRemoveUntil(
-                          context,
-                          StringConstant.navElementalSoulResult,
-                          (_) => false,
-                          arguments: {
-                            'score': state.totalScore,
-                            'result': result,
-                          },
-                        );
-                      }
-                    },
-                    builder: (context, state) {
-                      final questions = state.elementalSoulQuestions;
-                      final index = state.currentIndex;
-
-                      if (questions.isEmpty || index >= questions.length) {
-                        return const Center(child: CircularProgressIndicator());
-                      }
-
-                      final question = questions[index];
-
-                      return Center(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              question.question.toUpperCase(),
-                              style: const TextStyle(fontSize: 20),
-                              textAlign: TextAlign.center,
-                            ),
-                            const SizedBox(height: 20),
-                            ...question.option.map((option) {
-                              return Padding(
-                                padding: const EdgeInsets.symmetric(
-                                  vertical: 8,
+          child: Container(
+            color: Colors.black.withOpacity(0.4),
+            child: SafeArea(
+              child: LayoutBuilder(
+                builder: (context, constraints) {
+                  return SingleChildScrollView(
+                    child: ConstrainedBox(
+                      constraints: BoxConstraints(
+                        minHeight: constraints.maxHeight,
+                      ),
+                      child: IntrinsicHeight(
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 30,
+                            vertical: 20,
+                          ),
+                          child: Column(
+                            children: [
+                              Align(
+                                alignment: Alignment.topLeft,
+                                child: CustomButtonIconWidget(
+                                  icon: const Icon(Icons.arrow_circle_left),
+                                  onPressed: () => Navigator.of(context).pop(),
                                 ),
-                                child: _optionBox(
-                                  label: option.text,
-                                  onTap: () {
-                                    context.read<ElementalSoulBloc>().add(
-                                      SelectElementalSoulOption(option: option),
-                                    );
-                                  },
+                              ),
+                              const SizedBox(height: 20),
+                              Expanded(
+                                child: Center(
+                                  child: BlocConsumer<
+                                    ElementalSoulBloc,
+                                    ElementalSoulState
+                                  >(
+                                    listener: (context, state) {
+                                      final index = state.currentIndex;
+                                      final questions =
+                                          state.elementalSoulQuestions;
+
+                                      if (index >= questions.length) {
+                                        final result =
+                                            StringConstant.getElementalTypeFromScore(
+                                              state.totalScore,
+                                            );
+                                        Navigator.pushNamedAndRemoveUntil(
+                                          context,
+                                          StringConstant.navElementalSoulResult,
+                                          (_) => false,
+                                          arguments: {
+                                            'score': state.totalScore,
+                                            'result': result,
+                                          },
+                                        );
+                                      }
+                                    },
+                                    builder: (context, state) {
+                                      final questions =
+                                          state.elementalSoulQuestions;
+                                      final index = state.currentIndex;
+
+                                      if (questions.isEmpty ||
+                                          index >= questions.length) {
+                                        return const Center(
+                                          child: CircularProgressIndicator(),
+                                        );
+                                      }
+
+                                      final question = questions[index];
+
+                                      return Column(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          Text(
+                                            question.question.toUpperCase(),
+                                            style: const TextStyle(
+                                              fontSize: 20,
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold,
+                                              fontFamily: 'Poppins',
+                                            ),
+                                            textAlign: TextAlign.center,
+                                          ),
+                                          const SizedBox(height: 20),
+                                          ...question.option.map((option) {
+                                            return Padding(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                    vertical: 8,
+                                                  ),
+                                              child: _optionBox(
+                                                label: option.text,
+                                                onTap:
+                                                    () => selectOption(option),
+                                              ),
+                                            );
+                                          }),
+                                        ],
+                                      );
+                                    },
+                                  ),
                                 ),
-                              );
-                            }),
-                          ],
+                              ),
+                            ],
+                          ),
                         ),
-                      );
-                    },
-                  ),
-                ],
+                      ),
+                    ),
+                  );
+                },
               ),
             ),
           ),
-        ],
+        ),
       ),
     );
   }
@@ -121,14 +156,17 @@ class _ElementalSoulTestScreenState extends State<ElementalSoulTestScreen> {
         child: OutlinedButton(
           style: OutlinedButton.styleFrom(
             foregroundColor: Colors.white,
-            backgroundColor: Colors.purple.shade300,
             side: BorderSide(color: Colors.white, width: 2),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(50),
             ),
           ),
           onPressed: onTap,
-          child: Text(label, textAlign: TextAlign.center),
+          child: Text(
+            label,
+            textAlign: TextAlign.center,
+            style: TextStyle(fontFamily: 'Poppins'),
+          ),
         ),
       ),
     );

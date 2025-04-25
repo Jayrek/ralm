@@ -121,8 +121,7 @@ class PersonalitiesDetailScreen extends StatelessWidget {
                                           Text(
                                             'Strength'.toUpperCase(),
                                             style: TextStyle(
-                                              color:
-                                                  Colors.greenAccent.shade200,
+                                              color: Colors.green.shade900,
                                             ),
                                           ),
                                           const SizedBox(height: 8),
@@ -166,8 +165,7 @@ class PersonalitiesDetailScreen extends StatelessWidget {
                                           Text(
                                             'Weaknesses'.toUpperCase(),
                                             style: TextStyle(
-                                              color:
-                                                  Colors.greenAccent.shade200,
+                                              color: Colors.green.shade900,
                                             ),
                                           ),
                                           const SizedBox(height: 8),
@@ -215,7 +213,7 @@ class PersonalitiesDetailScreen extends StatelessWidget {
                                           Text(
                                             'Career'.toUpperCase(),
                                             style: TextStyle(
-                                              color: Colors.white,
+                                              color: Colors.green.shade900,
                                             ),
                                           ),
                                           const SizedBox(height: 8),

@@ -44,7 +44,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
     return BlocBuilder<DashboardBloc, DashboardState>(
       builder: (context, state) {
         return Scaffold(
-          backgroundColor: Colors.purple.shade300,
+          backgroundColor: Colors.black,
           body: Stack(
             children: [
               if (_videoController.value.isInitialized)

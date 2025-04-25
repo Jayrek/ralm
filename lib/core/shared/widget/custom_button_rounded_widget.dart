@@ -32,6 +32,7 @@ class CustomButtonRoundedWidget extends StatelessWidget {
           child: Text(
             label.toUpperCase(),
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
+              fontFamily: 'Poppins',
               fontSize: 12,
               fontWeight: FontWeight.bold,
             ),

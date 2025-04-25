@@ -53,56 +53,90 @@ class ElementalSoulResultScreen extends StatelessWidget {
     }
 
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.purple.shade300,
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 10),
-            child: TextButton(
-              onPressed: () {
-                context.read<ElementalSoulBloc>().add(
-                  ResetElementalSoulQuestion(),
-                );
-                Navigator.pushNamedAndRemoveUntil(
-                  context,
-                  StringConstant.navDashboardScreenKey,
-                  (_) => false,
-                );
-              },
-              child: Text('Exit', style: TextStyle(color: Colors.white)),
+      backgroundColor: Colors.black,
+      body: SizedBox.expand(
+        child: Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage(imageResult),
+              fit: BoxFit.cover,
             ),
           ),
-        ],
-      ),
-      backgroundColor: Colors.purple.shade300,
-      body: Stack(
-        fit: StackFit.expand,
-        children: [
-          Image.asset(imageResult, fit: BoxFit.cover),
-          Column(
-            // mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Row(
-                spacing: 20,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text('YOUR ELEMENTAL SOUL IS'),
-                  Text(
-                    result,
-                    // state.elementalSoulResult,
-                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                      fontSize: 50,
-                      fontWeight: FontWeight.w100,
-                    ),
+          child: Container(
+            color: Colors.black.withOpacity(0.4),
+            child: SafeArea(
+              child: SingleChildScrollView(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 20),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Align(
+                        alignment: Alignment.topRight,
+                        child: Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: TextButton(
+                            onPressed: () {
+                              context.read<ElementalSoulBloc>().add(
+                                ResetElementalSoulQuestion(),
+                              );
+                              Navigator.pushNamedAndRemoveUntil(
+                                context,
+                                StringConstant.navDashboardScreenKey,
+                                (_) => false,
+                              );
+                            },
+                            child: Text(
+                              'Exit',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontFamily: 'Poppins',
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 60),
+                      Text(
+                        'YOUR ELEMENTAL SOUL IS',
+                        style: TextStyle(
+                          color: Colors.white70,
+                          fontSize: 18,
+                          fontFamily: 'Poppins',
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      Text(
+                        result.toUpperCase(),
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 48,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: 'Poppins',
+                        ),
+                      ),
+                      const SizedBox(height: 20),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 24),
+                        child: Text(
+                          elementalInfo,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16,
+                            height: 1.5,
+                            fontFamily: 'Poppins',
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 60), // Extra spacing at bottom
+                    ],
                   ),
-                ],
+                ),
               ),
-              SizedBox(height: 20),
-              Text(elementalInfo, textAlign: TextAlign.center),
-            ],
+            ),
           ),
-        ],
+        ),
       ),
     );
   }

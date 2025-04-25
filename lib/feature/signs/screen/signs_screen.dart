@@ -44,7 +44,7 @@ class _SignsScreenState extends State<SignsScreen> {
   Widget build(BuildContext context) {
     context.read<SignsBloc>().add(FetchSignsCategory());
     return Scaffold(
-      backgroundColor: Colors.purple.shade300,
+      backgroundColor: Colors.black,
       body: Stack(
         children: [
           if (_videoController.value.isInitialized)

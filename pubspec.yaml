@@ -60,3 +60,6 @@ flutter:
     - family: Whisper
       fonts:
         - asset: assets/fonts/Whisper-Regular.ttf
+    - family: Poppins
+      fonts:
+        - asset: assets/fonts/Poppins-Regular.ttf
