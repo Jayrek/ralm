@@ -123,7 +123,7 @@ class _KnowYourSelfScreenState extends State<KnowYourSelfScreen> {
                                           case 4:
                                             Navigator.pushNamed(
                                               context,
-                                              StringConstant.navRandomTest,
+                                              StringConstant.navRandomTestIntro,
                                             );
 
                                           case 5:

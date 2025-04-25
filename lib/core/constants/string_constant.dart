@@ -30,6 +30,7 @@ class StringConstant {
   static const navElementalSoulResult = '/elemental_soul_result';
 
   // navigation keys for RANDOM TEST
+  static const navRandomTestIntro = '/random_test_intro';
   static const navRandomTest = '/random_test';
 
   // navigation keys for YOUR COLOR

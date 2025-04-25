@@ -57,49 +57,85 @@ class _RandomTestScreenState extends State<RandomTestScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.purple.shade300,
+      backgroundColor: Colors.black,
       body: SafeArea(
         child:
             _questions.isEmpty
                 ? Center(child: CircularProgressIndicator())
-                : Stack(
-                  fit: StackFit.expand,
-                  children: [
-                    Image.asset(
-                      'assets/bg/random_test_bg/rpt_test_bg.jpg',
-                      fit: BoxFit.cover,
-                    ),
-                    SingleChildScrollView(
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 30,
-                          vertical: 20,
+                : SizedBox.expand(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage(
+                          'assets/bg/random_test_bg/rpt_test_bg.jpg',
                         ),
-                        child: Column(
-                          children: [
-                            Align(
-                              alignment: Alignment.topLeft,
-                              child: CustomButtonIconWidget(
-                                icon: const Icon(Icons.arrow_circle_left),
-                                onPressed: () => Navigator.of(context).pop(),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    child: Container(
+                      color: Colors.black.withOpacity(0.4),
+                      child: SafeArea(
+                        child: LayoutBuilder(
+                          builder: (context, constraints) {
+                            return SingleChildScrollView(
+                              child: ConstrainedBox(
+                                constraints: BoxConstraints(
+                                  minHeight: constraints.maxHeight,
+                                ),
+                                child: IntrinsicHeight(
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 30,
+                                      vertical: 20,
+                                    ),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Align(
+                                          alignment: Alignment.topLeft,
+                                          child: CustomButtonIconWidget(
+                                            icon: const Icon(
+                                              Icons.arrow_circle_left,
+                                            ),
+                                            onPressed:
+                                                () =>
+                                                    Navigator.of(context).pop(),
+                                          ),
+                                        ),
+                                        const SizedBox(height: 20),
+                                        Expanded(
+                                          child: Center(
+                                            child: QuestionCard(
+                                              question:
+                                                  '${_questions[_currentIndex].id}. ${_questions[_currentIndex].question}',
+                                              imagePath:
+                                                  _questions[_currentIndex]
+                                                      .image,
+                                              result:
+                                                  _questions[_currentIndex]
+                                                      .results,
+                                              showResult: _showResult,
+                                              onShowResult:
+                                                  _onShowResultPressed,
+                                              onNext: _onNextPressed,
+                                              isLast:
+                                                  _currentIndex ==
+                                                  _questions.length - 1,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
                               ),
-                            ),
-                            const SizedBox(height: 20),
-                            QuestionCard(
-                              question:
-                                  '${_questions[_currentIndex].id}. ${_questions[_currentIndex].question}',
-                              imagePath: _questions[_currentIndex].image,
-                              result: _questions[_currentIndex].results,
-                              showResult: _showResult,
-                              onShowResult: _onShowResultPressed,
-                              onNext: _onNextPressed,
-                              isLast: _currentIndex == _questions.length - 1,
-                            ),
-                          ],
+                            );
+                          },
                         ),
                       ),
                     ),
-                  ],
+                  ),
                 ),
       ),
     );
@@ -132,7 +168,11 @@ class QuestionCard extends StatelessWidget {
       children: [
         Text(
           question,
-          style: const TextStyle(fontSize: 18, color: Colors.white),
+          style: const TextStyle(
+            fontSize: 18,
+            color: Colors.white,
+            fontFamily: 'Poppins',
+          ),
         ),
         const SizedBox(height: 20),
         if (imagePath.isNotEmpty)
@@ -147,7 +187,11 @@ class QuestionCard extends StatelessWidget {
             child: Text(
               result,
               key: ValueKey(result),
-              style: const TextStyle(fontSize: 16, color: Colors.white),
+              style: const TextStyle(
+                fontSize: 16,
+                color: Colors.white,
+                fontFamily: 'Poppins',
+              ),
             ),
           ),
           const SizedBox(height: 16),

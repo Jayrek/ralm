@@ -18,7 +18,7 @@ class MyersBriggsIntroScreen extends StatelessWidget {
               image: AssetImage(
                 'assets/bg/myers_briggs_bg/mb_home_screen_ui.jpg',
               ),
-              fit: BoxFit.cover,
+              // fit: BoxFit.cover,
             ),
           ),
           child: SafeArea(
@@ -53,7 +53,7 @@ class MyersBriggsIntroScreen extends StatelessWidget {
                   ),
 
                   Padding(
-                    padding: const EdgeInsets.only(bottom: 120),
+                    padding: const EdgeInsets.only(bottom: 160),
                     child: Row(
                       spacing: 50,
                       mainAxisAlignment: MainAxisAlignment.center,
