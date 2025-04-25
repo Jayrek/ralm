@@ -29,16 +29,6 @@ class MyersBriggsBloc extends Bloc<MyersBriggsEvent, MyersBriggsState> {
       final questions = jsonList.map((e) => MyersBriggs.fromJson(e)).toList();
 
       emit(state.copyWith(myersBriggsList: questions));
-      // String jsonString = await rootBundle.loadString(
-      //   'assets/json/myers_briggs.json',
-      // );
-      // final myersBriggsMapList = jsonDecode(jsonString) as List;
-      // final myersBriggsList =
-      //     myersBriggsMapList
-      //         .map((category) => MyersBriggs.fromJson(category))
-      //         .toList();
-
-      // emit(state.copyWith(myersBriggsList: myersBriggsList));
     });
     on<SelectMyersBriggsOption>((event, emit) async {
       final updatedList =
@@ -76,7 +66,19 @@ class MyersBriggsBloc extends Bloc<MyersBriggsEvent, MyersBriggsState> {
         orElse: () => throw Exception('no personality found!'),
       );
       emit(state.copyWith(personality: personality));
-      // final personality = personalities.map((p) => p.id == event.id);
+    });
+
+    on<SaveMyersBriggesResult>((event, emit) async {
+      await MyersBriggsSharedPrefUtil.saveMyersBriggsResult(event.result);
+    });
+
+    on<RemoveMyersBriggesResult>((event, emit) async {
+      await MyersBriggsSharedPrefUtil.removeMyersBriggsResult();
+    });
+
+    on<GetMyersBriggesResult>((event, emit) async {
+      final result = await MyersBriggsSharedPrefUtil.getMyersBriggsResult();
+      emit(state.copyWith(personalityResult: result ?? ''));
     });
   }
 }

@@ -41,67 +41,6 @@ class _MyersBriggsTestScreenState extends State<MyersBriggsTestScreen> {
     super.initState();
   }
 
-  void _showAddToDiscoverDialog() {
-    showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (context) {
-        return Dialog(
-          backgroundColor: Colors.transparent,
-          child: Container(
-            padding: const EdgeInsets.symmetric(vertical: 30),
-            decoration: BoxDecoration(
-              color: Colors.deepPurple.shade500,
-              borderRadius: BorderRadius.circular(10),
-              border: Border.all(color: Colors.pinkAccent, width: 3),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.2),
-                  blurRadius: 10,
-                  offset: Offset(0, 5),
-                ),
-              ],
-            ),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(
-                  'WOULD YOU LIKE TO ADD THE RESULT TO YOUR DISCOVER PAGE?',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontFamily: 'Poppins',
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  ),
-                ),
-                const SizedBox(height: 30),
-                Row(
-                  spacing: 20,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    _dialogOptionButton(
-                      label: 'NO',
-                      onTap: () {
-                        Navigator.of(context).pop();
-                      },
-                    ),
-                    _dialogOptionButton(
-                      label: 'YES',
-                      onTap: () {
-                        Navigator.of(context).pop();
-                      },
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-        );
-      },
-    );
-  }
-
   Widget _dialogOptionButton({
     required String label,
     required Function()? onTap,
@@ -206,232 +145,357 @@ class _MyersBriggsTestScreenState extends State<MyersBriggsTestScreen> {
     );
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.black,
-      body: Stack(
-        fit: StackFit.expand,
-        children: [
-          Image.asset(
-            'assets/bg/myers_briggs_bg/mb_test_bg.jpg',
-            fit: BoxFit.cover,
-          ),
-          SingleChildScrollView(
-            controller: _scrollController,
-            physics: AlwaysScrollableScrollPhysics(),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+  Future<bool> _testStarted() async {
+    final hasAnswered =
+        context.read<MyersBriggsBloc>().state.hasAnsweredQuestions;
+
+    if (hasAnswered) {
+      final shouldExit = await showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (mContext) {
+          return Dialog(
+            backgroundColor: Colors.transparent,
+            child: Container(
+              padding: const EdgeInsets.symmetric(vertical: 30),
+              decoration: BoxDecoration(
+                color: Colors.deepPurple.shade500,
+                borderRadius: BorderRadius.circular(10),
+                border: Border.all(color: Colors.pinkAccent, width: 3),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.2),
+                    blurRadius: 10,
+                    offset: Offset(0, 5),
+                  ),
+                ],
+              ),
               child: Column(
+                mainAxisSize: MainAxisSize.min,
                 children: [
-                  SizedBox(
-                    height: 150,
-                    child: Stack(
-                      alignment: Alignment.center,
-                      children: [
-                        Center(
-                          child: Image.asset(
-                            'assets/bg/myers_briggs_bg/mb_test_icon.png',
-                            height: 150,
-                          ),
-                        ),
-                        Positioned(
-                          top: 0,
-                          left: 0,
-                          child: CustomButtonIconWidget(
-                            icon: const Icon(Icons.arrow_circle_left),
-                            onPressed: () => Navigator.of(context).pop(),
-                          ),
-                        ),
-                      ],
+                  Text(
+                    'WOULD YOU LIKE TO SAVE THE PROGRESS?',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontFamily: 'Poppins',
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
                     ),
                   ),
-                  SizedBox(height: 30),
-                  BlocBuilder<MyersBriggsBloc, MyersBriggsState>(
-                    builder: (context, state) {
-                      final questions = state.myersBriggsList;
-                      final totalPages =
-                          (questions.length / _itemsPerPage).ceil();
-
-                      final start = _currentPage * _itemsPerPage;
-                      final end = (_currentPage + 1) * _itemsPerPage;
-                      final visibleQuestions = questions.sublist(
-                        start,
-                        end > questions.length ? questions.length : end,
-                      );
-
-                      return Column(
-                        children: [
-                          ListView.builder(
-                            physics: NeverScrollableScrollPhysics(),
-                            shrinkWrap: true,
-                            itemCount: visibleQuestions.length,
-                            itemBuilder: (context, index) {
-                              final question = visibleQuestions[index];
-                              final globalIndex = start + index;
-                              final isEven = globalIndex % 2 == 0;
-
-                              return Column(
-                                crossAxisAlignment:
-                                    isEven
-                                        ? CrossAxisAlignment.start
-                                        : CrossAxisAlignment.end,
-                                children: [
-                                  LabeledBorderBox(
-                                    label:
-                                        'Question ${globalIndex + 1}'
-                                            .toUpperCase(),
-                                    width: 650,
-                                    child: Text(
-                                      question.question,
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(fontFamily: 'Poppins'),
-                                    ),
-                                  ),
-                                  const SizedBox(height: 10),
-                                  SizedBox(
-                                    width: 650,
-                                    child: Row(
-                                      spacing: 20,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children:
-                                          question.myersBriggsOption.map((
-                                            option,
-                                          ) {
-                                            return _optionBox(
-                                              label: option.text,
-                                              isSelected:
-                                                  question
-                                                      .selectedOption
-                                                      ?.text ==
-                                                  option.text,
-                                              onTap: () {
-                                                context
-                                                    .read<MyersBriggsBloc>()
-                                                    .add(
-                                                      SelectMyersBriggsOption(
-                                                        questionId: question.id,
-                                                        selectedOption: option,
-                                                      ),
-                                                    );
-                                              },
-                                            );
-                                          }).toList(),
-                                    ),
-                                  ),
-                                  const SizedBox(height: 30),
-                                ],
-                              );
-                            },
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              if (_currentPage > 0)
-                                ElevatedButton(
-                                  onPressed: _previousPage,
-                                  child: const Text(
-                                    'Previous',
-                                    style: TextStyle(fontFamily: 'Poppins'),
-                                  ),
-                                ),
-                              Text(
-                                'Page ${_currentPage + 1} of $totalPages',
-                                style: TextStyle(fontFamily: 'Poppins'),
-                              ),
-                              // if (_currentPage < totalPages - 1)
-                              //   ElevatedButton(
-                              //     onPressed:
-                              //         () => _nextPage(
-                              //           totalPages,
-                              //           visibleQuestions,
-                              //         ),
-                              //     child: const Text('Next'),
-                              //   ),
-                              if (_currentPage < totalPages - 1)
-                                ElevatedButton(
-                                  onPressed:
-                                      () => _nextPage(
-                                        totalPages,
-                                        visibleQuestions,
-                                      ),
-                                  child: const Text(
-                                    'Next',
-                                    style: TextStyle(fontFamily: 'Poppins'),
-                                  ),
-                                )
-                              else
-                                ElevatedButton(
-                                  onPressed: () async {
-                                    final myersData =
-                                        context
-                                            .read<MyersBriggsBloc>()
-                                            .state
-                                            .myersBriggsList;
-
-                                    final allAnswered = myersData.every(
-                                      (q) => q.selectedOption != null,
-                                    );
-
-                                    if (!allAnswered) {
-                                      ScaffoldMessenger.of(
-                                        context,
-                                      ).showSnackBar(
-                                        SnackBar(
-                                          content: Text(
-                                            'Please answer all questions before submitting.',
-                                            style: TextStyle(
-                                              fontFamily: 'Poppins',
-                                            ),
-                                          ),
-                                          backgroundColor: Colors.redAccent,
-                                        ),
-                                      );
-                                      return;
-                                    }
-
-                                    final result = calculateMBTIFromAnswers(
-                                      myersData,
-                                    );
-
-                                    setState(() {
-                                      myersBriggsResult = result;
-                                    });
-
-                                    context.read<MyersBriggsBloc>().add(
-                                      const ClearMyersBriggsProgress(),
-                                    );
-
-                                    await Future.delayed(
-                                      Duration(seconds: 1),
-                                      () {},
-                                    );
-
-                                    debugPrint('MBTI Result: $result');
-                                    Navigator.pushNamed(
-                                      context,
-                                      StringConstant
-                                          .navMyersBriggsPersonalitiesDetail,
-                                      arguments: {'name': result},
-                                    );
-                                  },
-                                  child: const Text(
-                                    'Submit',
-                                    style: TextStyle(fontFamily: 'Poppins'),
-                                  ),
-                                ),
-                            ],
-                          ),
-                        ],
-                      );
-                    },
+                  const SizedBox(height: 30),
+                  Row(
+                    spacing: 20,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      _dialogOptionButton(
+                        label: 'EXIT',
+                        onTap: () {
+                          context.read<MyersBriggsBloc>().add(
+                            ClearMyersBriggsProgress(),
+                          );
+                          Navigator.pop(mContext);
+                          Navigator.of(context).pop(true);
+                        },
+                      ),
+                      _dialogOptionButton(
+                        label: 'SAVE',
+                        onTap: () {
+                          Navigator.pop(mContext);
+                          Navigator.of(context).pop(true);
+                        },
+                      ),
+                    ],
                   ),
                 ],
               ),
             ),
+          );
+        },
+      );
+
+      // final shouldExit = await showDialog<bool>(
+      //   context: context,
+      //   builder:
+      //       (mContext) => AlertDialog(
+      //         title: Text('Save Progress?'),
+      //         content: Text('Do you want to save your progress?'),
+      //         actions: [
+      //           TextButton(
+      //             onPressed: () {
+      //               context.read<MyersBriggsBloc>().add(
+      //                 ClearMyersBriggsProgress(),
+      //               );
+      //               Navigator.pop(mContext);
+      //               Navigator.of(context).pop(true);
+      //             },
+      //             child: Text('Cancel'),
+      //           ),
+      //           TextButton(
+      //             onPressed: () {
+      //               Navigator.pop(mContext);
+      //               Navigator.of(context).pop(true);
+      //             },
+      //             child: Text('Yes'),
+      //           ),
+      //         ],
+      //       ),
+      // );
+
+      return shouldExit ?? false;
+    }
+
+    return true;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return WillPopScope(
+      onWillPop: () async => _testStarted(),
+
+      child: Scaffold(
+        backgroundColor: Colors.black,
+        body: SizedBox.expand(
+          child: Container(
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('assets/bg/myers_briggs_bg/mb_test_bg.jpg'),
+                fit: BoxFit.cover,
+              ),
+            ),
+            child: Container(
+              color: Colors.black.withOpacity(0.4),
+              child: SingleChildScrollView(
+                controller: _scrollController,
+                physics: AlwaysScrollableScrollPhysics(),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 30,
+                    vertical: 20,
+                  ),
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: 150,
+                        child: Stack(
+                          alignment: Alignment.center,
+                          children: [
+                            Center(
+                              child: Image.asset(
+                                'assets/bg/myers_briggs_bg/mb_test_icon.png',
+                                height: 150,
+                              ),
+                            ),
+                            Positioned(
+                              top: 0,
+                              left: 0,
+                              child: CustomButtonIconWidget(
+                                icon: const Icon(Icons.arrow_circle_left),
+                                onPressed: () async {
+                                  final shouldExit = await _testStarted();
+                                  if (shouldExit) {
+                                    if (!mounted) return;
+                                    Navigator.pop(context);
+                                  }
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(height: 30),
+                      BlocBuilder<MyersBriggsBloc, MyersBriggsState>(
+                        builder: (context, state) {
+                          final questions = state.myersBriggsList;
+                          final totalPages =
+                              (questions.length / _itemsPerPage).ceil();
+
+                          final start = _currentPage * _itemsPerPage;
+                          final end = (_currentPage + 1) * _itemsPerPage;
+                          final visibleQuestions = questions.sublist(
+                            start,
+                            end > questions.length ? questions.length : end,
+                          );
+
+                          return Column(
+                            children: [
+                              ListView.builder(
+                                physics: NeverScrollableScrollPhysics(),
+                                shrinkWrap: true,
+                                itemCount: visibleQuestions.length,
+                                itemBuilder: (context, index) {
+                                  final question = visibleQuestions[index];
+                                  final globalIndex = start + index;
+                                  final isEven = globalIndex % 2 == 0;
+
+                                  return Column(
+                                    crossAxisAlignment:
+                                        isEven
+                                            ? CrossAxisAlignment.start
+                                            : CrossAxisAlignment.end,
+                                    children: [
+                                      LabeledBorderBox(
+                                        label:
+                                            'Question ${globalIndex + 1}'
+                                                .toUpperCase(),
+                                        width: 650,
+                                        child: Text(
+                                          question.question,
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                            fontFamily: 'Poppins',
+                                          ),
+                                        ),
+                                      ),
+                                      const SizedBox(height: 10),
+                                      SizedBox(
+                                        width: 650,
+                                        child: Row(
+                                          spacing: 20,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children:
+                                              question.myersBriggsOption.map((
+                                                option,
+                                              ) {
+                                                return _optionBox(
+                                                  label: option.text,
+                                                  isSelected:
+                                                      question
+                                                          .selectedOption
+                                                          ?.text ==
+                                                      option.text,
+                                                  onTap: () {
+                                                    context
+                                                        .read<MyersBriggsBloc>()
+                                                        .add(
+                                                          SelectMyersBriggsOption(
+                                                            questionId:
+                                                                question.id,
+                                                            selectedOption:
+                                                                option,
+                                                          ),
+                                                        );
+                                                  },
+                                                );
+                                              }).toList(),
+                                        ),
+                                      ),
+                                      const SizedBox(height: 30),
+                                    ],
+                                  );
+                                },
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  if (_currentPage > 0)
+                                    ElevatedButton(
+                                      onPressed: _previousPage,
+                                      child: const Text(
+                                        'Previous',
+                                        style: TextStyle(fontFamily: 'Poppins'),
+                                      ),
+                                    ),
+                                  Text(
+                                    'Page ${_currentPage + 1} of $totalPages',
+                                    style: TextStyle(fontFamily: 'Poppins'),
+                                  ),
+                                  if (_currentPage < totalPages - 1)
+                                    ElevatedButton(
+                                      onPressed:
+                                          () => _nextPage(
+                                            totalPages,
+                                            visibleQuestions,
+                                          ),
+                                      child: const Text(
+                                        'Next',
+                                        style: TextStyle(fontFamily: 'Poppins'),
+                                      ),
+                                    )
+                                  else
+                                    ElevatedButton(
+                                      onPressed: () async {
+                                        final myersData =
+                                            context
+                                                .read<MyersBriggsBloc>()
+                                                .state
+                                                .myersBriggsList;
+
+                                        final allAnswered = myersData.every(
+                                          (q) => q.selectedOption != null,
+                                        );
+
+                                        if (!allAnswered) {
+                                          ScaffoldMessenger.of(
+                                            context,
+                                          ).showSnackBar(
+                                            SnackBar(
+                                              content: Text(
+                                                'Please answer all questions before submitting.',
+                                                style: TextStyle(
+                                                  fontFamily: 'Poppins',
+                                                ),
+                                              ),
+                                              backgroundColor: Colors.redAccent,
+                                            ),
+                                          );
+                                          return;
+                                        }
+
+                                        final result = calculateMBTIFromAnswers(
+                                          myersData,
+                                        );
+
+                                        setState(() {
+                                          myersBriggsResult = result;
+                                        });
+
+                                        context.read<MyersBriggsBloc>().add(
+                                          const ClearMyersBriggsProgress(),
+                                        );
+
+                                        context.read<MyersBriggsBloc>().add(
+                                          SaveMyersBriggesResult(
+                                            result: result,
+                                          ),
+                                        );
+
+                                        await Future.delayed(
+                                          Duration(seconds: 1),
+                                          () {},
+                                        );
+
+                                        debugPrint('MBTI Result: $result');
+                                        Navigator.pushNamed(
+                                          context,
+                                          StringConstant
+                                              .navMyersBriggsPersonalitiesDetail,
+                                          arguments: {
+                                            'name': result,
+                                            'isFromPersonalities': false,
+                                          },
+                                        );
+                                      },
+                                      child: const Text(
+                                        'Submit',
+                                        style: TextStyle(fontFamily: 'Poppins'),
+                                      ),
+                                    ),
+                                ],
+                              ),
+                            ],
+                          );
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
           ),
-        ],
+        ),
       ),
     );
   }
@@ -515,5 +579,11 @@ class LabeledBorderBox extends StatelessWidget {
         ),
       ],
     );
+  }
+}
+
+extension MyersBriggsStateHelper on MyersBriggsState {
+  bool get hasAnsweredQuestions {
+    return myersBriggsList.any((q) => q.selectedOption != null);
   }
 }

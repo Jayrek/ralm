@@ -4,6 +4,7 @@ import 'package:ralm/core/constants/string_constant.dart';
 import 'package:ralm/core/shared/widget/animated_tarot_cad_widget.dart';
 import 'package:ralm/core/util/shared_pref_util.dart';
 import 'package:ralm/feature/avatar/bloc/avatar_bloc.dart';
+import 'package:ralm/feature/know_yourself/screen/myers_briggs/bloc/myers_briggs_bloc.dart';
 import 'package:ralm/models/avatar.dart';
 import 'package:ralm/models/tarot.dart';
 
@@ -21,6 +22,10 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
   void initState() {
     super.initState();
     _handlePickedCards();
+
+    // getMyersBriggsResult
+
+    context.read<MyersBriggsBloc>().add(GetMyersBriggesResult());
   }
 
   Future<void> _handlePickedCards() async {
@@ -109,7 +114,16 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                             ),
                             Row(
                               children: [
-                                Text('MBTI: ESTP'),
+                                BlocSelector<
+                                  MyersBriggsBloc,
+                                  MyersBriggsState,
+                                  String
+                                >(
+                                  selector: (state) => state.personalityResult,
+                                  builder:
+                                      (context, personality) =>
+                                          Text('MBTI: $personality'),
+                                ),
                                 Icon(Icons.edit, size: 15, color: Colors.white),
                               ],
                             ),

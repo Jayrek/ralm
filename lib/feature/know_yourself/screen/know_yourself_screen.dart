@@ -73,7 +73,15 @@ class _KnowYourSelfScreenState extends State<KnowYourSelfScreen> {
                           ),
                           CustomButtonIconWidget(
                             icon: Icon(Icons.arrow_circle_left),
-                            onPressed: () => Navigator.of(context).pop(),
+                            onPressed: () {
+                              Navigator.popUntil(
+                                context,
+                                ModalRoute.withName(
+                                  StringConstant.navDashboardScreenKey,
+                                ),
+                              );
+                              //  Navigator.of(context).pop();
+                            },
                           ),
                         ],
                       ),

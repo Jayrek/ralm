@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ralm/core/constants/string_constant.dart';
 import 'package:ralm/core/shared/widget/custom_button_icon_widget.dart';
 import 'package:ralm/feature/know_yourself/screen/myers_briggs/bloc/myers_briggs_bloc.dart';
 
@@ -11,6 +12,7 @@ class PersonalitiesDetailScreen extends StatelessWidget {
     final args =
         ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>;
     final String name = args['name'];
+    final bool isFromPersonalities = args['isFromPersonalities'];
     context.read<MyersBriggsBloc>().add(FetchPersonalitiesById(name: name));
     return Scaffold(
       backgroundColor: Colors.white,
@@ -26,7 +28,19 @@ class PersonalitiesDetailScreen extends StatelessWidget {
                     Icons.arrow_circle_left,
                     color: Colors.green,
                   ),
-                  onPressed: () => Navigator.of(context).pop(),
+                  onPressed: () {
+                    if (isFromPersonalities) {
+                      Navigator.of(context).pop();
+                    } else {
+                      Navigator.pushNamedAndRemoveUntil(
+                        context,
+                        StringConstant.navKnowYourScreenKey,
+                        ModalRoute.withName(
+                          StringConstant.navKnowYourScreenKey,
+                        ),
+                      );
+                    }
+                  },
                 ),
               ),
               Padding(
