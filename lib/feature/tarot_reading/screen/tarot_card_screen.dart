@@ -43,131 +43,155 @@ class _TarotCardScreenState extends State<TarotCardScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      body: Stack(
-        fit: StackFit.expand,
-        children: [
-          Image.asset(
-            'assets/bg/tarot_bg/tc_card_picking_bg.jpg',
-            fit: BoxFit.cover,
-          ),
-          SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
-              child: Column(
-                children: [
-                  Align(
-                    alignment: Alignment.topLeft,
-                    child: CustomButtonIconWidget(
-                      icon: Icon(Icons.arrow_circle_left),
-                      onPressed: () => Navigator.of(context).pop(),
-                    ),
-                  ),
-                  _threeCards(),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 10),
-                    child: Divider(indent: 20, endIndent: 20),
-                  ),
-                  Text(
-                    'Choose 3 Cards',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                  ),
-                  SizedBox(height: 10),
-                  BlocListener<TarotBloc, TarotState>(
-                    listenWhen:
-                        (previous, current) =>
-                            previous.tarots != current.tarots &&
-                            current.tarots.isNotEmpty,
-                    listener: (context, state) {
-                      _animateCards(state.tarots.length);
-                    },
-                    child: Center(
-                      child: BlocBuilder<TarotBloc, TarotState>(
-                        builder: (context, state) {
-                          final tarots = state.tarots;
-                          return Center(
-                            child: Wrap(
-                              spacing: 5,
-                              runSpacing: 5,
-                              alignment: WrapAlignment.center,
-                              children: List.generate(tarots.length, (index) {
-                                final tarot = tarots[index];
-                                final isPicked = state.pickedTarots.any(
-                                  (picked) => picked.id == tarot.id,
-                                );
-
-                                return AnimatedOpacity(
-                                  duration: Duration(milliseconds: 500),
-                                  opacity:
-                                      _isVisible.length > index &&
-                                              _isVisible[index]
-                                          ? 1.0
-                                          : 0.0,
-                                  child: _tarotCard(
-                                    tarot: tarot,
-                                    isPicked: isPicked,
-                                    onTap: () {
-                                      context.read<TarotBloc>().add(
-                                        PickedTarot(tarot: tarot),
-                                      );
-                                      debugPrint('tarot: $tarot');
-                                    },
-                                  ),
-                                );
-                              }),
-                            ),
-                          );
-                        },
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+      body: SizedBox.expand(
+        child: Container(
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/bg/tarot_bg/tc_card_picking_bg.jpg'),
+              fit: BoxFit.cover,
             ),
           ),
-
-          Positioned(
-            top: 10,
-            right: 10,
-            child: BlocSelector<TarotBloc, TarotState, List<Tarot>>(
-              selector: (state) => state.pickedTarots,
-              builder: (context, pickedTarots) {
-                return pickedTarots.length == 3
-                    ? Row(
+          child: Container(
+            color: Colors.black.withOpacity(0.4),
+            child: Stack(
+              fit: StackFit.expand,
+              children: [
+                SingleChildScrollView(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 30,
+                      vertical: 20,
+                    ),
+                    child: Column(
                       children: [
-                        ElevatedButton(
-                          onPressed: () async {
-                            await savePickedTarotsWithTimeout(pickedTarots);
-                            if (!context.mounted) return;
-                            Navigator.pushNamed(
-                              context,
-                              StringConstant.navTarotPickedCard,
-                              arguments: pickedTarots,
-                            );
-                          },
-                          child: Text('View Result'),
+                        Align(
+                          alignment: Alignment.topLeft,
+                          child: CustomButtonIconWidget(
+                            icon: Icon(Icons.arrow_circle_left),
+                            onPressed: () => Navigator.of(context).pop(),
+                          ),
                         ),
-                        SizedBox(width: 10),
-                        TextButton(
-                          onPressed: () {
-                            context.read<TarotBloc>()
-                              ..add(ResetPickingTarot())
-                              ..add(FetchTarotCards(isShuffle: true));
-                            _animateCards(
-                              context.read<TarotBloc>().state.tarots.length,
-                            );
+                        _threeCards(),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 10),
+                          child: Divider(indent: 20, endIndent: 20),
+                        ),
+                        Text(
+                          'Choose 3 Cards',
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            fontFamily: 'Poppins',
+                          ),
+                        ),
+                        SizedBox(height: 10),
+                        BlocListener<TarotBloc, TarotState>(
+                          listenWhen:
+                              (previous, current) =>
+                                  previous.tarots != current.tarots &&
+                                  current.tarots.isNotEmpty,
+                          listener: (context, state) {
+                            _animateCards(state.tarots.length);
                           },
-                          child: Text(
-                            'RESET',
-                            style: TextStyle(color: Colors.white),
+                          child: Center(
+                            child: BlocBuilder<TarotBloc, TarotState>(
+                              builder: (context, state) {
+                                final tarots = state.tarots;
+                                return Center(
+                                  child: Wrap(
+                                    spacing: 5,
+                                    runSpacing: 5,
+                                    alignment: WrapAlignment.center,
+                                    children: List.generate(tarots.length, (
+                                      index,
+                                    ) {
+                                      final tarot = tarots[index];
+                                      final isPicked = state.pickedTarots.any(
+                                        (picked) => picked.id == tarot.id,
+                                      );
+
+                                      return AnimatedOpacity(
+                                        duration: Duration(milliseconds: 500),
+                                        opacity:
+                                            _isVisible.length > index &&
+                                                    _isVisible[index]
+                                                ? 1.0
+                                                : 0.0,
+                                        child: _tarotCard(
+                                          tarot: tarot,
+                                          isPicked: isPicked,
+                                          onTap: () {
+                                            context.read<TarotBloc>().add(
+                                              PickedTarot(tarot: tarot),
+                                            );
+                                            debugPrint('tarot: $tarot');
+                                          },
+                                        ),
+                                      );
+                                    }),
+                                  ),
+                                );
+                              },
+                            ),
                           ),
                         ),
                       ],
-                    )
-                    : SizedBox();
-              },
+                    ),
+                  ),
+                ),
+
+                Positioned(
+                  top: 10,
+                  right: 10,
+                  child: BlocSelector<TarotBloc, TarotState, List<Tarot>>(
+                    selector: (state) => state.pickedTarots,
+                    builder: (context, pickedTarots) {
+                      return pickedTarots.length == 3
+                          ? Row(
+                            children: [
+                              ElevatedButton(
+                                onPressed: () async {
+                                  await savePickedTarotsWithTimeout(
+                                    pickedTarots,
+                                  );
+                                  if (!context.mounted) return;
+                                  Navigator.pushNamed(
+                                    context,
+                                    StringConstant.navTarotPickedCard,
+                                    arguments: pickedTarots,
+                                  );
+                                },
+                                child: Text('View Result'),
+                              ),
+                              SizedBox(width: 10),
+                              TextButton(
+                                onPressed: () {
+                                  context.read<TarotBloc>()
+                                    ..add(ResetPickingTarot())
+                                    ..add(FetchTarotCards(isShuffle: true));
+                                  _animateCards(
+                                    context
+                                        .read<TarotBloc>()
+                                        .state
+                                        .tarots
+                                        .length,
+                                  );
+                                },
+                                child: Text(
+                                  'RESET',
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ),
+                            ],
+                          )
+                          : SizedBox();
+                    },
+                  ),
+                ),
+              ],
             ),
           ),
-        ],
+        ),
       ),
     );
   }

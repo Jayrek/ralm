@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ralm/core/constants/string_constant.dart';
 import 'package:ralm/core/shared/widget/custom_button_icon_widget.dart';
+import 'package:ralm/core/shared/widget/custom_button_rounded_widget.dart';
 
 class TarotScreen extends StatelessWidget {
   const TarotScreen({super.key});
@@ -37,40 +38,56 @@ class TarotScreen extends StatelessWidget {
                               ?.copyWith(fontSize: 50, color: Colors.white),
                         ),
                         SizedBox(height: 40),
-                        Text('Pick 3 Cards to start your day.'),
+                        Text(
+                          'Pick 3 Cards to start your day.',
+                          style: TextStyle(fontFamily: 'Poppins'),
+                        ),
                         SizedBox(height: 30),
-                        Text('First card tell about the present'),
+                        Text(
+                          'First card tell about the present',
+                          style: TextStyle(fontFamily: 'Poppins'),
+                        ),
                         Text(
                           'Second card tells about tomorrow or the sooner days.',
+                          style: TextStyle(fontFamily: 'Poppins'),
                         ),
-                        Text('Third card represent the long run in the future'),
+                        Text(
+                          'Third card represent the long run in the future',
+                          style: TextStyle(fontFamily: 'Poppins'),
+                        ),
 
                         SizedBox(height: 30),
-                        ElevatedButton(
+                        CustomButtonRoundedWidget(
+                          label: 'START',
                           onPressed: () {
                             Navigator.pushNamed(
                               context,
                               StringConstant.navTarotCard,
                             );
                           },
-                          child: Text('START'),
                         ),
+
                         SizedBox(height: 10),
-                        ElevatedButton(
+                        CustomButtonRoundedWidget(
+                          label: 'VIEW CARDS',
                           onPressed: () {
                             Navigator.pushNamed(
                               context,
                               StringConstant.navTarotViewCard,
                             );
                           },
-                          child: Text('View Cards'),
                         ),
-                        SizedBox(height: 10),
                         TextButton(
                           onPressed: () {
                             Navigator.of(context).pop();
                           },
-                          child: Text('EXIT'),
+                          child: Text(
+                            'EXIT',
+                            style: TextStyle(
+                              fontFamily: 'Poppins',
+                              color: Colors.white,
+                            ),
+                          ),
                         ),
                       ],
                     ),

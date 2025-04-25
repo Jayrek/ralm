@@ -39,14 +39,16 @@ class _ViewTarotCardState extends State<ViewTarotCard> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      body: Stack(
-        fit: StackFit.expand,
-        children: [
-          Image.asset(
-            'assets/bg/tarot_bg/tc_card_detail_bg.jpg',
+      body: Container(
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/bg/tarot_bg/tc_card_detail_bg.jpg'),
             fit: BoxFit.cover,
           ),
-          SingleChildScrollView(
+        ),
+        child: Container(
+          color: Colors.black.withOpacity(0.4),
+          child: SingleChildScrollView(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
               child: BlocListener<TarotBloc, TarotState>(
@@ -73,7 +75,10 @@ class _ViewTarotCardState extends State<ViewTarotCard> {
                             padding: const EdgeInsets.all(20),
                             child: Text(
                               'The Major Arcana cards are the most recognizable and impactful cards in a Tarot deck. These 22 cards represent situations we all face in the grand scheme of life, with each carrying specific messages of perspective and guidance to help you in times of need. While the Minor Arcana cards focus on the everyday actions and decisions you must face, these Major Arcana cards reveal messages about the bigger picture of your life and its long-term direction. Though each of the Major Arcana cards stands alone with its own deep meanings and influences, these 22 Tarot cards also tell a united story. The first card, The Fool, is the main character of this story, and his experiences as he learns, grows, and makes his way through life are represented by the 21 cards that follow. This storyline is a great description of the accomplishments, setbacks, and lessons we all learn as we go through the trials and tribulations of our lifetime, growing into whole, complete beings by the end of our journey.',
-                              style: TextStyle(color: Colors.white),
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontFamily: 'Poppins',
+                              ),
                               textAlign: TextAlign.center,
                             ),
                           ),
@@ -119,7 +124,7 @@ class _ViewTarotCardState extends State<ViewTarotCard> {
               ),
             ),
           ),
-        ],
+        ),
       ),
     );
   }

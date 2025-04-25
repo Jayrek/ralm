@@ -45,14 +45,16 @@ class _ViewPickedCardScreenState extends State<ViewPickedCardScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      body: Stack(
-        fit: StackFit.expand,
-        children: [
-          Image.asset(
-            'assets/bg/tarot_bg/tc_card_result_bg.jpg',
+      body: Container(
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/bg/tarot_bg/tc_card_result_bg.jpg'),
             fit: BoxFit.cover,
           ),
-          PageView.builder(
+        ),
+        child: Container(
+          color: Colors.black.withOpacity(0.4),
+          child: PageView.builder(
             controller: _pageController,
             itemCount: pickedCards.length,
             onPageChanged: (index) {
@@ -90,7 +92,10 @@ class _ViewPickedCardScreenState extends State<ViewPickedCardScreen> {
                                         ? 'Second Card '
                                         : 'Third Card')
                                     .toUpperCase(),
-                                style: TextStyle(fontSize: 20),
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontFamily: 'Poppins',
+                                ),
                               ),
                             ),
                             Row(
@@ -108,7 +113,7 @@ class _ViewPickedCardScreenState extends State<ViewPickedCardScreen> {
               );
             },
           ),
-        ],
+        ),
       ),
     );
   }
@@ -151,13 +156,21 @@ class _ViewPickedCardScreenState extends State<ViewPickedCardScreen> {
           Text(
             tarot.cardName.toUpperCase(),
             textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 36, fontWeight: FontWeight.bold),
+            style: TextStyle(
+              fontSize: 36,
+              fontWeight: FontWeight.bold,
+              fontFamily: 'Poppins',
+            ),
           ),
           SizedBox(height: 10),
           Text(
             tarot.description,
             textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 18, color: Colors.white),
+            style: TextStyle(
+              fontSize: 18,
+              color: Colors.white,
+              fontFamily: 'Poppins',
+            ),
           ),
 
           // Left & Right Navigation Buttons
