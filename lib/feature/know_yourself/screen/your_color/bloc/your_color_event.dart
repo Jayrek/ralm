@@ -23,3 +23,15 @@ class SelectYourColorOption extends YourColorEvent {
 class ResetYourColorQuestion extends YourColorEvent {
   const ResetYourColorQuestion();
 }
+
+class SaveAvatarYourColor extends YourColorEvent {
+  const SaveAvatarYourColor();
+}
+
+class RemoveAvatarYourColor extends YourColorEvent {
+  const RemoveAvatarYourColor();
+}
+
+class GetAvatarYourColor extends YourColorEvent {
+  const GetAvatarYourColor();
+}

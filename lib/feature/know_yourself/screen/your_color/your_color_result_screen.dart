@@ -1,10 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ralm/core/constants/string_constant.dart';
+import 'package:ralm/core/shared/dialog/dialog_utils.dart';
+import 'package:ralm/feature/avatar/bloc/avatar_bloc.dart';
 import 'package:ralm/feature/know_yourself/screen/your_color/bloc/your_color_bloc.dart';
 
-class YourColorResultScreen extends StatelessWidget {
+class YourColorResultScreen extends StatefulWidget {
   const YourColorResultScreen({super.key});
+
+  @override
+  State<YourColorResultScreen> createState() => _YourColorResultScreenState();
+}
+
+class _YourColorResultScreenState extends State<YourColorResultScreen> {
+  @override
+  void initState() {
+    context.read<AvatarBloc>().add(CheckAvatarUnlocked(id: 13));
+    context.read<YourColorBloc>().add(GetAvatarYourColor());
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -59,69 +73,90 @@ class YourColorResultScreen extends StatelessWidget {
         colorInfo = white;
     }
 
-    return Scaffold(
-      backgroundColor: Colors.black,
-      body: SizedBox.expand(
-        child: Container(
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage(imageResult),
-              fit: BoxFit.cover,
-            ),
-          ),
-          child: Container(
-            color: Colors.black.withOpacity(0.4),
-            child: SafeArea(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Align(
-                    alignment: Alignment.topRight,
-                    child: Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: TextButton(
-                        onPressed: () {
-                          context.read<YourColorBloc>().add(
-                            ResetYourColorQuestion(),
-                          );
+    return BlocListener<AvatarBloc, AvatarState>(
+      listenWhen:
+          (previous, current) =>
+              previous.isAvatarUnlocked != current.isAvatarUnlocked,
 
-                          Navigator.pushNamedAndRemoveUntil(
-                            context,
-                            StringConstant.navKnowYourScreenKey,
-                            ModalRoute.withName(
+      listener: (context, avatarState) {
+        final result = context.read<YourColorBloc>().state.avatarUnLocked;
+        if (result == 'Yes' && avatarState.isAvatarUnlocked) {
+          Future.delayed(const Duration(seconds: 2), () {
+            if (context.mounted) {
+              DialogUtils.showRewardDialog(
+                context: context,
+                avatarName: 'THE YOUR COLOR AVATAR',
+                avatarAsset: 'assets/image/avatar/Your_Color_Avatar.png',
+              );
+            }
+          });
+        }
+      },
+      child: Scaffold(
+        backgroundColor: Colors.black,
+        body: SizedBox.expand(
+          child: Container(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage(imageResult),
+                fit: BoxFit.cover,
+              ),
+            ),
+            child: Container(
+              color: Colors.black.withOpacity(0.4),
+              child: SafeArea(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Align(
+                      alignment: Alignment.topRight,
+                      child: Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: TextButton(
+                          onPressed: () async {
+                            context.read<YourColorBloc>().add(
+                              ResetYourColorQuestion(),
+                            );
+
+                            await Future.delayed(Duration(seconds: 1), () {});
+                            Navigator.pushNamedAndRemoveUntil(
+                              context,
                               StringConstant.navKnowYourScreenKey,
+                              ModalRoute.withName(
+                                StringConstant.navKnowYourScreenKey,
+                              ),
+                            );
+                          },
+                          child: Text(
+                            'Exit',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontFamily: 'Poppins',
                             ),
-                          );
-                        },
-                        child: Text(
-                          'Exit',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontFamily: 'Poppins',
                           ),
                         ),
                       ),
                     ),
-                  ),
-                  const SizedBox(height: 60),
-                  Text(
-                    result.toUpperCase(),
-                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                      fontSize: 50,
-                      fontWeight: FontWeight.bold,
-                      fontFamily: 'Poppins',
+                    const SizedBox(height: 60),
+                    Text(
+                      result.toUpperCase(),
+                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                        fontSize: 50,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Poppins',
+                      ),
                     ),
-                  ),
-                  SizedBox(height: 20),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 60),
-                    child: Text(
-                      colorInfo,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(fontFamily: 'Poppons'),
+                    SizedBox(height: 20),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 60),
+                      child: Text(
+                        colorInfo,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(fontFamily: 'Poppons'),
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),

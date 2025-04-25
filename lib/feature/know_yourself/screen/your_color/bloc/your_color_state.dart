@@ -6,12 +6,14 @@ class YourColorState extends Equatable {
     this.currentIndex = 0,
     this.totalScore = 0,
     this.yourColorResult = '',
+    this.avatarUnLocked = 'No',
   });
 
   final List<ElementalSoul> yourColorQuestions;
   final int currentIndex;
   final int totalScore;
   final String yourColorResult;
+  final String avatarUnLocked;
 
   @override
   List<Object> get props => [
@@ -19,6 +21,7 @@ class YourColorState extends Equatable {
     currentIndex,
     totalScore,
     yourColorResult,
+    avatarUnLocked,
   ];
 
   YourColorState copyWith({
@@ -26,12 +29,14 @@ class YourColorState extends Equatable {
     int? currentIndex,
     int? totalScore,
     String? yourColorResult,
+    String? avatarUnLocked,
   }) {
     return YourColorState(
       yourColorQuestions: yourColorQuestions ?? this.yourColorQuestions,
       currentIndex: currentIndex ?? this.currentIndex,
       totalScore: totalScore ?? this.totalScore,
       yourColorResult: yourColorResult ?? this.yourColorResult,
+      avatarUnLocked: avatarUnLocked ?? this.avatarUnLocked,
     );
   }
 }

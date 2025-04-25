@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ralm/core/constants/string_constant.dart';
 import 'package:ralm/core/shared/widget/custom_button_icon_widget.dart';
+import 'package:ralm/feature/avatar/bloc/avatar_bloc.dart';
 import 'package:ralm/feature/know_yourself/screen/your_color/bloc/your_color_bloc.dart';
 import 'package:ralm/models/elemental_soul.dart';
 
@@ -13,6 +14,7 @@ class YourColorTestScreen extends StatefulWidget {
 }
 
 class _YourColorTestScreenState extends State<YourColorTestScreen> {
+  bool _navigated = false;
   void selectOption(Option option) {
     context.read<YourColorBloc>().add(SelectYourColorOption(option: option));
   }
@@ -56,38 +58,50 @@ class _YourColorTestScreenState extends State<YourColorTestScreen> {
                               ),
                               Expanded(
                                 child: Center(
-                                  child: BlocConsumer<
+                                  child: BlocBuilder<
                                     YourColorBloc,
                                     YourColorState
                                   >(
-                                    listener: (context, state) {
-                                      final index = state.currentIndex;
-                                      final questions =
-                                          state.yourColorQuestions;
-
-                                      if (index >= questions.length) {
-                                        final result =
-                                            StringConstant.getColorResultFromScore(
-                                              state.totalScore,
-                                            );
-                                        Navigator.pushNamedAndRemoveUntil(
-                                          context,
-                                          StringConstant.navYourColorResult,
-                                          (_) => false,
-                                          arguments: {
-                                            'score': state.totalScore,
-                                            'result': result,
-                                          },
-                                        );
-                                      }
-                                    },
                                     builder: (context, state) {
                                       final questions =
                                           state.yourColorQuestions;
                                       final index = state.currentIndex;
 
-                                      if (questions.isEmpty ||
-                                          index >= questions.length) {
+                                      if (questions.isNotEmpty &&
+                                          index >= questions.length &&
+                                          !_navigated) {
+                                        _navigated = true;
+                                        WidgetsBinding.instance
+                                            .addPostFrameCallback((_) {
+                                              final result =
+                                                  StringConstant.getElementalTypeFromScore(
+                                                    state.totalScore,
+                                                  );
+
+                                              context.read<YourColorBloc>().add(
+                                                SaveAvatarYourColor(),
+                                              );
+                                              context.read<AvatarBloc>().add(
+                                                UnlockAvatar(13),
+                                              );
+
+                                              Navigator.pushNamed(
+                                                context,
+                                                StringConstant
+                                                    .navYourColorResult,
+                                                arguments: {
+                                                  'score': state.totalScore,
+                                                  'result': result,
+                                                },
+                                              );
+                                            });
+
+                                        return const Center(
+                                          child: CircularProgressIndicator(),
+                                        );
+                                      }
+
+                                      if (questions.isEmpty) {
                                         return const Center(
                                           child: CircularProgressIndicator(),
                                         );
@@ -95,48 +109,127 @@ class _YourColorTestScreenState extends State<YourColorTestScreen> {
 
                                       final question = questions[index];
 
-                                      return Center(
-                                        child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            Text(
-                                              question.question.toUpperCase(),
-                                              style: const TextStyle(
-                                                fontSize: 20,
-                                                fontFamily: 'Poppins',
-                                              ),
-                                              textAlign: TextAlign.center,
+                                      return Column(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          Text(
+                                            question.question.toUpperCase(),
+                                            style: const TextStyle(
+                                              fontSize: 20,
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold,
+                                              fontFamily: 'Poppins',
                                             ),
-                                            const SizedBox(height: 20),
-                                            ...question.option.map((option) {
-                                              return Padding(
-                                                padding:
-                                                    const EdgeInsets.symmetric(
-                                                      vertical: 8,
-                                                      horizontal: 40,
-                                                    ),
-                                                child: _optionBox(
-                                                  label: option.text,
-                                                  onTap: () {
-                                                    context
-                                                        .read<YourColorBloc>()
-                                                        .add(
-                                                          SelectYourColorOption(
-                                                            option: option,
-                                                          ),
-                                                        );
-                                                  },
-                                                ),
-                                              );
-                                            }),
-                                          ],
-                                        ),
+                                            textAlign: TextAlign.center,
+                                          ),
+                                          const SizedBox(height: 20),
+                                          ...question.option.map((option) {
+                                            return Padding(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                    vertical: 8,
+                                                  ),
+                                              child: _optionBox(
+                                                label: option.text,
+                                                onTap:
+                                                    () => selectOption(option),
+                                              ),
+                                            );
+                                          }),
+                                        ],
                                       );
                                     },
                                   ),
                                 ),
                               ),
+                              // Expanded(
+                              //   child: Center(
+                              //     child: BlocConsumer<
+                              //       YourColorBloc,
+                              //       YourColorState
+                              //     >(
+                              //       listener: (context, state) {
+                              //         final index = state.currentIndex;
+                              //         final questions =
+                              //             state.yourColorQuestions;
+
+                              //         if (index >= questions.length) {
+                              //           final result =
+                              //               StringConstant.getColorResultFromScore(
+                              //                 state.totalScore,
+                              //               );
+                              //           context.read<YourColorBloc>().add(
+                              //             SaveAvatarYourColor(),
+                              //           );
+                              //           context.read<AvatarBloc>().add(
+                              //             UnlockAvatar(13),
+                              //           );
+                              //           Navigator.pushNamed(
+                              //             context,
+                              //             StringConstant.navYourColorResult,
+                              //             arguments: {
+                              //               'score': state.totalScore,
+                              //               'result': result,
+                              //             },
+                              //           );
+                              //         }
+                              //       },
+                              //       builder: (context, state) {
+                              //         final questions =
+                              //             state.yourColorQuestions;
+                              //         final index = state.currentIndex;
+
+                              //         if (questions.isEmpty ||
+                              //             index >= questions.length) {
+                              //           return const Center(
+                              //             child: CircularProgressIndicator(),
+                              //           );
+                              //         }
+
+                              //         final question = questions[index];
+
+                              //         return Center(
+                              //           child: Column(
+                              //             mainAxisAlignment:
+                              //                 MainAxisAlignment.center,
+                              //             children: [
+                              //               Text(
+                              //                 question.question.toUpperCase(),
+                              //                 style: const TextStyle(
+                              //                   fontSize: 20,
+                              //                   fontFamily: 'Poppins',
+                              //                 ),
+                              //                 textAlign: TextAlign.center,
+                              //               ),
+                              //               const SizedBox(height: 20),
+                              //               ...question.option.map((option) {
+                              //                 return Padding(
+                              //                   padding:
+                              //                       const EdgeInsets.symmetric(
+                              //                         vertical: 8,
+                              //                         horizontal: 40,
+                              //                       ),
+                              //                   child: _optionBox(
+                              //                     label: option.text,
+                              //                     onTap: () {
+                              //                       context
+                              //                           .read<YourColorBloc>()
+                              //                           .add(
+                              //                             SelectYourColorOption(
+                              //                               option: option,
+                              //                             ),
+                              //                           );
+                              //                     },
+                              //                   ),
+                              //                 );
+                              //               }),
+                              //             ],
+                              //           ),
+                              //         );
+                              //       },
+                              //     ),
+                              //   ),
+                              // ),
                             ],
                           ),
                         ),

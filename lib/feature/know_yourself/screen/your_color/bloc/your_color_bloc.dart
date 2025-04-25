@@ -6,6 +6,7 @@ import 'package:equatable/equatable.dart';
 import 'package:ralm/core/constants/string_constant.dart';
 import 'package:ralm/core/util/shared_pref_util.dart';
 import 'package:ralm/models/elemental_soul.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 part 'your_color_event.dart';
 part 'your_color_state.dart';
@@ -54,5 +55,38 @@ class YourColorBloc extends Bloc<YourColorEvent, YourColorState> {
       emit(YourColorState());
       add(FetchYourColorQuestion());
     });
+
+    on<SaveAvatarYourColor>((event, emit) async {
+      await saveAvatarYourColor();
+    });
+    on<GetAvatarYourColor>((event, emit) async {
+      final result = await getAvatarYourColor();
+      emit(state.copyWith(avatarUnLocked: result ?? 'No'));
+    });
+
+    on<RemoveAvatarYourColor>((event, emit) async {
+      await removeAvatarYourColor();
+    });
+  }
+
+  static const _avatarYourColorKey = 'avatarYourColorKey';
+
+  static Future<void> saveAvatarYourColor() async {
+    final prefs = await SharedPreferences.getInstance();
+
+    final result = prefs.getString(_avatarYourColorKey);
+    if (result == null) {
+      await prefs.setString(_avatarYourColorKey, 'Yes');
+    }
+  }
+
+  static Future<String?> getAvatarYourColor() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getString(_avatarYourColorKey);
+  }
+
+  static Future<void> removeAvatarYourColor() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.remove(_avatarYourColorKey);
   }
 }
