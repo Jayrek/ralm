@@ -108,7 +108,7 @@ class _KnowYourSelfScreenState extends State<KnowYourSelfScreen> {
                                           case 1:
                                             Navigator.pushNamed(
                                               context,
-                                              StringConstant.navForestTest,
+                                              StringConstant.navForestTestIntro,
                                             );
                                           case 2:
                                             Navigator.pushNamed(

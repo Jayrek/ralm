@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:ralm/core/constants/string_constant.dart';
 import 'package:ralm/core/shared/widget/custom_button_icon_widget.dart';
 import 'package:ralm/core/shared/widget/custom_button_rounded_widget.dart';
 import 'package:ralm/models/random_test.dart';
@@ -51,6 +52,11 @@ class _RandomTestScreenState extends State<RandomTestScreen> {
       ScaffoldMessenger.of(
         context,
       ).showSnackBar(SnackBar(content: Text("You've reached the end!")));
+      Navigator.pushNamedAndRemoveUntil(
+        context,
+        StringConstant.navKnowYourScreenKey,
+        ModalRoute.withName(StringConstant.navKnowYourScreenKey),
+      );
     }
   }
 
@@ -99,8 +105,15 @@ class _RandomTestScreenState extends State<RandomTestScreen> {
                                               Icons.arrow_circle_left,
                                             ),
                                             onPressed:
-                                                () =>
-                                                    Navigator.of(context).pop(),
+                                                () => Navigator.pushNamedAndRemoveUntil(
+                                                  context,
+                                                  StringConstant
+                                                      .navKnowYourScreenKey,
+                                                  ModalRoute.withName(
+                                                    StringConstant
+                                                        .navKnowYourScreenKey,
+                                                  ),
+                                                ),
                                           ),
                                         ),
                                         const SizedBox(height: 20),

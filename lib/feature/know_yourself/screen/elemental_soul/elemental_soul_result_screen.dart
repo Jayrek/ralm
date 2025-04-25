@@ -82,8 +82,10 @@ class ElementalSoulResultScreen extends StatelessWidget {
                               );
                               Navigator.pushNamedAndRemoveUntil(
                                 context,
-                                StringConstant.navDashboardScreenKey,
-                                (_) => false,
+                                StringConstant.navKnowYourScreenKey,
+                                ModalRoute.withName(
+                                  StringConstant.navKnowYourScreenKey,
+                                ),
                               );
                             },
                             child: Text(
