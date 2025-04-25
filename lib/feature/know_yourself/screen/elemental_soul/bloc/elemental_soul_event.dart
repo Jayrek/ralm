@@ -23,3 +23,15 @@ class SelectElementalSoulOption extends ElementalSoulEvent {
 class ResetElementalSoulQuestion extends ElementalSoulEvent {
   const ResetElementalSoulQuestion();
 }
+
+class SaveAvatarElementalSoul extends ElementalSoulEvent {
+  const SaveAvatarElementalSoul();
+}
+
+class RemoveAvatarElementalSoul extends ElementalSoulEvent {
+  const RemoveAvatarElementalSoul();
+}
+
+class GetAvatarElementalSoul extends ElementalSoulEvent {
+  const GetAvatarElementalSoul();
+}

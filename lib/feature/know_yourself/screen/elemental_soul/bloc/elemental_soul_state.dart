@@ -6,12 +6,14 @@ class ElementalSoulState extends Equatable {
     this.currentIndex = 0,
     this.totalScore = 0,
     this.elementalSoulResult = '',
+    this.avatarUnLocked = 'No',
   });
 
   final List<ElementalSoul> elementalSoulQuestions;
   final int currentIndex;
   final int totalScore;
   final String elementalSoulResult;
+  final String avatarUnLocked;
 
   @override
   List<Object> get props => [
@@ -19,6 +21,7 @@ class ElementalSoulState extends Equatable {
     currentIndex,
     totalScore,
     elementalSoulResult,
+    avatarUnLocked,
   ];
 
   ElementalSoulState copyWith({
@@ -26,6 +29,7 @@ class ElementalSoulState extends Equatable {
     int? currentIndex,
     int? totalScore,
     String? elementalSoulResult,
+    String? avatarUnLocked,
   }) {
     return ElementalSoulState(
       elementalSoulQuestions:
@@ -33,6 +37,7 @@ class ElementalSoulState extends Equatable {
       currentIndex: currentIndex ?? this.currentIndex,
       totalScore: totalScore ?? this.totalScore,
       elementalSoulResult: elementalSoulResult ?? this.elementalSoulResult,
+      avatarUnLocked: avatarUnLocked ?? this.avatarUnLocked,
     );
   }
 }

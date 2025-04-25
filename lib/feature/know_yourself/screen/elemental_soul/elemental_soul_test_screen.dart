@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ralm/core/constants/string_constant.dart';
 import 'package:ralm/core/shared/widget/custom_button_icon_widget.dart';
+import 'package:ralm/feature/avatar/bloc/avatar_bloc.dart';
 import 'package:ralm/feature/know_yourself/screen/elemental_soul/bloc/elemental_soul_bloc.dart';
 import 'package:ralm/models/elemental_soul.dart';
 
@@ -14,10 +15,17 @@ class ElementalSoulTestScreen extends StatefulWidget {
 }
 
 class _ElementalSoulTestScreenState extends State<ElementalSoulTestScreen> {
+  bool _navigated = false;
   void selectOption(Option option) {
     context.read<ElementalSoulBloc>().add(
       SelectElementalSoulOption(option: option),
     );
+  }
+
+  @override
+  void initState() {
+    context.read<ElementalSoulBloc>().add(FetchElementalSoulQuestion());
+    super.initState();
   }
 
   @override
@@ -59,38 +67,52 @@ class _ElementalSoulTestScreenState extends State<ElementalSoulTestScreen> {
                               ),
                               Expanded(
                                 child: Center(
-                                  child: BlocConsumer<
+                                  child: BlocBuilder<
                                     ElementalSoulBloc,
                                     ElementalSoulState
                                   >(
-                                    listener: (context, state) {
-                                      final index = state.currentIndex;
-                                      final questions =
-                                          state.elementalSoulQuestions;
-
-                                      if (index >= questions.length) {
-                                        final result =
-                                            StringConstant.getElementalTypeFromScore(
-                                              state.totalScore,
-                                            );
-                                        Navigator.pushNamedAndRemoveUntil(
-                                          context,
-                                          StringConstant.navElementalSoulResult,
-                                          (_) => false,
-                                          arguments: {
-                                            'score': state.totalScore,
-                                            'result': result,
-                                          },
-                                        );
-                                      }
-                                    },
                                     builder: (context, state) {
                                       final questions =
                                           state.elementalSoulQuestions;
                                       final index = state.currentIndex;
 
-                                      if (questions.isEmpty ||
-                                          index >= questions.length) {
+                                      if (questions.isNotEmpty &&
+                                          index >= questions.length &&
+                                          !_navigated) {
+                                        _navigated = true;
+                                        WidgetsBinding.instance
+                                            .addPostFrameCallback((_) {
+                                              final result =
+                                                  StringConstant.getElementalTypeFromScore(
+                                                    state.totalScore,
+                                                  );
+
+                                              context
+                                                  .read<ElementalSoulBloc>()
+                                                  .add(
+                                                    SaveAvatarElementalSoul(),
+                                                  );
+                                              context.read<AvatarBloc>().add(
+                                                UnlockAvatar(12),
+                                              );
+
+                                              Navigator.pushNamed(
+                                                context,
+                                                StringConstant
+                                                    .navElementalSoulResult,
+                                                arguments: {
+                                                  'score': state.totalScore,
+                                                  'result': result,
+                                                },
+                                              );
+                                            });
+
+                                        return const Center(
+                                          child: CircularProgressIndicator(),
+                                        );
+                                      }
+
+                                      if (questions.isEmpty) {
                                         return const Center(
                                           child: CircularProgressIndicator(),
                                         );

@@ -6,6 +6,7 @@ import 'package:equatable/equatable.dart';
 import 'package:ralm/models/elemental_soul.dart';
 import 'package:ralm/core/util/shared_pref_util.dart';
 import 'package:ralm/core/constants/string_constant.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 part 'elemental_soul_event.dart';
 part 'elemental_soul_state.dart';
@@ -22,13 +23,13 @@ class ElementalSoulBloc extends Bloc<ElementalSoulEvent, ElementalSoulState> {
               .map((category) => ElementalSoul.fromJson(category))
               .toList();
 
-      final saved = await loadElementalProgress();
+      // final saved = await loadElementalProgress();
 
       emit(
         state.copyWith(
           elementalSoulQuestions: elementalSoulList,
-          currentIndex: saved['index']!,
-          totalScore: saved['score']!,
+          // currentIndex: saved['index']!,
+          // totalScore: saved['score']!,
         ),
       );
     });
@@ -65,5 +66,38 @@ class ElementalSoulBloc extends Bloc<ElementalSoulEvent, ElementalSoulState> {
       emit(ElementalSoulState());
       add(FetchElementalSoulQuestion());
     });
+
+    on<SaveAvatarElementalSoul>((event, emit) async {
+      await saveAvatarElementalSoul();
+    });
+    on<GetAvatarElementalSoul>((event, emit) async {
+      final result = await getAvatarElementalSoul();
+      emit(state.copyWith(avatarUnLocked: result ?? 'No'));
+    });
+
+    on<RemoveAvatarElementalSoul>((event, emit) async {
+      await removeAvatarElementalSoul();
+    });
+  }
+
+  static const _avatarElementalSoulKey = 'avatarElementalSoulKey';
+
+  static Future<void> saveAvatarElementalSoul() async {
+    final prefs = await SharedPreferences.getInstance();
+
+    final result = prefs.getString(_avatarElementalSoulKey);
+    if (result == null) {
+      await prefs.setString(_avatarElementalSoulKey, 'Yes');
+    }
+  }
+
+  static Future<String?> getAvatarElementalSoul() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getString(_avatarElementalSoulKey);
+  }
+
+  static Future<void> removeAvatarElementalSoul() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.remove(_avatarElementalSoulKey);
   }
 }

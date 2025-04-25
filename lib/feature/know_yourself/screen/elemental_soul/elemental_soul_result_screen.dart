@@ -1,10 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ralm/core/constants/string_constant.dart';
+import 'package:ralm/core/shared/dialog/dialog_utils.dart';
+import 'package:ralm/feature/avatar/bloc/avatar_bloc.dart';
 import 'package:ralm/feature/know_yourself/screen/elemental_soul/bloc/elemental_soul_bloc.dart';
 
-class ElementalSoulResultScreen extends StatelessWidget {
+class ElementalSoulResultScreen extends StatefulWidget {
   const ElementalSoulResultScreen({super.key});
+
+  @override
+  State<ElementalSoulResultScreen> createState() =>
+      _ElementalSoulResultScreenState();
+}
+
+class _ElementalSoulResultScreenState extends State<ElementalSoulResultScreen> {
+  @override
+  void initState() {
+    context.read<AvatarBloc>().add(CheckAvatarUnlocked(id: 12));
+    context.read<ElementalSoulBloc>().add(GetAvatarElementalSoul());
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,87 +67,111 @@ class ElementalSoulResultScreen extends StatelessWidget {
         elementalInfo = water;
     }
 
-    return Scaffold(
-      backgroundColor: Colors.black,
-      body: SizedBox.expand(
-        child: Container(
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage(imageResult),
-              fit: BoxFit.cover,
-            ),
-          ),
+    return BlocListener<AvatarBloc, AvatarState>(
+      listenWhen:
+          (previous, current) =>
+              previous.isAvatarUnlocked != current.isAvatarUnlocked,
+
+      listener: (context, avatarState) {
+        final result = context.read<ElementalSoulBloc>().state.avatarUnLocked;
+        if (result == 'Yes' && avatarState.isAvatarUnlocked) {
+          Future.delayed(const Duration(seconds: 2), () {
+            if (context.mounted) {
+              DialogUtils.showRewardDialog(
+                context: context,
+                avatarName: 'THE ELEMENTAL SOUL AVATAR',
+                avatarAsset: 'assets/image/avatar/Elemental_Soul_Avatar.png',
+              );
+            }
+          });
+        }
+      },
+      child: Scaffold(
+        backgroundColor: Colors.black,
+        body: SizedBox.expand(
           child: Container(
-            color: Colors.black.withOpacity(0.4),
-            child: SafeArea(
-              child: SingleChildScrollView(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 20),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Align(
-                        alignment: Alignment.topRight,
-                        child: Padding(
-                          padding: const EdgeInsets.all(16.0),
-                          child: TextButton(
-                            onPressed: () {
-                              context.read<ElementalSoulBloc>().add(
-                                ResetElementalSoulQuestion(),
-                              );
-                              Navigator.pushNamedAndRemoveUntil(
-                                context,
-                                StringConstant.navKnowYourScreenKey,
-                                ModalRoute.withName(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage(imageResult),
+                fit: BoxFit.cover,
+              ),
+            ),
+            child: Container(
+              color: Colors.black.withOpacity(0.4),
+              child: SafeArea(
+                child: SingleChildScrollView(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 20),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Align(
+                          alignment: Alignment.topRight,
+                          child: Padding(
+                            padding: const EdgeInsets.all(16.0),
+                            child: TextButton(
+                              onPressed: () async {
+                                context.read<ElementalSoulBloc>().add(
+                                  ResetElementalSoulQuestion(),
+                                );
+                                await Future.delayed(
+                                  Duration(seconds: 1),
+                                  () {},
+                                );
+                                Navigator.pushNamedAndRemoveUntil(
+                                  context,
                                   StringConstant.navKnowYourScreenKey,
+                                  ModalRoute.withName(
+                                    StringConstant.navKnowYourScreenKey,
+                                  ),
+                                );
+                              },
+                              child: Text(
+                                'Exit',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontFamily: 'Poppins',
                                 ),
-                              );
-                            },
-                            child: Text(
-                              'Exit',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontFamily: 'Poppins',
                               ),
                             ),
                           ),
                         ),
-                      ),
-                      const SizedBox(height: 60),
-                      Text(
-                        'YOUR ELEMENTAL SOUL IS',
-                        style: TextStyle(
-                          color: Colors.white70,
-                          fontSize: 18,
-                          fontFamily: 'Poppins',
-                        ),
-                      ),
-                      const SizedBox(height: 10),
-                      Text(
-                        result.toUpperCase(),
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 48,
-                          fontWeight: FontWeight.bold,
-                          fontFamily: 'Poppins',
-                        ),
-                      ),
-                      const SizedBox(height: 20),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 24),
-                        child: Text(
-                          elementalInfo,
-                          textAlign: TextAlign.center,
+                        const SizedBox(height: 60),
+                        Text(
+                          'YOUR ELEMENTAL SOUL IS',
                           style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 16,
-                            height: 1.5,
+                            color: Colors.white70,
+                            fontSize: 18,
                             fontFamily: 'Poppins',
                           ),
                         ),
-                      ),
-                      const SizedBox(height: 60), // Extra spacing at bottom
-                    ],
+                        const SizedBox(height: 10),
+                        Text(
+                          result.toUpperCase(),
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 48,
+                            fontWeight: FontWeight.bold,
+                            fontFamily: 'Poppins',
+                          ),
+                        ),
+                        const SizedBox(height: 20),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 24),
+                          child: Text(
+                            elementalInfo,
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 16,
+                              height: 1.5,
+                              fontFamily: 'Poppins',
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 60), // Extra spacing at bottom
+                      ],
+                    ),
                   ),
                 ),
               ),

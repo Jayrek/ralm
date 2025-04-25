@@ -80,7 +80,6 @@ class _KnowYourSelfScreenState extends State<KnowYourSelfScreen> {
                                   StringConstant.navDashboardScreenKey,
                                 ),
                               );
-                              //  Navigator.of(context).pop();
                             },
                           ),
                         ],

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ralm/core/constants/string_constant.dart';
 import 'package:ralm/core/shared/widget/custom_button_rounded_widget.dart';
@@ -140,7 +141,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             ),
                             CustomButtonIconWidget(
                               icon: Icon(Icons.logout),
-                              onPressed: () {},
+                              onPressed: () {
+                                SystemNavigator.pop();
+                              },
                             ),
                           ],
                         ),

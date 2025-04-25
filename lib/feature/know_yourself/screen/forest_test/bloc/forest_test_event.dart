@@ -15,6 +15,10 @@ class SaveAvatarForestTest extends ForestTestEvent {
   const SaveAvatarForestTest();
 }
 
-class RemoveAvatarForestTest extends ForestTestEvent {}
+class RemoveAvatarForestTest extends ForestTestEvent {
+  const RemoveAvatarForestTest();
+}
 
-class GetAvatarForestTest extends ForestTestEvent {}
+class GetAvatarForestTest extends ForestTestEvent {
+  const GetAvatarForestTest();
+}
