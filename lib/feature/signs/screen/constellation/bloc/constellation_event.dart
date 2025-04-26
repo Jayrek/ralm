@@ -12,10 +12,22 @@ class FetchConstellationZodiac extends ConstellationEvent {
 }
 
 class SelectedConstellationZodiac extends ConstellationEvent {
-  const SelectedConstellationZodiac({required this.dateRange});
+  final DateTime selectedDate;
+
+  const SelectedConstellationZodiac(this.selectedDate);
+  // const SelectedConstellationZodiac({required this.dateRange});
+
+  // final String dateRange;
+
+  // @override
+  List<Object> get props => [selectedDate];
+}
+
+class SelectedConstellationIndividualZodiac extends ConstellationEvent {
+  const SelectedConstellationIndividualZodiac({required this.dateRange});
 
   final String dateRange;
 
-  @override
+  // @override
   List<Object> get props => [dateRange];
 }

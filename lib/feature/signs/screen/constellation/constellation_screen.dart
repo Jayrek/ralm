@@ -1,5 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 import 'package:ralm/core/constants/string_constant.dart';
 import 'package:ralm/core/shared/widget/custom_button_icon_widget.dart';
 import 'package:ralm/core/shared/widget/custom_button_rounded_widget.dart';
@@ -166,27 +168,33 @@ class _ConstellationScreenState extends State<ConstellationScreen>
                       CustomButtonRoundedWidget(
                         label:
                             selectedDate == null
-                                ? 'Select your birth year'
-                                : selectedDate!.year.toString(),
+                                ? 'Select your birth date'
+                                : DateFormat('MMM dd').format(selectedDate!),
                         width: 250,
-                        // onPressed: () => _showMonthDayPicker(context),
                         onPressed: () {
                           showDialog(
                             context: context,
                             builder: (context) {
-                              return _dayMonthPicker();
+                              return _dayMonthPicker(
+                                onSelected: (month, day) {
+                                  final picked = DateTime(2000, month, day);
+                                  setState(() {
+                                    selectedDate = DateTime(2000, month, day);
+                                  });
+                                  context.read<ConstellationBloc>().add(
+                                    SelectedConstellationZodiac(picked),
+                                  );
+                                  Navigator.pop(context);
+                                  Navigator.pushNamed(
+                                    context,
+                                    StringConstant.navConstellationZodiacDetail,
+                                  );
+                                },
+                              );
                             },
                           );
                         },
                       ),
-                      // DayMonthPicker(
-                      //   onChange: (dayMonth) {
-                      //     // Do something with the selected day and month
-                      //     print(
-                      //       'Selected Day: ${dayMonth.day}, Month: ${dayMonth.month}',
-                      //     );
-                      //   },
-                      // ),
                     ],
                   ),
                   SizedBox(height: 40),
@@ -240,7 +248,7 @@ class _ConstellationScreenState extends State<ConstellationScreen>
                                   ),
                                   onPressed: () {
                                     context.read<ConstellationBloc>().add(
-                                      SelectedConstellationZodiac(
+                                      SelectedConstellationIndividualZodiac(
                                         dateRange: constellation.dateRange,
                                       ),
                                     );
@@ -310,32 +318,105 @@ class _ConstellationScreenState extends State<ConstellationScreen>
     );
   }
 
-  _dayMonthPicker() {
+  Widget _dayMonthPicker({
+    required void Function(int month, int day) onSelected,
+  }) {
+    int selectedMonth = 1;
+    int selectedDay = 1;
+
     return Dialog(
+      backgroundColor: Colors.white,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       child: SizedBox(
         height: 400,
-        width: 200,
         child: Column(
-          mainAxisSize: MainAxisSize.min,
           children: [
-            Row(
-              children: [
-                Text('MONTH', style: TextStyle(fontFamily: 'Poppins')),
-                Text('DAY', style: TextStyle(fontFamily: 'Poppins')),
-              ],
-            ),
-            Row(
-              children: [
-                Column(
-                  children:
-                      StringConstant.monthNames.map((month) {
-                        return Text(
-                          month,
-                          style: TextStyle(fontFamily: 'Poppins'),
-                        );
-                      }).toList(),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 16),
+              child: Text(
+                'Select your birth date',
+                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                  color: Colors.purple,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'Poppins',
                 ),
-              ],
+              ),
+            ),
+            Expanded(
+              child: Row(
+                children: [
+                  Expanded(
+                    child: CupertinoPicker(
+                      scrollController: FixedExtentScrollController(
+                        initialItem: selectedMonth - 1,
+                      ),
+                      itemExtent: 40,
+                      onSelectedItemChanged: (index) {
+                        selectedMonth = index + 1;
+                      },
+                      children: List.generate(
+                        12,
+                        (index) => Center(
+                          child: Text(
+                            StringConstant.monthNames[index],
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.purple,
+                              fontFamily: 'Poppins',
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: CupertinoPicker(
+                      scrollController: FixedExtentScrollController(
+                        initialItem: selectedDay - 1,
+                      ),
+                      itemExtent: 40,
+                      onSelectedItemChanged: (index) {
+                        selectedDay = index + 1;
+                      },
+                      children: List.generate(
+                        31,
+                        (index) => Center(
+                          child: Text(
+                            '${index + 1}',
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.purple,
+                              fontFamily: 'Poppins',
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 20),
+              child: TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                  final selected = DateTime(2000, selectedMonth, selectedDay);
+                  final formatted = DateFormat('MMM/dd').format(selected);
+                  print('Selected: $formatted');
+                  onSelected(selectedMonth, selectedDay);
+                },
+                child: Text(
+                  'OK',
+                  style: TextStyle(
+                    fontFamily: 'Poppins',
+                    fontWeight: FontWeight.bold,
+                    color: Colors.purple,
+                  ),
+                ),
+              ),
             ),
           ],
         ),
