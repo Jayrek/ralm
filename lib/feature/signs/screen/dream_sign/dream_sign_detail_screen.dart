@@ -51,12 +51,17 @@ class _DreamSignDetailScreenState extends State<DreamSignDetailScreen> {
     }
 
     return Scaffold(
-      backgroundColor: Colors.purple.shade300,
-      body: Stack(
-        fit: StackFit.expand,
-        children: [
-          Image.asset(dreamSignBg, fit: BoxFit.cover),
-          BlocBuilder<DreamSignBloc, DreamSignState>(
+      backgroundColor: Colors.black,
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage(dreamSignBg),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: Container(
+          color: Colors.black.withOpacity(0.4),
+          child: BlocBuilder<DreamSignBloc, DreamSignState>(
             builder: (context, state) {
               final details = state.dreamSignDetailList;
               return PageView.builder(
@@ -99,7 +104,7 @@ class _DreamSignDetailScreenState extends State<DreamSignDetailScreen> {
               );
             },
           ),
-        ],
+        ),
       ),
     );
   }
@@ -119,7 +124,11 @@ class _DreamSignDetailScreenState extends State<DreamSignDetailScreen> {
           style: TextStyle(
             fontSize: 36,
             fontWeight: FontWeight.bold,
-            color: type == 'nightmare' ? Colors.white : Colors.black,
+            fontFamily: 'Poppins',
+            color:
+                type == 'nightmare' || type == 'animal' || type == 'symbol'
+                    ? Colors.white
+                    : Colors.black,
           ),
         ),
         SizedBox(height: 10),
@@ -128,7 +137,11 @@ class _DreamSignDetailScreenState extends State<DreamSignDetailScreen> {
           textAlign: TextAlign.center,
           style: TextStyle(
             fontSize: 18,
-            color: type == 'nightmare' ? Colors.white : Colors.black,
+            fontFamily: 'Poppins',
+            color:
+                type == 'nightmare' || type == 'animal' || type == 'symbol'
+                    ? Colors.white
+                    : Colors.black,
           ),
         ),
 
