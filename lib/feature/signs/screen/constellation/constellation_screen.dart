@@ -68,6 +68,7 @@ class _ConstellationScreenState extends State<ConstellationScreen>
                   style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                     color: Colors.black87,
                     fontWeight: FontWeight.bold,
+                    fontFamily: 'Poppins',
                   ),
                 ),
               ),
@@ -77,7 +78,12 @@ class _ConstellationScreenState extends State<ConstellationScreen>
                   physics: FixedExtentScrollPhysics(),
                   childDelegate: ListWheelChildBuilderDelegate(
                     builder: (context, index) {
-                      return Center(child: Text("${index + 1}"));
+                      return Center(
+                        child: Text(
+                          "${index + 1}",
+                          style: TextStyle(fontFamily: 'Poppins'),
+                        ),
+                      );
                     },
                     childCount: 12, // 12 months
                   ),
@@ -97,6 +103,7 @@ class _ConstellationScreenState extends State<ConstellationScreen>
                           ).textTheme.bodyLarge?.copyWith(
                             color: Colors.black87,
                             fontWeight: FontWeight.bold,
+                            fontFamily: 'Poppins',
                           ),
                         ),
                       );
@@ -122,17 +129,21 @@ class _ConstellationScreenState extends State<ConstellationScreen>
   Widget build(BuildContext context) {
     context.read<ConstellationBloc>().add(FetchConstellationZodiac());
     return Scaffold(
-      backgroundColor: Colors.purple.shade300,
-      body: SlideTransition(
-        position: _animation,
-        child: Stack(
-          fit: StackFit.expand,
-          children: [
-            Image.asset(
+      backgroundColor: Colors.black,
+      body: Container(
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage(
               'assets/bg/constellation_zodiac_bg/cz_home_bg.jpg',
-              fit: BoxFit.cover,
             ),
-            Padding(
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: Container(
+          color: Colors.black.withOpacity(0.4),
+          child: SlideTransition(
+            position: _animation,
+            child: Padding(
               padding: const EdgeInsets.all(20),
               child: Column(
                 children: [
@@ -246,6 +257,7 @@ class _ConstellationScreenState extends State<ConstellationScreen>
                                       color: Colors.white,
                                       fontWeight: FontWeight.bold,
                                       fontSize: 20,
+                                      fontFamily: 'Poppins',
                                     ),
                                   ),
                                 ),
@@ -292,7 +304,7 @@ class _ConstellationScreenState extends State<ConstellationScreen>
                 ],
               ),
             ),
-          ],
+          ),
         ),
       ),
     );
@@ -306,13 +318,21 @@ class _ConstellationScreenState extends State<ConstellationScreen>
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Row(children: [Text('MONTH'), Text('DAY')]),
+            Row(
+              children: [
+                Text('MONTH', style: TextStyle(fontFamily: 'Poppins')),
+                Text('DAY', style: TextStyle(fontFamily: 'Poppins')),
+              ],
+            ),
             Row(
               children: [
                 Column(
                   children:
                       StringConstant.monthNames.map((month) {
-                        return Text(month);
+                        return Text(
+                          month,
+                          style: TextStyle(fontFamily: 'Poppins'),
+                        );
                       }).toList(),
                 ),
               ],
