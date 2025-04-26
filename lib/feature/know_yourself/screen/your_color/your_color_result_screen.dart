@@ -80,7 +80,7 @@ class _YourColorResultScreenState extends State<YourColorResultScreen> {
 
       listener: (context, avatarState) {
         final result = context.read<YourColorBloc>().state.avatarUnLocked;
-        if (result == 'Yes' && avatarState.isAvatarUnlocked) {
+        if (result != 'No' && avatarState.isAvatarUnlocked) {
           Future.delayed(const Duration(seconds: 2), () {
             if (context.mounted) {
               DialogUtils.showRewardDialog(
@@ -152,7 +152,7 @@ class _YourColorResultScreenState extends State<YourColorResultScreen> {
                       child: Text(
                         colorInfo,
                         textAlign: TextAlign.center,
-                        style: TextStyle(fontFamily: 'Poppons'),
+                        style: TextStyle(fontFamily: 'Poppins'),
                       ),
                     ),
                   ],

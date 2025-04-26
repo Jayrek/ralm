@@ -68,7 +68,7 @@ class ElementalSoulBloc extends Bloc<ElementalSoulEvent, ElementalSoulState> {
     });
 
     on<SaveAvatarElementalSoul>((event, emit) async {
-      await saveAvatarElementalSoul();
+      await saveAvatarElementalSoul(event.soul);
     });
     on<GetAvatarElementalSoul>((event, emit) async {
       final result = await getAvatarElementalSoul();
@@ -82,12 +82,12 @@ class ElementalSoulBloc extends Bloc<ElementalSoulEvent, ElementalSoulState> {
 
   static const _avatarElementalSoulKey = 'avatarElementalSoulKey';
 
-  static Future<void> saveAvatarElementalSoul() async {
+  static Future<void> saveAvatarElementalSoul(String soul) async {
     final prefs = await SharedPreferences.getInstance();
 
     final result = prefs.getString(_avatarElementalSoulKey);
     if (result == null) {
-      await prefs.setString(_avatarElementalSoulKey, 'Yes');
+      await prefs.setString(_avatarElementalSoulKey, soul);
     }
   }
 

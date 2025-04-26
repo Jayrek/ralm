@@ -25,7 +25,11 @@ class ResetYourColorQuestion extends YourColorEvent {
 }
 
 class SaveAvatarYourColor extends YourColorEvent {
-  const SaveAvatarYourColor();
+  const SaveAvatarYourColor({required this.color});
+  final String color;
+
+  @override
+  List<Object> get props => [color];
 }
 
 class RemoveAvatarYourColor extends YourColorEvent {

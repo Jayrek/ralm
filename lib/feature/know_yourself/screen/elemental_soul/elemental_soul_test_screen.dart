@@ -78,7 +78,8 @@ class _ElementalSoulTestScreenState extends State<ElementalSoulTestScreen> {
 
                                       if (questions.isNotEmpty &&
                                           index >= questions.length &&
-                                          !_navigated) {
+                                          !_navigated &&
+                                          index >= questions.length) {
                                         _navigated = true;
                                         WidgetsBinding.instance
                                             .addPostFrameCallback((_) {
@@ -90,7 +91,9 @@ class _ElementalSoulTestScreenState extends State<ElementalSoulTestScreen> {
                                               context
                                                   .read<ElementalSoulBloc>()
                                                   .add(
-                                                    SaveAvatarElementalSoul(),
+                                                    SaveAvatarElementalSoul(
+                                                      soul: result,
+                                                    ),
                                                   );
                                               context.read<AvatarBloc>().add(
                                                 UnlockAvatar(12),

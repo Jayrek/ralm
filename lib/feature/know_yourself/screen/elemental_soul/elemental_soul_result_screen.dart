@@ -74,7 +74,7 @@ class _ElementalSoulResultScreenState extends State<ElementalSoulResultScreen> {
 
       listener: (context, avatarState) {
         final result = context.read<ElementalSoulBloc>().state.avatarUnLocked;
-        if (result == 'Yes' && avatarState.isAvatarUnlocked) {
+        if (result != 'No' && avatarState.isAvatarUnlocked) {
           Future.delayed(const Duration(seconds: 2), () {
             if (context.mounted) {
               DialogUtils.showRewardDialog(

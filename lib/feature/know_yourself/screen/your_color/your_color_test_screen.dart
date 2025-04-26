@@ -67,19 +67,28 @@ class _YourColorTestScreenState extends State<YourColorTestScreen> {
                                           state.yourColorQuestions;
                                       final index = state.currentIndex;
 
+                                      // if (index >= questions.length) {
+                                      //   return const Center(
+                                      //     child: CircularProgressIndicator(),
+                                      //   );
+                                      // }
+
                                       if (questions.isNotEmpty &&
                                           index >= questions.length &&
-                                          !_navigated) {
+                                          !_navigated &&
+                                          index >= questions.length) {
                                         _navigated = true;
                                         WidgetsBinding.instance
                                             .addPostFrameCallback((_) {
                                               final result =
-                                                  StringConstant.getElementalTypeFromScore(
+                                                  StringConstant.getColorResultFromScore(
                                                     state.totalScore,
                                                   );
 
                                               context.read<YourColorBloc>().add(
-                                                SaveAvatarYourColor(),
+                                                SaveAvatarYourColor(
+                                                  color: result,
+                                                ),
                                               );
                                               context.read<AvatarBloc>().add(
                                                 UnlockAvatar(13),

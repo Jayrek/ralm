@@ -25,7 +25,11 @@ class ResetElementalSoulQuestion extends ElementalSoulEvent {
 }
 
 class SaveAvatarElementalSoul extends ElementalSoulEvent {
-  const SaveAvatarElementalSoul();
+  const SaveAvatarElementalSoul({required this.soul});
+  final String soul;
+
+  @override
+  List<Object> get props => [soul];
 }
 
 class RemoveAvatarElementalSoul extends ElementalSoulEvent {

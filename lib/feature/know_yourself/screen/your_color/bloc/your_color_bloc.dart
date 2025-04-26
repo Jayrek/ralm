@@ -57,7 +57,7 @@ class YourColorBloc extends Bloc<YourColorEvent, YourColorState> {
     });
 
     on<SaveAvatarYourColor>((event, emit) async {
-      await saveAvatarYourColor();
+      await saveAvatarYourColor(event.color);
     });
     on<GetAvatarYourColor>((event, emit) async {
       final result = await getAvatarYourColor();
@@ -71,12 +71,12 @@ class YourColorBloc extends Bloc<YourColorEvent, YourColorState> {
 
   static const _avatarYourColorKey = 'avatarYourColorKey';
 
-  static Future<void> saveAvatarYourColor() async {
+  static Future<void> saveAvatarYourColor(String color) async {
     final prefs = await SharedPreferences.getInstance();
 
     final result = prefs.getString(_avatarYourColorKey);
     if (result == null) {
-      await prefs.setString(_avatarYourColorKey, 'Yes');
+      await prefs.setString(_avatarYourColorKey, color);
     }
   }
 
