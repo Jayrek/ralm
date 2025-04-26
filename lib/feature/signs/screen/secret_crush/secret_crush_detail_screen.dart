@@ -36,15 +36,17 @@ class _SecretCrushDetailScreenState extends State<SecretCrushDetailScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.purple.shade300,
-      body: Stack(
-        fit: StackFit.expand,
-        children: [
-          Image.asset(
-            'assets/bg/secret_crush_bg/sc_detail_bg.jpg',
+      backgroundColor: Colors.black,
+      body: Container(
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/bg/secret_crush_bg/sc_detail_bg.jpg'),
             fit: BoxFit.cover,
           ),
-          BlocBuilder<SecretCrushBloc, SecretCrushState>(
+        ),
+        child: Container(
+          color: Colors.black.withOpacity(0.4),
+          child: BlocBuilder<SecretCrushBloc, SecretCrushState>(
             builder: (context, state) {
               final details = state.secretCrushList;
               return PageView.builder(
@@ -79,7 +81,7 @@ class _SecretCrushDetailScreenState extends State<SecretCrushDetailScreen> {
               );
             },
           ),
-        ],
+        ),
       ),
     );
   }
@@ -92,13 +94,21 @@ class _SecretCrushDetailScreenState extends State<SecretCrushDetailScreen> {
         Text(
           dreamSign.title.toUpperCase(),
           textAlign: TextAlign.center,
-          style: TextStyle(fontSize: 36, fontWeight: FontWeight.bold),
+          style: TextStyle(
+            fontSize: 36,
+            fontWeight: FontWeight.bold,
+            fontFamily: 'Poppins',
+          ),
         ),
         SizedBox(height: 10),
         Text(
           dreamSign.information,
           textAlign: TextAlign.center,
-          style: TextStyle(fontSize: 18, color: Colors.white),
+          style: TextStyle(
+            fontSize: 18,
+            color: Colors.white,
+            fontFamily: 'Poppins',
+          ),
         ),
 
         // Left & Right Navigation Buttons

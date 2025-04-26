@@ -111,7 +111,11 @@ class DreamSignScreen extends StatelessWidget {
                       },
                       child: Text(
                         'Exit',
-                        style: TextStyle(color: Colors.white),
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontFamily: 'Poppins',
+                          fontSize: 30,
+                        ),
                       ),
                     ),
                   ],
@@ -131,12 +135,15 @@ class DreamSignScreen extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: Container(
-        width: 150,
+        width: 180,
+        height: 60,
         padding: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
         decoration: BoxDecoration(
           border: Border.all(width: 2, color: Colors.white),
         ),
-        child: Center(child: Text(label)),
+        child: Center(
+          child: Text(label, style: TextStyle(fontFamily: 'Poppins')),
+        ),
       ),
     );
   }
