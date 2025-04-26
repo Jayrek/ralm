@@ -51,6 +51,7 @@ class _ChineseZodiacScreenState extends State<ChineseZodiacScreen>
                   style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                     color: Colors.purple,
                     fontWeight: FontWeight.bold,
+                    fontFamily: 'Poppins',
                   ),
                 ),
               ),
@@ -103,6 +104,7 @@ class _ChineseZodiacScreenState extends State<ChineseZodiacScreen>
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
                               color: Colors.purple,
+                              fontFamily: 'Poppins',
                             ),
                           ),
                         ),
@@ -128,15 +130,17 @@ class _ChineseZodiacScreenState extends State<ChineseZodiacScreen>
   Widget build(BuildContext context) {
     context.read<ChineseZodiacBloc>().add(FetchChineseZodiac());
     return Scaffold(
-      backgroundColor: Colors.purple.shade300,
-      body: Stack(
-        fit: StackFit.expand,
-        children: [
-          Image.asset(
-            'assets/bg/zodiac_bg/zodiac_home_bg.jpg',
+      backgroundColor: Colors.black,
+      body: Container(
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/bg/zodiac_bg/zodiac_home_bg.jpg'),
             fit: BoxFit.cover,
           ),
-          SlideTransition(
+        ),
+        child: Container(
+          color: Colors.black.withOpacity(0.4),
+          child: SlideTransition(
             position: _animation,
             child: Padding(
               padding: const EdgeInsets.all(20),
@@ -239,6 +243,7 @@ class _ChineseZodiacScreenState extends State<ChineseZodiacScreen>
                                           color: Colors.white,
                                           fontWeight: FontWeight.bold,
                                           fontSize: 20,
+                                          fontFamily: 'Poppins',
                                         ),
                                       ),
                                     ),
@@ -295,7 +300,7 @@ class _ChineseZodiacScreenState extends State<ChineseZodiacScreen>
               ),
             ),
           ),
-        ],
+        ),
       ),
     );
   }

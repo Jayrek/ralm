@@ -73,11 +73,16 @@ class _ChineseZodiacDetailScreenState extends State<ChineseZodiacDetailScreen> {
               double opacity = (_currentPage == index) ? 1.0 : 0;
               double scale = (_currentPage == index) ? 1.0 : 0.95;
 
-              return Stack(
-                fit: StackFit.expand,
-                children: [
-                  Image.asset(zodiac.bg, fit: BoxFit.cover),
-                  Center(
+              return Container(
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage(zodiac.bg),
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                child: Container(
+                  color: Colors.black.withOpacity(0.4),
+                  child: Center(
                     child: AnimatedContainer(
                       duration: Duration(milliseconds: 300),
                       curve: Curves.easeInOut,
@@ -102,6 +107,7 @@ class _ChineseZodiacDetailScreenState extends State<ChineseZodiacDetailScreen> {
                                   style: TextStyle(
                                     fontSize: 36,
                                     fontWeight: FontWeight.bold,
+                                    fontFamily: 'Poppins',
                                   ),
                                 ),
                                 SizedBox(height: 10),
@@ -111,6 +117,7 @@ class _ChineseZodiacDetailScreenState extends State<ChineseZodiacDetailScreen> {
                                   style: TextStyle(
                                     fontSize: 18,
                                     color: Colors.white,
+                                    fontFamily: 'Poppins',
                                   ),
                                 ),
                                 SizedBox(height: 20),
@@ -120,6 +127,7 @@ class _ChineseZodiacDetailScreenState extends State<ChineseZodiacDetailScreen> {
                                   style: TextStyle(
                                     fontSize: 18,
                                     color: Colors.white,
+                                    fontFamily: 'Poppins',
                                   ),
                                 ),
                                 SizedBox(height: 20),
@@ -129,6 +137,7 @@ class _ChineseZodiacDetailScreenState extends State<ChineseZodiacDetailScreen> {
                                   style: TextStyle(
                                     fontSize: 16,
                                     color: Colors.white,
+                                    fontFamily: 'Poppins',
                                   ),
                                 ),
                                 SizedBox(height: 20),
@@ -138,6 +147,7 @@ class _ChineseZodiacDetailScreenState extends State<ChineseZodiacDetailScreen> {
                                   style: TextStyle(
                                     fontSize: 16,
                                     color: Colors.white,
+                                    fontFamily: 'Poppins',
                                   ),
                                 ),
                                 SizedBox(height: 20),
@@ -147,6 +157,7 @@ class _ChineseZodiacDetailScreenState extends State<ChineseZodiacDetailScreen> {
                                   style: TextStyle(
                                     fontSize: 16,
                                     color: Colors.white,
+                                    fontFamily: 'Poppins',
                                   ),
                                 ),
                                 SizedBox(height: 20),
@@ -156,6 +167,7 @@ class _ChineseZodiacDetailScreenState extends State<ChineseZodiacDetailScreen> {
                                   style: TextStyle(
                                     fontSize: 16,
                                     color: Colors.white,
+                                    fontFamily: 'Poppins',
                                   ),
                                 ),
                                 SizedBox(height: 20),
@@ -165,6 +177,7 @@ class _ChineseZodiacDetailScreenState extends State<ChineseZodiacDetailScreen> {
                                   style: TextStyle(
                                     fontSize: 16,
                                     color: Colors.white,
+                                    fontFamily: 'Poppins',
                                   ),
                                 ),
 
@@ -218,7 +231,7 @@ class _ChineseZodiacDetailScreenState extends State<ChineseZodiacDetailScreen> {
                       ),
                     ),
                   ),
-                ],
+                ),
               );
             },
           );
