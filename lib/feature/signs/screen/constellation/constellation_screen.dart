@@ -5,6 +5,7 @@ import 'package:intl/intl.dart';
 import 'package:ralm/core/constants/string_constant.dart';
 import 'package:ralm/core/shared/widget/custom_button_icon_widget.dart';
 import 'package:ralm/core/shared/widget/custom_button_rounded_widget.dart';
+import 'package:ralm/feature/avatar/bloc/avatar_bloc.dart';
 import 'package:ralm/feature/signs/screen/constellation/bloc/constellation_bloc.dart';
 
 class ConstellationScreen extends StatefulWidget {
@@ -183,6 +184,16 @@ class _ConstellationScreenState extends State<ConstellationScreen>
                                   });
                                   context.read<ConstellationBloc>().add(
                                     SelectedConstellationZodiac(picked),
+                                  );
+                                  context.read<ConstellationBloc>().add(
+                                    SaveAvatarContestllation(
+                                      date: DateFormat(
+                                        'MMM dd',
+                                      ).format(selectedDate!),
+                                    ),
+                                  );
+                                  context.read<AvatarBloc>().add(
+                                    UnlockAvatar(7),
                                   );
                                   Navigator.pop(context);
                                   Navigator.pushNamed(

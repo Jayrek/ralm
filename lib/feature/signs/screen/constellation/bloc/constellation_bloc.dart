@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:ralm/models/zodiac.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 part 'constellation_event.dart';
 part 'constellation_state.dart';
@@ -52,55 +53,88 @@ class ConstellationBloc extends Bloc<ConstellationEvent, ConstellationState> {
         emit(state.copyWith(selectedZodiacIndex: selectedIndex));
       }
     });
-  }
-}
+    on<SaveAvatarContestllation>((event, emit) async {
+      await saveAvatarContestllation(event.date);
+    });
+    on<GetAvatarContestllation>((event, emit) async {
+      final result = await getAvatarContestllation();
+      emit(state.copyWith(avatarUnLocked: result ?? 'No'));
+    });
 
-Zodiac? findZodiacSign(DateTime date, List<Zodiac> zodiacList) {
-  for (var zodiac in zodiacList) {
-    if (_isDateInRange(date, zodiac.dateRange)) {
-      return zodiac;
+    on<RemoveAvatarContestllation>((event, emit) async {
+      await removeAvatarContestllation();
+    });
+  }
+
+  Zodiac? findZodiacSign(DateTime date, List<Zodiac> zodiacList) {
+    for (var zodiac in zodiacList) {
+      if (_isDateInRange(date, zodiac.dateRange)) {
+        return zodiac;
+      }
+    }
+    return null;
+  }
+
+  bool _isDateInRange(DateTime date, String range) {
+    const int year = 2000;
+    final parts = range.split(' - ');
+    if (parts.length != 2) return false;
+
+    final start = _parseDate(parts[0], year);
+    final end = _parseDate(parts[1], year);
+    final normalized = DateTime(year, date.month, date.day);
+
+    final adjustedEnd =
+        end.isBefore(start) ? end.add(Duration(days: 365)) : end;
+    final adjustedDate =
+        normalized.isBefore(start) && adjustedEnd.isAfter(start)
+            ? normalized.add(Duration(days: 365))
+            : normalized;
+
+    return !adjustedDate.isBefore(start) && !adjustedDate.isAfter(adjustedEnd);
+  }
+
+  DateTime _parseDate(String dateString, int year) {
+    final months = {
+      'January': 1,
+      'February': 2,
+      'March': 3,
+      'April': 4,
+      'May': 5,
+      'June': 6,
+      'July': 7,
+      'August': 8,
+      'September': 9,
+      'October': 10,
+      'November': 11,
+      'December': 12,
+    };
+
+    final parts = dateString.split(' ');
+    final month = months[parts[0]]!;
+    final day = int.parse(parts[1]);
+
+    return DateTime(year, month, day);
+  }
+
+  static const _avatarContestllationKey = 'avatarContestllationKey';
+
+  static Future<void> saveAvatarContestllation(String date) async {
+    final prefs = await SharedPreferences.getInstance();
+
+    final result = prefs.getString(_avatarContestllationKey);
+    if (result == null) {
+      await prefs.setString(_avatarContestllationKey, date);
     }
   }
-  return null;
-}
 
-bool _isDateInRange(DateTime date, String range) {
-  const int year = 2000;
-  final parts = range.split(' - ');
-  if (parts.length != 2) return false;
+  static Future<String?> getAvatarContestllation() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getString(_avatarContestllationKey);
+  }
 
-  final start = _parseDate(parts[0], year);
-  final end = _parseDate(parts[1], year);
-  final normalized = DateTime(year, date.month, date.day);
-
-  final adjustedEnd = end.isBefore(start) ? end.add(Duration(days: 365)) : end;
-  final adjustedDate =
-      normalized.isBefore(start) && adjustedEnd.isAfter(start)
-          ? normalized.add(Duration(days: 365))
-          : normalized;
-
-  return !adjustedDate.isBefore(start) && !adjustedDate.isAfter(adjustedEnd);
-}
-
-DateTime _parseDate(String dateString, int year) {
-  final months = {
-    'January': 1,
-    'February': 2,
-    'March': 3,
-    'April': 4,
-    'May': 5,
-    'June': 6,
-    'July': 7,
-    'August': 8,
-    'September': 9,
-    'October': 10,
-    'November': 11,
-    'December': 12,
-  };
-
-  final parts = dateString.split(' ');
-  final month = months[parts[0]]!;
-  final day = int.parse(parts[1]);
-
-  return DateTime(year, month, day);
+  static Future<void> removeAvatarContestllation() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.remove(_avatarContestllationKey);
+  }
 }

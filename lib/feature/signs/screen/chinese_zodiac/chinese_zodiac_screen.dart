@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ralm/core/constants/string_constant.dart';
 import 'package:ralm/core/shared/widget/custom_button_icon_widget.dart';
 import 'package:ralm/core/shared/widget/custom_button_rounded_widget.dart';
+import 'package:ralm/feature/avatar/bloc/avatar_bloc.dart';
 import 'package:ralm/feature/signs/screen/chinese_zodiac/bloc/chinese_zodiac_bloc.dart';
 
 class ChineseZodiacScreen extends StatefulWidget {
@@ -80,6 +81,12 @@ class _ChineseZodiacScreenState extends State<ChineseZodiacScreen>
                         context.read<ChineseZodiacBloc>().add(
                           SelectedChineseZodiac(year: selectedDate!.year),
                         );
+
+                        // context.read<ChineseZodiacBloc>().add(
+                        //   SaveAvatarChineseZodiac(name: ''),
+                        // );
+                        context.read<AvatarBloc>().add(UnlockAvatar(6));
+
                         Navigator.pop(context);
                         Navigator.pushNamed(
                           context,

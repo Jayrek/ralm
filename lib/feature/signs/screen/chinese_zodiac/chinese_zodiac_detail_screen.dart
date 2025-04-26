@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ralm/feature/avatar/bloc/avatar_bloc.dart';
 import 'package:ralm/feature/signs/screen/chinese_zodiac/bloc/chinese_zodiac_bloc.dart';
 
 class ChineseZodiacDetailScreen extends StatefulWidget {
@@ -31,6 +32,11 @@ class _ChineseZodiacDetailScreenState extends State<ChineseZodiacDetailScreen> {
         }
       });
     });
+    // context.read<ChineseZodiacBloc>().add(
+    //                         SaveAvatarChineseZodiac(name: state.s),
+    //                       );
+    context.read<AvatarBloc>().add(CheckAvatarUnlocked(id: 6));
+    context.read<ChineseZodiacBloc>().add(GetAvatarChineseZodiac());
   }
 
   void _goToPrevious() {

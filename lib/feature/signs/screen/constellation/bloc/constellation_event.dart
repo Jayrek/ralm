@@ -28,6 +28,21 @@ class SelectedConstellationIndividualZodiac extends ConstellationEvent {
 
   final String dateRange;
 
-  // @override
+  @override
   List<Object> get props => [dateRange];
+}
+
+class SaveAvatarContestllation extends ConstellationEvent {
+  const SaveAvatarContestllation({required this.date});
+  final String date;
+  @override
+  List<Object> get props => [date];
+}
+
+class RemoveAvatarContestllation extends ConstellationEvent {
+  const RemoveAvatarContestllation();
+}
+
+class GetAvatarContestllation extends ConstellationEvent {
+  const GetAvatarContestllation();
 }

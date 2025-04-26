@@ -5,6 +5,7 @@ import 'package:ralm/core/shared/widget/animated_tarot_cad_widget.dart';
 import 'package:ralm/core/util/shared_pref_util.dart';
 import 'package:ralm/feature/avatar/bloc/avatar_bloc.dart';
 import 'package:ralm/feature/know_yourself/screen/myers_briggs/bloc/myers_briggs_bloc.dart';
+import 'package:ralm/feature/signs/screen/constellation/bloc/constellation_bloc.dart';
 import 'package:ralm/models/avatar.dart';
 import 'package:ralm/models/tarot.dart';
 
@@ -26,6 +27,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
     // getMyersBriggsResult
 
     context.read<MyersBriggsBloc>().add(GetMyersBriggesResult());
+    context.read<ConstellationBloc>().add(GetAvatarContestllation());
   }
 
   Future<void> _handlePickedCards() async {
@@ -40,11 +42,16 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      body: Stack(
-        fit: StackFit.expand,
-        children: [
-          Image.asset('assets/bg/discover/discover_bg.jpg', fit: BoxFit.cover),
-          SingleChildScrollView(
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/bg/discover/discover_bg.jpg'),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: Container(
+          color: Colors.black.withOpacity(0.4),
+          child: SingleChildScrollView(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
               child: Center(
@@ -92,9 +99,28 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                       children: [
                         Column(
                           children: [
-                            Text('Birthday: March 26, 1997'),
-                            Text('Horoscope: Aries'),
-                            Text('Chinese Zodiac: Ox'),
+                            BlocSelector<
+                              ConstellationBloc,
+                              ConstellationState,
+                              String
+                            >(
+                              selector: (state) => state.avatarUnLocked,
+                              builder: (context, result) {
+                                return Text(
+                                  'Birthday: $result',
+                                  // 'Birthday: March 26, 1997',
+                                  style: TextStyle(fontFamily: 'Poppins'),
+                                );
+                              },
+                            ),
+                            Text(
+                              'Horoscope: Aries',
+                              style: TextStyle(fontFamily: 'Poppins'),
+                            ),
+                            Text(
+                              'Chinese Zodiac: Ox',
+                              style: TextStyle(fontFamily: 'Poppins'),
+                            ),
                           ],
                         ),
                         SizedBox(width: 20),
@@ -102,13 +128,19 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                           children: [
                             Row(
                               children: [
-                                Text('Elemental Soul: Air'),
+                                Text(
+                                  'Elemental Soul: Air',
+                                  style: TextStyle(fontFamily: 'Poppins'),
+                                ),
                                 Icon(Icons.edit, size: 15, color: Colors.white),
                               ],
                             ),
                             Row(
                               children: [
-                                Text('Aura Color: Blue'),
+                                Text(
+                                  'Aura Color: Blue',
+                                  style: TextStyle(fontFamily: 'Poppins'),
+                                ),
                                 Icon(Icons.edit, size: 15, color: Colors.white),
                               ],
                             ),
@@ -121,8 +153,10 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                                 >(
                                   selector: (state) => state.personalityResult,
                                   builder:
-                                      (context, personality) =>
-                                          Text('MBTI: $personality'),
+                                      (context, personality) => Text(
+                                        'MBTI: $personality',
+                                        style: TextStyle(fontFamily: 'Poppins'),
+                                      ),
                                 ),
                                 Icon(Icons.edit, size: 15, color: Colors.white),
                               ],
@@ -134,7 +168,10 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
 
                     Padding(
                       padding: const EdgeInsets.only(top: 40, bottom: 20),
-                      child: Text('DAILY TAROT CARD'),
+                      child: Text(
+                        'DAILY TAROT CARD',
+                        style: TextStyle(fontFamily: 'Poppins'),
+                      ),
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -153,7 +190,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
               ),
             ),
           ),
-        ],
+        ),
       ),
     );
   }
