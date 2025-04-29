@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ralm/core/constants/string_constant.dart';
 import 'package:ralm/core/shared/widget/animated_tarot_cad_widget.dart';
+import 'package:ralm/core/shared/widget/custom_button_icon_widget.dart';
 import 'package:ralm/core/util/shared_pref_util.dart';
 import 'package:ralm/feature/avatar/bloc/avatar_bloc.dart';
 import 'package:ralm/feature/know_yourself/screen/elemental_soul/bloc/elemental_soul_bloc.dart';
@@ -62,365 +63,380 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                   horizontal: 30,
                   vertical: 20,
                 ),
-                child: Center(
-                  child: Column(
-                    children: [
-                      SizedBox(height: 10),
-                      Material(
-                        elevation: 4,
-                        shape: CircleBorder(),
-                        color: Colors.transparent,
-                        clipBehavior: Clip.antiAlias,
-                        child: InkWell(
-                          customBorder: CircleBorder(),
-                          onTap: () {
-                            Navigator.pushNamed(
-                              context,
-                              StringConstant.navAvatar,
-                            );
-                          },
-                          child: BlocSelector<AvatarBloc, AvatarState, Avatar>(
-                            selector: (state) => state.defaultAvatar,
-                            builder: (context, avatar) {
-                              return Container(
-                                padding: EdgeInsets.all(3),
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  border: Border.all(
-                                    color: Colors.blue,
-                                    width: 3,
-                                  ),
-                                ),
-                                child: CircleAvatar(
-                                  radius: 70,
-                                  backgroundImage: AssetImage(avatar.image),
-                                ),
-                              );
-                            },
+                child: Stack(
+                  children: [
+                    CustomButtonIconWidget(
+                      icon: Icon(Icons.arrow_circle_left),
+                      onPressed: () {
+                        Navigator.popUntil(
+                          context,
+                          ModalRoute.withName(
+                            StringConstant.navDashboardScreenKey,
                           ),
-                        ),
-                      ),
-                      SizedBox(height: 20),
-
-                      Row(
-                        // spacing: 40,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
+                        );
+                      },
+                    ),
+                    Center(
+                      child: Column(
                         children: [
-                          BlocSelector<
-                            ConstellationBloc,
-                            ConstellationState,
-                            String
-                          >(
-                            selector: (state) => state.avatarUnLocked,
-                            builder: (context, state) {
-                              final bday = state == 'No' ? 'N/A' : state;
-                              return Text(
-                                'Birthday: $bday',
-                                // 'Birthday: March 26, 1997',
-                                style: TextStyle(fontFamily: 'Poppins'),
-                              );
-                            },
+                          SizedBox(height: 10),
+                          Material(
+                            elevation: 4,
+                            shape: CircleBorder(),
+                            color: Colors.transparent,
+                            clipBehavior: Clip.antiAlias,
+                            child: InkWell(
+                              customBorder: CircleBorder(),
+                              onTap: () {
+                                Navigator.pushNamed(
+                                  context,
+                                  StringConstant.navAvatar,
+                                );
+                              },
+                              child:
+                                  BlocSelector<AvatarBloc, AvatarState, Avatar>(
+                                    selector: (state) => state.defaultAvatar,
+                                    builder: (context, avatar) {
+                                      return Container(
+                                        padding: EdgeInsets.all(3),
+                                        decoration: BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          border: Border.all(
+                                            color: Colors.blue,
+                                            width: 3,
+                                          ),
+                                        ),
+                                        child: CircleAvatar(
+                                          radius: 70,
+                                          backgroundImage: AssetImage(
+                                            avatar.image,
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                  ),
+                            ),
                           ),
+                          SizedBox(height: 20),
+
                           Row(
+                            spacing: 40,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               BlocSelector<
-                                ElementalSoulBloc,
-                                ElementalSoulState,
+                                ConstellationBloc,
+                                ConstellationState,
                                 String
                               >(
                                 selector: (state) => state.avatarUnLocked,
                                 builder: (context, state) {
-                                  final soul = state == 'No' ? 'N/A' : state;
+                                  final bday = state == 'No' ? 'N/A' : state;
                                   return Text(
-                                    'Elemental Soul: $soul',
+                                    'Birthday: $bday',
+                                    // 'Birthday: March 26, 1997',
                                     style: TextStyle(fontFamily: 'Poppins'),
                                   );
                                 },
                               ),
-                              IconButton(
-                                onPressed: () {
-                                  context.read<ElementalSoulBloc>().add(
-                                    RemoveAvatarElementalSoul(),
-                                  );
-                                  context.read<ElementalSoulBloc>().add(
-                                    GetAvatarElementalSoul(),
-                                  );
-                                },
-                                icon: Icon(
-                                  Icons.delete,
-                                  size: 15,
-                                  color: Colors.grey,
-                                ),
+                              Row(
+                                children: [
+                                  BlocSelector<
+                                    ElementalSoulBloc,
+                                    ElementalSoulState,
+                                    String
+                                  >(
+                                    selector: (state) => state.avatarUnLocked,
+                                    builder: (context, state) {
+                                      final soul =
+                                          state == 'No' ? 'N/A' : state;
+                                      return Text(
+                                        'Elemental Soul: $soul',
+                                        style: TextStyle(fontFamily: 'Poppins'),
+                                      );
+                                    },
+                                  ),
+                                  IconButton(
+                                    onPressed: () {
+                                      context.read<ElementalSoulBloc>().add(
+                                        RemoveAvatarElementalSoul(),
+                                      );
+                                      context.read<ElementalSoulBloc>().add(
+                                        GetAvatarElementalSoul(),
+                                      );
+                                    },
+                                    icon: Icon(
+                                      Icons.delete,
+                                      size: 15,
+                                      color: Colors.grey,
+                                    ),
+                                  ),
+                                ],
                               ),
                             ],
                           ),
-                        ],
-                      ),
-                      Row(
-                        spacing: 40,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Container(
-                            width: 400,
+                          Row(
+                            spacing: 40,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Text(
+                                'Horoscope: N/A',
+                                style: TextStyle(fontFamily: 'Poppins'),
+                              ),
+                              Row(
+                                children: [
+                                  BlocSelector<
+                                    YourColorBloc,
+                                    YourColorState,
+                                    String
+                                  >(
+                                    selector: (state) => state.avatarUnLocked,
+                                    builder: (context, state) {
+                                      final color =
+                                          state == 'No' ? 'N/A' : state;
+                                      return Text(
+                                        'Aura Color: $color',
+                                        style: TextStyle(fontFamily: 'Poppins'),
+                                      );
+                                    },
+                                  ),
+
+                                  IconButton(
+                                    onPressed: () {
+                                      context.read<YourColorBloc>().add(
+                                        RemoveAvatarYourColor(),
+                                      );
+                                      context.read<YourColorBloc>().add(
+                                        GetAvatarYourColor(),
+                                      );
+                                    },
+                                    icon: Icon(
+                                      Icons.delete,
+                                      size: 15,
+                                      color: Colors.grey,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+
+                          Row(
+                            spacing: 40,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Text(
+                                'Chinese Zodiac: N/A',
+                                style: TextStyle(fontFamily: 'Poppins'),
+                              ),
+                              Row(
+                                children: [
+                                  BlocSelector<
+                                    MyersBriggsBloc,
+                                    MyersBriggsState,
+                                    String
+                                  >(
+                                    selector:
+                                        (state) => state.personalityResult,
+                                    builder: (context, state) {
+                                      final personality =
+                                          state.isEmpty ? 'N/A' : state;
+                                      return Text(
+                                        'MBTI: $personality',
+                                        style: TextStyle(fontFamily: 'Poppins'),
+                                      );
+                                    },
+                                  ),
+
+                                  IconButton(
+                                    onPressed: () {
+                                      context.read<MyersBriggsBloc>().add(
+                                        RemoveMyersBriggesResult(),
+                                      );
+                                      context.read<MyersBriggsBloc>().add(
+                                        RemoveMyersBriggesResult(),
+                                      );
+                                    },
+                                    icon: Icon(
+                                      Icons.delete,
+                                      size: 15,
+                                      color: Colors.grey,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+
+                          // TODO
+                          // Row(
+                          //   mainAxisAlignment: MainAxisAlignment.center,
+                          //   crossAxisAlignment: CrossAxisAlignment.center,
+                          //   children: [
+                          //     Column(
+                          //       children: [
+                          //         BlocSelector<
+                          //           ConstellationBloc,
+                          //           ConstellationState,
+                          //           String
+                          //         >(
+                          //           selector: (state) => state.avatarUnLocked,
+                          //           builder: (context, state) {
+                          //             final bday = state == 'No' ? 'N/A' : state;
+                          //             return Text(
+                          //               'Birthday: $bday',
+                          //               // 'Birthday: March 26, 1997',
+                          //               style: TextStyle(fontFamily: 'Poppins'),
+                          //             );
+                          //           },
+                          //         ),
+                          //         Text(
+                          //           'Horoscope: Aries',
+                          //           style: TextStyle(fontFamily: 'Poppins'),
+                          //         ),
+                          //         Text(
+                          //           'Chinese Zodiac: Ox',
+                          //           style: TextStyle(fontFamily: 'Poppins'),
+                          //         ),
+                          //       ],
+                          //     ),
+                          //     SizedBox(width: 20),
+                          //     Column(
+                          //       children: [
+                          //         Row(
+                          //           children: [
+                          //             BlocSelector<
+                          //               ElementalSoulBloc,
+                          //               ElementalSoulState,
+                          //               String
+                          //             >(
+                          //               selector: (state) => state.avatarUnLocked,
+                          //               builder: (context, state) {
+                          //                 final soul =
+                          //                     state == 'No' ? 'N/A' : state;
+                          //                 return Text(
+                          //                   'Elemental Soul: $soul',
+                          //                   style: TextStyle(fontFamily: 'Poppins'),
+                          //                 );
+                          //               },
+                          //             ),
+                          //             IconButton(
+                          //               onPressed: () {
+                          //                 context.read<ElementalSoulBloc>().add(
+                          //                   RemoveAvatarElementalSoul(),
+                          //                 );
+                          //                 context.read<ElementalSoulBloc>().add(
+                          //                   GetAvatarElementalSoul(),
+                          //                 );
+                          //               },
+                          //               icon: Icon(
+                          //                 Icons.delete,
+                          //                 size: 15,
+                          //                 color: Colors.grey,
+                          //               ),
+                          //             ),
+                          //           ],
+                          //         ),
+                          //         Row(
+                          //           children: [
+                          //             BlocSelector<
+                          //               YourColorBloc,
+                          //               YourColorState,
+                          //               String
+                          //             >(
+                          //               selector: (state) => state.avatarUnLocked,
+                          //               builder: (context, state) {
+                          //                 final color =
+                          //                     state == 'No' ? 'N/A' : state;
+                          //                 return Text(
+                          //                   'Aura Color: $color',
+                          //                   style: TextStyle(fontFamily: 'Poppins'),
+                          //                 );
+                          //               },
+                          //             ),
+
+                          //             IconButton(
+                          //               onPressed: () {
+                          //                 context.read<YourColorBloc>().add(
+                          //                   RemoveAvatarYourColor(),
+                          //                 );
+                          //                 context.read<YourColorBloc>().add(
+                          //                   GetAvatarYourColor(),
+                          //                 );
+                          //               },
+                          //               icon: Icon(
+                          //                 Icons.delete,
+                          //                 size: 15,
+                          //                 color: Colors.grey,
+                          //               ),
+                          //             ),
+                          //           ],
+                          //         ),
+                          //         Row(
+                          //           children: [
+                          //             BlocSelector<
+                          //               MyersBriggsBloc,
+                          //               MyersBriggsState,
+                          //               String
+                          //             >(
+                          //               selector:
+                          //                   (state) => state.personalityResult,
+                          //               builder: (context, state) {
+                          //                 final personality =
+                          //                     state.isEmpty ? 'N/A' : state;
+                          //                 return Text(
+                          //                   'MBTI: $personality',
+                          //                   style: TextStyle(fontFamily: 'Poppins'),
+                          //                 );
+                          //               },
+                          //             ),
+
+                          //             IconButton(
+                          //               onPressed: () {
+                          //                 context.read<MyersBriggsBloc>().add(
+                          //                   RemoveMyersBriggesResult(),
+                          //                 );
+                          //                 context.read<MyersBriggsBloc>().add(
+                          //                   RemoveMyersBriggesResult(),
+                          //                 );
+                          //               },
+                          //               icon: Icon(
+                          //                 Icons.delete,
+                          //                 size: 15,
+                          //                 color: Colors.grey,
+                          //               ),
+                          //             ),
+                          //           ],
+                          //         ),
+                          //       ],
+                          //     ),
+                          //   ],
+                          // ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 40, bottom: 20),
                             child: Text(
-                              'Horoscope: Aries',
+                              'DAILY TAROT CARD',
                               style: TextStyle(fontFamily: 'Poppins'),
                             ),
                           ),
-                          Container(
-                            width: 400,
-                            child: Row(
-                              children: [
-                                BlocSelector<
-                                  YourColorBloc,
-                                  YourColorState,
-                                  String
-                                >(
-                                  selector: (state) => state.avatarUnLocked,
-                                  builder: (context, state) {
-                                    final color = state == 'No' ? 'N/A' : state;
-                                    return Text(
-                                      'Aura Color: $color',
-                                      style: TextStyle(fontFamily: 'Poppins'),
-                                    );
-                                  },
-                                ),
-
-                                IconButton(
-                                  onPressed: () {
-                                    context.read<YourColorBloc>().add(
-                                      RemoveAvatarYourColor(),
-                                    );
-                                    context.read<YourColorBloc>().add(
-                                      GetAvatarYourColor(),
-                                    );
-                                  },
-                                  icon: Icon(
-                                    Icons.delete,
-                                    size: 15,
-                                    color: Colors.grey,
-                                  ),
-                                ),
-                              ],
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: List.generate(
+                              3,
+                              (index) => AnimatedTarotCardWidget(
+                                tarot:
+                                    pickedCards.isNotEmpty
+                                        ? pickedCards[index]
+                                        : null,
+                              ),
                             ),
                           ),
                         ],
                       ),
-
-                      Row(
-                        spacing: 40,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Text(
-                            'Chinese Zodiac: Ox',
-                            style: TextStyle(fontFamily: 'Poppins'),
-                          ),
-                          Row(
-                            children: [
-                              BlocSelector<
-                                MyersBriggsBloc,
-                                MyersBriggsState,
-                                String
-                              >(
-                                selector: (state) => state.personalityResult,
-                                builder: (context, state) {
-                                  final personality =
-                                      state.isEmpty ? 'N/A' : state;
-                                  return Text(
-                                    'MBTI: $personality',
-                                    style: TextStyle(fontFamily: 'Poppins'),
-                                  );
-                                },
-                              ),
-
-                              IconButton(
-                                onPressed: () {
-                                  context.read<MyersBriggsBloc>().add(
-                                    RemoveMyersBriggesResult(),
-                                  );
-                                  context.read<MyersBriggsBloc>().add(
-                                    RemoveMyersBriggesResult(),
-                                  );
-                                },
-                                icon: Icon(
-                                  Icons.delete,
-                                  size: 15,
-                                  color: Colors.grey,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-
-                      // TODO
-                      // Row(
-                      //   mainAxisAlignment: MainAxisAlignment.center,
-                      //   crossAxisAlignment: CrossAxisAlignment.center,
-                      //   children: [
-                      //     Column(
-                      //       children: [
-                      //         BlocSelector<
-                      //           ConstellationBloc,
-                      //           ConstellationState,
-                      //           String
-                      //         >(
-                      //           selector: (state) => state.avatarUnLocked,
-                      //           builder: (context, state) {
-                      //             final bday = state == 'No' ? 'N/A' : state;
-                      //             return Text(
-                      //               'Birthday: $bday',
-                      //               // 'Birthday: March 26, 1997',
-                      //               style: TextStyle(fontFamily: 'Poppins'),
-                      //             );
-                      //           },
-                      //         ),
-                      //         Text(
-                      //           'Horoscope: Aries',
-                      //           style: TextStyle(fontFamily: 'Poppins'),
-                      //         ),
-                      //         Text(
-                      //           'Chinese Zodiac: Ox',
-                      //           style: TextStyle(fontFamily: 'Poppins'),
-                      //         ),
-                      //       ],
-                      //     ),
-                      //     SizedBox(width: 20),
-                      //     Column(
-                      //       children: [
-                      //         Row(
-                      //           children: [
-                      //             BlocSelector<
-                      //               ElementalSoulBloc,
-                      //               ElementalSoulState,
-                      //               String
-                      //             >(
-                      //               selector: (state) => state.avatarUnLocked,
-                      //               builder: (context, state) {
-                      //                 final soul =
-                      //                     state == 'No' ? 'N/A' : state;
-                      //                 return Text(
-                      //                   'Elemental Soul: $soul',
-                      //                   style: TextStyle(fontFamily: 'Poppins'),
-                      //                 );
-                      //               },
-                      //             ),
-                      //             IconButton(
-                      //               onPressed: () {
-                      //                 context.read<ElementalSoulBloc>().add(
-                      //                   RemoveAvatarElementalSoul(),
-                      //                 );
-                      //                 context.read<ElementalSoulBloc>().add(
-                      //                   GetAvatarElementalSoul(),
-                      //                 );
-                      //               },
-                      //               icon: Icon(
-                      //                 Icons.delete,
-                      //                 size: 15,
-                      //                 color: Colors.grey,
-                      //               ),
-                      //             ),
-                      //           ],
-                      //         ),
-                      //         Row(
-                      //           children: [
-                      //             BlocSelector<
-                      //               YourColorBloc,
-                      //               YourColorState,
-                      //               String
-                      //             >(
-                      //               selector: (state) => state.avatarUnLocked,
-                      //               builder: (context, state) {
-                      //                 final color =
-                      //                     state == 'No' ? 'N/A' : state;
-                      //                 return Text(
-                      //                   'Aura Color: $color',
-                      //                   style: TextStyle(fontFamily: 'Poppins'),
-                      //                 );
-                      //               },
-                      //             ),
-
-                      //             IconButton(
-                      //               onPressed: () {
-                      //                 context.read<YourColorBloc>().add(
-                      //                   RemoveAvatarYourColor(),
-                      //                 );
-                      //                 context.read<YourColorBloc>().add(
-                      //                   GetAvatarYourColor(),
-                      //                 );
-                      //               },
-                      //               icon: Icon(
-                      //                 Icons.delete,
-                      //                 size: 15,
-                      //                 color: Colors.grey,
-                      //               ),
-                      //             ),
-                      //           ],
-                      //         ),
-                      //         Row(
-                      //           children: [
-                      //             BlocSelector<
-                      //               MyersBriggsBloc,
-                      //               MyersBriggsState,
-                      //               String
-                      //             >(
-                      //               selector:
-                      //                   (state) => state.personalityResult,
-                      //               builder: (context, state) {
-                      //                 final personality =
-                      //                     state.isEmpty ? 'N/A' : state;
-                      //                 return Text(
-                      //                   'MBTI: $personality',
-                      //                   style: TextStyle(fontFamily: 'Poppins'),
-                      //                 );
-                      //               },
-                      //             ),
-
-                      //             IconButton(
-                      //               onPressed: () {
-                      //                 context.read<MyersBriggsBloc>().add(
-                      //                   RemoveMyersBriggesResult(),
-                      //                 );
-                      //                 context.read<MyersBriggsBloc>().add(
-                      //                   RemoveMyersBriggesResult(),
-                      //                 );
-                      //               },
-                      //               icon: Icon(
-                      //                 Icons.delete,
-                      //                 size: 15,
-                      //                 color: Colors.grey,
-                      //               ),
-                      //             ),
-                      //           ],
-                      //         ),
-                      //       ],
-                      //     ),
-                      //   ],
-                      // ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 40, bottom: 20),
-                        child: Text(
-                          'DAILY TAROT CARD',
-                          style: TextStyle(fontFamily: 'Poppins'),
-                        ),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: List.generate(
-                          3,
-                          (index) => AnimatedTarotCardWidget(
-                            tarot:
-                                pickedCards.isNotEmpty
-                                    ? pickedCards[index]
-                                    : null,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
             ),

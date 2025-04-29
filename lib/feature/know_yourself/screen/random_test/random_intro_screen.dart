@@ -56,7 +56,7 @@ class RandomIntroScreen extends StatelessWidget {
                     ),
 
                     Padding(
-                      padding: const EdgeInsets.only(bottom: 180),
+                      padding: const EdgeInsets.only(bottom: 120),
                       child: _optionBox(
                         label: 'START TEST',
                         onTap: () {

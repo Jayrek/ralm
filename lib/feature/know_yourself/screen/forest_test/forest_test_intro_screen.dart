@@ -308,6 +308,19 @@ class _ForestTestIntroScreenState extends State<ForestTestIntroScreen> {
                 ],
               ),
             ),
+          Positioned(
+            top: 0,
+            left: 0,
+            child: CustomButtonIconWidget(
+              icon: const Icon(Icons.arrow_circle_left),
+              onPressed: () {
+                Navigator.popUntil(
+                  context,
+                  ModalRoute.withName(StringConstant.navDashboardScreenKey),
+                );
+              },
+            ),
+          ),
         ],
       ),
     );

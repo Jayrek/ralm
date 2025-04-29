@@ -20,7 +20,7 @@
         "category_id": 1,
         "sort": 3,
         "category_name": "Elemental Soul",
-        "category_description": "Which elemental tyoe is your soul?",
+        "category_description": "Which elemental type is your soul?",
         "status": true
     },
     {
@@ -44,7 +44,7 @@
         "category_id": 1,
         "sort": 6,
         "category_name": "Ideal Type",
-        "category_description": "What kind of person you wandted to be with?",
+        "category_description": "What kind of person you wanted to be with?",
         "status": true
     }
 ]

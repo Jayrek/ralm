@@ -66,7 +66,7 @@ void main() async {
     DeviceOrientation.landscapeLeft,
     DeviceOrientation.landscapeRight,
   ]);
-  // await BackgroundMusicService().init();
+  await BackgroundMusicService().init();
   runApp(const MyApp());
 }
 
