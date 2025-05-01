@@ -18,7 +18,9 @@ class _ForestTestScreenState extends State<ForestTestScreen> {
   @override
   void initState() {
     super.initState();
-    _controller = VideoPlayerController.asset('assets/video/forest_test.mp4')
+    _controller = VideoPlayerController.asset(
+        'assets/video/forest_test_new.mp4',
+      )
       ..initialize().then((_) {
         setState(() {});
         _controller.play();
