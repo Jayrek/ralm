@@ -58,6 +58,8 @@ flutter:
     - assets/bg/zodiac_bg/
     - assets/bg/forest_test_bg/
     - assets/audio/audio_stream.mp3
+    - assets/bg/know_yourself_bg/
+    - assets/bg/signs_bg/
 
   fonts:
     - family: Tinos

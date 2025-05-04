@@ -45,147 +45,185 @@ class _KnowYourSelfScreenState extends State<KnowYourSelfScreen> {
     context.read<KnowYourselfBloc>().add(FetchKnowYourselfCategory());
     return Scaffold(
       backgroundColor: Colors.black,
-      body: Stack(
-        children: [
-          if (_videoController.value.isInitialized)
-            SizedBox.expand(
-              child: FittedBox(
-                fit: BoxFit.cover,
-                child: SizedBox(
-                  width: _videoController.value.size.width,
-                  height: _videoController.value.size.height,
-                  child: VideoPlayer(_videoController),
-                ),
+      body: SizedBox.expand(
+        child: Container(
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage(
+                'assets/bg/know_yourself_bg/new_bg_know_yourself.jpg',
               ),
-            ),
-          SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
-              child: Stack(
-                children: [
-                  Column(
-                    children: [
-                      Row(
-                        children: [
-                          CustomButtonRoundedWidget(
-                            label: 'Know Yourself',
-                            onPressed: null,
-                          ),
-                          CustomButtonIconWidget(
-                            icon: Icon(Icons.arrow_circle_left),
-                            onPressed: () {
-                              Navigator.popUntil(
-                                context,
-                                ModalRoute.withName(
-                                  StringConstant.navDashboardScreenKey,
-                                ),
-                              );
-                            },
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: 20),
-                      BlocBuilder<KnowYourselfBloc, KnowYourselfState>(
-                        builder: (context, state) {
-                          return Padding(
-                            padding: const EdgeInsets.only(left: 30),
-                            child: Column(
-                              children:
-                                  state.subCategories.map((subCategory) {
-                                    return CustomSubCategoryWidget(
-                                      name: subCategory.categoryName,
-                                      description:
-                                          subCategory.categoryDescription,
-                                      onPressed: () {
-                                        switch (subCategory.id) {
-                                          case 0:
-                                            Navigator.pushNamed(
-                                              context,
-                                              StringConstant
-                                                  .navMyersBriggsIntro,
-                                            );
-                                          case 1:
-                                            Navigator.pushNamed(
-                                              context,
-                                              StringConstant.navForestTestIntro,
-                                            );
-                                          case 2:
-                                            Navigator.pushNamed(
-                                              context,
-                                              StringConstant.navElementalSoul,
-                                            );
-                                          case 3:
-                                            Navigator.pushNamed(
-                                              context,
-                                              StringConstant.navYourColor,
-                                            );
-                                          case 4:
-                                            Navigator.pushNamed(
-                                              context,
-                                              StringConstant.navRandomTestIntro,
-                                            );
-
-                                          case 5:
-                                            Navigator.pushNamed(
-                                              context,
-                                              StringConstant.navIdealTYpeIntro,
-                                            );
-                                        }
-                                      },
-                                    );
-                                  }).toList(),
-                            ),
-                          );
-                        },
-                      ),
-                    ],
-                  ),
-                  Positioned(
-                    top: 0,
-                    right: 0,
-                    child: Padding(
-                      padding: EdgeInsets.all(10),
-                      child: Material(
-                        elevation: 5,
-                        shape: CircleBorder(),
-                        clipBehavior: Clip.antiAlias,
-                        color: Colors.transparent,
-                        child: InkWell(
-                          customBorder: CircleBorder(),
-                          onTap: () {
-                            Navigator.pushNamed(
-                              context,
-                              StringConstant.navAvatar,
-                            );
-                          },
-                          child: BlocSelector<AvatarBloc, AvatarState, Avatar>(
-                            selector: (state) => state.defaultAvatar,
-                            builder: (context, avatar) {
-                              return Container(
-                                padding: EdgeInsets.all(3),
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  border: Border.all(
-                                    color: Colors.blue,
-                                    width: 3,
-                                  ),
-                                ),
-                                child: CircleAvatar(
-                                  radius: 30,
-                                  backgroundImage: AssetImage(avatar.image),
-                                ),
-                              );
-                            },
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+              fit: BoxFit.cover,
             ),
           ),
-        ],
+          child: Container(
+            color: Colors.black.withOpacity(0.4),
+            child: Stack(
+              fit: StackFit.expand,
+              children: [
+                // if (_videoController.value.isInitialized)
+                //   SizedBox.expand(
+                //     child: FittedBox(
+                //       fit: BoxFit.cover,
+                //       child: SizedBox(
+                //         width: _videoController.value.size.width,
+                //         height: _videoController.value.size.height,
+                //         child: VideoPlayer(_videoController),
+                //       ),
+                //     ),
+                //   ),
+                SingleChildScrollView(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 30,
+                      vertical: 20,
+                    ),
+                    child: Stack(
+                      children: [
+                        Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                // CustomButtonRoundedWidget(
+                                //   label: 'Know Yourself',
+                                //   onPressed: null,
+                                // ),
+                                CustomButtonIconWidget(
+                                  icon: Icon(Icons.arrow_circle_left),
+                                  onPressed: () {
+                                    Navigator.popUntil(
+                                      context,
+                                      ModalRoute.withName(
+                                        StringConstant.navDashboardScreenKey,
+                                      ),
+                                    );
+                                  },
+                                ),
+                                Text(
+                                  'Know Yourself'.toUpperCase(),
+                                  style: TextStyle(
+                                    fontFamily: 'Poppins',
+                                    fontSize: 40,
+                                  ),
+                                ),
+                                Text(''),
+                              ],
+                            ),
+                            SizedBox(height: 20),
+                            BlocBuilder<KnowYourselfBloc, KnowYourselfState>(
+                              builder: (context, state) {
+                                return Padding(
+                                  padding: const EdgeInsets.only(left: 30),
+                                  child: Column(
+                                    children:
+                                        state.subCategories.map((subCategory) {
+                                          return CustomSubCategoryWidget(
+                                            name: subCategory.categoryName,
+                                            description:
+                                                subCategory.categoryDescription,
+                                            onPressed: () {
+                                              switch (subCategory.id) {
+                                                case 0:
+                                                  Navigator.pushNamed(
+                                                    context,
+                                                    StringConstant
+                                                        .navMyersBriggsIntro,
+                                                  );
+                                                case 1:
+                                                  Navigator.pushNamed(
+                                                    context,
+                                                    StringConstant
+                                                        .navForestTestIntro,
+                                                  );
+                                                case 2:
+                                                  Navigator.pushNamed(
+                                                    context,
+                                                    StringConstant
+                                                        .navElementalSoul,
+                                                  );
+                                                case 3:
+                                                  Navigator.pushNamed(
+                                                    context,
+                                                    StringConstant.navYourColor,
+                                                  );
+                                                case 4:
+                                                  Navigator.pushNamed(
+                                                    context,
+                                                    StringConstant
+                                                        .navRandomTestIntro,
+                                                  );
+
+                                                case 5:
+                                                  Navigator.pushNamed(
+                                                    context,
+                                                    StringConstant
+                                                        .navIdealTYpeIntro,
+                                                  );
+                                              }
+                                            },
+                                          );
+                                        }).toList(),
+                                  ),
+                                );
+                              },
+                            ),
+                          ],
+                        ),
+                        Positioned(
+                          top: 0,
+                          right: 0,
+                          child: Padding(
+                            padding: EdgeInsets.all(10),
+                            child: Material(
+                              elevation: 5,
+                              shape: CircleBorder(),
+                              clipBehavior: Clip.antiAlias,
+                              color: Colors.transparent,
+                              child: InkWell(
+                                customBorder: CircleBorder(),
+                                onTap: () {
+                                  Navigator.pushNamed(
+                                    context,
+                                    StringConstant.navAvatar,
+                                  );
+                                },
+                                child: BlocSelector<
+                                  AvatarBloc,
+                                  AvatarState,
+                                  Avatar
+                                >(
+                                  selector: (state) => state.defaultAvatar,
+                                  builder: (context, avatar) {
+                                    return Container(
+                                      padding: EdgeInsets.all(3),
+                                      decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        border: Border.all(
+                                          color: Colors.blue,
+                                          width: 3,
+                                        ),
+                                      ),
+                                      child: CircleAvatar(
+                                        radius: 30,
+                                        backgroundImage: AssetImage(
+                                          avatar.image,
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }
