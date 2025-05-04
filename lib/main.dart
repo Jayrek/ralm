@@ -5,6 +5,7 @@ import 'package:ralm/core/service/background_music_service.dart';
 import 'package:ralm/core/theme/app_theme.dart';
 import 'package:ralm/feature/avatar/avatar_list_screen.dart';
 import 'package:ralm/feature/avatar/bloc/avatar_bloc.dart';
+import 'package:ralm/feature/discover/bloc/discover_bloc.dart';
 import 'package:ralm/feature/discover/screen/discover_screen.dart';
 import 'package:ralm/feature/know_yourself/screen/elemental_soul/bloc/elemental_soul_bloc.dart';
 import 'package:ralm/feature/know_yourself/screen/elemental_soul/elemental_soul_result_screen.dart';
@@ -94,6 +95,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => ForestTestBloc()),
         BlocProvider(create: (context) => MyersBriggsBloc()),
         BlocProvider(create: (context) => IdealTypeBloc()),
+        BlocProvider(create: (context) => DiscoverBloc()),
       ],
       child: MaterialApp(
         builder:

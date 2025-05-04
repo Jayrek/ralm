@@ -5,24 +5,33 @@ class ConstellationState extends Equatable {
     this.zodiacs = const [],
     this.selectedZodiacIndex = 0,
     this.avatarUnLocked = 'No',
+    this.constellationValue = '',
   });
 
   final List<Zodiac> zodiacs;
   final int selectedZodiacIndex;
   final String avatarUnLocked;
+  final String constellationValue;
 
   @override
-  List<Object> get props => [zodiacs, selectedZodiacIndex, avatarUnLocked];
+  List<Object> get props => [
+    zodiacs,
+    selectedZodiacIndex,
+    avatarUnLocked,
+    constellationValue,
+  ];
 
   ConstellationState copyWith({
     List<Zodiac>? zodiacs,
     int? selectedZodiacIndex,
     String? avatarUnLocked,
+    String? constellationValue,
   }) {
     return ConstellationState(
       zodiacs: zodiacs ?? this.zodiacs,
       selectedZodiacIndex: selectedZodiacIndex ?? this.selectedZodiacIndex,
       avatarUnLocked: avatarUnLocked ?? this.avatarUnLocked,
+      constellationValue: constellationValue ?? this.constellationValue,
     );
   }
 }

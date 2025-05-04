@@ -34,7 +34,12 @@ class ChineseZodiacBloc extends Bloc<ChineseZodiacEvent, ChineseZodiacState> {
         });
 
         if (selectedIndex != -1) {
-          emit(state.copyWith(selectedZodiacIndex: selectedIndex));
+          emit(
+            state.copyWith(
+              selectedZodiacIndex: selectedIndex,
+              zodiacValue: state.zodiacs[selectedIndex].name,
+            ),
+          );
         }
       }
     });

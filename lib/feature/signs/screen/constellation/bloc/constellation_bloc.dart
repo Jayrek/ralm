@@ -28,7 +28,12 @@ class ConstellationBloc extends Bloc<ConstellationEvent, ConstellationState> {
 
       if (matchedZodiac != null) {
         final index = zodiacs.indexOf(matchedZodiac);
-        emit(state.copyWith(selectedZodiacIndex: index));
+        emit(
+          state.copyWith(
+            selectedZodiacIndex: index,
+            constellationValue: matchedZodiac.name,
+          ),
+        );
       }
       // final dateRange = event.dateRange;
       // final zodiacs = state.zodiacs;
