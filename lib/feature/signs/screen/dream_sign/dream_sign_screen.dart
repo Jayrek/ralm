@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ralm/core/constants/string_constant.dart';
+import 'package:ralm/core/shared/widget/custom_button_icon_widget.dart';
 import 'package:ralm/feature/signs/screen/dream_sign/bloc/dream_sign_bloc.dart';
 
 class DreamSignScreen extends StatelessWidget {
@@ -10,120 +11,127 @@ class DreamSignScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      body: SizedBox.expand(
-        child: Container(
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage('assets/bg/dream_sign_bg/ds_home_bg.jpg'),
-              fit: BoxFit.cover,
-            ),
-          ),
-          child: Container(
-            color: Colors.black.withOpacity(0.4),
-            child: Center(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 30,
-                  vertical: 20,
+      body: Stack(
+        children: [
+          SizedBox.expand(
+            child: Container(
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage('assets/bg/dream_sign_bg/ds_home_bg.jpg'),
+                  fit: BoxFit.cover,
                 ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      'Dream Sign',
-                      style: Theme.of(
-                        context,
-                      ).textTheme.displayLarge?.copyWith(fontSize: 90),
+              ),
+              child: Container(
+                color: Colors.black.withOpacity(0.4),
+                child: Center(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 30,
+                      vertical: 20,
                     ),
-                    SizedBox(height: 40),
-                    Row(
-                      spacing: 20,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        _buildButtonWidget(
-                          label: 'Common',
-                          onTap: () {
-                            context.read<DreamSignBloc>().add(
-                              FetchDreamSignDetail(dreamSignCategory: 'common'),
-                            );
-                            Navigator.pushNamed(
-                              context,
-                              StringConstant.navDreamSignDetail,
-                              arguments: {'type': 'common'},
-                            );
-                          },
+                        Text(
+                          'Dream Sign',
+                          style: Theme.of(
+                            context,
+                          ).textTheme.displayLarge?.copyWith(fontSize: 90),
                         ),
-                        _buildButtonWidget(
-                          label: 'Nightmare',
-                          onTap: () {
-                            context.read<DreamSignBloc>().add(
-                              FetchDreamSignDetail(
-                                dreamSignCategory: 'nightmare',
-                              ),
-                            );
-                            Navigator.pushNamed(
-                              context,
-                              StringConstant.navDreamSignDetail,
-                              arguments: {'type': 'nightmare'},
-                            );
-                          },
+                        SizedBox(height: 40),
+                        Row(
+                          spacing: 20,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            _buildButtonWidget(
+                              label: 'Common',
+                              onTap: () {
+                                context.read<DreamSignBloc>().add(
+                                  FetchDreamSignDetail(
+                                    dreamSignCategory: 'common',
+                                  ),
+                                );
+                                Navigator.pushNamed(
+                                  context,
+                                  StringConstant.navDreamSignDetail,
+                                  arguments: {'type': 'common'},
+                                );
+                              },
+                            ),
+                            _buildButtonWidget(
+                              label: 'Nightmare',
+                              onTap: () {
+                                context.read<DreamSignBloc>().add(
+                                  FetchDreamSignDetail(
+                                    dreamSignCategory: 'nightmare',
+                                  ),
+                                );
+                                Navigator.pushNamed(
+                                  context,
+                                  StringConstant.navDreamSignDetail,
+                                  arguments: {'type': 'nightmare'},
+                                );
+                              },
+                            ),
+                          ],
                         ),
+                        SizedBox(height: 40),
+                        Row(
+                          spacing: 20,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            _buildButtonWidget(
+                              label: 'Animal',
+                              onTap: () {
+                                context.read<DreamSignBloc>().add(
+                                  FetchDreamSignDetail(
+                                    dreamSignCategory: 'animal',
+                                  ),
+                                );
+                                Navigator.pushNamed(
+                                  context,
+                                  StringConstant.navDreamSignDetail,
+                                  arguments: {'type': 'animal'},
+                                );
+                              },
+                            ),
+                            _buildButtonWidget(
+                              label: 'Symbol',
+                              onTap: () {
+                                context.read<DreamSignBloc>().add(
+                                  FetchDreamSignDetail(
+                                    dreamSignCategory: 'symbol',
+                                  ),
+                                );
+                                Navigator.pushNamed(
+                                  context,
+                                  StringConstant.navDreamSignDetail,
+                                  arguments: {'type': 'symbol'},
+                                );
+                              },
+                            ),
+                          ],
+                        ),
+                        SizedBox(height: 40),
                       ],
                     ),
-                    SizedBox(height: 40),
-                    Row(
-                      spacing: 20,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        _buildButtonWidget(
-                          label: 'Animal',
-                          onTap: () {
-                            context.read<DreamSignBloc>().add(
-                              FetchDreamSignDetail(dreamSignCategory: 'animal'),
-                            );
-                            Navigator.pushNamed(
-                              context,
-                              StringConstant.navDreamSignDetail,
-                              arguments: {'type': 'animal'},
-                            );
-                          },
-                        ),
-                        _buildButtonWidget(
-                          label: 'Symbol',
-                          onTap: () {
-                            context.read<DreamSignBloc>().add(
-                              FetchDreamSignDetail(dreamSignCategory: 'symbol'),
-                            );
-                            Navigator.pushNamed(
-                              context,
-                              StringConstant.navDreamSignDetail,
-                              arguments: {'type': 'symbol'},
-                            );
-                          },
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 40),
-                    TextButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      child: Text(
-                        'Exit',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontFamily: 'Poppins',
-                          fontSize: 30,
-                        ),
-                      ),
-                    ),
-                  ],
+                  ),
                 ),
               ),
             ),
           ),
-        ),
+          Positioned(
+            top: 20,
+            left: 20,
+            child: CustomButtonIconWidget(
+              icon: Icon(Icons.arrow_circle_left),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
+          ),
+        ],
       ),
     );
   }

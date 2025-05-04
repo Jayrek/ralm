@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ralm/core/shared/widget/custom_button_icon_widget.dart';
 import 'package:ralm/models/tarot.dart';
 
 class ViewPickedCardScreen extends StatefulWidget {
@@ -45,75 +46,89 @@ class _ViewPickedCardScreenState extends State<ViewPickedCardScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      body: Container(
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('assets/bg/tarot_bg/tc_card_result_bg.jpg'),
-            fit: BoxFit.cover,
-          ),
-        ),
-        child: Container(
-          color: Colors.black.withOpacity(0.4),
-          child: PageView.builder(
-            controller: _pageController,
-            itemCount: pickedCards.length,
-            onPageChanged: (index) {
-              setState(() {
-                _currentPage = index;
-              });
-            },
-            itemBuilder: (context, index) {
-              final tarot = pickedCards[index];
+      body: Stack(
+        children: [
+          Container(
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('assets/bg/tarot_bg/tc_card_result_bg.jpg'),
+                fit: BoxFit.cover,
+              ),
+            ),
+            child: Container(
+              color: Colors.black.withOpacity(0.4),
+              child: PageView.builder(
+                controller: _pageController,
+                itemCount: pickedCards.length,
+                onPageChanged: (index) {
+                  setState(() {
+                    _currentPage = index;
+                  });
+                },
+                itemBuilder: (context, index) {
+                  final tarot = pickedCards[index];
 
-              double opacity = (_currentPage == index) ? 1.0 : 0.1;
-              double scale = (_currentPage == index) ? 1.0 : 0.95;
+                  double opacity = (_currentPage == index) ? 1.0 : 0.1;
+                  double scale = (_currentPage == index) ? 1.0 : 0.95;
 
-              return Center(
-                child: AnimatedContainer(
-                  duration: Duration(milliseconds: 300),
-                  curve: Curves.easeInOut,
-                  transform: Matrix4.identity()..scale(scale),
-                  // padding: EdgeInsets.symmetric(horizontal: 20, vertical: 40),
-                  child: AnimatedOpacity(
-                    duration: Duration(milliseconds: 300),
-                    opacity: opacity,
-                    child: SizedBox(
-                      height: 500,
-                      // width: MediaQuery.of(context).size.width * 0.9,
-                      child: SingleChildScrollView(
-                        child: Column(
-                          children: [
-                            Align(
-                              alignment: Alignment.centerLeft,
-                              child: Text(
-                                (index == 0
-                                        ? 'First Card'
-                                        : index == 1
-                                        ? 'Second Card '
-                                        : 'Third Card')
-                                    .toUpperCase(),
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  fontFamily: 'Poppins',
-                                ),
-                              ),
-                            ),
-                            Row(
+                  return Center(
+                    child: AnimatedContainer(
+                      duration: Duration(milliseconds: 300),
+                      curve: Curves.easeInOut,
+                      transform: Matrix4.identity()..scale(scale),
+                      // padding: EdgeInsets.symmetric(horizontal: 20, vertical: 40),
+                      child: AnimatedOpacity(
+                        duration: Duration(milliseconds: 300),
+                        opacity: opacity,
+                        child: SizedBox(
+                          height: 500,
+                          // width: MediaQuery.of(context).size.width * 0.9,
+                          child: SingleChildScrollView(
+                            child: Column(
                               children: [
-                                _buildImageContainerWidget(tarot.image),
-                                _buildTarotCardInfoWidget(tarot),
+                                Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: Text(
+                                    (index == 0
+                                            ? 'First Card'
+                                            : index == 1
+                                            ? 'Second Card '
+                                            : 'Third Card')
+                                        .toUpperCase(),
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                      fontFamily: 'Poppins',
+                                    ),
+                                  ),
+                                ),
+                                Row(
+                                  children: [
+                                    _buildImageContainerWidget(tarot.image),
+                                    _buildTarotCardInfoWidget(tarot),
+                                  ],
+                                ),
                               ],
                             ),
-                          ],
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                ),
-              );
-            },
+                  );
+                },
+              ),
+            ),
           ),
-        ),
+          Positioned(
+            top: 20,
+            left: 20,
+            child: CustomButtonIconWidget(
+              icon: Icon(Icons.arrow_circle_left),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
+          ),
+        ],
       ),
     );
   }

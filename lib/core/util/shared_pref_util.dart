@@ -17,8 +17,8 @@ Future<void> savePickedTarotsWithTimeout(List<Tarot> pickedCards) async {
     final savedTime = DateTime.fromMillisecondsSinceEpoch(savedTimestamp);
     final difference = now.difference(savedTime);
 
-    // if (difference.inHours < 24 && existing != null && existing.isNotEmpty) {
-    if (difference.inMinutes < 1 && existing != null && existing.isNotEmpty) {
+    if (difference.inHours < 24 && existing != null && existing.isNotEmpty) {
+      // if (difference.inMinutes < 1 && existing != null && existing.isNotEmpty) {
       debugPrint('Less than 24 hours since last save. Skipping save.');
       return;
     }
@@ -63,13 +63,13 @@ Future<void> resetPickedTarots() async {
   final now = DateTime.now();
   final difference = now.difference(savedTime);
 
-  // if (difference.inHours >= 24) {
-  if (difference.inMinutes >= 1) {
+  if (difference.inHours >= 24) {
+    // if (difference.inMinutes >= 1) {
     await prefs.remove('picked_cards');
     await prefs.remove('picked_cards_timestamp');
     debugPrint('24 hours passed. Picked cards and timestamp cleared.');
   } else {
-    final remaining = 1 - difference.inMinutes;
+    final remaining = 1 - difference.inHours;
     debugPrint('Not yet 24 hours. Wait $remaining more hour(s) before reset.');
   }
 }

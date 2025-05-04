@@ -119,6 +119,9 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                           ),
                           SizedBox(height: 20),
 
+                          // user name here...
+                          SizedBox(width: 100, child: TextField()),
+
                           Row(
                             spacing: 40,
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -414,8 +417,20 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                           //     ),
                           //   ],
                           // ),
+                          //
+                          TextButton(
+                            child: Text(
+                              'Clear All',
+                              style: TextStyle(
+                                fontFamily: 'Poppins',
+                                fontSize: 15,
+                                color: Colors.white,
+                              ),
+                            ),
+                            onPressed: () {},
+                          ),
                           Padding(
-                            padding: const EdgeInsets.only(top: 40, bottom: 20),
+                            padding: const EdgeInsets.only(top: 20, bottom: 20),
                             child: Text(
                               'DAILY TAROT CARD',
                               style: TextStyle(fontFamily: 'Poppins'),
