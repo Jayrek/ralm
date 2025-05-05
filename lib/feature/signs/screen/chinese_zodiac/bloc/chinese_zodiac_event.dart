@@ -12,13 +12,18 @@ class FetchChineseZodiac extends ChineseZodiacEvent {
 }
 
 class SelectedChineseZodiac extends ChineseZodiacEvent {
-  const SelectedChineseZodiac({required this.year, this.notYear = false});
+  const SelectedChineseZodiac({
+    required this.year,
+    this.notYear = false,
+    this.isFromDiscover = false,
+  });
 
   final int year;
   final bool notYear;
+  final bool isFromDiscover;
 
   @override
-  List<Object> get props => [year, notYear];
+  List<Object> get props => [year, notYear, isFromDiscover];
 }
 
 class SaveAvatarChineseZodiac extends ChineseZodiacEvent {
@@ -34,4 +39,21 @@ class RemoveAvatarChineseZodiac extends ChineseZodiacEvent {
 
 class GetAvatarChineseZodiac extends ChineseZodiacEvent {
   const GetAvatarChineseZodiac();
+}
+
+// zodiac
+class SaveDiscoverZodiac extends ChineseZodiacEvent {
+  const SaveDiscoverZodiac({required this.name});
+  final String name;
+
+  @override
+  List<Object> get props => [name];
+}
+
+class GetDiscoverZodiac extends ChineseZodiacEvent {
+  const GetDiscoverZodiac();
+}
+
+class RemoveDiscoverZodiac extends ChineseZodiacEvent {
+  const RemoveDiscoverZodiac();
 }

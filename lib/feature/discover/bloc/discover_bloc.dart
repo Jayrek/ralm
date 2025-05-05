@@ -44,10 +44,10 @@ class DiscoverBloc extends Bloc<DiscoverEvent, DiscoverState> {
   static Future<void> _saveDiscoverUserName(String name) async {
     final prefs = await SharedPreferences.getInstance();
 
-    final result = prefs.getString(_discoverUserNameKey);
-    if (result == null) {
-      await prefs.setString(_discoverUserNameKey, name);
-    }
+    // final result = prefs.getString(_discoverUserNameKey);
+    // if (result == null) {
+    await prefs.setString(_discoverUserNameKey, name);
+    // }
   }
 
   static Future<String?> _getDiscoverUserName() async {
@@ -80,49 +80,5 @@ class DiscoverBloc extends Bloc<DiscoverEvent, DiscoverState> {
   static Future<void> _removeDiscoverBday() async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.remove(_discoverBdayKey);
-  }
-
-  // constellation
-  static const _discoverConstellationKey = 'discoverConstellation';
-
-  static Future<void> _saveDiscoverConstellation(String name) async {
-    final prefs = await SharedPreferences.getInstance();
-
-    final result = prefs.getString(_discoverConstellationKey);
-    if (result == null) {
-      await prefs.setString(_discoverConstellationKey, name);
-    }
-  }
-
-  static Future<String?> _getDiscoverConstellation() async {
-    final prefs = await SharedPreferences.getInstance();
-    return prefs.getString(_discoverConstellationKey);
-  }
-
-  static Future<void> _removeDiscoverConstellation() async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.remove(_discoverConstellationKey);
-  }
-
-  // zodiac
-  static const _discoverZodiacKey = 'discoverZodiac';
-
-  static Future<void> _saveDiscoverZodiac(String name) async {
-    final prefs = await SharedPreferences.getInstance();
-
-    final result = prefs.getString(_discoverZodiacKey);
-    if (result == null) {
-      await prefs.setString(_discoverZodiacKey, name);
-    }
-  }
-
-  static Future<String?> _getDiscoverZodiac() async {
-    final prefs = await SharedPreferences.getInstance();
-    return prefs.getString(_discoverZodiacKey);
-  }
-
-  static Future<void> _removeDiscoverZodiac() async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.remove(_discoverZodiacKey);
   }
 }

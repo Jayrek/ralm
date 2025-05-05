@@ -42,6 +42,8 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
     context.read<YourColorBloc>().add(GetAvatarYourColor());
     context.read<DiscoverBloc>().add(GetDiscoverUserName());
     context.read<DiscoverBloc>().add(GetZodiacFromBDate());
+    context.read<ChineseZodiacBloc>().add(GetDiscoverZodiac());
+    context.read<ConstellationBloc>().add(GetDiscoverConstellation());
     // _userNameController.addListener(() {
     //   final name = _userNameController.text.trim();
     //   context.read<DiscoverBloc>().add(SaveDiscoverUserName(name: name));
@@ -161,6 +163,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                                     );
                                   },
                                   decoration: InputDecoration(
+                                    hintText: 'Enter your Name',
                                     filled: true,
                                     fillColor: Colors.white,
                                     contentPadding: EdgeInsets.symmetric(
@@ -223,7 +226,9 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                                                   .read<ConstellationBloc>()
                                                   .add(
                                                     SelectedConstellationZodiac(
-                                                      selectedDate,
+                                                      selectedDate:
+                                                          selectedDate,
+                                                      isFromDiscover: true,
                                                     ),
                                                   );
                                               context
@@ -231,11 +236,28 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                                                   .add(
                                                     SelectedChineseZodiac(
                                                       year: year,
+                                                      isFromDiscover: true,
                                                     ),
                                                   );
-                                              debugPrint(
-                                                'Selected Date: $bdayFormat',
-                                              );
+
+                                              // final constellationState =
+                                              //     context
+                                              //         .read<ConstellationBloc>()
+                                              //         .state
+                                              //         .constellationValue;
+
+                                              // final zodiacState =
+                                              //     context
+                                              //         .read<ChineseZodiacBloc>()
+                                              //         .state
+                                              //         .zodiacValue;
+
+                                              // debugPrint(
+                                              //   'CONSTELLATION: $constellationState',
+                                              // );
+                                              // debugPrint(
+                                              //   'ZODIAC: $zodiacState',
+                                              // );
                                             },
                                           );
                                         },
@@ -502,7 +524,28 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                                 color: Colors.white,
                               ),
                             ),
-                            onPressed: () {},
+                            onPressed: () {
+                              // clear the birthday, constellation, chinese zodiac, soul, color, mbti, and tarot
+
+                              context.read<DiscoverBloc>()
+                                ..add(RemoveDiscoverUserName())
+                                ..add(RemoveZodiacFromBDate());
+                              context.read<ConstellationBloc>().add(
+                                RemoveDiscoverConstellation(),
+                              );
+                              context.read<ChineseZodiacBloc>().add(
+                                RemoveDiscoverZodiac(),
+                              );
+                              context.read<ElementalSoulBloc>().add(
+                                RemoveAvatarElementalSoul(),
+                              );
+                              context.read<YourColorBloc>().add(
+                                RemoveAvatarYourColor(),
+                              );
+                              context.read<MyersBriggsBloc>().add(
+                                RemoveMyersBriggesResult(),
+                              );
+                            },
                           ),
                           Padding(
                             padding: const EdgeInsets.only(top: 20, bottom: 20),

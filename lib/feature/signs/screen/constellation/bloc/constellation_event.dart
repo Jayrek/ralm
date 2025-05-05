@@ -13,14 +13,18 @@ class FetchConstellationZodiac extends ConstellationEvent {
 
 class SelectedConstellationZodiac extends ConstellationEvent {
   final DateTime selectedDate;
+  final bool isFromDiscover;
 
-  const SelectedConstellationZodiac(this.selectedDate);
+  const SelectedConstellationZodiac({
+    required this.selectedDate,
+    this.isFromDiscover = false,
+  });
   // const SelectedConstellationZodiac({required this.dateRange});
 
   // final String dateRange;
 
   // @override
-  List<Object> get props => [selectedDate];
+  List<Object> get props => [selectedDate, isFromDiscover];
 }
 
 class SelectedConstellationIndividualZodiac extends ConstellationEvent {
@@ -45,4 +49,21 @@ class RemoveAvatarContestllation extends ConstellationEvent {
 
 class GetAvatarContestllation extends ConstellationEvent {
   const GetAvatarContestllation();
+}
+
+// constellation
+class SaveDiscoverConstellation extends ConstellationEvent {
+  const SaveDiscoverConstellation({required this.name});
+  final String name;
+
+  @override
+  List<Object> get props => [name];
+}
+
+class GetDiscoverConstellation extends ConstellationEvent {
+  const GetDiscoverConstellation();
+}
+
+class RemoveDiscoverConstellation extends ConstellationEvent {
+  const RemoveDiscoverConstellation();
 }

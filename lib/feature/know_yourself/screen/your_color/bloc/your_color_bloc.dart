@@ -66,6 +66,7 @@ class YourColorBloc extends Bloc<YourColorEvent, YourColorState> {
 
     on<RemoveAvatarYourColor>((event, emit) async {
       await removeAvatarYourColor();
+      emit(state.copyWith(avatarUnLocked: 'No'));
     });
   }
 

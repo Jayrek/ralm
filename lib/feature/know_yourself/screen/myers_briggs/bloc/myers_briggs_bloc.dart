@@ -74,6 +74,7 @@ class MyersBriggsBloc extends Bloc<MyersBriggsEvent, MyersBriggsState> {
 
     on<RemoveMyersBriggesResult>((event, emit) async {
       await MyersBriggsSharedPrefUtil.removeMyersBriggsResult();
+      emit(state.copyWith(personalityResult: ''));
     });
 
     on<GetMyersBriggesResult>((event, emit) async {

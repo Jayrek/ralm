@@ -34,12 +34,11 @@ class ChineseZodiacBloc extends Bloc<ChineseZodiacEvent, ChineseZodiacState> {
         });
 
         if (selectedIndex != -1) {
-          emit(
-            state.copyWith(
-              selectedZodiacIndex: selectedIndex,
-              zodiacValue: state.zodiacs[selectedIndex].name,
-            ),
-          );
+          emit(state.copyWith(selectedZodiacIndex: selectedIndex));
+        }
+        if (event.isFromDiscover) {
+          final zodiac = state.zodiacs[selectedIndex].name;
+          add(SaveDiscoverZodiac(name: zodiac));
         }
       }
     });
@@ -54,6 +53,21 @@ class ChineseZodiacBloc extends Bloc<ChineseZodiacEvent, ChineseZodiacState> {
 
     on<RemoveAvatarChineseZodiac>((event, emit) async {
       await removeAvatarChineseZodiac();
+    });
+
+    on<SaveDiscoverZodiac>((event, emit) async {
+      await _saveDiscoverZodiac(event.name);
+      emit(state.copyWith(zodiacValue: event.name));
+    });
+
+    on<GetDiscoverZodiac>((event, emit) async {
+      final zodiac = await _getDiscoverZodiac();
+      emit(state.copyWith(zodiacValue: zodiac));
+    });
+
+    on<RemoveDiscoverZodiac>((event, emit) async {
+      await _removeDiscoverZodiac();
+      emit(state.copyWith(zodiacValue: ''));
     });
   }
 
@@ -76,5 +90,27 @@ class ChineseZodiacBloc extends Bloc<ChineseZodiacEvent, ChineseZodiacState> {
   static Future<void> removeAvatarChineseZodiac() async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.remove(_avatarChineseZodiacKey);
+  }
+
+  // zodiac
+  static const _discoverZodiacKey = 'discoverZodiac';
+
+  static Future<void> _saveDiscoverZodiac(String name) async {
+    final prefs = await SharedPreferences.getInstance();
+
+    final result = prefs.getString(_discoverZodiacKey);
+    if (result == null) {
+      await prefs.setString(_discoverZodiacKey, name);
+    }
+  }
+
+  static Future<String?> _getDiscoverZodiac() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getString(_discoverZodiacKey);
+  }
+
+  static Future<void> _removeDiscoverZodiac() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.remove(_discoverZodiacKey);
   }
 }

@@ -34,6 +34,10 @@ class ConstellationBloc extends Bloc<ConstellationEvent, ConstellationState> {
             constellationValue: matchedZodiac.name,
           ),
         );
+        if (event.isFromDiscover) {
+          final zodiac = matchedZodiac.name;
+          add(SaveDiscoverConstellation(name: zodiac));
+        }
       }
       // final dateRange = event.dateRange;
       // final zodiacs = state.zodiacs;
@@ -68,6 +72,21 @@ class ConstellationBloc extends Bloc<ConstellationEvent, ConstellationState> {
 
     on<RemoveAvatarContestllation>((event, emit) async {
       await removeAvatarContestllation();
+    });
+
+    on<SaveDiscoverConstellation>((event, emit) async {
+      await _saveDiscoverConstellation(event.name);
+      emit(state.copyWith(constellationValue: event.name));
+    });
+
+    on<GetDiscoverConstellation>((event, emit) async {
+      final zodiac = await _getDiscoverConstellation();
+      emit(state.copyWith(constellationValue: zodiac));
+    });
+
+    on<RemoveDiscoverConstellation>((event, emit) async {
+      await _removeDiscoverConstellation();
+      emit(state.copyWith(constellationValue: ''));
     });
   }
 
@@ -141,5 +160,27 @@ class ConstellationBloc extends Bloc<ConstellationEvent, ConstellationState> {
   static Future<void> removeAvatarContestllation() async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.remove(_avatarContestllationKey);
+  }
+
+  // constellation
+  static const _discoverConstellationKey = 'discoverConstellation';
+
+  static Future<void> _saveDiscoverConstellation(String name) async {
+    final prefs = await SharedPreferences.getInstance();
+
+    final result = prefs.getString(_discoverConstellationKey);
+    if (result == null) {
+      await prefs.setString(_discoverConstellationKey, name);
+    }
+  }
+
+  static Future<String?> _getDiscoverConstellation() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getString(_discoverConstellationKey);
+  }
+
+  static Future<void> _removeDiscoverConstellation() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.remove(_discoverConstellationKey);
   }
 }

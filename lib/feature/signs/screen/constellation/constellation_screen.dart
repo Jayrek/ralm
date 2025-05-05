@@ -183,7 +183,9 @@ class _ConstellationScreenState extends State<ConstellationScreen>
                                     selectedDate = DateTime(2000, month, day);
                                   });
                                   context.read<ConstellationBloc>().add(
-                                    SelectedConstellationZodiac(picked),
+                                    SelectedConstellationZodiac(
+                                      selectedDate: picked,
+                                    ),
                                   );
                                   context.read<ConstellationBloc>().add(
                                     SaveAvatarContestllation(

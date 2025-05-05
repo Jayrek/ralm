@@ -77,6 +77,7 @@ class ElementalSoulBloc extends Bloc<ElementalSoulEvent, ElementalSoulState> {
 
     on<RemoveAvatarElementalSoul>((event, emit) async {
       await removeAvatarElementalSoul();
+      emit(state.copyWith(avatarUnLocked: 'No'));
     });
   }
 

@@ -41,36 +41,36 @@ class RemoveZodiacFromBDate extends DiscoverEvent {
   const RemoveZodiacFromBDate();
 }
 
-// constellation
-class SaveDiscoverConstellation extends DiscoverEvent {
-  const SaveDiscoverConstellation({required this.name});
-  final String name;
+// // constellation
+// class SaveDiscoverConstellation extends DiscoverEvent {
+//   const SaveDiscoverConstellation({required this.name});
+//   final String name;
 
-  @override
-  List<Object> get props => [name];
-}
+//   @override
+//   List<Object> get props => [name];
+// }
 
-class GetDiscoverConstellation extends DiscoverEvent {
-  const GetDiscoverConstellation();
-}
+// class GetDiscoverConstellation extends DiscoverEvent {
+//   const GetDiscoverConstellation();
+// }
 
-class RemoveDiscoverConstellation extends DiscoverEvent {
-  const RemoveDiscoverConstellation();
-}
+// class RemoveDiscoverConstellation extends DiscoverEvent {
+//   const RemoveDiscoverConstellation();
+// }
 
-// zodiac
-class SaveDiscoverZodiac extends DiscoverEvent {
-  const SaveDiscoverZodiac({required this.name});
-  final String name;
+// // zodiac
+// class SaveDiscoverZodiac extends DiscoverEvent {
+//   const SaveDiscoverZodiac({required this.name});
+//   final String name;
 
-  @override
-  List<Object> get props => [name];
-}
+//   @override
+//   List<Object> get props => [name];
+// }
 
-class GetDiscoverZodiac extends DiscoverEvent {
-  const GetDiscoverZodiac();
-}
+// class GetDiscoverZodiac extends DiscoverEvent {
+//   const GetDiscoverZodiac();
+// }
 
-class RemoveDiscoverZodiac extends DiscoverEvent {
-  const RemoveDiscoverZodiac();
-}
+// class RemoveDiscoverZodiac extends DiscoverEvent {
+//   const RemoveDiscoverZodiac();
+// }
