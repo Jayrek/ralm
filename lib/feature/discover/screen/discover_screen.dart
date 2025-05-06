@@ -524,26 +524,106 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                                 color: Colors.white,
                               ),
                             ),
-                            onPressed: () {
-                              // clear the birthday, constellation, chinese zodiac, soul, color, mbti, and tarot
-
-                              context.read<DiscoverBloc>()
-                                ..add(RemoveDiscoverUserName())
-                                ..add(RemoveZodiacFromBDate());
-                              context.read<ConstellationBloc>().add(
-                                RemoveDiscoverConstellation(),
-                              );
-                              context.read<ChineseZodiacBloc>().add(
-                                RemoveDiscoverZodiac(),
-                              );
-                              context.read<ElementalSoulBloc>().add(
-                                RemoveAvatarElementalSoul(),
-                              );
-                              context.read<YourColorBloc>().add(
-                                RemoveAvatarYourColor(),
-                              );
-                              context.read<MyersBriggsBloc>().add(
-                                RemoveMyersBriggesResult(),
+                            onPressed: () async {
+                              await showDialog(
+                                context: context,
+                                barrierDismissible: false,
+                                builder: (mContext) {
+                                  return Dialog(
+                                    backgroundColor: Colors.transparent,
+                                    child: Container(
+                                      padding: const EdgeInsets.symmetric(
+                                        vertical: 30,
+                                      ),
+                                      decoration: BoxDecoration(
+                                        color: Colors.deepPurple.shade500,
+                                        borderRadius: BorderRadius.circular(10),
+                                        border: Border.all(
+                                          color: Colors.pinkAccent,
+                                          width: 3,
+                                        ),
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: Colors.black.withOpacity(
+                                              0.2,
+                                            ),
+                                            blurRadius: 10,
+                                            offset: Offset(0, 5),
+                                          ),
+                                        ],
+                                      ),
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          Text(
+                                            'ARE YOU SURE YOU WISH TO CONTINUE?\n ALL DATA WILL BE ERASE.',
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                              fontFamily: 'Poppins',
+                                              fontSize: 18,
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                          const SizedBox(height: 30),
+                                          Row(
+                                            spacing: 20,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              _dialogOptionButton(
+                                                label: 'YES',
+                                                onTap: () async {
+                                                  context.read<DiscoverBloc>()
+                                                    ..add(
+                                                      RemoveDiscoverUserName(),
+                                                    )
+                                                    ..add(
+                                                      RemoveZodiacFromBDate(),
+                                                    );
+                                                  context
+                                                      .read<ConstellationBloc>()
+                                                      .add(
+                                                        RemoveDiscoverConstellation(),
+                                                      );
+                                                  context
+                                                      .read<ChineseZodiacBloc>()
+                                                      .add(
+                                                        RemoveDiscoverZodiac(),
+                                                      );
+                                                  context
+                                                      .read<ElementalSoulBloc>()
+                                                      .add(
+                                                        RemoveAvatarElementalSoul(),
+                                                      );
+                                                  context
+                                                      .read<YourColorBloc>()
+                                                      .add(
+                                                        RemoveAvatarYourColor(),
+                                                      );
+                                                  context
+                                                      .read<MyersBriggsBloc>()
+                                                      .add(
+                                                        RemoveMyersBriggesResult(),
+                                                      );
+                                                  await removePickedAvatars();
+                                                  _handlePickedCards();
+                                                  Navigator.pop(mContext);
+                                                },
+                                              ),
+                                              _dialogOptionButton(
+                                                label: 'NO',
+                                                onTap: () {
+                                                  Navigator.pop(mContext);
+                                                },
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  );
+                                },
                               );
                             },
                           ),
@@ -719,5 +799,31 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
   void dispose() {
     _userNameController.dispose();
     super.dispose();
+  }
+
+  Widget _dialogOptionButton({
+    required String label,
+    required Function()? onTap,
+  }) {
+    return SizedBox(
+      width: 100,
+      height: 50,
+      child: OutlinedButton(
+        style: OutlinedButton.styleFrom(
+          foregroundColor: Colors.white,
+          backgroundColor: Colors.deepPurple.shade500,
+          side: BorderSide(color: Colors.lightGreen, width: 2),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(50),
+          ),
+        ),
+        onPressed: onTap,
+        child: Text(
+          label,
+          textAlign: TextAlign.center,
+          style: TextStyle(fontFamily: 'Poppins'),
+        ),
+      ),
+    );
   }
 }

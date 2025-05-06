@@ -74,6 +74,12 @@ Future<void> resetPickedTarots() async {
   }
 }
 
+Future<void> removePickedAvatars() async {
+  final prefs = await SharedPreferences.getInstance();
+  await prefs.remove('picked_cards');
+  await prefs.remove('picked_cards_timestamp');
+}
+
 // ELEMENTAL SOUL
 Future<void> saveElementalProgress(int index, int score) async {
   final prefs = await SharedPreferences.getInstance();
